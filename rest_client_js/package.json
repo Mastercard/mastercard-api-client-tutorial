@@ -1,0 +1,24 @@
+{
+  "name": "mdes_for_merchants",
+  "version": "1.2.7",
+  "description": "The_MDES_APIs_are_designed_as_RPC_style_stateless_web_services_where_each_API_endpoint_represents_an_operation_to_be_performed___All_request_and_response_payloads_are_sent_in_the_JSON__JavaScript_Object_Notation_data_interchange_format__Each_endpoint_in_the_API_specifies_the_HTTP_Method_used_to_access_it__All_strings_in_request_and_response_objects_are_to_be_UTF_8_encoded___Each_API_URI_includes_the_major_and_minor_version_of_API_that_it_conforms_to___This_will_allow_multiple_concurrent_versions_of_the_API_to_be_deployed_simultaneously__",
+  "license": "Unlicense",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha --recursive"
+  },
+  "browser": {
+    "fs": false
+  },
+  "dependencies": {
+    "mastercard-client-encryption": "^1.0.4",
+    "mastercard-oauth1-signer": "^1.1.2",
+    "node-forge": "^0.8.4",
+    "superagent": "3.7.0"
+  },
+  "devDependencies": {
+    "mocha": "~2.3.4",
+    "sinon": "1.17.3",
+    "expect.js": "~0.3.1"
+  }
+}

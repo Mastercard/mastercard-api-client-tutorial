@@ -1,0 +1,22 @@
+{
+  "paths": {
+    "$": {
+      "toEncrypt": {
+          "cardInfo.encryptedData": "cardInfo"
+      },
+      "toDecrypt": {
+          "tokenDetail": "tokenDetail.encryptedData"
+      }
+    }
+  },
+
+  "oaepPaddingDigestAlgorithm": "SHA512",
+  "ivFieldName": "iv",
+  "encryptedKeyFieldName": "encryptedKey",
+  "encryptedValueFieldName": "encryptedData",
+  "oaepHashingAlgorithmFieldName": "oaepHashingAlgorithm",
+  "publicKeyFingerprintFieldName": "publicKeyFingerprint",
+  "dataEncoding": "hex",
+  "encryptionCertificate": "/Users/marcorocco/development/projects/mastercard/client-encryption-nodejs-service-tests/services/digital-enablement/759108974d6cb32480d003b49349Public%20Key-Encrypt.cer",
+  "decryptionKey": "/Users/marcorocco/development/projects/mastercard/client-encryption-nodejs-service-tests/services/digital-enablement/sbxprivkey.key"
+}

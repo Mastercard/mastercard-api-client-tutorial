@@ -1,0 +1,12 @@
+# FundingAccountData
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**card_account_data** | [**\Swagger\Client\Model\CardAccountDataInbound**](CardAccountDataInbound.md) |  | [optional] 
+**account_holder_data** | [**\Swagger\Client\Model\AccountHolderData**](AccountHolderData.md) |  | [optional] 
+**source** | **string** | (__Required as minimum for Tokenization__)  The source of the account.   __Max Length:32__ | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

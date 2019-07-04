@@ -1,0 +1,69 @@
+{
+  "paths": [
+    {
+      "path": "/tokenize",
+      "toEncrypt": [
+        {
+          "element": "cardInfo.encryptedData",
+          "obj": "cardInfo"
+        }
+      ],
+      "toDecrypt": [
+        {
+          "element": "tokenDetail",
+          "obj": "tokenDetail.encryptedData"
+        }
+      ]
+    },
+    {
+      "path": "/searchTokens",
+      "toEncrypt": [
+        {
+          "element": "cardInfo.encryptedData",
+          "obj": "cardInfo"
+        }
+      ],
+      "toDecrypt": []
+    },
+    {
+      "path": "/getToken",
+      "toEncrypt": [],
+      "toDecrypt": [
+        {
+          "element": "tokenDetail",
+          "obj": "tokenDetail.encryptedData"
+        }
+      ]
+    },
+    {
+      "path": "/transact",
+      "toEncrypt": [],
+      "toDecrypt": [
+        {
+          "element": "encryptedPayload",
+          "obj": "encryptedPayload.encryptedData"
+        }
+      ]
+    },
+    {
+      "path": "/notifyTokenUpdated",
+      "toEncrypt": [
+        {
+          "element": "encryptedPayload.encryptedData",
+          "obj": "encryptedPayload"
+        }
+      ],
+      "toDecrypt": []
+    }
+  ],
+  "oaepPaddingDigestAlgorithm": "SHA-256",
+  "ivFieldName": "iv",
+  "encryptedKeyFieldName": "encryptedKey",
+  "encryptedValueFieldName": "encryptedData",
+  "oaepHashingAlgorithmFieldName": "oaepHashingAlgorithm",
+  "publicKeyFingerprintFieldName": "publicKeyFingerprint",
+  "publicKeyFingerprintType": "certificate",
+  "dataEncoding": "hex",
+  "encryptionCertificate": "/Users/marcorocco/development/projects/mastercard/client-encryption-nodejs-service-tests/services/digital-enablement/759108974d6cb32480d003b49349Public%20Key-Encrypt.cer",
+  "privateKey": "/Users/marcorocco/development/projects/mastercard/client-encryption-nodejs-service-tests/services/digital-enablement/sbxprivkey.key"
+}
