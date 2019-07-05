@@ -39,13 +39,13 @@ import static com.mastercard.developer.encryption.FieldLevelEncryptionConfig.Fie
  */
 public class TokenizeApiTest {
 
-    private static final String consumerKey = "q_zC8ga1WQhV7eSQx6gdstilnlXGohRHwlKUp_G3147e715a!737b9380526f4daa9f49fcd0047c3e9c0000000000000000"; // TODO
-    private static final String signingKeyFilePath = "/Users/marcorocco/development/projects/mastercard/client-encryption-nodejs-service-tests/services/digital-enablement/Oauth_libs-sandbox.p12"; // TODO
-    private static final String encryptionCertificateFilePath = "/Users/marcorocco/development/projects/mastercard/client-encryption-nodejs-service-tests/services/digital-enablement/759108974d6cb32480d003b49349Public%20Key-Encrypt.cer"; // TODO
-    private static final String decryptionKeyFilePath = "/Users/marcorocco/development/projects/mastercard/client-encryption-nodejs-service-tests/services/digital-enablement/sbxprivkey.key"; // TODO
-    private static final String signingKeyAlias = "keyalias"; // TODO
-    private static final String signingKeyPassword = "keystorepassword"; // TODO
-    private static final String encryptionCertificateFingerprint = "8FC11150A7508F14BACA07285703392A399CC57C"; // TODO
+    private static final String consumerKey = ""; // TODO
+    private static final String signingKeyFilePath = ""; // TODO
+    private static final String encryptionCertificateFilePath = ""; // TODO
+    private static final String decryptionKeyFilePath = ""; // TODO
+    private static final String signingKeyAlias = ""; // TODO
+    private static final String signingKeyPassword = ""; // TODO
+    private static final String encryptionCertificateFingerprint = ""; // TODO
 
     private static PrivateKey signingKey;
     private static FieldLevelEncryptionConfig config;

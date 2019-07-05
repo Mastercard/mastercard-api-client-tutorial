@@ -55,13 +55,12 @@ class TokenizeApiTest extends \PHPUnit_Framework_TestCase
 {
     private $client;
 
-    const ConsumerKey = "q_zC8ga1WQhV7eSQx6gdstilnlXGohRHwlKUp_G3147e715a!737b9380526f4daa9f49fcd0047c3e9c0000000000000000";
-    const SigningKeyAlias = "keyalias";
-    const SigningKeyPassword = "keystorepassword";
-    const SigningKeyPkcs12FilePath = "/Users/marcorocco/development/projects/mastercard/client-encryption-nodejs-service-tests/services/digital-enablement/Oauth_libs-sandbox.p12";
-    //const EncryptionCertificateFingerprint = "3e3ff1c50fd4046b9a80c39d3d077f7313b92ea01462744bfe50b62769dbef68";
-    const EncryptionCertificateFilePath = "/Users/marcorocco/development/projects/mastercard/client-encryption-nodejs-service-tests/services/digital-enablement/759108974d6cb32480d003b49349Public%20Key-Encrypt.cer";
-    const DecryptionKeyFilePath = "/Users/marcorocco/development/projects/mastercard/client-encryption-nodejs-service-tests/services/digital-enablement/sbxprivkey.key";
+    const ConsumerKey = ""; // TODO
+    const SigningKeyAlias = ""; // TODO
+    const SigningKeyPassword = ""; // TODO
+    const SigningKeyPkcs12FilePath = ""; // TODO
+    const EncryptionCertificateFilePath = ""; // TODO
+    const DecryptionKeyFilePath = ""; // TODO
 
     private static function getFieldLevelEncryptionConfig($encoding = FieldValueEncoding::BASE64) {
         $encryptionCertificate = EncryptionUtils::LoadEncryptionCertificate(self::EncryptionCertificateFilePath);

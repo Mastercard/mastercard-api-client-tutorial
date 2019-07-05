@@ -14,13 +14,13 @@ namespace Mastercard.Developer.DigitalEnablement.Tests
     [TestClass]
     public class Test
     {
-        private const string ConsumerKey = "-QFPBu19Z9Bs34J5Lk1d1X5AzNMJGfvVXwE6FA_Ca4ad42f7!2bf140a79c764955b0589721e68fea560000000000000000"; // TODO
-        private const string SigningKeyAlias = "keyalias"; // TODO
-        private const string SigningKeyPassword = "QvX=Txk6Qx7McS^G87jT"; // TODO
-        private const string SigningKeyPkcs12FilePath = "./_Resources/keyalias-sandbox.p12"; // TODO
-        private const string EncryptionCertificateFingerprint = "8FC11150A7508F14BACA07285703392A399CC57C"; // TODO
-        private const string EncryptionCertificateFilePath = "./_Resources/759108974d6cb32480d003b49349PublicKey-Encrypt.cer"; // TODO
-        private const string DecryptionKeyFilePath = "./_Resources/sbxprivkey.key"; // TODO
+        private const string ConsumerKey = ""; // TODO
+        private const string SigningKeyAlias = ""; // TODO
+        private const string SigningKeyPassword = ""; // TODO
+        private const string SigningKeyPkcs12FilePath = ""; // TODO
+        private const string EncryptionCertificateFingerprint = ""; // TODO
+        private const string EncryptionCertificateFilePath = ""; // TODO
+        private const string DecryptionKeyFilePath = ""; // TODO
 
         [ClassInitialize]
         public static void Before(TestContext context)

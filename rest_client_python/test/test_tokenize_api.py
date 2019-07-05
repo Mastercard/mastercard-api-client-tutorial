@@ -30,9 +30,9 @@ from swagger_client.api_client import ApiClient
 
 FLE_CONFIG_PATH = "resources/fle_config.json"
 BASE_PATH = "https://sandbox.api.mastercard.com/mdes"
-P12 = '/Users/marcorocco/development/projects/mastercard/client-encryption-nodejs-service-tests/services/digital-enablement/Oauth_libs-sandbox.p12' # TODO
-KEY_PASSWORD = 'keystorepassword' # TODO
-CONSUMER_KEY = 'q_zC8ga1WQhV7eSQx6gdstilnlXGohRHwlKUp_G3147e715a!737b9380526f4daa9f49fcd0047c3e9c0000000000000000' # TODO
+P12 = '' # TODO
+KEY_PASSWORD = '' # TODO
+CONSUMER_KEY = '' # TODO
 
 class TestTokenizeApi(unittest.TestCase):
 

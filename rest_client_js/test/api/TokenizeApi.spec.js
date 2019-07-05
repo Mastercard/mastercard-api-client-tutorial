@@ -87,15 +87,15 @@ const CONFIG = {
 
   dataEncoding: 'hex',
 
-  encryptionCertificate: "/Users/marcorocco/development/projects/mastercard/client-encryption-nodejs-service-tests/services/digital-enablement/759108974d6cb32480d003b49349Public%20Key-Encrypt.cer",
-  privateKey: "/Users/marcorocco/development/projects/mastercard/client-encryption-nodejs-service-tests/services/digital-enablement/sbxprivkey.key"
+  encryptionCertificate: "<TODO>",
+  privateKey: "<TODO>"
 
 };
 
-const CONSUMER_KEY = "q_zC8ga1WQhV7eSQx6gdstilnlXGohRHwlKUp_G3147e715a!737b9380526f4daa9f49fcd0047c3e9c0000000000000000"; // TODO
-const SIGNING_KEY_PATH = "/Users/marcorocco/development/projects/mastercard/client-encryption-nodejs-service-tests/services/digital-enablement/Oauth_libs-sandbox.p12"; // TODO
-const KEY_ALIAS = "keyalias"; // TODO
-const KEY_PASSWORD = "keystorepassword"; // TODO
+const CONSUMER_KEY = ""; // TODO
+const SIGNING_KEY_PATH = ""; // TODO
+const KEY_ALIAS = ""; // TODO
+const KEY_PASSWORD = ""; // TODO
 
 function loadSigningKey(){
   const p12Content = fs.readFileSync(SIGNING_KEY_PATH, 'binary');
