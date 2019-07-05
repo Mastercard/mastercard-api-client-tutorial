@@ -3,9 +3,9 @@ Reference REST client applications developed to show the usage of Mastercard OAu
 
 Supported languages:
 
-- Java
-- C#
-- NodeJS
-- Python
-- Ruby
-- PHP
+- **Java**
+- **C#**
+- **NodeJS**
+- **Python**
+- **Ruby**
+- **PHP**
