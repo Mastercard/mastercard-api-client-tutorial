@@ -21,7 +21,7 @@ import swagger_client
 from swagger_client.api.tokenize_api import TokenizeApi
 from swagger_client.rest import ApiException
 
-from oauth1.signer_interceptor import add_signing_layer
+from oauth1.signer_interceptor import add_signer_layer
 from oauth1.signer_interceptor import get_signing_layer
 
 from client_encryption.field_level_encryption_config import FieldLevelEncryptionConfig
@@ -41,7 +41,7 @@ class TestTokenizeApi(unittest.TestCase):
         c.host = BASE_PATH
         self.cli = swagger_client.ApiClient(c)
         ## Add OAuth1.0a interceptor
-        add_signing_layer(self, self.cli, P12, KEY_PASSWORD, CONSUMER_KEY)
+        add_signer_layer(self.cli, P12, KEY_PASSWORD, CONSUMER_KEY)
         ## Add Field Level Encryption interceptor
         config_file = os.path.join(os.path.dirname(__file__), FLE_CONFIG_PATH)
         add_encryption_layer(self.cli, config_file)
@@ -51,9 +51,9 @@ class TestTokenizeApi(unittest.TestCase):
         """TokenizeApi create_tokenize unit test"""
         api = swagger_client.api.tokenize_api.TokenizeApi(self.cli)
         res = api.create_tokenize(tokenize_request_schema=self.create_body())
-        # print(res)
+        # print(res.__dict__)
         assert(res)
-        self.assertEqual(res.decision, 'APPROVED')
+        self.assertEqual(json.loads(res.data)['decision'], 'APPROVED')
 
 
     def create_body(self):

@@ -1,22 +1,23 @@
 {
   "paths": {
-    "$": {
+      "$": {
       "toEncrypt": {
-          "cardInfo.encryptedData": "cardInfo"
+          "cardInfo.encryptedData": "cardInfo",
+          "encryptedPayload.encryptedData": "encryptedPayload"
       },
       "toDecrypt": {
-          "tokenDetail": "tokenDetail.encryptedData"
+          "tokenDetail": "tokenDetail.encryptedData",
+          "encryptedPayload": "encryptedPayload.encryptedData"
       }
-    }
+      }
   },
-
-  "oaepPaddingDigestAlgorithm": "SHA512",
   "ivFieldName": "iv",
   "encryptedKeyFieldName": "encryptedKey",
   "encryptedValueFieldName": "encryptedData",
-  "oaepHashingAlgorithmFieldName": "oaepHashingAlgorithm",
-  "publicKeyFingerprintFieldName": "publicKeyFingerprint",
   "dataEncoding": "hex",
   "encryptionCertificate": "<TODO>",
-  "decryptionKey": "<TODO>"
+  "decryptionKey": "<TODO>",
+  "oaepPaddingDigestAlgorithm": "SHA-256",
+  "encryptionCertificateFingerprintFieldName": "publicKeyFingerprint",
+  "oaepPaddingDigestAlgorithmFieldName": "oaepHashingAlgorithm"
 }
