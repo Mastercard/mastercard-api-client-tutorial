@@ -1,0 +1,5 @@
+.idea
+vendor
+tests.xml
+coverage.xml
+.scannerwork

@@ -1,0 +1,40 @@
+language: php
+git:
+  depth: false  # "Shallow clone detected during the analysis"
+matrix:
+  fast_finish: true
+  include:
+    # X.Y versions are aliases for recent X.Y.Z releases pre-installed on the build images
+    - php: '5.6.0'
+    - php: '5.6'
+    - php: '7.0'
+    - php: '7.1'
+    - php: '7.2'
+    - php: '7.3'
+      env:
+        # Do not run analysis on PR (secure env variables like SONAR_TOKEN are not always available)
+        - WITH_SONAR_ANALYSIS=$([ "$TRAVIS_PULL_REQUEST" = "false" ] && echo true || echo false)
+        - SONAR_SCANNER_VERSION=3.3.0.1492
+before_install:
+  - "composer --no-plugins --no-scripts install"
+  - "composer --no-plugins --no-scripts dump-autoload -o"
+install:
+  - |
+    test "$WITH_SONAR_ANALYSIS" = "true" \
+       && wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION.zip \
+       && unzip sonar-scanner-cli-$SONAR_SCANNER_VERSION.zip || echo 'Skipping Sonar Scanner installation'
+script:
+  - "vendor/bin/phpunit --configuration ./phpunit.xml --teamcity"
+after_success:
+  - |
+    test "$WITH_SONAR_ANALYSIS" = "true" && sonar-scanner-$SONAR_SCANNER_VERSION/bin/sonar-scanner \
+      -Dsonar.projectName=$SONAR_PROJECT_NAME \
+      -Dsonar.projectKey=$SONAR_PROJECT_KEY \
+      -Dsonar.organization=$SONAR_ORGANIZATION_KEY \
+      -Dsonar.sources=./src \
+      -Dsonar.tests=./tests \
+      -Dsonar.exclusions=**/vendor/**,**/tests/**,**/*.xml \
+      -Dsonar.php.tests.reportPath=tests.xml \
+      -Dsonar.php.coverage.reportPaths=coverage.xml \
+      -Dsonar.host.url=$SONAR_URL \
+      -Dsonar.login=$SONAR_TOKEN || echo 'Skipping Sonar Scanner execution'
