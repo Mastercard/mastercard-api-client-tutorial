@@ -1,0 +1,35 @@
+{
+    "name": "mastercard/oauth1-signer",
+    "description": "Zero dependency library for generating a Mastercard API compliant OAuth signature.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "oauth1",
+        "oauth1a",
+        "php"
+    ],
+    "authors": [
+        {
+            "name": "Mastercard"
+        }
+    ],
+    "require": {
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7",
+        "guzzlehttp/guzzle": "^6.2"
+    },
+    "suggest": {
+        "psr/http-message": "Allow usage of the PsrHttpMessageSigner class"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mastercard\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Mastercard\\": ["src/", "tests/"]
+        }
+    }
+}

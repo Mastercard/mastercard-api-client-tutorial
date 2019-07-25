@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="./vendor/autoload.php" colors="true" verbose="true" debug="true">
+    <testsuites>
+        <testsuite name="Application Test Suite">
+            <directory>./tests</directory>
+        </testsuite>
+    </testsuites>
+    <logging>
+        <log type="coverage-clover" target="coverage.xml"/>
+        <log type="junit" target="tests.xml"/>
+    </logging>
+    <filter>
+    <whitelist processUncoveredFilesFromWhitelist="true">
+        <directory suffix=".php">.</directory>
+        <exclude>
+            <directory suffix=".php">vendor</directory>
+            <directory suffix=".php">tests</directory>
+        </exclude>
+    </whitelist>
+</filter>
+</phpunit>

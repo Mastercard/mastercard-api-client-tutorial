@@ -1,0 +1,35 @@
+*   Trying 23.37.42.199...
+* TCP_NODELAY set
+* Connected to sandbox.api.mastercard.com (23.37.42.199) port 443 (#0)
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* successfully set certificate verify locations:
+*   CAfile: /etc/ssl/cert.pem
+  CApath: none
+* SSL connection using TLSv1.2 / ECDHE-RSA-AES256-GCM-SHA384
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+*  subject: C=BE; ST=Brabant Wallon; L=Waterloo; O=MasterCard International Incorporated; OU=Key Management Services; CN=stage.api.mastercard.com
+*  start date: Sep 20 13:58:42 2017 GMT
+*  expire date: Dec 19 14:28:41 2020 GMT
+*  issuer: C=US; O=Entrust, Inc.; OU=See www.entrust.net/legal-terms; OU=(c) 2012 Entrust, Inc. - for authorized use only; CN=Entrust Certification Authority - L1K
+*  SSL certificate verify ok.
+> POST /mdes/digitization/static/1/0/tokenize HTTP/1.1
+Host: sandbox.api.mastercard.com
+User-Agent: OpenAPI-Generator/1.0.0/PHP
+Accept: application/json
+Content-Type: application/json
+Authorization: OAuth oauth_consumer_key="q_zC8ga1WQhV7eSQx6gdstilnlXGohRHwlKUp_G3147e715a%21737b9380526f4daa9f49fcd0047c3e9c0000000000000000",oauth_nonce="M4GlSM6iFEWePtnn",oauth_timestamp="1564063086",oauth_signature_method="RSA-SHA256",oauth_version="1.0",oauth_body_hash="0DM2EUBI9B1QhHPG6m2xpo%2B%2FMHU3yC77gaE0wti6MDA%3D",oauth_signature="EZ9f6%2Bt%2BywWU%2Bf%2FMPU43w%2BDvDCDZFt8GlYFXa4HPLQ3ZHGCOnoTYxqgzTJweMwDXSh8TJG%2B3IOp8ntLyE%2BerOzE7FHI%2FJJQbmZoXnCQ0T9S5mXL5i3FNX35yPlIP6EarnAxLXOkwur2MznQY%2FS%2BurwF9xVaHMbo9jAlpGsqe%2F3VjfrihKWB503AhfASuwgTuR0FX9LSpVLIr9f1jY0sS%2BvEgDJsfr7R7MKUyFROPuKX7ITNTqPg93TSTtIzglgu1matz4JU0xyJRuDs%2FuC%2B7trFmaAKMMefHwuiuBy2sIRn%2B84l6PaGfI5%2F5d5OjaklFBo5RmDQuNvwcIeUPbx1s7w%3D%3D"
+Content-Length: 1393
+
+* upload completely sent off: 1393 out of 1393 bytes
+< HTTP/1.1 200 OK
+< Server: Apache-Coyote/1.1
+< correlation-id: 0000016c1aebee6a-86f3b
+< Content-Type: application/json
+< Content-Length: 2303
+< Date: Thu, 25 Jul 2019 13:58:07 GMT
+< Connection: keep-alive
+< Set-Cookie: WalletAPI_JSESSIONID=hyGscZC5QRL0+NF-kJ+t0xrA; Path=/mdes/digitization/static/1/0; Secure; Domain=sandbox.api.mastercard.com
+< 
+* Connection #0 to host sandbox.api.mastercard.com left intact
