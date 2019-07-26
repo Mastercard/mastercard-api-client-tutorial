@@ -19,10 +19,10 @@ require 'mcapi/encryption/openapi_interceptor'
 CONFIG = JSON.parse(File.read('config.json'))
 
 ## OAuth config
-P12 = '/Users/marcorocco/development/projects/mastercard/client-encryption-nodejs-service-tests/services/digital-enablement/Oauth_libs-sandbox.p12'.freeze # TODO
-KEY_ALIAS = 'keyalias'.freeze # TODO
-KEY_PASSWORD = 'keystorepassword'.freeze # TODO
-CONSUMER_KEY = 'q_zC8ga1WQhV7eSQx6gdstilnlXGohRHwlKUp_G3147e715a!737b9380526f4daa9f49fcd0047c3e9c0000000000000000'.freeze # TODO
+P12 = ''.freeze # TODO
+KEY_ALIAS = ''.freeze # TODO
+KEY_PASSWORD = ''.freeze # TODO
+CONSUMER_KEY = ''.freeze # TODO
 
 BASE_PATH = 'https://sandbox.api.mastercard.com/mdes'.freeze
 

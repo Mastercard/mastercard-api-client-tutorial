@@ -39,10 +39,10 @@ public class TokenizeApiTest {
     private static final String consumerKey = ""; // TODO
     private static final String signingKeyFilePath = ""; // TODO
     private static final String encryptionCertificateFilePath = ""; // TODO
-    private static final String decryptionKeyFilePath = "/Users/marcorocco/development/projects/mastercard/client-encryption-nodejs-service-tests/services/digital-enablement/sbxprivkey.key"; // TODO
-    private static final String signingKeyAlias = "keyalias"; // TODO
-    private static final String signingKeyPassword = "keystorepassword"; // TODO
-    private static final String encryptionCertificateFingerprint = "8FC11150A7508F14BACA07285703392A399CC57C"; // TODO
+    private static final String decryptionKeyFilePath = ""; // TODO
+    private static final String signingKeyAlias = ""; // TODO
+    private static final String signingKeyPassword = ""; // TODO
+    private static final String encryptionCertificateFingerprint = ""; // TODO
 
 
     private static PrivateKey signingKey;
