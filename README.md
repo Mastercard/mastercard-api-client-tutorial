@@ -1,11 +1,5 @@
-# mcapi_oauth_encryption_tutorial
-Reference REST client applications developed to show the usage of Mastercard OAuth1.0a and Field Level Encryption libraries.
+# mastercard-api-client-tutorial
 
-Supported languages:
+[Generating and Configuring a Mastercard API Client](https://developer.mastercard.com/platform/documentation/generating-and-configuring-a-mastercard-api-client/) explains how to generate and configure a simple API client for one of the APIs offered on the [Mastercard Developer portal](https://developer.mastercard.com/apis). 
 
-- **Java**
-- **C#**
-- **NodeJS**
-- **Python**
-- **Ruby**
-- **PHP**
+Languages used in this tutorial: Java, Python, NodeJS, Ruby, PHP and C#.
