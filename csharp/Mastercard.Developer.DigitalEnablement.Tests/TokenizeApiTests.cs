@@ -8,19 +8,23 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Mastercard.Developer.DigitalEnablement.Client.Api;
 using Mastercard.Developer.DigitalEnablement.Client.Client;
 using Mastercard.Developer.DigitalEnablement.Client.Model;
+using System.Security.Cryptography.X509Certificates;
+using static Mastercard.Developer.ClientEncryption.Core.Encryption.FieldLevelEncryptionConfig;
 
 namespace Mastercard.Developer.DigitalEnablement.Tests
 {
     [TestClass]
-    public class Test
+    public class TokenizeApiTest
     {
-        private const string ConsumerKey = ""; // TODO
-        private const string SigningKeyAlias = ""; // TODO
-        private const string SigningKeyPassword = ""; // TODO
-        private const string SigningKeyPkcs12FilePath = ""; // TODO
-        private const string EncryptionCertificateFingerprint = ""; // TODO
-        private const string EncryptionCertificateFilePath = ""; // TODO
-        private const string DecryptionKeyFilePath = ""; // TODO
+        //
+        // TODO: update me!
+        //
+        private const string ConsumerKey = "000000000000000000000000000000000000000000000000!000000000000000000000000000000000000000000000000";
+        private const string SigningKeyAlias = "fake-key";
+        private const string SigningKeyPassword = "fakepassword";
+        private const string SigningKeyPkcs12FilePath = "./_Resources/fake-signing-key.p12";
+        private const string EncryptionCertificateFilePath = "./_Resources/digital-enablement-sandbox-encryption-key.crt";
+        private const string DecryptionKeyFilePath = "./_Resources/digital-enablement-sandbox-decryption-key.key";
 
         [ClassInitialize]
         public static void Before(TestContext context)
@@ -30,12 +34,13 @@ namespace Mastercard.Developer.DigitalEnablement.Tests
 
         private static void SetupApiClient()
         {
-            var signingKey = AuthenticationUtils.LoadSigningKey(SigningKeyPkcs12FilePath, SigningKeyAlias, SigningKeyPassword);
+            var signingKey = AuthenticationUtils.LoadSigningKey(SigningKeyPkcs12FilePath, SigningKeyAlias, SigningKeyPassword, X509KeyStorageFlags.MachineKeySet | X509KeyStorageFlags.Exportable);
             var encryptionCertificate = EncryptionUtils.LoadEncryptionCertificate(EncryptionCertificateFilePath);
             var decryptionKey = EncryptionUtils.LoadDecryptionKey(DecryptionKeyFilePath);
 
             var fieldLevelEncryptionConfig = FieldLevelEncryptionConfigBuilder.AFieldLevelEncryptionConfig()
-                .WithEncryptionPath("$.cardInfo.encryptedData", "$.cardInfo")
+                .WithEncryptionPath("$.cardInfo.encryptedData", "$.cardInfo") // Before version 1.2.9
+                .WithEncryptionPath("$.fundingAccountInfo.encryptedPayload.encryptedData", "$.fundingAccountInfo.encryptedPayload")
                 .WithEncryptionPath("$.encryptedPayload.encryptedData", "$.encryptedPayload")
                 .WithDecryptionPath("$.tokenDetail", "$.tokenDetail.encryptedData")
                 .WithDecryptionPath("$.encryptedPayload", "$.encryptedPayload.encryptedData")
@@ -47,8 +52,7 @@ namespace Mastercard.Developer.DigitalEnablement.Tests
                 .WithIvFieldName("iv")
                 .WithOaepPaddingDigestAlgorithmFieldName("oaepHashingAlgorithm")
                 .WithEncryptionCertificateFingerprintFieldName("publicKeyFingerprint")
-                .WithEncryptionCertificateFingerprint(EncryptionCertificateFingerprint)
-                .WithValueEncoding(FieldLevelEncryptionConfig.FieldValueEncoding.Hex)
+                .WithValueEncoding(FieldValueEncoding.Hex)
                 .Build();
 
             var config = Configuration.Default;
@@ -67,54 +71,59 @@ namespace Mastercard.Developer.DigitalEnablement.Tests
             Assert.AreEqual("500181d9f8e0629211e3949a08002", response.TokenDetail.EncryptedData.PaymentAccountReference);
         }
 
-        private static TransactRequestSchema BuildTransactRequestSchema()
-        {
-            return new TransactRequestSchema(null,
-                "111111",
-                "DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45",
-                "UCAF",
-                "A1B2C3D4");
-        }
-
-        private static GetTokenRequestSchema BuildGetTokenRequestSchema()
-        {
-            return new GetTokenRequestSchema(null,
-                "123456",
-                "123456789",
-                "DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45",
-                "true");
-        }
-
         private static TokenizeRequestSchema BuildTokenizeRequestSchema()
         {
-            return new TokenizeRequestSchema(null, 
-                "123456", 
-                "CLOUD", 
-                "98765432101", 
+            return new TokenizeRequestSchema("site1.your-server.com",
                 "123456",
-                BuildCardInfo());
+                "CLOUD",
+                "98765432101",
+                "123456",
+                BuildFundingAccountInfo(),
+                "en",
+                "RHVtbXkgYmFzZSA2NCBkYXRhIC0gdGhpcyBpcyBub3QgYSByZWFsIFRBViBleGFtcGxl");
         }
 
-        private static CardInfo BuildCardInfo()
+        private static FundingAccountInfo BuildFundingAccountInfo()
         {
-            return new CardInfo
-            {
-                EncryptedData = BuildCardInfoData()
-            };
+            return new FundingAccountInfo(
+                string.Empty,
+                string.Empty,
+                string.Empty,
+                BuildFundingAccountInfoEncryptedPayload());
         }
 
-        private static CardInfoData BuildCardInfoData()
+        private static FundingAccountInfoEncryptedPayload BuildFundingAccountInfoEncryptedPayload()
         {
-            return new CardInfoData
-            {
-                BillingAddress = BuildBillingAddress(),
-                AccountNumber = "5123456789012345",
-                Source = "CARD_ON_FILE",
-                CardholderName = "John Doe",
-                SecurityCode = "123",
-                ExpiryYear = "21",
-                ExpiryMonth = "09"
-            };
+            return new FundingAccountInfoEncryptedPayload(
+                string.Empty,
+                string.Empty,
+                string.Empty,
+                string.Empty,
+                BuildFundingAccountData());
+        }
+
+        private static FundingAccountData BuildFundingAccountData()
+        {
+            return new FundingAccountData(
+                BuildCardAccountDataInbound(),
+                BuildAccountHolderData(),
+                "ACCOUNT_ON_FILE");
+        }
+
+        private static AccountHolderData BuildAccountHolderData()
+        {
+            return new AccountHolderData(
+                "John Doe",
+                BuildBillingAddress());
+        }
+
+        private static CardAccountDataInbound BuildCardAccountDataInbound()
+        {
+            return new CardAccountDataInbound(
+                "5123456789012345",
+                "09",
+                "21",
+                "123");
         }
 
         private static BillingAddress BuildBillingAddress()

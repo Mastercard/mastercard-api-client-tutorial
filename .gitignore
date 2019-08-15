@@ -1,11 +1,19 @@
-**/.openapi-generator
+#
+# OpenAPI generator
+#
 **/docs
 **/.openapi-generator-ignore
 **/git_push.sh
+**/.gitignore
+
+#
+# C#
+#
 **/*.sln
 **/AssemblyInfo.cs
 **/project.json
 **/.vs
-**/.gitignore
 **/obj
 **/bin
+**/*.nuget.cache
+**/*.nuget.props

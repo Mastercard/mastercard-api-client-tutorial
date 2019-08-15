@@ -1,0 +1,6 @@
+{ 
+    "targetFramework" : "v5.0",
+    "packageName" : "Mastercard.Developer.DigitalEnablement.Client",
+    "packageVersion" : "1.0.0",
+    "sourceFolder" : ""
+}
