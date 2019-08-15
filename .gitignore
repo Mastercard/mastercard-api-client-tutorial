@@ -1,0 +1,11 @@
+**/.openapi-generator
+**/docs
+**/.openapi-generator-ignore
+**/git_push.sh
+**/*.sln
+**/AssemblyInfo.cs
+**/project.json
+**/.vs
+**/.gitignore
+**/obj
+**/bin
