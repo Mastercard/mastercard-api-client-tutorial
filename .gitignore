@@ -1,0 +1,35 @@
+#
+# OpenAPI generator
+#
+**/docs
+**/.openapi-generator-ignore
+**/git_push.sh
+**/.gitignore
+**/.travis.yml
+
+#
+# C#
+#
+**/*.sln
+**/AssemblyInfo.cs
+**/project.json
+**/.vs
+**/obj
+**/bin
+**/*.nuget.cache
+**/*.nuget.props
+
+#
+# Java
+#
+**/.idea
+**/target
+**/.gradle
+**/build
+
+#
+# PHP
+#
+**/vendor
+**/*.iml
+**/out.trace
