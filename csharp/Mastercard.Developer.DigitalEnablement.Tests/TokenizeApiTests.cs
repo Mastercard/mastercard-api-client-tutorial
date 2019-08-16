@@ -17,12 +17,14 @@ namespace Mastercard.Developer.DigitalEnablement.Tests
     public class TokenizeApiTest
     {
         //
-        // TODO: update me!
+        // TODO: add your credentials here or those dummy values will cause an INVALID_CLIENT_ID error to be returned.
         //
         private const string ConsumerKey = "000000000000000000000000000000000000000000000000!000000000000000000000000000000000000000000000000";
         private const string SigningKeyAlias = "fake-key";
         private const string SigningKeyPassword = "fakepassword";
         private const string SigningKeyPkcs12FilePath = "./_Resources/fake-signing-key.p12";
+
+        // Encryption keys from https://developer.mastercard.com/page/digital-enablement-api-sandbox-configuration
         private const string EncryptionCertificateFilePath = "./_Resources/digital-enablement-sandbox-encryption-key.crt";
         private const string DecryptionKeyFilePath = "./_Resources/digital-enablement-sandbox-decryption-key.key";
 
@@ -39,7 +41,6 @@ namespace Mastercard.Developer.DigitalEnablement.Tests
             var decryptionKey = EncryptionUtils.LoadDecryptionKey(DecryptionKeyFilePath);
 
             var fieldLevelEncryptionConfig = FieldLevelEncryptionConfigBuilder.AFieldLevelEncryptionConfig()
-                .WithEncryptionPath("$.cardInfo.encryptedData", "$.cardInfo") // Before version 1.2.9
                 .WithEncryptionPath("$.fundingAccountInfo.encryptedPayload.encryptedData", "$.fundingAccountInfo.encryptedPayload")
                 .WithEncryptionPath("$.encryptedPayload.encryptedData", "$.encryptedPayload")
                 .WithDecryptionPath("$.tokenDetail", "$.tokenDetail.encryptedData")
