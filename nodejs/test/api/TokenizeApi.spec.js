@@ -57,6 +57,10 @@ const forge = require("node-forge");
           {
             element: "cardInfo.encryptedData",
             obj: "cardInfo"
+          },
+          {
+            element: "fundingAccountInfo.encryptedPayload.encryptedData",
+            obj: "fundingAccountInfo.encryptedPayload"
           }],
         toDecrypt: [
           {
@@ -71,6 +75,10 @@ const forge = require("node-forge");
           {
             element: "cardInfo.encryptedData",
             obj: "cardInfo"
+          },
+          {
+            element: "fundingAccountInfo.encryptedPayload.encryptedData",
+            obj: "fundingAccountInfo.encryptedPayload"
           }],
         toDecrypt: []
       },
@@ -137,32 +145,39 @@ const forge = require("node-forge");
   }
   
   function createRequestObj() {
+
     return {
-      requestId: "123456",
-      taskId: "123456",
-      tokenType: "CLOUD",
-      tokenRequestorId: "98765432101",
-      cardInfo: {
-        publicKeyFingerprint: "8FC11150A7508F14BACA07285703392A399CC57C",
-        encryptedKey: "A1B2C3D4E5F6112233445566",
-        oaepHashingAlgorithm: "SHA512",
-        iv: "NA",
-        encryptedData: {
-          accountNumber: "5123456789012345",
-          source: "CARD_ON_FILE",
-          cardholderName: "John Doe",
-          securityCode: "123",
-          expiryYear: "21",
-          expiryMonth: "09",
-          billingAddress: {
-            line1: "100 1st Street",
-            line2: "Apt. 4B",
-            city: "St. Louis",
-            countrySubdivision: "MO",
-            postalCode: "61000"
+      consumerLanguage: "en",
+      fundingAccountInfo: {
+        encryptedPayload: {
+          encryptedData: {
+            accountHolderData: {
+              accountHolderAddress: {
+                city: "St. Louis",
+                country: "USA",
+                countrySubdivision: "MO",
+                line1: "100 1st Street",
+                line2: "Apt. 4B",
+                postalCode: "61000"
+              },
+              accountHolderName: "John Doe"
+            },
+            cardAccountData: {
+              accountNumber: "5123456789012345",
+              expiryMonth: "09",
+              expiryYear: "21",
+              securityCode: "123"
+            },
+            source: "ACCOUNT_ON_FILE"
           }
         }
-      }
+      },
+      requestId: "123456",
+      responseHost: "site1.your-server.com",
+      taskId: "123456",
+      tokenRequestorId: "98765432101",
+      tokenType: "CLOUD",
+      tokenizationAuthenticationValue: "RHVtbXkgYmFzZSA2NCBkYXRhIC0gdGhpcyBpcyBub3QgYSByZWFsIFRBViBleGFtcGxl"
     };
   }
 
@@ -199,6 +214,7 @@ const forge = require("node-forge");
         }, (error, data, response) => {
           assert.ok(data);
           assert.ok(data['decision'] === 'APPROVED');
+          assert.ok(data['tokenDetail']['encryptedData']['paymentAccountReference'] === '500181d9f8e0629211e3949a08002');
           done();
         });
       });
