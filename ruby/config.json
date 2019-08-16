@@ -6,6 +6,10 @@
         {
           "element": "cardInfo.encryptedData",
           "obj": "cardInfo"
+        },
+        {
+          "element": "fundingAccountInfo.encryptedPayload.encryptedData",
+          "obj": "fundingAccountInfo.encryptedPayload"
         }
       ],
       "toDecrypt": [
@@ -21,6 +25,10 @@
         {
           "element": "cardInfo.encryptedData",
           "obj": "cardInfo"
+        },
+        {
+          "element": "fundingAccountInfo.encryptedPayload.encryptedData",
+          "obj": "fundingAccountInfo.encryptedPayload"
         }
       ],
       "toDecrypt": []
