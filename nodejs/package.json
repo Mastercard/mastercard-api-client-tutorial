@@ -1,32 +1,23 @@
 {
   "name": "mdes_for_merchants",
-  "version": "1.2.7",
-  "description": "The_MDES_APIs_are_designed_as_RPC_style_stateless_web_services_where_each_API_endpoint_represents_an_operation_to_be_performed___All_request_and_response_payloads_are_sent_in_the_JSON__JavaScript_Object_Notation_data_interchange_format__Each_endpoint_in_the_API_specifies_the_HTTP_Method_used_to_access_it__All_strings_in_request_and_response_objects_are_to_be_UTF_8_encoded___Each_API_URI_includes_the_major_and_minor_version_of_API_that_it_conforms_to___This_will_allow_multiple_concurrent_versions_of_the_API_to_be_deployed_simultaneously__",
+  "version": "1.2.9",
+  "description": "The_MDES_APIs_are_designed_as_RPC_style_stateless_web_services_where_each_API_endpoint_represents_an_operation_to_be_performed___All_request_and_response_payloads_are_sent_in_the_JSON__JavaScript_Object_Notation_data_interchange_format__Each_endpoint_in_the_API_specifies_the_HTTP_Method_used_to_access_it__All_strings_in_request_and_response_objects_are_to_be_UTF_8_encoded___Each_API_URI_includes_the_major_and_minor_version_of_API_that_it_conforms_to___This_will_allow_multiple_concurrent_versions_of_the_API_to_be_deployed_simultaneously_br__Authentication__Mastercard_uses_OAuth_1_0a_with_body_hash_extension_for_authenticating_the_API_clients__This_requires_every_request_that_you_send_to_Mastercard_to_be_signed_with_an_RSA_private_key__A_private_public_RSA_key_pair_must_be_generated_consisting_of_br1___A_private_key_for_the_OAuth_signature_for_API_requests__It_is_recommended_to_keep_the_private_key_in_a_password_protected_or_hardware_keystore_br2__A_public_key_is_shared_with_Mastercard_during_the_project_setup_process_through_either_a_certificate_signing_request__CSR_or_the_API_Key_Generator__Mastercard_will_use_the_public_key_to_verify_the_OAuth_signature_that_is_provided_on_every_API_call_brAn_OAUTH1_0a_signer_library_is_available_on__GitHub_https__github_com_Mastercard_oauth1_signer_javabr___Encryption__brAll_communications_between_Issuer_web_service_and_the_Mastercard_gateway_is_encrypted_using_TLS_br__Additional_Encryption_of_Sensitive_Data__In_addition_to_the_OAuth_authentication_when_using_MDES_Digital_Enablement_Service_any_PCI_sensitive_and_all_account_holder_Personally_Identifiable_Information__PII_data_must_be_encrypted__This_requirement_applies_to_the_API_fields_containing_encryptedData__Sensitive_data_is_encrypted_using_a_symmetric_session__one_time_use_key__The_symmetric_session_key_is_then_wrapped_with_an_RSA_Public_Key_supplied_by_Mastercard_during_API_setup_phase__the_Customer_Encryption_Key__brJava_Client_Encryption_Library_available_on__GitHub_https__github_com_Mastercard_client_encryption_java",
   "license": "Unlicense",
-  "main": "dist/index.js",
+  "main": "src/index.js",
   "scripts": {
-    "build": "babel src -d dist",
-    "prepack": "npm run build",
-    "test": "mocha --compilers js:babel-core/register --recursive"
+    "test": "mocha --recursive"
   },
   "browser": {
     "fs": false
   },
   "dependencies": {
-    "mastercard-client-encryption": "^1.0.4",
-    "mastercard-oauth1-signer": "^1.1.2",
-    "babel-cli": "^6.26.0",
-    "superagent": "3.7.0"
+    "superagent": "3.7.0",
+    "mastercard-client-encryption": "^1.0.5",
+    "mastercard-oauth1-signer": "^1.1.2"
   },
   "devDependencies": {
-    "babel-core": "6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-stage-0": "^6.24.1",
     "expect.js": "^0.3.1",
     "mocha": "^5.2.0",
     "sinon": "^7.2.0"
-  },
-  "files": [
-    "dist"
-  ]
+  }
 }
