@@ -1,14 +1,15 @@
 {
   "paths": {
       "$": {
-      "toEncrypt": {
-          "cardInfo.encryptedData": "cardInfo",
-          "encryptedPayload.encryptedData": "encryptedPayload"
-      },
-      "toDecrypt": {
-          "tokenDetail": "tokenDetail.encryptedData",
-          "encryptedPayload": "encryptedPayload.encryptedData"
-      }
+        "toEncrypt": {
+            "cardInfo.encryptedData": "cardInfo",
+            "encryptedPayload.encryptedData": "encryptedPayload",
+            "fundingAccountInfo.encryptedPayload.encryptedData": "fundingAccountInfo.encryptedPayload"
+        },
+        "toDecrypt": {
+            "tokenDetail": "tokenDetail.encryptedData",
+            "encryptedPayload": "encryptedPayload.encryptedData"
+        }
       }
   },
   "ivFieldName": "iv",
