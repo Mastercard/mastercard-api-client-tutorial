@@ -1,0 +1,8 @@
+{ 
+    "groupId" : "com.mastercard.developer",
+    "artifactId" : "mdes-digital-enablement-client",
+    "artifactVersion" : "1.0.0",
+    "invokerPackage" : "com.mastercard.developer.mdes-digital-enablement-client",
+    "apiPackage" : "com.mastercard.developer.mdes-digital-enablement-client.api",
+    "modelPackage" : "com.mastercard.developer.mdes-digital-enablement-client.model"
+}
