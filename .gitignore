@@ -5,6 +5,7 @@
 **/.openapi-generator-ignore
 **/git_push.sh
 **/.gitignore
+**/.travis.yml
 
 #
 # C#
@@ -21,8 +22,15 @@
 #
 # Java
 #
-**/.travis.yml
 **/.idea
 **/target
 **/.gradle
 **/build
+
+#
+# PHP
+#
+**/vendor
+**/phpunit.xml.dist
+**/*.iml
+**/out.trace
