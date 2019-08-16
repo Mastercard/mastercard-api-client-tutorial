@@ -17,3 +17,12 @@
 **/bin
 **/*.nuget.cache
 **/*.nuget.props
+
+#
+# Java
+#
+**/.travis.yml
+**/.idea
+**/target
+**/.gradle
+**/build
