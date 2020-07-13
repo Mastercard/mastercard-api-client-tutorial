@@ -1,4 +1,4 @@
-# Mastercard.Developer.DigitalEnablement.Client - the C# library for the MDES for Merchants
+# Acme.App.MastercardApi.Client - the C# library for the MDES for Merchants
 
 The MDES APIs are designed as RPC style stateless web services where each API endpoint represents an operation to be performed.  All request and response payloads are sent in the JSON (JavaScript Object Notation) data-interchange format. Each endpoint in the API specifies the HTTP Method used to access it. All strings in request and response objects are to be UTF-8 encoded.  Each API URI includes the major and minor version of API that it conforms to.  This will allow multiple concurrent versions of the API to be deployed simultaneously.
 <br>
@@ -49,9 +49,9 @@ Generate the DLL using your preferred tool
 Then include the DLL (under the `bin` folder) in the C# project, and use the namespaces:
 
 ```csharp
-using Mastercard.Developer.DigitalEnablement.Client.Api;
-using Mastercard.Developer.DigitalEnablement.Client.Client;
-using Mastercard.Developer.DigitalEnablement.Client.Model;
+using Acme.App.MastercardApi.Client.Api;
+using Acme.App.MastercardApi.Client.Client;
+using Acme.App.MastercardApi.Client.Model;
 
 ```
 
@@ -61,9 +61,9 @@ using Mastercard.Developer.DigitalEnablement.Client.Model;
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
-using Mastercard.Developer.DigitalEnablement.Client.Api;
-using Mastercard.Developer.DigitalEnablement.Client.Client;
-using Mastercard.Developer.DigitalEnablement.Client.Model;
+using Acme.App.MastercardApi.Client.Api;
+using Acme.App.MastercardApi.Client.Client;
+using Acme.App.MastercardApi.Client.Model;
 
 namespace Example
 {
