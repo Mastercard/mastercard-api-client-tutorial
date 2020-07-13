@@ -23,24 +23,51 @@ using OpenAPIDateConverter = Mastercard.Developer.DigitalEnablement.Client.Clien
 namespace Mastercard.Developer.DigitalEnablement.Client.Model
 {
     /// <summary>
-    /// TokenDetailDataPAROnly
+    /// TokenDetailDataGetTokenOnly
     /// </summary>
     [DataContract]
-    public partial class TokenDetailDataPAROnly :  IEquatable<TokenDetailDataPAROnly>
+    public partial class TokenDetailDataGetTokenOnly :  IEquatable<TokenDetailDataGetTokenOnly>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TokenDetailDataPAROnly" /> class.
+        /// Initializes a new instance of the <see cref="TokenDetailDataGetTokenOnly" /> class.
         /// </summary>
-        /// <param name="paymentAccountReference">\&quot;The unique account reference assigned to the PAN. Conditionally returned if the Token Requestor has opted to receive PAR and providing PAR is assigned by Mastercard or the Issuer provides PAR in the authorization message response.    __Max Length:__ - 29\&quot; .</param>
-        public TokenDetailDataPAROnly(string paymentAccountReference = default(string))
+        /// <param name="tokenNumber">The Token Primary Account Number of the Card.  &lt;br&gt;__Max Length: 19__ &lt;br&gt;__Min Length: 9__ .</param>
+        /// <param name="expiryMonth">The month of the token expiration date. &lt;br&gt; __Max Length: 2__ .</param>
+        /// <param name="expiryYear">The year of the token expiration date. &lt;br&gt; __Max Length: 2__ .</param>
+        /// <param name="paymentAccountReference">The unique account reference assigned to the PAN. Conditionally returned if the Token Requestor has opted to receive PAR and providing PAR is assigned by Mastercard or the Issuer provides PAR in the authorization message response. &lt;br&gt;    __Max Length: 29__ .</param>
+        public TokenDetailDataGetTokenOnly(string tokenNumber = default(string), string expiryMonth = default(string), string expiryYear = default(string), string paymentAccountReference = default(string))
         {
+            this.TokenNumber = tokenNumber;
+            this.ExpiryMonth = expiryMonth;
+            this.ExpiryYear = expiryYear;
             this.PaymentAccountReference = paymentAccountReference;
         }
         
         /// <summary>
-        /// \&quot;The unique account reference assigned to the PAN. Conditionally returned if the Token Requestor has opted to receive PAR and providing PAR is assigned by Mastercard or the Issuer provides PAR in the authorization message response.    __Max Length:__ - 29\&quot; 
+        /// The Token Primary Account Number of the Card.  &lt;br&gt;__Max Length: 19__ &lt;br&gt;__Min Length: 9__ 
         /// </summary>
-        /// <value>\&quot;The unique account reference assigned to the PAN. Conditionally returned if the Token Requestor has opted to receive PAR and providing PAR is assigned by Mastercard or the Issuer provides PAR in the authorization message response.    __Max Length:__ - 29\&quot; </value>
+        /// <value>The Token Primary Account Number of the Card.  &lt;br&gt;__Max Length: 19__ &lt;br&gt;__Min Length: 9__ </value>
+        [DataMember(Name="tokenNumber", EmitDefaultValue=false)]
+        public string TokenNumber { get; set; }
+
+        /// <summary>
+        /// The month of the token expiration date. &lt;br&gt; __Max Length: 2__ 
+        /// </summary>
+        /// <value>The month of the token expiration date. &lt;br&gt; __Max Length: 2__ </value>
+        [DataMember(Name="expiryMonth", EmitDefaultValue=false)]
+        public string ExpiryMonth { get; set; }
+
+        /// <summary>
+        /// The year of the token expiration date. &lt;br&gt; __Max Length: 2__ 
+        /// </summary>
+        /// <value>The year of the token expiration date. &lt;br&gt; __Max Length: 2__ </value>
+        [DataMember(Name="expiryYear", EmitDefaultValue=false)]
+        public string ExpiryYear { get; set; }
+
+        /// <summary>
+        /// The unique account reference assigned to the PAN. Conditionally returned if the Token Requestor has opted to receive PAR and providing PAR is assigned by Mastercard or the Issuer provides PAR in the authorization message response. &lt;br&gt;    __Max Length: 29__ 
+        /// </summary>
+        /// <value>The unique account reference assigned to the PAN. Conditionally returned if the Token Requestor has opted to receive PAR and providing PAR is assigned by Mastercard or the Issuer provides PAR in the authorization message response. &lt;br&gt;    __Max Length: 29__ </value>
         [DataMember(Name="paymentAccountReference", EmitDefaultValue=false)]
         public string PaymentAccountReference { get; set; }
 
@@ -51,7 +78,10 @@ namespace Mastercard.Developer.DigitalEnablement.Client.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class TokenDetailDataPAROnly {\n");
+            sb.Append("class TokenDetailDataGetTokenOnly {\n");
+            sb.Append("  TokenNumber: ").Append(TokenNumber).Append("\n");
+            sb.Append("  ExpiryMonth: ").Append(ExpiryMonth).Append("\n");
+            sb.Append("  ExpiryYear: ").Append(ExpiryYear).Append("\n");
             sb.Append("  PaymentAccountReference: ").Append(PaymentAccountReference).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -73,20 +103,35 @@ namespace Mastercard.Developer.DigitalEnablement.Client.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TokenDetailDataPAROnly);
+            return this.Equals(input as TokenDetailDataGetTokenOnly);
         }
 
         /// <summary>
-        /// Returns true if TokenDetailDataPAROnly instances are equal
+        /// Returns true if TokenDetailDataGetTokenOnly instances are equal
         /// </summary>
-        /// <param name="input">Instance of TokenDetailDataPAROnly to be compared</param>
+        /// <param name="input">Instance of TokenDetailDataGetTokenOnly to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TokenDetailDataPAROnly input)
+        public bool Equals(TokenDetailDataGetTokenOnly input)
         {
             if (input == null)
                 return false;
 
             return 
+                (
+                    this.TokenNumber == input.TokenNumber ||
+                    (this.TokenNumber != null &&
+                    this.TokenNumber.Equals(input.TokenNumber))
+                ) && 
+                (
+                    this.ExpiryMonth == input.ExpiryMonth ||
+                    (this.ExpiryMonth != null &&
+                    this.ExpiryMonth.Equals(input.ExpiryMonth))
+                ) && 
+                (
+                    this.ExpiryYear == input.ExpiryYear ||
+                    (this.ExpiryYear != null &&
+                    this.ExpiryYear.Equals(input.ExpiryYear))
+                ) && 
                 (
                     this.PaymentAccountReference == input.PaymentAccountReference ||
                     (this.PaymentAccountReference != null &&
@@ -103,6 +148,12 @@ namespace Mastercard.Developer.DigitalEnablement.Client.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.TokenNumber != null)
+                    hashCode = hashCode * 59 + this.TokenNumber.GetHashCode();
+                if (this.ExpiryMonth != null)
+                    hashCode = hashCode * 59 + this.ExpiryMonth.GetHashCode();
+                if (this.ExpiryYear != null)
+                    hashCode = hashCode * 59 + this.ExpiryYear.GetHashCode();
                 if (this.PaymentAccountReference != null)
                     hashCode = hashCode * 59 + this.PaymentAccountReference.GetHashCode();
                 return hashCode;

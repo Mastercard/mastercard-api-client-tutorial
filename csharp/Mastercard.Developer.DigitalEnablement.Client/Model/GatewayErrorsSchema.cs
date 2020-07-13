@@ -23,25 +23,25 @@ using OpenAPIDateConverter = Mastercard.Developer.DigitalEnablement.Client.Clien
 namespace Mastercard.Developer.DigitalEnablement.Client.Model
 {
     /// <summary>
-    /// AssetResponseSchema
+    /// GatewayErrorsSchema
     /// </summary>
     [DataContract]
-    public partial class AssetResponseSchema :  IEquatable<AssetResponseSchema>
+    public partial class GatewayErrorsSchema :  IEquatable<GatewayErrorsSchema>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AssetResponseSchema" /> class.
+        /// Initializes a new instance of the <see cref="GatewayErrorsSchema" /> class.
         /// </summary>
-        /// <param name="mediaContents">mediaContents.</param>
-        public AssetResponseSchema(List<MediaContent> mediaContents = default(List<MediaContent>))
+        /// <param name="error">error.</param>
+        public GatewayErrorsSchema(List<GatewayError> error = default(List<GatewayError>))
         {
-            this.MediaContents = mediaContents;
+            this.Error = error;
         }
         
         /// <summary>
-        /// Gets or Sets MediaContents
+        /// Gets or Sets Error
         /// </summary>
-        [DataMember(Name="mediaContents", EmitDefaultValue=false)]
-        public List<MediaContent> MediaContents { get; set; }
+        [DataMember(Name="Error", EmitDefaultValue=false)]
+        public List<GatewayError> Error { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -50,8 +50,8 @@ namespace Mastercard.Developer.DigitalEnablement.Client.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class AssetResponseSchema {\n");
-            sb.Append("  MediaContents: ").Append(MediaContents).Append("\n");
+            sb.Append("class GatewayErrorsSchema {\n");
+            sb.Append("  Error: ").Append(Error).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -72,25 +72,25 @@ namespace Mastercard.Developer.DigitalEnablement.Client.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AssetResponseSchema);
+            return this.Equals(input as GatewayErrorsSchema);
         }
 
         /// <summary>
-        /// Returns true if AssetResponseSchema instances are equal
+        /// Returns true if GatewayErrorsSchema instances are equal
         /// </summary>
-        /// <param name="input">Instance of AssetResponseSchema to be compared</param>
+        /// <param name="input">Instance of GatewayErrorsSchema to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(AssetResponseSchema input)
+        public bool Equals(GatewayErrorsSchema input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
-                    this.MediaContents == input.MediaContents ||
-                    this.MediaContents != null &&
-                    input.MediaContents != null &&
-                    this.MediaContents.SequenceEqual(input.MediaContents)
+                    this.Error == input.Error ||
+                    this.Error != null &&
+                    input.Error != null &&
+                    this.Error.SequenceEqual(input.Error)
                 );
         }
 
@@ -103,8 +103,8 @@ namespace Mastercard.Developer.DigitalEnablement.Client.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.MediaContents != null)
-                    hashCode = hashCode * 59 + this.MediaContents.GetHashCode();
+                if (this.Error != null)
+                    hashCode = hashCode * 59 + this.Error.GetHashCode();
                 return hashCode;
             }
         }

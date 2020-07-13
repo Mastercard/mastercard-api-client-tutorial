@@ -23,61 +23,61 @@ using OpenAPIDateConverter = Mastercard.Developer.DigitalEnablement.Client.Clien
 namespace Mastercard.Developer.DigitalEnablement.Client.Model
 {
     /// <summary>
-    /// EncryptedPayloadTransact
+    /// TokenDetailGetTokenOnly
     /// </summary>
     [DataContract]
-    public partial class EncryptedPayloadTransact :  IEquatable<EncryptedPayloadTransact>
+    public partial class TokenDetailGetTokenOnly :  IEquatable<TokenDetailGetTokenOnly>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="EncryptedPayloadTransact" /> class.
+        /// Initializes a new instance of the <see cref="TokenDetailGetTokenOnly" /> class.
         /// </summary>
-        /// <param name="publicKeyFingerprint">The fingerprint of the public key used to encrypt the ephemeral AES key.&lt;br&gt; __Max Length: 64__ .</param>
-        /// <param name="encryptedKey">One-time use AES key encrypted by the MasterCard public key (as identified by publicKeyFingerprint) using the OAEP or PKCS#1 v1.5 scheme (depending on the value of oaepHashingAlgorithm. &lt;br&gt; __Max Length: 512__ .</param>
-        /// <param name="oaepHashingAlgorithm">Hashing algorithm used with the OAEP scheme. Must be either SHA256 or SHA512. .</param>
-        /// <param name="iv">The initialization vector used when encrypting data using the one-time use AES key. Must be exactly 16 bytes (32 character hex string) to match the block size. If not present, an IV of zero is assumed.  &lt;br&gt;__Length: 32__ .</param>
+        /// <param name="tokenUniqueReference">Globally unique identifier for the Token, as assigned by MDES.&lt;br&gt;     __Max Length:64__ .</param>
+        /// <param name="publicKeyFingerprint">The certificate fingerprint identifying the public key used to encrypt the ephemeral AES key.&lt;br&gt;     __Max Length:64__ Hex-encoded data (case-insensitive). .</param>
+        /// <param name="encryptedKey">One-time use AES key encrypted by the MasterCard public key (as identified by &#39;publicKeyFingerprint&#39;) using the OAEP or RSA Encryption Standard PKCS #1 v1.5 scheme (depending on the value of &#39;oaepHashingAlgorithm&#39;. Requirement is for a 128-bit key (with 256-bit key supported as an option).&lt;br&gt;     __Max Length:512__ .</param>
+        /// <param name="oaepHashingAlgorithm">Hashing algorithm used with the OAEP scheme. If omitted, then the RSA Encryption Standard PKCS #1 v1.5 will be used. Must be either &#39;SHA256&#39; (Use the SHA-256 algorithm) or &#39;SHA512&#39; (Use the SHA-512 algorithm).&lt;br&gt;     __Max Length:6__ .</param>
         /// <param name="encryptedData">encryptedData.</param>
-        public EncryptedPayloadTransact(string publicKeyFingerprint = default(string), string encryptedKey = default(string), string oaepHashingAlgorithm = default(string), string iv = default(string), TransactEncryptedData encryptedData = default(TransactEncryptedData))
+        public TokenDetailGetTokenOnly(string tokenUniqueReference = default(string), string publicKeyFingerprint = default(string), string encryptedKey = default(string), string oaepHashingAlgorithm = default(string), TokenDetailDataGetTokenOnly encryptedData = default(TokenDetailDataGetTokenOnly))
         {
+            this.TokenUniqueReference = tokenUniqueReference;
             this.PublicKeyFingerprint = publicKeyFingerprint;
             this.EncryptedKey = encryptedKey;
             this.OaepHashingAlgorithm = oaepHashingAlgorithm;
-            this.Iv = iv;
             this.EncryptedData = encryptedData;
         }
         
         /// <summary>
-        /// The fingerprint of the public key used to encrypt the ephemeral AES key.&lt;br&gt; __Max Length: 64__ 
+        /// Globally unique identifier for the Token, as assigned by MDES.&lt;br&gt;     __Max Length:64__ 
         /// </summary>
-        /// <value>The fingerprint of the public key used to encrypt the ephemeral AES key.&lt;br&gt; __Max Length: 64__ </value>
+        /// <value>Globally unique identifier for the Token, as assigned by MDES.&lt;br&gt;     __Max Length:64__ </value>
+        [DataMember(Name="tokenUniqueReference", EmitDefaultValue=false)]
+        public string TokenUniqueReference { get; set; }
+
+        /// <summary>
+        /// The certificate fingerprint identifying the public key used to encrypt the ephemeral AES key.&lt;br&gt;     __Max Length:64__ Hex-encoded data (case-insensitive). 
+        /// </summary>
+        /// <value>The certificate fingerprint identifying the public key used to encrypt the ephemeral AES key.&lt;br&gt;     __Max Length:64__ Hex-encoded data (case-insensitive). </value>
         [DataMember(Name="publicKeyFingerprint", EmitDefaultValue=false)]
         public string PublicKeyFingerprint { get; set; }
 
         /// <summary>
-        /// One-time use AES key encrypted by the MasterCard public key (as identified by publicKeyFingerprint) using the OAEP or PKCS#1 v1.5 scheme (depending on the value of oaepHashingAlgorithm. &lt;br&gt; __Max Length: 512__ 
+        /// One-time use AES key encrypted by the MasterCard public key (as identified by &#39;publicKeyFingerprint&#39;) using the OAEP or RSA Encryption Standard PKCS #1 v1.5 scheme (depending on the value of &#39;oaepHashingAlgorithm&#39;. Requirement is for a 128-bit key (with 256-bit key supported as an option).&lt;br&gt;     __Max Length:512__ 
         /// </summary>
-        /// <value>One-time use AES key encrypted by the MasterCard public key (as identified by publicKeyFingerprint) using the OAEP or PKCS#1 v1.5 scheme (depending on the value of oaepHashingAlgorithm. &lt;br&gt; __Max Length: 512__ </value>
+        /// <value>One-time use AES key encrypted by the MasterCard public key (as identified by &#39;publicKeyFingerprint&#39;) using the OAEP or RSA Encryption Standard PKCS #1 v1.5 scheme (depending on the value of &#39;oaepHashingAlgorithm&#39;. Requirement is for a 128-bit key (with 256-bit key supported as an option).&lt;br&gt;     __Max Length:512__ </value>
         [DataMember(Name="encryptedKey", EmitDefaultValue=false)]
         public string EncryptedKey { get; set; }
 
         /// <summary>
-        /// Hashing algorithm used with the OAEP scheme. Must be either SHA256 or SHA512. 
+        /// Hashing algorithm used with the OAEP scheme. If omitted, then the RSA Encryption Standard PKCS #1 v1.5 will be used. Must be either &#39;SHA256&#39; (Use the SHA-256 algorithm) or &#39;SHA512&#39; (Use the SHA-512 algorithm).&lt;br&gt;     __Max Length:6__ 
         /// </summary>
-        /// <value>Hashing algorithm used with the OAEP scheme. Must be either SHA256 or SHA512. </value>
+        /// <value>Hashing algorithm used with the OAEP scheme. If omitted, then the RSA Encryption Standard PKCS #1 v1.5 will be used. Must be either &#39;SHA256&#39; (Use the SHA-256 algorithm) or &#39;SHA512&#39; (Use the SHA-512 algorithm).&lt;br&gt;     __Max Length:6__ </value>
         [DataMember(Name="oaepHashingAlgorithm", EmitDefaultValue=false)]
         public string OaepHashingAlgorithm { get; set; }
-
-        /// <summary>
-        /// The initialization vector used when encrypting data using the one-time use AES key. Must be exactly 16 bytes (32 character hex string) to match the block size. If not present, an IV of zero is assumed.  &lt;br&gt;__Length: 32__ 
-        /// </summary>
-        /// <value>The initialization vector used when encrypting data using the one-time use AES key. Must be exactly 16 bytes (32 character hex string) to match the block size. If not present, an IV of zero is assumed.  &lt;br&gt;__Length: 32__ </value>
-        [DataMember(Name="iv", EmitDefaultValue=false)]
-        public string Iv { get; set; }
 
         /// <summary>
         /// Gets or Sets EncryptedData
         /// </summary>
         [DataMember(Name="encryptedData", EmitDefaultValue=false)]
-        public TransactEncryptedData EncryptedData { get; set; }
+        public TokenDetailDataGetTokenOnly EncryptedData { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -86,11 +86,11 @@ namespace Mastercard.Developer.DigitalEnablement.Client.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class EncryptedPayloadTransact {\n");
+            sb.Append("class TokenDetailGetTokenOnly {\n");
+            sb.Append("  TokenUniqueReference: ").Append(TokenUniqueReference).Append("\n");
             sb.Append("  PublicKeyFingerprint: ").Append(PublicKeyFingerprint).Append("\n");
             sb.Append("  EncryptedKey: ").Append(EncryptedKey).Append("\n");
             sb.Append("  OaepHashingAlgorithm: ").Append(OaepHashingAlgorithm).Append("\n");
-            sb.Append("  Iv: ").Append(Iv).Append("\n");
             sb.Append("  EncryptedData: ").Append(EncryptedData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -112,20 +112,25 @@ namespace Mastercard.Developer.DigitalEnablement.Client.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as EncryptedPayloadTransact);
+            return this.Equals(input as TokenDetailGetTokenOnly);
         }
 
         /// <summary>
-        /// Returns true if EncryptedPayloadTransact instances are equal
+        /// Returns true if TokenDetailGetTokenOnly instances are equal
         /// </summary>
-        /// <param name="input">Instance of EncryptedPayloadTransact to be compared</param>
+        /// <param name="input">Instance of TokenDetailGetTokenOnly to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(EncryptedPayloadTransact input)
+        public bool Equals(TokenDetailGetTokenOnly input)
         {
             if (input == null)
                 return false;
 
             return 
+                (
+                    this.TokenUniqueReference == input.TokenUniqueReference ||
+                    (this.TokenUniqueReference != null &&
+                    this.TokenUniqueReference.Equals(input.TokenUniqueReference))
+                ) && 
                 (
                     this.PublicKeyFingerprint == input.PublicKeyFingerprint ||
                     (this.PublicKeyFingerprint != null &&
@@ -140,11 +145,6 @@ namespace Mastercard.Developer.DigitalEnablement.Client.Model
                     this.OaepHashingAlgorithm == input.OaepHashingAlgorithm ||
                     (this.OaepHashingAlgorithm != null &&
                     this.OaepHashingAlgorithm.Equals(input.OaepHashingAlgorithm))
-                ) && 
-                (
-                    this.Iv == input.Iv ||
-                    (this.Iv != null &&
-                    this.Iv.Equals(input.Iv))
                 ) && 
                 (
                     this.EncryptedData == input.EncryptedData ||
@@ -162,14 +162,14 @@ namespace Mastercard.Developer.DigitalEnablement.Client.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.TokenUniqueReference != null)
+                    hashCode = hashCode * 59 + this.TokenUniqueReference.GetHashCode();
                 if (this.PublicKeyFingerprint != null)
                     hashCode = hashCode * 59 + this.PublicKeyFingerprint.GetHashCode();
                 if (this.EncryptedKey != null)
                     hashCode = hashCode * 59 + this.EncryptedKey.GetHashCode();
                 if (this.OaepHashingAlgorithm != null)
                     hashCode = hashCode * 59 + this.OaepHashingAlgorithm.GetHashCode();
-                if (this.Iv != null)
-                    hashCode = hashCode * 59 + this.Iv.GetHashCode();
                 if (this.EncryptedData != null)
                     hashCode = hashCode * 59 + this.EncryptedData.GetHashCode();
                 return hashCode;

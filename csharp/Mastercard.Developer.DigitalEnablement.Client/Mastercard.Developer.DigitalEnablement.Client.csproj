@@ -8,11 +8,11 @@
   <ItemGroup>
     <PackageReference Include="FubarCoder.RestSharp.Portable.Core" Version="4.0.7" />
     <PackageReference Include="FubarCoder.RestSharp.Portable.HttpClient" Version="4.0.7" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
-    <PackageReference Include="JsonSubTypes" Version="1.5.2" />
-    <PackageReference Include="Mastercard.Developer.OAuth1Signer.RestSharp" Version="1.2.4" />
-    <PackageReference Include="Mastercard.Developer.ClientEncryption.RestSharp" Version="1.0.1" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="JsonSubTypes" Version="1.6.0" />
+    <PackageReference Include="Mastercard.Developer.OAuth1Signer.RestSharp" Version="1.2.5" />
+    <PackageReference Include="Mastercard.Developer.ClientEncryption.RestSharp" Version="1.0.2" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
   </ItemGroup>
 
 </Project>
