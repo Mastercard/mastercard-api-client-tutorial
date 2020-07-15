@@ -1,6 +1,8 @@
 { 
     "targetFramework" : "v5.0",
-    "packageName" : "Mastercard.Developer.DigitalEnablement.Client",
+    "packageName" : "Acme.App.MastercardApi.Client",
     "packageVersion" : "1.0.0",
-    "sourceFolder" : ""
+    "sourceFolder" : "",
+    "netCoreProjectFile": true,
+    "optionalAssemblyInfo": false
 }
