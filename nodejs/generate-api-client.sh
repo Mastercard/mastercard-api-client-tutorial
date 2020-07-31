@@ -1,3 +1,7 @@
+#!/bin/bash
+
+mv package.json package.json.bak
+
 openapi-generator generate -i MDES_Digital_Enablement.yaml -g javascript -o . -c config.json
 
 rm -rf ./docs/
@@ -11,3 +15,5 @@ rm -rf model
 cd api
 rm -fv !(TokenizeApi.spec.js)
 cd ../..
+
+mv package.json.bak package.json

@@ -11,7 +11,9 @@
     "fs": false
   },
   "dependencies": {
-    "superagent": "5.1.0"
+    "superagent": "5.1.0",
+    "mastercard-client-encryption": "1.0.6",
+    "mastercard-oauth1-signer": "1.1.5"
   },
   "devDependencies": {
     "expect.js": "^0.3.1",
