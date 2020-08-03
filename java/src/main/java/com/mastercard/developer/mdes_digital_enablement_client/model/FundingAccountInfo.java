@@ -28,7 +28,7 @@ import java.io.IOException;
 /**
  * FundingAccountInfo
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-16T09:54:27.990+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class FundingAccountInfo {
   public static final String SERIALIZED_NAME_PAN_UNIQUE_REFERENCE = "panUniqueReference";
   @SerializedName(SERIALIZED_NAME_PAN_UNIQUE_REFERENCE)
@@ -44,9 +44,11 @@ public class FundingAccountInfo {
 
   public static final String SERIALIZED_NAME_ENCRYPTED_PAYLOAD = "encryptedPayload";
   @SerializedName(SERIALIZED_NAME_ENCRYPTED_PAYLOAD)
-  private FundingAccountInfoEncryptedPayload encryptedPayload = null;
+  private FundingAccountInfoEncryptedPayload encryptedPayload;
+
 
   public FundingAccountInfo panUniqueReference(String panUniqueReference) {
+    
     this.panUniqueReference = panUniqueReference;
     return this;
   }
@@ -57,15 +59,19 @@ public class FundingAccountInfo {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = " __(CONDITIONAL)__ <br>  For repeat digitizations, the unique reference allocated to the Primary Account Number. When supplied, the tokenUniqueReferenceForPanInfo, accountNumber, expiryMonth and expiryYear must be omitted from CardInfoData. Only allowed if Only allowed if tokenUniqueReference and pushAccountReceipt are not present and encrypted data does not contain the account information. <br> __Max Length:64__ ")
+
   public String getPanUniqueReference() {
     return panUniqueReference;
   }
+
 
   public void setPanUniqueReference(String panUniqueReference) {
     this.panUniqueReference = panUniqueReference;
   }
 
+
   public FundingAccountInfo tokenUniqueReference(String tokenUniqueReference) {
+    
     this.tokenUniqueReference = tokenUniqueReference;
     return this;
   }
@@ -76,15 +82,19 @@ public class FundingAccountInfo {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = " __(CONDITIONAL)__<br>  A unique reference assigned following the allocation of a token used to identify the token for the duration of its lifetime.  For repeat digitizations, the unique reference allocated to the token will be used to retrieve the financial account information. When supplied, the account information is omitted from FundingAccountData. Only allowed if panUniqueReference and pushAccountReceipt are not present and encrypted data does not contain the account information. <br> __Max Length:64__ ")
+
   public String getTokenUniqueReference() {
     return tokenUniqueReference;
   }
+
 
   public void setTokenUniqueReference(String tokenUniqueReference) {
     this.tokenUniqueReference = tokenUniqueReference;
   }
 
+
   public FundingAccountInfo pushAccountReceipt(String pushAccountReceipt) {
+    
     this.pushAccountReceipt = pushAccountReceipt;
     return this;
   }
@@ -95,15 +105,19 @@ public class FundingAccountInfo {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "__(CONDITIONAL)__<br> The push account receipt is supplied by the Issuer to the Merchant during a push provisioning operation. The pushAccountReceipt is then submitted by the merchant in the tokenize request and will be used by MDES to retrieve the associated funding account information. Only allowed if panUniqueReference and tokenUniqueReference are not present and encrypted data does not contain the funding account information. Refer to the <a href=\"https://developer.mastercard.com/page/push-provisioning-merchant\">Push Provisioning Use Case Guide </a>  for more information about pushAccountReceipt.  __Max Length:64__ ")
+
   public String getPushAccountReceipt() {
     return pushAccountReceipt;
   }
+
 
   public void setPushAccountReceipt(String pushAccountReceipt) {
     this.pushAccountReceipt = pushAccountReceipt;
   }
 
+
   public FundingAccountInfo encryptedPayload(FundingAccountInfoEncryptedPayload encryptedPayload) {
+    
     this.encryptedPayload = encryptedPayload;
     return this;
   }
@@ -114,9 +128,11 @@ public class FundingAccountInfo {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public FundingAccountInfoEncryptedPayload getEncryptedPayload() {
     return encryptedPayload;
   }
+
 
   public void setEncryptedPayload(FundingAccountInfoEncryptedPayload encryptedPayload) {
     this.encryptedPayload = encryptedPayload;

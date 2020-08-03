@@ -28,7 +28,7 @@ import java.io.IOException;
 /**
  * FundingAccountInfoEncryptedPayload
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-16T09:54:27.990+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class FundingAccountInfoEncryptedPayload {
   public static final String SERIALIZED_NAME_PUBLIC_KEY_FINGERPRINT = "publicKeyFingerprint";
   @SerializedName(SERIALIZED_NAME_PUBLIC_KEY_FINGERPRINT)
@@ -48,9 +48,11 @@ public class FundingAccountInfoEncryptedPayload {
 
   public static final String SERIALIZED_NAME_ENCRYPTED_DATA = "encryptedData";
   @SerializedName(SERIALIZED_NAME_ENCRYPTED_DATA)
-  private FundingAccountData encryptedData = null;
+  private FundingAccountData encryptedData;
+
 
   public FundingAccountInfoEncryptedPayload publicKeyFingerprint(String publicKeyFingerprint) {
+    
     this.publicKeyFingerprint = publicKeyFingerprint;
     return this;
   }
@@ -61,15 +63,19 @@ public class FundingAccountInfoEncryptedPayload {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "4c4ead5927f0df8117f178eea9308daa58e27c2b", value = "The fingerprint of the public key used to encrypt the ephemeral AES key.<br> __Max Length: 64__ ")
+
   public String getPublicKeyFingerprint() {
     return publicKeyFingerprint;
   }
+
 
   public void setPublicKeyFingerprint(String publicKeyFingerprint) {
     this.publicKeyFingerprint = publicKeyFingerprint;
   }
 
+
   public FundingAccountInfoEncryptedPayload encryptedKey(String encryptedKey) {
+    
     this.encryptedKey = encryptedKey;
     return this;
   }
@@ -80,15 +86,19 @@ public class FundingAccountInfoEncryptedPayload {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "A1B2C3D4E5F6112233445566", value = "One-time use AES key encrypted by the MasterCard public key (as identified by publicKeyFingerprint) using the OAEP or PKCS#1 v1.5 scheme (depending on the value of oaepHashingAlgorithm. <br> __Max Length: 512__ ")
+
   public String getEncryptedKey() {
     return encryptedKey;
   }
+
 
   public void setEncryptedKey(String encryptedKey) {
     this.encryptedKey = encryptedKey;
   }
 
+
   public FundingAccountInfoEncryptedPayload oaepHashingAlgorithm(String oaepHashingAlgorithm) {
+    
     this.oaepHashingAlgorithm = oaepHashingAlgorithm;
     return this;
   }
@@ -99,15 +109,19 @@ public class FundingAccountInfoEncryptedPayload {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "SHA512", value = "Hashing algorithm used with the OAEP scheme. Must be either SHA256 or SHA512. ")
+
   public String getOaepHashingAlgorithm() {
     return oaepHashingAlgorithm;
   }
+
 
   public void setOaepHashingAlgorithm(String oaepHashingAlgorithm) {
     this.oaepHashingAlgorithm = oaepHashingAlgorithm;
   }
 
+
   public FundingAccountInfoEncryptedPayload iv(String iv) {
+    
     this.iv = iv;
     return this;
   }
@@ -118,15 +132,19 @@ public class FundingAccountInfoEncryptedPayload {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "NA", value = "The initialization vector used when encrypting data using the one-time use AES key. Must be exactly 16 bytes (32 character hex string) to match the block size. If not present, an IV of zero is assumed.  <br>__Length: 32__ ")
+
   public String getIv() {
     return iv;
   }
+
 
   public void setIv(String iv) {
     this.iv = iv;
   }
 
+
   public FundingAccountInfoEncryptedPayload encryptedData(FundingAccountData encryptedData) {
+    
     this.encryptedData = encryptedData;
     return this;
   }
@@ -137,9 +155,11 @@ public class FundingAccountInfoEncryptedPayload {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public FundingAccountData getEncryptedData() {
     return encryptedData;
   }
+
 
   public void setEncryptedData(FundingAccountData encryptedData) {
     this.encryptedData = encryptedData;

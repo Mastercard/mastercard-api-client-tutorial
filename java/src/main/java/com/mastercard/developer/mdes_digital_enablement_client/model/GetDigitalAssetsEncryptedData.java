@@ -27,13 +27,15 @@ import java.io.IOException;
 /**
  * GetDigitalAssetsEncryptedData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-16T09:54:27.990+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class GetDigitalAssetsEncryptedData {
   public static final String SERIALIZED_NAME_ACCOUNT_NUMBER = "accountNumber";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_NUMBER)
   private String accountNumber;
 
+
   public GetDigitalAssetsEncryptedData accountNumber(String accountNumber) {
+    
     this.accountNumber = accountNumber;
     return this;
   }
@@ -44,9 +46,11 @@ public class GetDigitalAssetsEncryptedData {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "5480981500100002", value = "The Primary Account Number for the transaction - this is the token PAN. <br>__Min Length: 9__ <br>__Max Length: 19__ ")
+
   public String getAccountNumber() {
     return accountNumber;
   }
+
 
   public void setAccountNumber(String accountNumber) {
     this.accountNumber = accountNumber;

@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * TokenInfo
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-15T21:18:23.871+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class TokenInfo {
   public static final String SERIALIZED_NAME_TOKEN_PAN_SUFFIX = "tokenPanSuffix";
   @SerializedName(SERIALIZED_NAME_TOKEN_PAN_SUFFIX)
@@ -57,7 +57,9 @@ public class TokenInfo {
   @SerializedName(SERIALIZED_NAME_PRODUCT_CATEGORY)
   private String productCategory;
 
+
   public TokenInfo tokenPanSuffix(String tokenPanSuffix) {
+    
     this.tokenPanSuffix = tokenPanSuffix;
     return this;
   }
@@ -68,15 +70,19 @@ public class TokenInfo {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "0001", value = "The last few digits (typically four) of the Token PAN.<br>     __Max Length:8__<br> __Required: Yes__ ")
+
   public String getTokenPanSuffix() {
     return tokenPanSuffix;
   }
+
 
   public void setTokenPanSuffix(String tokenPanSuffix) {
     this.tokenPanSuffix = tokenPanSuffix;
   }
 
+
   public TokenInfo accountPanSuffix(String accountPanSuffix) {
+    
     this.accountPanSuffix = accountPanSuffix;
     return this;
   }
@@ -87,15 +93,19 @@ public class TokenInfo {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "0011", value = "The last few digits (typically four) of the Account PAN.<br>     __Max Length:8__<br> __Required: Yes__ ")
+
   public String getAccountPanSuffix() {
     return accountPanSuffix;
   }
+
 
   public void setAccountPanSuffix(String accountPanSuffix) {
     this.accountPanSuffix = accountPanSuffix;
   }
 
+
   public TokenInfo tokenExpiry(String tokenExpiry) {
+    
     this.tokenExpiry = tokenExpiry;
     return this;
   }
@@ -106,15 +116,19 @@ public class TokenInfo {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "921.0", value = "The expiry of the Token PAN, given in MMYY format.<br>     __Max Length:4__<br> __Required: Yes__ ")
+
   public String getTokenExpiry() {
     return tokenExpiry;
   }
+
 
   public void setTokenExpiry(String tokenExpiry) {
     this.tokenExpiry = tokenExpiry;
   }
 
+
   public TokenInfo accountPanExpiry(String accountPanExpiry) {
+    
     this.accountPanExpiry = accountPanExpiry;
     return this;
   }
@@ -125,15 +139,19 @@ public class TokenInfo {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "921.0", value = "The expiry of the Account PAN, given in MMYY format. <br> __Max Length: 4__<br> __Required: No__ ")
+
   public String getAccountPanExpiry() {
     return accountPanExpiry;
   }
+
 
   public void setAccountPanExpiry(String accountPanExpiry) {
     this.accountPanExpiry = accountPanExpiry;
   }
 
+
   public TokenInfo dsrpCapable(String dsrpCapable) {
+    
     this.dsrpCapable = dsrpCapable;
     return this;
   }
@@ -144,15 +162,19 @@ public class TokenInfo {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "true", value = "Whether DSRP transactions are supported by this Token. Must be either 'true' (DSRP capable) or 'false' (Not DSRP capable).<br> __Max Length: 5__<br> __Required: Yes__ ")
+
   public String getDsrpCapable() {
     return dsrpCapable;
   }
+
 
   public void setDsrpCapable(String dsrpCapable) {
     this.dsrpCapable = dsrpCapable;
   }
 
+
   public TokenInfo tokenAssuranceLevel(String tokenAssuranceLevel) {
+    
     this.tokenAssuranceLevel = tokenAssuranceLevel;
     return this;
   }
@@ -163,15 +185,19 @@ public class TokenInfo {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "3", value = "A value indicating the confidence level of the token to Account PAN binding.<br>     __Max Length:2__<br> __Required: No__ ")
+
   public String getTokenAssuranceLevel() {
     return tokenAssuranceLevel;
   }
+
 
   public void setTokenAssuranceLevel(String tokenAssuranceLevel) {
     this.tokenAssuranceLevel = tokenAssuranceLevel;
   }
 
+
   public TokenInfo productCategory(String productCategory) {
+    
     this.productCategory = productCategory;
     return this;
   }
@@ -182,9 +208,11 @@ public class TokenInfo {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "CREDIT", value = "The product category of the Account PAN. When supplied will be one of the following values -  * CREDIT * DEBIT * PREPAID * UNKNOWN  __Max Length: 32__<br> __Required: No__ ")
+
   public String getProductCategory() {
     return productCategory;
   }
+
 
   public void setProductCategory(String productCategory) {
     this.productCategory = productCategory;

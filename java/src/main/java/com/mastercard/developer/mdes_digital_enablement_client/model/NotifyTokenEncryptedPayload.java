@@ -30,13 +30,15 @@ import java.util.List;
 /**
  * NotifyTokenEncryptedPayload
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-16T09:54:27.990+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class NotifyTokenEncryptedPayload {
   public static final String SERIALIZED_NAME_TOKENS = "tokens";
   @SerializedName(SERIALIZED_NAME_TOKENS)
-  private List<Token> tokens = new ArrayList<Token>();
+  private List<Token> tokens = null;
+
 
   public NotifyTokenEncryptedPayload tokens(List<Token> tokens) {
+    
     this.tokens = tokens;
     return this;
   }
@@ -55,9 +57,11 @@ public class NotifyTokenEncryptedPayload {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public List<Token> getTokens() {
     return tokens;
   }
+
 
   public void setTokens(List<Token> tokens) {
     this.tokens = tokens;

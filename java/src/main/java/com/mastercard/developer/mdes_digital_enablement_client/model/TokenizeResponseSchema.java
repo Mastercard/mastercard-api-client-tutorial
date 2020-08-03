@@ -34,7 +34,7 @@ import java.util.List;
 /**
  * TokenizeResponseSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-15T21:18:23.871+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class TokenizeResponseSchema {
   public static final String SERIALIZED_NAME_RESPONSE_HOST = "responseHost";
   @SerializedName(SERIALIZED_NAME_RESPONSE_HOST)
@@ -50,7 +50,7 @@ public class TokenizeResponseSchema {
 
   public static final String SERIALIZED_NAME_AUTHENTICATION_METHODS = "authenticationMethods";
   @SerializedName(SERIALIZED_NAME_AUTHENTICATION_METHODS)
-  private List<AuthenticationMethods> authenticationMethods = new ArrayList<AuthenticationMethods>();
+  private List<AuthenticationMethods> authenticationMethods = null;
 
   public static final String SERIALIZED_NAME_TOKEN_UNIQUE_REFERENCE = "tokenUniqueReference";
   @SerializedName(SERIALIZED_NAME_TOKEN_UNIQUE_REFERENCE)
@@ -62,15 +62,15 @@ public class TokenizeResponseSchema {
 
   public static final String SERIALIZED_NAME_PRODUCT_CONFIG = "productConfig";
   @SerializedName(SERIALIZED_NAME_PRODUCT_CONFIG)
-  private ProductConfig productConfig = null;
+  private ProductConfig productConfig;
 
   public static final String SERIALIZED_NAME_TOKEN_INFO = "tokenInfo";
   @SerializedName(SERIALIZED_NAME_TOKEN_INFO)
-  private TokenInfo tokenInfo = null;
+  private TokenInfo tokenInfo;
 
   public static final String SERIALIZED_NAME_TOKEN_DETAIL = "tokenDetail";
   @SerializedName(SERIALIZED_NAME_TOKEN_DETAIL)
-  private TokenDetail tokenDetail = null;
+  private TokenDetail tokenDetail;
 
   public static final String SERIALIZED_NAME_ERROR_CODE = "errorCode";
   @SerializedName(SERIALIZED_NAME_ERROR_CODE)
@@ -82,9 +82,11 @@ public class TokenizeResponseSchema {
 
   public static final String SERIALIZED_NAME_ERRORS = "errors";
   @SerializedName(SERIALIZED_NAME_ERRORS)
-  private List<Error> errors = new ArrayList<Error>();
+  private List<Error> errors = null;
+
 
   public TokenizeResponseSchema responseHost(String responseHost) {
+    
     this.responseHost = responseHost;
     return this;
   }
@@ -95,15 +97,19 @@ public class TokenizeResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "site2.payment-app-provider.com", value = "The MasterCard host that originated the request. Future calls in the same conversation may be routed to this host.  ")
+
   public String getResponseHost() {
     return responseHost;
   }
+
 
   public void setResponseHost(String responseHost) {
     this.responseHost = responseHost;
   }
 
+
   public TokenizeResponseSchema responseId(String responseId) {
+    
     this.responseId = responseId;
     return this;
   }
@@ -114,15 +120,19 @@ public class TokenizeResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "123456", value = "Unique identifier for the response. ")
+
   public String getResponseId() {
     return responseId;
   }
+
 
   public void setResponseId(String responseId) {
     this.responseId = responseId;
   }
 
+
   public TokenizeResponseSchema decision(String decision) {
+    
     this.decision = decision;
     return this;
   }
@@ -133,15 +143,19 @@ public class TokenizeResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "APPROVED", value = "The tokenization decision for this digitization request. Must be either APPROVED (Digitization request was approved), DECLINED (Digitization request was declined) OR REQUIRE_ADDITIONAL_AUTHENTICATION Digitization request was approved but optionally requires additional authentication. One or more Authentication methods may be provided). ")
+
   public String getDecision() {
     return decision;
   }
+
 
   public void setDecision(String decision) {
     this.decision = decision;
   }
 
+
   public TokenizeResponseSchema authenticationMethods(List<AuthenticationMethods> authenticationMethods) {
+    
     this.authenticationMethods = authenticationMethods;
     return this;
   }
@@ -160,15 +174,19 @@ public class TokenizeResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public List<AuthenticationMethods> getAuthenticationMethods() {
     return authenticationMethods;
   }
+
 
   public void setAuthenticationMethods(List<AuthenticationMethods> authenticationMethods) {
     this.authenticationMethods = authenticationMethods;
   }
 
+
   public TokenizeResponseSchema tokenUniqueReference(String tokenUniqueReference) {
+    
     this.tokenUniqueReference = tokenUniqueReference;
     return this;
   }
@@ -179,15 +197,19 @@ public class TokenizeResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45", value = "The unique reference allocated to the new Token. Serves as a unique identifier for all subsequent queries or management functions relating to this Token. Provided if the decision was APPROVED or REQUIRE_ADDITIONAL_AUTHENTICATION.    __Max Length:64__ ")
+
   public String getTokenUniqueReference() {
     return tokenUniqueReference;
   }
+
 
   public void setTokenUniqueReference(String tokenUniqueReference) {
     this.tokenUniqueReference = tokenUniqueReference;
   }
 
+
   public TokenizeResponseSchema panUniqueReference(String panUniqueReference) {
+    
     this.panUniqueReference = panUniqueReference;
     return this;
   }
@@ -198,15 +220,19 @@ public class TokenizeResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "FWSPMC000000000159f71f703d2141efaf04dd26803f922b", value = "The unique reference allocated to the Account Primary Account Number. Provided if the decision was APPROVED or REQUIRE_ADDITIONAL_AUTHENTICATION.  __Max Length:64__ ")
+
   public String getPanUniqueReference() {
     return panUniqueReference;
   }
+
 
   public void setPanUniqueReference(String panUniqueReference) {
     this.panUniqueReference = panUniqueReference;
   }
 
+
   public TokenizeResponseSchema productConfig(ProductConfig productConfig) {
+    
     this.productConfig = productConfig;
     return this;
   }
@@ -217,15 +243,19 @@ public class TokenizeResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public ProductConfig getProductConfig() {
     return productConfig;
   }
+
 
   public void setProductConfig(ProductConfig productConfig) {
     this.productConfig = productConfig;
   }
 
+
   public TokenizeResponseSchema tokenInfo(TokenInfo tokenInfo) {
+    
     this.tokenInfo = tokenInfo;
     return this;
   }
@@ -236,15 +266,19 @@ public class TokenizeResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public TokenInfo getTokenInfo() {
     return tokenInfo;
   }
+
 
   public void setTokenInfo(TokenInfo tokenInfo) {
     this.tokenInfo = tokenInfo;
   }
 
+
   public TokenizeResponseSchema tokenDetail(TokenDetail tokenDetail) {
+    
     this.tokenDetail = tokenDetail;
     return this;
   }
@@ -255,15 +289,19 @@ public class TokenizeResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public TokenDetail getTokenDetail() {
     return tokenDetail;
   }
+
 
   public void setTokenDetail(TokenDetail tokenDetail) {
     this.tokenDetail = tokenDetail;
   }
 
+
   public TokenizeResponseSchema errorCode(String errorCode) {
+    
     this.errorCode = errorCode;
     return this;
   }
@@ -274,15 +312,19 @@ public class TokenizeResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "__CONDITIONAL__<br> Returned in the event of an error and contains the reason the operation failed. Only use if errors object is not present.<br> __Max Length: 32__ ")
+
   public String getErrorCode() {
     return errorCode;
   }
+
 
   public void setErrorCode(String errorCode) {
     this.errorCode = errorCode;
   }
 
+
   public TokenizeResponseSchema errorDescription(String errorDescription) {
+    
     this.errorDescription = errorDescription;
     return this;
   }
@@ -293,15 +335,19 @@ public class TokenizeResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "__CONDITIONAL__<br> Returned in the event of an error and contains a description of why the operation failed. Only use if errors object is not present.<br> __Max Length: 32__   ")
+
   public String getErrorDescription() {
     return errorDescription;
   }
+
 
   public void setErrorDescription(String errorDescription) {
     this.errorDescription = errorDescription;
   }
 
+
   public TokenizeResponseSchema errors(List<Error> errors) {
+    
     this.errors = errors;
     return this;
   }
@@ -320,9 +366,11 @@ public class TokenizeResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public List<Error> getErrors() {
     return errors;
   }
+
 
   public void setErrors(List<Error> errors) {
     this.errors = errors;

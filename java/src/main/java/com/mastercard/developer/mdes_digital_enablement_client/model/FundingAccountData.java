@@ -29,21 +29,23 @@ import java.io.IOException;
 /**
  * FundingAccountData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-16T09:54:27.990+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class FundingAccountData {
   public static final String SERIALIZED_NAME_CARD_ACCOUNT_DATA = "cardAccountData";
   @SerializedName(SERIALIZED_NAME_CARD_ACCOUNT_DATA)
-  private CardAccountDataInbound cardAccountData = null;
+  private CardAccountDataInbound cardAccountData;
 
   public static final String SERIALIZED_NAME_ACCOUNT_HOLDER_DATA = "accountHolderData";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_HOLDER_DATA)
-  private AccountHolderData accountHolderData = null;
+  private AccountHolderData accountHolderData;
 
   public static final String SERIALIZED_NAME_SOURCE = "source";
   @SerializedName(SERIALIZED_NAME_SOURCE)
   private String source;
 
+
   public FundingAccountData cardAccountData(CardAccountDataInbound cardAccountData) {
+    
     this.cardAccountData = cardAccountData;
     return this;
   }
@@ -54,15 +56,19 @@ public class FundingAccountData {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public CardAccountDataInbound getCardAccountData() {
     return cardAccountData;
   }
+
 
   public void setCardAccountData(CardAccountDataInbound cardAccountData) {
     this.cardAccountData = cardAccountData;
   }
 
+
   public FundingAccountData accountHolderData(AccountHolderData accountHolderData) {
+    
     this.accountHolderData = accountHolderData;
     return this;
   }
@@ -73,15 +79,19 @@ public class FundingAccountData {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public AccountHolderData getAccountHolderData() {
     return accountHolderData;
   }
+
 
   public void setAccountHolderData(AccountHolderData accountHolderData) {
     this.accountHolderData = accountHolderData;
   }
 
+
   public FundingAccountData source(String source) {
+    
     this.source = source;
     return this;
   }
@@ -92,9 +102,11 @@ public class FundingAccountData {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "ACCOUNT_ON_FILE", value = "(__Required as minimum for Tokenization__)  The source of the account. Must be one of   * ACCOUNT_ON_FILE   * ACCOUNT_ADDED_MANUALLY   * ACCOUNT_ADDED_VIA_APPLICATION  __Max Length:32__ ")
+
   public String getSource() {
     return source;
   }
+
 
   public void setSource(String source) {
     this.source = source;

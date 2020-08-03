@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * UnSuspendRequestSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-15T21:18:23.871+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class UnSuspendRequestSchema {
   public static final String SERIALIZED_NAME_RESPONSE_HOST = "responseHost";
   @SerializedName(SERIALIZED_NAME_RESPONSE_HOST)
@@ -59,7 +59,9 @@ public class UnSuspendRequestSchema {
   @SerializedName(SERIALIZED_NAME_REASON_CODE)
   private String reasonCode;
 
+
   public UnSuspendRequestSchema responseHost(String responseHost) {
+    
     this.responseHost = responseHost;
     return this;
   }
@@ -70,15 +72,19 @@ public class UnSuspendRequestSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "site2.payment-app-provider.com", value = "The host that originated the request. Future calls in the same conversation may be routed to this host. ")
+
   public String getResponseHost() {
     return responseHost;
   }
+
 
   public void setResponseHost(String responseHost) {
     this.responseHost = responseHost;
   }
 
+
   public UnSuspendRequestSchema requestId(String requestId) {
+    
     this.requestId = requestId;
     return this;
   }
@@ -88,15 +94,19 @@ public class UnSuspendRequestSchema {
    * @return requestId
   **/
   @ApiModelProperty(example = "123456", required = true, value = "Unique identifier for the request. ")
+
   public String getRequestId() {
     return requestId;
   }
+
 
   public void setRequestId(String requestId) {
     this.requestId = requestId;
   }
 
+
   public UnSuspendRequestSchema paymentAppInstanceId(String paymentAppInstanceId) {
+    
     this.paymentAppInstanceId = paymentAppInstanceId;
     return this;
   }
@@ -107,15 +117,19 @@ public class UnSuspendRequestSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "123456789", value = "Identifier for the specific Mobile Payment App instance, unique across a given Wallet Identifier. This value cannot be changed after digitization. This field is alphanumeric and additionally web-safe base64 characters per RFC 4648 (minus \"-\", underscore \"_\") up to a maximum length of 48, = should not be URL encoded. Conditional - not applicable for server based tokens but required otherwise.     __Max Length:48__ ")
+
   public String getPaymentAppInstanceId() {
     return paymentAppInstanceId;
   }
+
 
   public void setPaymentAppInstanceId(String paymentAppInstanceId) {
     this.paymentAppInstanceId = paymentAppInstanceId;
   }
 
+
   public UnSuspendRequestSchema tokenUniqueReferences(List<String> tokenUniqueReferences) {
+    
     this.tokenUniqueReferences = tokenUniqueReferences;
     return this;
   }
@@ -130,15 +144,19 @@ public class UnSuspendRequestSchema {
    * @return tokenUniqueReferences
   **/
   @ApiModelProperty(example = "DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45", required = true, value = "The specific Token to be unsuspended. Array of more or more valid references as assigned by MDES  ")
+
   public List<String> getTokenUniqueReferences() {
     return tokenUniqueReferences;
   }
+
 
   public void setTokenUniqueReferences(List<String> tokenUniqueReferences) {
     this.tokenUniqueReferences = tokenUniqueReferences;
   }
 
+
   public UnSuspendRequestSchema causedBy(String causedBy) {
+    
     this.causedBy = causedBy;
     return this;
   }
@@ -148,15 +166,19 @@ public class UnSuspendRequestSchema {
    * @return causedBy
   **/
   @ApiModelProperty(example = "CARDHOLDER", required = true, value = "Who or what caused the Token to be unsuspended. Must be either the 'CARDHOLDER' (operation requested by the Cardholder) or 'TOKEN_REQUESTOR' (operation requested by the token requestor).     __Max Length:64__ ")
+
   public String getCausedBy() {
     return causedBy;
   }
+
 
   public void setCausedBy(String causedBy) {
     this.causedBy = causedBy;
   }
 
+
   public UnSuspendRequestSchema reason(String reason) {
+    
     this.reason = reason;
     return this;
   }
@@ -167,15 +189,19 @@ public class UnSuspendRequestSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "Lost/stolen device", value = "Free form reason why the Tokens are being suspended.    __Max Length:256__ ")
+
   public String getReason() {
     return reason;
   }
+
 
   public void setReason(String reason) {
     this.reason = reason;
   }
 
+
   public UnSuspendRequestSchema reasonCode(String reasonCode) {
+    
     this.reasonCode = reasonCode;
     return this;
   }
@@ -185,9 +211,11 @@ public class UnSuspendRequestSchema {
    * @return reasonCode
   **/
   @ApiModelProperty(example = "SUSPECTED_FRAUD", required = true, value = "The reason for the action to be unsuspended. Must be one of 'SUSPECTED_FRAUD' (suspected fraudulent token transactions), 'OTHER' (Other - default used if value not provided).     __Max Length:64__ ")
+
   public String getReasonCode() {
     return reasonCode;
   }
+
 
   public void setReasonCode(String reasonCode) {
     this.reasonCode = reasonCode;

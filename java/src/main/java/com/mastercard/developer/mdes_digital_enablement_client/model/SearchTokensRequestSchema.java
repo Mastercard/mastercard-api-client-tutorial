@@ -28,7 +28,7 @@ import java.io.IOException;
 /**
  * SearchTokensRequestSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-16T09:54:27.990+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class SearchTokensRequestSchema {
   public static final String SERIALIZED_NAME_REQUEST_ID = "requestId";
   @SerializedName(SERIALIZED_NAME_REQUEST_ID)
@@ -40,13 +40,15 @@ public class SearchTokensRequestSchema {
 
   public static final String SERIALIZED_NAME_FUNDING_ACCOUNT_INFO = "fundingAccountInfo";
   @SerializedName(SERIALIZED_NAME_FUNDING_ACCOUNT_INFO)
-  private FundingAccountInfo fundingAccountInfo = null;
+  private FundingAccountInfo fundingAccountInfo;
 
   public static final String SERIALIZED_NAME_TOKEN_REQUESTOR_ID = "tokenRequestorId";
   @SerializedName(SERIALIZED_NAME_TOKEN_REQUESTOR_ID)
   private String tokenRequestorId;
 
+
   public SearchTokensRequestSchema requestId(String requestId) {
+    
     this.requestId = requestId;
     return this;
   }
@@ -56,15 +58,19 @@ public class SearchTokensRequestSchema {
    * @return requestId
   **/
   @ApiModelProperty(example = "123456", required = true, value = "Unique identifier for the request. ")
+
   public String getRequestId() {
     return requestId;
   }
+
 
   public void setRequestId(String requestId) {
     this.requestId = requestId;
   }
 
+
   public SearchTokensRequestSchema responseHost(String responseHost) {
+    
     this.responseHost = responseHost;
     return this;
   }
@@ -75,15 +81,19 @@ public class SearchTokensRequestSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "site2.payment-app-provider.com", value = "The host that originated the request. Future calls in the same conversation may be routed to this host. ")
+
   public String getResponseHost() {
     return responseHost;
   }
+
 
   public void setResponseHost(String responseHost) {
     this.responseHost = responseHost;
   }
 
+
   public SearchTokensRequestSchema fundingAccountInfo(FundingAccountInfo fundingAccountInfo) {
+    
     this.fundingAccountInfo = fundingAccountInfo;
     return this;
   }
@@ -94,15 +104,19 @@ public class SearchTokensRequestSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public FundingAccountInfo getFundingAccountInfo() {
     return fundingAccountInfo;
   }
+
 
   public void setFundingAccountInfo(FundingAccountInfo fundingAccountInfo) {
     this.fundingAccountInfo = fundingAccountInfo;
   }
 
+
   public SearchTokensRequestSchema tokenRequestorId(String tokenRequestorId) {
+    
     this.tokenRequestorId = tokenRequestorId;
     return this;
   }
@@ -113,9 +127,11 @@ public class SearchTokensRequestSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "98765432101", value = "Identifies the Token Requestor. Only tokens associated with the token requestor will be returned. Length - 11.  ")
+
   public String getTokenRequestorId() {
     return tokenRequestorId;
   }
+
 
   public void setTokenRequestorId(String tokenRequestorId) {
     this.tokenRequestorId = tokenRequestorId;

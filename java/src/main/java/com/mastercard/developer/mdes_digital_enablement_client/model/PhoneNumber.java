@@ -28,7 +28,7 @@ import java.math.BigDecimal;
 /**
  * PhoneNumber
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-16T09:54:27.990+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class PhoneNumber {
   public static final String SERIALIZED_NAME_COUNTRY_DIAL_IN_CODE = "countryDialInCode";
   @SerializedName(SERIALIZED_NAME_COUNTRY_DIAL_IN_CODE)
@@ -38,7 +38,9 @@ public class PhoneNumber {
   @SerializedName(SERIALIZED_NAME_PHONE_NUMBER)
   private BigDecimal phoneNumber;
 
+
   public PhoneNumber countryDialInCode(BigDecimal countryDialInCode) {
+    
     this.countryDialInCode = countryDialInCode;
     return this;
   }
@@ -49,15 +51,19 @@ public class PhoneNumber {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "44.0", value = "__(OPTIONAL)__ The country code for the phone number. E.g. 1 for US or 44 for UK.<br> __Max Length: 4__ ")
+
   public BigDecimal getCountryDialInCode() {
     return countryDialInCode;
   }
+
 
   public void setCountryDialInCode(BigDecimal countryDialInCode) {
     this.countryDialInCode = countryDialInCode;
   }
 
+
   public PhoneNumber phoneNumber(BigDecimal phoneNumber) {
+    
     this.phoneNumber = phoneNumber;
     return this;
   }
@@ -68,9 +74,11 @@ public class PhoneNumber {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "__(OPTIONAL)__ The phone number of the account holder <br>  __Max Length: 20__ ")
+
   public BigDecimal getPhoneNumber() {
     return phoneNumber;
   }
+
 
   public void setPhoneNumber(BigDecimal phoneNumber) {
     this.phoneNumber = phoneNumber;

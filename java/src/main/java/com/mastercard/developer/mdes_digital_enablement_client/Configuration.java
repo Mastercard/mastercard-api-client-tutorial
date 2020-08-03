@@ -13,7 +13,7 @@
 
 package com.mastercard.developer.mdes_digital_enablement_client;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-16T09:54:27.990+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class Configuration {
     private static ApiClient defaultApiClient = new ApiClient();
 

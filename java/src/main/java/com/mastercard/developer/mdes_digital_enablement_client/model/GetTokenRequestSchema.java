@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * GetTokenRequestSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-16T09:54:27.990+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class GetTokenRequestSchema {
   public static final String SERIALIZED_NAME_RESPONSE_HOST = "responseHost";
   @SerializedName(SERIALIZED_NAME_RESPONSE_HOST)
@@ -49,7 +49,9 @@ public class GetTokenRequestSchema {
   @SerializedName(SERIALIZED_NAME_INCLUDE_TOKEN_DETAIL)
   private String includeTokenDetail;
 
+
   public GetTokenRequestSchema responseHost(String responseHost) {
+    
     this.responseHost = responseHost;
     return this;
   }
@@ -60,15 +62,19 @@ public class GetTokenRequestSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "site2.payment-app-provider.com", value = "The host that originated the request. Future calls in the same conversation may be routed to this host. ")
+
   public String getResponseHost() {
     return responseHost;
   }
+
 
   public void setResponseHost(String responseHost) {
     this.responseHost = responseHost;
   }
 
+
   public GetTokenRequestSchema requestId(String requestId) {
+    
     this.requestId = requestId;
     return this;
   }
@@ -78,15 +84,19 @@ public class GetTokenRequestSchema {
    * @return requestId
   **/
   @ApiModelProperty(example = "123456", required = true, value = "Unique identifier for the request. ")
+
   public String getRequestId() {
     return requestId;
   }
+
 
   public void setRequestId(String requestId) {
     this.requestId = requestId;
   }
 
+
   public GetTokenRequestSchema paymentAppInstanceId(String paymentAppInstanceId) {
+    
     this.paymentAppInstanceId = paymentAppInstanceId;
     return this;
   }
@@ -97,15 +107,19 @@ public class GetTokenRequestSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "123456789", value = "Identifier for the specific Mobile Payment App instance, unique across a given Wallet Identifier. This value cannot be changed after digitization. This field is alphanumeric and additionally web-safe base64 characters per RFC 4648 (minus \"-\", underscore \"_\") up to a maximum length of 48, = should not be URL encoded. Conditional - not applicable for server-based tokens but required otherwise.     __Max Length:48__ ")
+
   public String getPaymentAppInstanceId() {
     return paymentAppInstanceId;
   }
+
 
   public void setPaymentAppInstanceId(String paymentAppInstanceId) {
     this.paymentAppInstanceId = paymentAppInstanceId;
   }
 
+
   public GetTokenRequestSchema tokenUniqueReference(String tokenUniqueReference) {
+    
     this.tokenUniqueReference = tokenUniqueReference;
     return this;
   }
@@ -115,15 +129,19 @@ public class GetTokenRequestSchema {
    * @return tokenUniqueReference
   **/
   @ApiModelProperty(example = "DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45", required = true, value = "The specific Token to be queried.     __Max Length:64__  ")
+
   public String getTokenUniqueReference() {
     return tokenUniqueReference;
   }
+
 
   public void setTokenUniqueReference(String tokenUniqueReference) {
     this.tokenUniqueReference = tokenUniqueReference;
   }
 
+
   public GetTokenRequestSchema includeTokenDetail(String includeTokenDetail) {
+    
     this.includeTokenDetail = includeTokenDetail;
     return this;
   }
@@ -134,9 +152,11 @@ public class GetTokenRequestSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "true", value = "Flag to indicate if the encrypted token should be returned.     __Max Length:5__  ")
+
   public String getIncludeTokenDetail() {
     return includeTokenDetail;
   }
+
 
   public void setIncludeTokenDetail(String includeTokenDetail) {
     this.includeTokenDetail = includeTokenDetail;

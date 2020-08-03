@@ -28,7 +28,7 @@ import java.io.IOException;
 /**
  * GetDigitalAssetsRequestSchemaEncryptedPayload
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-16T09:54:27.990+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class GetDigitalAssetsRequestSchemaEncryptedPayload {
   public static final String SERIALIZED_NAME_PUBLIC_KEY_FINGERPRINT = "publicKeyFingerprint";
   @SerializedName(SERIALIZED_NAME_PUBLIC_KEY_FINGERPRINT)
@@ -44,9 +44,11 @@ public class GetDigitalAssetsRequestSchemaEncryptedPayload {
 
   public static final String SERIALIZED_NAME_ENCRYPTED_DATA = "encryptedData";
   @SerializedName(SERIALIZED_NAME_ENCRYPTED_DATA)
-  private GetDigitalAssetsEncryptedData encryptedData = null;
+  private GetDigitalAssetsEncryptedData encryptedData;
+
 
   public GetDigitalAssetsRequestSchemaEncryptedPayload publicKeyFingerprint(String publicKeyFingerprint) {
+    
     this.publicKeyFingerprint = publicKeyFingerprint;
     return this;
   }
@@ -56,15 +58,19 @@ public class GetDigitalAssetsRequestSchemaEncryptedPayload {
    * @return publicKeyFingerprint
   **/
   @ApiModelProperty(example = "4c4ead5927f0df8117f178eea9308daa58e27c2b", required = true, value = "The fingerpint of the public key used to encrypt the ephemeral AES key. __Max Length:64__ ")
+
   public String getPublicKeyFingerprint() {
     return publicKeyFingerprint;
   }
+
 
   public void setPublicKeyFingerprint(String publicKeyFingerprint) {
     this.publicKeyFingerprint = publicKeyFingerprint;
   }
 
+
   public GetDigitalAssetsRequestSchemaEncryptedPayload encryptedKey(String encryptedKey) {
+    
     this.encryptedKey = encryptedKey;
     return this;
   }
@@ -74,15 +80,19 @@ public class GetDigitalAssetsRequestSchemaEncryptedPayload {
    * @return encryptedKey
   **/
   @ApiModelProperty(example = "A1B2C3D4E5F6112233445566", required = true, value = "One-time use AES key encrypted by the Mastercard public key (as identified by publicKeyFingerprint) using the OEAP or PKCS#1 v1.5 scheme (depending on the value of oeapHashingAlgorithm.) __Max Length:512__ ")
+
   public String getEncryptedKey() {
     return encryptedKey;
   }
+
 
   public void setEncryptedKey(String encryptedKey) {
     this.encryptedKey = encryptedKey;
   }
 
+
   public GetDigitalAssetsRequestSchemaEncryptedPayload oaepHashingAlgorithm(String oaepHashingAlgorithm) {
+    
     this.oaepHashingAlgorithm = oaepHashingAlgorithm;
     return this;
   }
@@ -93,15 +103,19 @@ public class GetDigitalAssetsRequestSchemaEncryptedPayload {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "SHA512", value = "Hashing algorithm used with the OAEP scheme. Must be either SHA256 or SHA512. ")
+
   public String getOaepHashingAlgorithm() {
     return oaepHashingAlgorithm;
   }
+
 
   public void setOaepHashingAlgorithm(String oaepHashingAlgorithm) {
     this.oaepHashingAlgorithm = oaepHashingAlgorithm;
   }
 
+
   public GetDigitalAssetsRequestSchemaEncryptedPayload encryptedData(GetDigitalAssetsEncryptedData encryptedData) {
+    
     this.encryptedData = encryptedData;
     return this;
   }
@@ -111,9 +125,11 @@ public class GetDigitalAssetsRequestSchemaEncryptedPayload {
    * @return encryptedData
   **/
   @ApiModelProperty(required = true, value = "")
+
   public GetDigitalAssetsEncryptedData getEncryptedData() {
     return encryptedData;
   }
+
 
   public void setEncryptedData(GetDigitalAssetsEncryptedData encryptedData) {
     this.encryptedData = encryptedData;

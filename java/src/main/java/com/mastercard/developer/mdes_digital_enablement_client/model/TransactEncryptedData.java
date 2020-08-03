@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * TransactEncryptedData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-15T21:18:23.871+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class TransactEncryptedData {
   public static final String SERIALIZED_NAME_ACCOUNT_NUMBER = "accountNumber";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_NUMBER)
@@ -53,7 +53,9 @@ public class TransactEncryptedData {
   @SerializedName(SERIALIZED_NAME_DE55_DATA)
   private String de55Data;
 
+
   public TransactEncryptedData accountNumber(String accountNumber) {
+    
     this.accountNumber = accountNumber;
     return this;
   }
@@ -64,15 +66,19 @@ public class TransactEncryptedData {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "5480981500100002", value = "The Primary Account Number for the transaction – this is the Token PAN.  <br>__Min Length: 9__ <br>__Max Length: 19__ ")
+
   public String getAccountNumber() {
     return accountNumber;
   }
+
 
   public void setAccountNumber(String accountNumber) {
     this.accountNumber = accountNumber;
   }
 
+
   public TransactEncryptedData applicationExpiryDate(String applicationExpiryDate) {
+    
     this.applicationExpiryDate = applicationExpiryDate;
     return this;
   }
@@ -83,15 +89,19 @@ public class TransactEncryptedData {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "210931", value = "Application expiry date for the Token. Expressed in YYMMDD format.  <br> __Length: 6__ ")
+
   public String getApplicationExpiryDate() {
     return applicationExpiryDate;
   }
+
 
   public void setApplicationExpiryDate(String applicationExpiryDate) {
     this.applicationExpiryDate = applicationExpiryDate;
   }
 
+
   public TransactEncryptedData panSequenceNumber(String panSequenceNumber) {
+    
     this.panSequenceNumber = panSequenceNumber;
     return this;
   }
@@ -102,15 +112,19 @@ public class TransactEncryptedData {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "01", value = "Application PAN sequence number for the Token <br>  __Length: 2__ ")
+
   public String getPanSequenceNumber() {
     return panSequenceNumber;
   }
+
 
   public void setPanSequenceNumber(String panSequenceNumber) {
     this.panSequenceNumber = panSequenceNumber;
   }
 
+
   public TransactEncryptedData track2Equivalent(String track2Equivalent) {
+    
     this.track2Equivalent = track2Equivalent;
     return this;
   }
@@ -121,15 +135,19 @@ public class TransactEncryptedData {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "5480981500100002D18112011000000000000F", value = "Track 2 equivalent data for the Token. Expressed according to ISO/IEC 7813, excluding start sentinel, end sentinel, and Longitudinal Redundancy Check (LRC), using hex nibble 'D' as field separator, and padded to whole bytes using one hex nibble 'F' as needed.  <br>   __Max Length: 38__ ")
+
   public String getTrack2Equivalent() {
     return track2Equivalent;
   }
+
 
   public void setTrack2Equivalent(String track2Equivalent) {
     this.track2Equivalent = track2Equivalent;
   }
 
+
   public TransactEncryptedData de48se43Data(String de48se43Data) {
+    
     this.de48se43Data = de48se43Data;
     return this;
   }
@@ -140,15 +158,19 @@ public class TransactEncryptedData {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "1.122334455667789E37", value = "Data for DE 48 Subelement 43 containing the cryptogram.<br> __Max Length: 32__ ")
+
   public String getDe48se43Data() {
     return de48se43Data;
   }
+
 
   public void setDe48se43Data(String de48se43Data) {
     this.de48se43Data = de48se43Data;
   }
 
+
   public TransactEncryptedData de55Data(String de55Data) {
+    
     this.de55Data = de55Data;
     return this;
   }
@@ -159,9 +181,11 @@ public class TransactEncryptedData {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "1.122334455667789E99", value = "Data for DE 55 if present<br> __Max Length: 200__ ")
+
   public String getDe55Data() {
     return de55Data;
   }
+
 
   public void setDe55Data(String de55Data) {
     this.de55Data = de55Data;

@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * SuspendResponseSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-15T21:18:23.871+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class SuspendResponseSchema {
   public static final String SERIALIZED_NAME_RESPONSE_HOST = "responseHost";
   @SerializedName(SERIALIZED_NAME_RESPONSE_HOST)
@@ -42,9 +42,11 @@ public class SuspendResponseSchema {
 
   public static final String SERIALIZED_NAME_TOKENS = "tokens";
   @SerializedName(SERIALIZED_NAME_TOKENS)
-  private List<TokenForLCM> tokens = new ArrayList<TokenForLCM>();
+  private List<TokenForLCM> tokens = null;
+
 
   public SuspendResponseSchema responseHost(String responseHost) {
+    
     this.responseHost = responseHost;
     return this;
   }
@@ -55,15 +57,19 @@ public class SuspendResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "site1.mastercard.com", value = "The host that originated the request. Future calls in the same conversation may be routed to this host. ")
+
   public String getResponseHost() {
     return responseHost;
   }
+
 
   public void setResponseHost(String responseHost) {
     this.responseHost = responseHost;
   }
 
+
   public SuspendResponseSchema responseId(String responseId) {
+    
     this.responseId = responseId;
     return this;
   }
@@ -74,15 +80,19 @@ public class SuspendResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "123456", value = "Unique identifier for the response. ")
+
   public String getResponseId() {
     return responseId;
   }
+
 
   public void setResponseId(String responseId) {
     this.responseId = responseId;
   }
 
+
   public SuspendResponseSchema tokens(List<TokenForLCM> tokens) {
+    
     this.tokens = tokens;
     return this;
   }
@@ -101,9 +111,11 @@ public class SuspendResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public List<TokenForLCM> getTokens() {
     return tokens;
   }
+
 
   public void setTokens(List<TokenForLCM> tokens) {
     this.tokens = tokens;

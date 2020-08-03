@@ -30,7 +30,7 @@ import java.io.IOException;
  * __(CONDITIONAL)__&lt;br&gt; Present in tokenize response if supported by the Merchant, if using a pushAccountReceipt and if there is account holder data associated with the pushAccountReceipt in case that the issuer decision is APPROVED. Refer to &lt;a href&#x3D;\&quot;https://developer.mastercard.com/devzone/api/portal/download/0000016a-f9a1-d055-ad7a-f9efc8d50000\&quot;&gt;MDES Token Connect Token Requestor Implementation Guide and Specification &lt;/a&gt; for more details. &lt;/br&gt; 
  */
 @ApiModel(description = "__(CONDITIONAL)__<br> Present in tokenize response if supported by the Merchant, if using a pushAccountReceipt and if there is account holder data associated with the pushAccountReceipt in case that the issuer decision is APPROVED. Refer to <a href=\"https://developer.mastercard.com/devzone/api/portal/download/0000016a-f9a1-d055-ad7a-f9efc8d50000\">MDES Token Connect Token Requestor Implementation Guide and Specification </a> for more details. </br> ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-16T09:54:27.990+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class AccountHolderDataOutbound {
   public static final String SERIALIZED_NAME_ACCOUNT_HOLDER_NAME = "accountHolderName";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_HOLDER_NAME)
@@ -38,7 +38,7 @@ public class AccountHolderDataOutbound {
 
   public static final String SERIALIZED_NAME_ACCOUNT_HOLDER_ADDRESS = "accountHolderAddress";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_HOLDER_ADDRESS)
-  private BillingAddress accountHolderAddress = null;
+  private BillingAddress accountHolderAddress;
 
   public static final String SERIALIZED_NAME_ACCOUNT_HOLDER_EMAIL_ADDRESS = "accountHolderEmailAddress";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_HOLDER_EMAIL_ADDRESS)
@@ -46,9 +46,11 @@ public class AccountHolderDataOutbound {
 
   public static final String SERIALIZED_NAME_ACCOUNT_HOLDER_MOBILE_PHONE_NUMBER = "accountHolderMobilePhoneNumber";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_HOLDER_MOBILE_PHONE_NUMBER)
-  private PhoneNumber accountHolderMobilePhoneNumber = null;
+  private PhoneNumber accountHolderMobilePhoneNumber;
+
 
   public AccountHolderDataOutbound accountHolderName(String accountHolderName) {
+    
     this.accountHolderName = accountHolderName;
     return this;
   }
@@ -59,15 +61,19 @@ public class AccountHolderDataOutbound {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "__(OPTIONAL)__ The name of the cardholder<br> __Max Length:27__ ")
+
   public String getAccountHolderName() {
     return accountHolderName;
   }
+
 
   public void setAccountHolderName(String accountHolderName) {
     this.accountHolderName = accountHolderName;
   }
 
+
   public AccountHolderDataOutbound accountHolderAddress(BillingAddress accountHolderAddress) {
+    
     this.accountHolderAddress = accountHolderAddress;
     return this;
   }
@@ -78,15 +84,19 @@ public class AccountHolderDataOutbound {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public BillingAddress getAccountHolderAddress() {
     return accountHolderAddress;
   }
+
 
   public void setAccountHolderAddress(BillingAddress accountHolderAddress) {
     this.accountHolderAddress = accountHolderAddress;
   }
 
+
   public AccountHolderDataOutbound accountHolderEmailAddress(String accountHolderEmailAddress) {
+    
     this.accountHolderEmailAddress = accountHolderEmailAddress;
     return this;
   }
@@ -97,15 +107,19 @@ public class AccountHolderDataOutbound {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "__(OPTIONAL)__ The e-mail address of the Account Holder<br> __Max Length:320__ ")
+
   public String getAccountHolderEmailAddress() {
     return accountHolderEmailAddress;
   }
+
 
   public void setAccountHolderEmailAddress(String accountHolderEmailAddress) {
     this.accountHolderEmailAddress = accountHolderEmailAddress;
   }
 
+
   public AccountHolderDataOutbound accountHolderMobilePhoneNumber(PhoneNumber accountHolderMobilePhoneNumber) {
+    
     this.accountHolderMobilePhoneNumber = accountHolderMobilePhoneNumber;
     return this;
   }
@@ -116,9 +130,11 @@ public class AccountHolderDataOutbound {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public PhoneNumber getAccountHolderMobilePhoneNumber() {
     return accountHolderMobilePhoneNumber;
   }
+
 
   public void setAccountHolderMobilePhoneNumber(PhoneNumber accountHolderMobilePhoneNumber) {
     this.accountHolderMobilePhoneNumber = accountHolderMobilePhoneNumber;

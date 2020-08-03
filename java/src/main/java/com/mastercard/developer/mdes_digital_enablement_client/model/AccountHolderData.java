@@ -29,7 +29,7 @@ import java.io.IOException;
 /**
  * AccountHolderData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-16T09:54:27.990+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class AccountHolderData {
   public static final String SERIALIZED_NAME_ACCOUNT_HOLDER_NAME = "accountHolderName";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_HOLDER_NAME)
@@ -37,7 +37,7 @@ public class AccountHolderData {
 
   public static final String SERIALIZED_NAME_ACCOUNT_HOLDER_ADDRESS = "accountHolderAddress";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_HOLDER_ADDRESS)
-  private BillingAddress accountHolderAddress = null;
+  private BillingAddress accountHolderAddress;
 
   public static final String SERIALIZED_NAME_CONSUMER_IDENTIFIER = "consumerIdentifier";
   @SerializedName(SERIALIZED_NAME_CONSUMER_IDENTIFIER)
@@ -49,9 +49,11 @@ public class AccountHolderData {
 
   public static final String SERIALIZED_NAME_ACCOUNT_HOLDER_MOBILE_PHONE_NUMBER = "accountHolderMobilePhoneNumber";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_HOLDER_MOBILE_PHONE_NUMBER)
-  private PhoneNumber accountHolderMobilePhoneNumber = null;
+  private PhoneNumber accountHolderMobilePhoneNumber;
+
 
   public AccountHolderData accountHolderName(String accountHolderName) {
+    
     this.accountHolderName = accountHolderName;
     return this;
   }
@@ -62,15 +64,19 @@ public class AccountHolderData {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "__(OPTIONAL)__ The name of the cardholder in the format LASTNAME/FIRSTNAME or FIRSTNAME LASTNAME<br> __Max Length:27__ ")
+
   public String getAccountHolderName() {
     return accountHolderName;
   }
+
 
   public void setAccountHolderName(String accountHolderName) {
     this.accountHolderName = accountHolderName;
   }
 
+
   public AccountHolderData accountHolderAddress(BillingAddress accountHolderAddress) {
+    
     this.accountHolderAddress = accountHolderAddress;
     return this;
   }
@@ -81,15 +87,19 @@ public class AccountHolderData {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public BillingAddress getAccountHolderAddress() {
     return accountHolderAddress;
   }
+
 
   public void setAccountHolderAddress(BillingAddress accountHolderAddress) {
     this.accountHolderAddress = accountHolderAddress;
   }
 
+
   public AccountHolderData consumerIdentifier(String consumerIdentifier) {
+    
     this.consumerIdentifier = consumerIdentifier;
     return this;
   }
@@ -100,15 +110,19 @@ public class AccountHolderData {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "__(OPTIONAL)__ Customer Identifier that may be required in some regions.<br> __Max Length:88__ ")
+
   public String getConsumerIdentifier() {
     return consumerIdentifier;
   }
+
 
   public void setConsumerIdentifier(String consumerIdentifier) {
     this.consumerIdentifier = consumerIdentifier;
   }
 
+
   public AccountHolderData accountHolderEmailAddress(String accountHolderEmailAddress) {
+    
     this.accountHolderEmailAddress = accountHolderEmailAddress;
     return this;
   }
@@ -119,15 +133,19 @@ public class AccountHolderData {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "__(OPTIONAL)__ The e-mail address of the Account Holder<br> __Max Length: 320__ ")
+
   public String getAccountHolderEmailAddress() {
     return accountHolderEmailAddress;
   }
+
 
   public void setAccountHolderEmailAddress(String accountHolderEmailAddress) {
     this.accountHolderEmailAddress = accountHolderEmailAddress;
   }
 
+
   public AccountHolderData accountHolderMobilePhoneNumber(PhoneNumber accountHolderMobilePhoneNumber) {
+    
     this.accountHolderMobilePhoneNumber = accountHolderMobilePhoneNumber;
     return this;
   }
@@ -138,9 +156,11 @@ public class AccountHolderData {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public PhoneNumber getAccountHolderMobilePhoneNumber() {
     return accountHolderMobilePhoneNumber;
   }
+
 
   public void setAccountHolderMobilePhoneNumber(PhoneNumber accountHolderMobilePhoneNumber) {
     this.accountHolderMobilePhoneNumber = accountHolderMobilePhoneNumber;

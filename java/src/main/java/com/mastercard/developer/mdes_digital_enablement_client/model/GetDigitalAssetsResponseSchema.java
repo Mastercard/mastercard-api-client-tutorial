@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * GetDigitalAssetsResponseSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-16T09:54:27.990+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class GetDigitalAssetsResponseSchema {
   public static final String SERIALIZED_NAME_RESPONSE_ID = "responseId";
   @SerializedName(SERIALIZED_NAME_RESPONSE_ID)
@@ -85,7 +85,9 @@ public class GetDigitalAssetsResponseSchema {
   @SerializedName(SERIALIZED_NAME_LONG_DESCRIPTION)
   private String longDescription;
 
+
   public GetDigitalAssetsResponseSchema responseId(String responseId) {
+    
     this.responseId = responseId;
     return this;
   }
@@ -96,15 +98,19 @@ public class GetDigitalAssetsResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Unique identifier for the response. ")
+
   public String getResponseId() {
     return responseId;
   }
+
 
   public void setResponseId(String responseId) {
     this.responseId = responseId;
   }
 
+
   public GetDigitalAssetsResponseSchema responseHost(String responseHost) {
+    
     this.responseHost = responseHost;
     return this;
   }
@@ -115,15 +121,19 @@ public class GetDigitalAssetsResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "site2.payment-app-provider.com", value = "The host that originated the request. Future calls in the same conversation may be routed to this host. ")
+
   public String getResponseHost() {
     return responseHost;
   }
+
 
   public void setResponseHost(String responseHost) {
     this.responseHost = responseHost;
   }
 
+
   public GetDigitalAssetsResponseSchema brandLogoAssetId(String brandLogoAssetId) {
+    
     this.brandLogoAssetId = brandLogoAssetId;
     return this;
   }
@@ -134,15 +144,19 @@ public class GetDigitalAssetsResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "800200c9-629d-11e3-949a-0739d27e5a66", value = "The MasterCard or Maestro brand logo associated with this card. Provided as an Asset ID – use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object <br>    __Max Length: 64__<br> __Required: Yes__ ")
+
   public String getBrandLogoAssetId() {
     return brandLogoAssetId;
   }
+
 
   public void setBrandLogoAssetId(String brandLogoAssetId) {
     this.brandLogoAssetId = brandLogoAssetId;
   }
 
+
   public GetDigitalAssetsResponseSchema issuerLogoAssetId(String issuerLogoAssetId) {
+    
     this.issuerLogoAssetId = issuerLogoAssetId;
     return this;
   }
@@ -153,15 +167,19 @@ public class GetDigitalAssetsResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "dbc55444-986a-4896-b41c-5d5e2dd431e2", value = "The logo of the issuing bank. Provided as an Asset ID – use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object <br>     __Max Length:64__<br> __Required: Yes__ ")
+
   public String getIssuerLogoAssetId() {
     return issuerLogoAssetId;
   }
+
 
   public void setIssuerLogoAssetId(String issuerLogoAssetId) {
     this.issuerLogoAssetId = issuerLogoAssetId;
   }
 
+
   public GetDigitalAssetsResponseSchema isCoBranded(String isCoBranded) {
+    
     this.isCoBranded = isCoBranded;
     return this;
   }
@@ -172,15 +190,19 @@ public class GetDigitalAssetsResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "true", value = "Whether the product is co-branded. Must be either true (this is a co-branded product) or false (this is not a co-branded product). Always returned in Product Configuration object <br>    __Max Length:5__<br> __Required: Yes__ ")
+
   public String getIsCoBranded() {
     return isCoBranded;
   }
+
 
   public void setIsCoBranded(String isCoBranded) {
     this.isCoBranded = isCoBranded;
   }
 
+
   public GetDigitalAssetsResponseSchema coBrandName(String coBrandName) {
+    
     this.coBrandName = coBrandName;
     return this;
   }
@@ -191,15 +213,19 @@ public class GetDigitalAssetsResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "Co brand partner", value = "Textual name of the co-brand partner. Required if CoBranded is true, not present otherwise.  <br>   __Max Length:128__<br> __Required: Conditional – required if isCoBranded = \"true\". Not present otherwise__ ")
+
   public String getCoBrandName() {
     return coBrandName;
   }
+
 
   public void setCoBrandName(String coBrandName) {
     this.coBrandName = coBrandName;
   }
 
+
   public GetDigitalAssetsResponseSchema coBrandLogoAssetId(String coBrandLogoAssetId) {
+    
     this.coBrandLogoAssetId = coBrandLogoAssetId;
     return this;
   }
@@ -210,15 +236,19 @@ public class GetDigitalAssetsResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "dbc55444-496a-4896-b41c-5d5e2dd431e2", value = "The co-brand logo (if any) for this product. Provided as an Asset ID – use the Get Asset API to retrieve the actual asset. <br>   __Max Length:64__<br> __Required: No__ ")
+
   public String getCoBrandLogoAssetId() {
     return coBrandLogoAssetId;
   }
+
 
   public void setCoBrandLogoAssetId(String coBrandLogoAssetId) {
     this.coBrandLogoAssetId = coBrandLogoAssetId;
   }
 
+
   public GetDigitalAssetsResponseSchema cardBackgroundCombinedAssetId(String cardBackgroundCombinedAssetId) {
+    
     this.cardBackgroundCombinedAssetId = cardBackgroundCombinedAssetId;
     return this;
   }
@@ -229,15 +259,19 @@ public class GetDigitalAssetsResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "739d27e5-629d-11e3-949a-0800200c9a66", value = "The card image used to represent the digital card in the wallet. This ‘combined’ option contains the MasterCard, bank and any co- brand logos.  Provided as an Asset ID – use the Get Asset API to retrieve the actual asset.     __Max Length:64__<br> __Required: Conditional – either CardBackgroundCombined or CardBackground will be provided__ ")
+
   public String getCardBackgroundCombinedAssetId() {
     return cardBackgroundCombinedAssetId;
   }
+
 
   public void setCardBackgroundCombinedAssetId(String cardBackgroundCombinedAssetId) {
     this.cardBackgroundCombinedAssetId = cardBackgroundCombinedAssetId;
   }
 
+
   public GetDigitalAssetsResponseSchema cardBackgroundAssetId(String cardBackgroundAssetId) {
+    
     this.cardBackgroundAssetId = cardBackgroundAssetId;
     return this;
   }
@@ -248,15 +282,19 @@ public class GetDigitalAssetsResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "456d27e5-629d-11e3-949a-0800200c9a66", value = "The card image used to represent the digital card in the wallet. This ‘non-combined’ option does not contain the MasterCard, bank, or co-brand logos. Provided as an Asset ID – use the Get Asset API to retrieve the actual asset. <br>     __Max Length:64__<br> __Required: Conditional – either CardBackgroundCombined or CardBackground will be provided__ ")
+
   public String getCardBackgroundAssetId() {
     return cardBackgroundAssetId;
   }
+
 
   public void setCardBackgroundAssetId(String cardBackgroundAssetId) {
     this.cardBackgroundAssetId = cardBackgroundAssetId;
   }
 
+
   public GetDigitalAssetsResponseSchema iconAssetId(String iconAssetId) {
+    
     this.iconAssetId = iconAssetId;
     return this;
   }
@@ -267,15 +305,19 @@ public class GetDigitalAssetsResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "739d87e5-629d-11e3-949a-0800200c9a66", value = "The icon representing the primary brand(s) associated with this product. Provided as an Asset ID – use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object<br>    __Max Length:64__<br> __Required: Yes__ ")
+
   public String getIconAssetId() {
     return iconAssetId;
   }
+
 
   public void setIconAssetId(String iconAssetId) {
     this.iconAssetId = iconAssetId;
   }
 
+
   public GetDigitalAssetsResponseSchema foregroundColor(String foregroundColor) {
+    
     this.foregroundColor = foregroundColor;
     return this;
   }
@@ -286,15 +328,19 @@ public class GetDigitalAssetsResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "0", value = "Foreground color, used to overlay text on top of the card image. Always returned in Product Configuration object<br>    __Max Length:6__ Hexadecimal RGB color format (case-insensitive).<br> __Required: Yes__ ")
+
   public String getForegroundColor() {
     return foregroundColor;
   }
+
 
   public void setForegroundColor(String foregroundColor) {
     this.foregroundColor = foregroundColor;
   }
 
+
   public GetDigitalAssetsResponseSchema issuerName(String issuerName) {
+    
     this.issuerName = issuerName;
     return this;
   }
@@ -305,15 +351,19 @@ public class GetDigitalAssetsResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "Issuing Bank", value = "Name of the issuing bank. Always returned in Product Configuration object <br>    __Max Length:64__<br> __Required: Yes__ ")
+
   public String getIssuerName() {
     return issuerName;
   }
+
 
   public void setIssuerName(String issuerName) {
     this.issuerName = issuerName;
   }
 
+
   public GetDigitalAssetsResponseSchema shortDescription(String shortDescription) {
+    
     this.shortDescription = shortDescription;
     return this;
   }
@@ -324,15 +374,19 @@ public class GetDigitalAssetsResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "Bank Rewards MasterCard", value = "A short description for this product. Always returned in Product Configuration object  <br>   __Max Length:128__<br> __Required: Yes__ ")
+
   public String getShortDescription() {
     return shortDescription;
   }
+
 
   public void setShortDescription(String shortDescription) {
     this.shortDescription = shortDescription;
   }
 
+
   public GetDigitalAssetsResponseSchema longDescription(String longDescription) {
+    
     this.longDescription = longDescription;
     return this;
   }
@@ -343,9 +397,11 @@ public class GetDigitalAssetsResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "Bank Rewards MasterCard with the super duper rewards program", value = "A long description for this product.  <br>   __Max Length:256__<br> __Required: No__ ")
+
   public String getLongDescription() {
     return longDescription;
   }
+
 
   public void setLongDescription(String longDescription) {
     this.longDescription = longDescription;

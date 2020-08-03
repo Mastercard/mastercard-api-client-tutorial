@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * GetTaskStatusRequestSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-16T09:54:27.990+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class GetTaskStatusRequestSchema {
   public static final String SERIALIZED_NAME_RESPONSE_HOST = "responseHost";
   @SerializedName(SERIALIZED_NAME_RESPONSE_HOST)
@@ -45,7 +45,9 @@ public class GetTaskStatusRequestSchema {
   @SerializedName(SERIALIZED_NAME_TASK_ID)
   private String taskId;
 
+
   public GetTaskStatusRequestSchema responseHost(String responseHost) {
+    
     this.responseHost = responseHost;
     return this;
   }
@@ -56,15 +58,19 @@ public class GetTaskStatusRequestSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "site2.payment-app-provider.com", value = "The host that originated the request. Future calls in the same conversation may be routed to this host. ")
+
   public String getResponseHost() {
     return responseHost;
   }
+
 
   public void setResponseHost(String responseHost) {
     this.responseHost = responseHost;
   }
 
+
   public GetTaskStatusRequestSchema requestId(String requestId) {
+    
     this.requestId = requestId;
     return this;
   }
@@ -74,15 +80,19 @@ public class GetTaskStatusRequestSchema {
    * @return requestId
   **/
   @ApiModelProperty(example = "123456", required = true, value = "Unique identifier for the request. ")
+
   public String getRequestId() {
     return requestId;
   }
+
 
   public void setRequestId(String requestId) {
     this.requestId = requestId;
   }
 
+
   public GetTaskStatusRequestSchema tokenRequestorId(String tokenRequestorId) {
+    
     this.tokenRequestorId = tokenRequestorId;
     return this;
   }
@@ -93,15 +103,19 @@ public class GetTaskStatusRequestSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "98765432101", value = "Identifies the Token Requestor.  __Length:11__ ")
+
   public String getTokenRequestorId() {
     return tokenRequestorId;
   }
+
 
   public void setTokenRequestorId(String tokenRequestorId) {
     this.tokenRequestorId = tokenRequestorId;
   }
 
+
   public GetTaskStatusRequestSchema taskId(String taskId) {
+    
     this.taskId = taskId;
     return this;
   }
@@ -111,9 +125,11 @@ public class GetTaskStatusRequestSchema {
    * @return taskId
   **/
   @ApiModelProperty(example = "123456", required = true, value = "Unique identifier for this task. Must be an identifier previously used when requesting a task.    __Max Length:64__ ")
+
   public String getTaskId() {
     return taskId;
   }
+
 
   public void setTaskId(String taskId) {
     this.taskId = taskId;

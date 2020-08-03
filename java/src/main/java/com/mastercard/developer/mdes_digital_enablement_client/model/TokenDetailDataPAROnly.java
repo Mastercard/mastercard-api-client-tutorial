@@ -27,13 +27,15 @@ import java.io.IOException;
 /**
  * TokenDetailDataPAROnly
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-15T21:18:23.871+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class TokenDetailDataPAROnly {
   public static final String SERIALIZED_NAME_PAYMENT_ACCOUNT_REFERENCE = "paymentAccountReference";
   @SerializedName(SERIALIZED_NAME_PAYMENT_ACCOUNT_REFERENCE)
   private String paymentAccountReference;
 
+
   public TokenDetailDataPAROnly paymentAccountReference(String paymentAccountReference) {
+    
     this.paymentAccountReference = paymentAccountReference;
     return this;
   }
@@ -44,9 +46,11 @@ public class TokenDetailDataPAROnly {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "5001a9f027e5629d11e3949a0800a", value = "\"The unique account reference assigned to the PAN. Conditionally returned if the Token Requestor has opted to receive PAR and providing PAR is assigned by Mastercard or the Issuer provides PAR in the authorization message response.    __Max Length:__ - 29\" ")
+
   public String getPaymentAccountReference() {
     return paymentAccountReference;
   }
+
 
   public void setPaymentAccountReference(String paymentAccountReference) {
     this.paymentAccountReference = paymentAccountReference;

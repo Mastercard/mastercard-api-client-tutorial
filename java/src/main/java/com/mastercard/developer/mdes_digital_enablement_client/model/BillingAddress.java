@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * BillingAddress
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-16T09:54:27.990+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class BillingAddress {
   public static final String SERIALIZED_NAME_LINE1 = "line1";
   @SerializedName(SERIALIZED_NAME_LINE1)
@@ -53,7 +53,9 @@ public class BillingAddress {
   @SerializedName(SERIALIZED_NAME_COUNTRY)
   private String country;
 
+
   public BillingAddress line1(String line1) {
+    
     this.line1 = line1;
     return this;
   }
@@ -64,15 +66,19 @@ public class BillingAddress {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "100 1st Street", value = "__(OPTIONAL)__<br> The first line of the street address for the billing address.<br> __Max Length:64__ ")
+
   public String getLine1() {
     return line1;
   }
+
 
   public void setLine1(String line1) {
     this.line1 = line1;
   }
 
+
   public BillingAddress line2(String line2) {
+    
     this.line2 = line2;
     return this;
   }
@@ -83,15 +89,19 @@ public class BillingAddress {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "Apt. 4B", value = "__(OPTIONAL)__ The second line of the street address for the billing address.<br> __Max Length:64__ ")
+
   public String getLine2() {
     return line2;
   }
+
 
   public void setLine2(String line2) {
     this.line2 = line2;
   }
 
+
   public BillingAddress city(String city) {
+    
     this.city = city;
     return this;
   }
@@ -102,15 +112,19 @@ public class BillingAddress {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "St. Louis", value = "__(OPTIONAL)__<br> The city of the billing address.<br> __Max Length:32__ ")
+
   public String getCity() {
     return city;
   }
+
 
   public void setCity(String city) {
     this.city = city;
   }
 
+
   public BillingAddress countrySubdivision(String countrySubdivision) {
+    
     this.countrySubdivision = countrySubdivision;
     return this;
   }
@@ -121,15 +135,19 @@ public class BillingAddress {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "MO", value = "__(OPTIONAL)__<br> The state or country subdivision of the billing address.<br> __Max Length:12__ ")
+
   public String getCountrySubdivision() {
     return countrySubdivision;
   }
+
 
   public void setCountrySubdivision(String countrySubdivision) {
     this.countrySubdivision = countrySubdivision;
   }
 
+
   public BillingAddress postalCode(String postalCode) {
+    
     this.postalCode = postalCode;
     return this;
   }
@@ -140,15 +158,19 @@ public class BillingAddress {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "61000", value = "__(OPTIONAL)__<br> The postal of code of the billing address.<br> __Max Length:16__ ")
+
   public String getPostalCode() {
     return postalCode;
   }
+
 
   public void setPostalCode(String postalCode) {
     this.postalCode = postalCode;
   }
 
+
   public BillingAddress country(String country) {
+    
     this.country = country;
     return this;
   }
@@ -159,9 +181,11 @@ public class BillingAddress {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "USA", value = "__(OPTIONAL)__ The country of the billing address. <br> __Max Length:3__ ")
+
   public String getCountry() {
     return country;
   }
+
 
   public void setCountry(String country) {
     this.country = country;

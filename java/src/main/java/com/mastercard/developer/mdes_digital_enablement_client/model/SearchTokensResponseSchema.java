@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * SearchTokensResponseSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-16T09:54:27.990+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class SearchTokensResponseSchema {
   public static final String SERIALIZED_NAME_RESPONSE_HOST = "responseHost";
   @SerializedName(SERIALIZED_NAME_RESPONSE_HOST)
@@ -42,9 +42,11 @@ public class SearchTokensResponseSchema {
 
   public static final String SERIALIZED_NAME_TOKENS = "tokens";
   @SerializedName(SERIALIZED_NAME_TOKENS)
-  private List<Token> tokens = new ArrayList<Token>();
+  private List<Token> tokens = null;
+
 
   public SearchTokensResponseSchema responseHost(String responseHost) {
+    
     this.responseHost = responseHost;
     return this;
   }
@@ -55,15 +57,19 @@ public class SearchTokensResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "site1.mastercard.com", value = "The host that originated the request. Future calls in the same conversation may be routed to this host. ")
+
   public String getResponseHost() {
     return responseHost;
   }
+
 
   public void setResponseHost(String responseHost) {
     this.responseHost = responseHost;
   }
 
+
   public SearchTokensResponseSchema responseId(String responseId) {
+    
     this.responseId = responseId;
     return this;
   }
@@ -74,15 +80,19 @@ public class SearchTokensResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "123456", value = "Unique identifier for the response. ")
+
   public String getResponseId() {
     return responseId;
   }
+
 
   public void setResponseId(String responseId) {
     this.responseId = responseId;
   }
 
+
   public SearchTokensResponseSchema tokens(List<Token> tokens) {
+    
     this.tokens = tokens;
     return this;
   }
@@ -101,9 +111,11 @@ public class SearchTokensResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public List<Token> getTokens() {
     return tokens;
   }
+
 
   public void setTokens(List<Token> tokens) {
     this.tokens = tokens;

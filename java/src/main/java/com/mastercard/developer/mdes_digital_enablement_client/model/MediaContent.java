@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * MediaContent
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-16T09:54:27.990+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class MediaContent {
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
@@ -45,7 +45,9 @@ public class MediaContent {
   @SerializedName(SERIALIZED_NAME_WIDTH)
   private String width;
 
+
   public MediaContent type(String type) {
+    
     this.type = type;
     return this;
   }
@@ -55,15 +57,19 @@ public class MediaContent {
    * @return type
   **/
   @ApiModelProperty(example = "image/png", required = true, value = "What type of media this is. Specified as a MIME type, which will be one of the following supported types   * applicatoin/pdf (for images must be a vector PDF image) * image/png (includes alpha channel) * text/plain  * text/html  __Max Length:32__  ")
+
   public String getType() {
     return type;
   }
+
 
   public void setType(String type) {
     this.type = type;
   }
 
+
   public MediaContent data(String data) {
+    
     this.data = data;
     return this;
   }
@@ -73,15 +79,19 @@ public class MediaContent {
    * @return data
   **/
   @ApiModelProperty(example = "iVBORw0KGgoAAAANSUhEUgAAAXcAAAF3CAIAAADRopypAAAABGdBTUEAANbY1E9YMgAAAAlwSFlzAAAASAAAAEgARslrPgAAGtNJREFUeNrt3W9oW", required = true, value = "The data for this item of media. Base64-encoded data, given in the format as specified in ‘type’. ")
+
   public String getData() {
     return data;
   }
+
 
   public void setData(String data) {
     this.data = data;
   }
 
+
   public MediaContent height(String height) {
+    
     this.height = height;
     return this;
   }
@@ -92,15 +102,19 @@ public class MediaContent {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "375", value = "For image assets, the height of this image. Specified in pixels.     __Max Length:6__  ")
+
   public String getHeight() {
     return height;
   }
+
 
   public void setHeight(String height) {
     this.height = height;
   }
 
+
   public MediaContent width(String width) {
+    
     this.width = width;
     return this;
   }
@@ -111,9 +125,11 @@ public class MediaContent {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "375", value = "For image assets, the width of this image. Specified in pixels.        __Max Length:6__  ")
+
   public String getWidth() {
     return width;
   }
+
 
   public void setWidth(String width) {
     this.width = width;

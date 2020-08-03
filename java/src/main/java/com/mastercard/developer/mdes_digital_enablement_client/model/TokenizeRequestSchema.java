@@ -29,7 +29,7 @@ import java.io.IOException;
 /**
  * TokenizeRequestSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-15T21:18:23.871+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class TokenizeRequestSchema {
   public static final String SERIALIZED_NAME_RESPONSE_HOST = "responseHost";
   @SerializedName(SERIALIZED_NAME_RESPONSE_HOST)
@@ -53,7 +53,7 @@ public class TokenizeRequestSchema {
 
   public static final String SERIALIZED_NAME_FUNDING_ACCOUNT_INFO = "fundingAccountInfo";
   @SerializedName(SERIALIZED_NAME_FUNDING_ACCOUNT_INFO)
-  private FundingAccountInfo fundingAccountInfo = null;
+  private FundingAccountInfo fundingAccountInfo;
 
   public static final String SERIALIZED_NAME_CONSUMER_LANGUAGE = "consumerLanguage";
   @SerializedName(SERIALIZED_NAME_CONSUMER_LANGUAGE)
@@ -65,9 +65,11 @@ public class TokenizeRequestSchema {
 
   public static final String SERIALIZED_NAME_DECISIONING_DATA = "decisioningData";
   @SerializedName(SERIALIZED_NAME_DECISIONING_DATA)
-  private DecisioningData decisioningData = null;
+  private DecisioningData decisioningData;
+
 
   public TokenizeRequestSchema responseHost(String responseHost) {
+    
     this.responseHost = responseHost;
     return this;
   }
@@ -78,15 +80,19 @@ public class TokenizeRequestSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "site1.your-server.com", value = "\"The host that originated the request. Future calls in the same conversation may be routed to this host. Must be provided as: host[:port][/contextRoot] Where port and contextRoot are optional. If contextRoot is not provided, the default (per the URL Scheme) is assumed and must be used.\" ")
+
   public String getResponseHost() {
     return responseHost;
   }
+
 
   public void setResponseHost(String responseHost) {
     this.responseHost = responseHost;
   }
 
+
   public TokenizeRequestSchema requestId(String requestId) {
+    
     this.requestId = requestId;
     return this;
   }
@@ -97,15 +103,19 @@ public class TokenizeRequestSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "123456", value = "Unique identifier for the request. ")
+
   public String getRequestId() {
     return requestId;
   }
+
 
   public void setRequestId(String requestId) {
     this.requestId = requestId;
   }
 
+
   public TokenizeRequestSchema tokenType(String tokenType) {
+    
     this.tokenType = tokenType;
     return this;
   }
@@ -115,15 +125,19 @@ public class TokenizeRequestSchema {
    * @return tokenType
   **/
   @ApiModelProperty(example = "CLOUD", required = true, value = "The type of Token requested. Must be CLOUD       __Max Length:32__    ")
+
   public String getTokenType() {
     return tokenType;
   }
+
 
   public void setTokenType(String tokenType) {
     this.tokenType = tokenType;
   }
 
+
   public TokenizeRequestSchema tokenRequestorId(String tokenRequestorId) {
+    
     this.tokenRequestorId = tokenRequestorId;
     return this;
   }
@@ -133,15 +147,19 @@ public class TokenizeRequestSchema {
    * @return tokenRequestorId
   **/
   @ApiModelProperty(example = "98765432101", required = true, value = "Identifies the Token Requestor       __Max Length:11__  ")
+
   public String getTokenRequestorId() {
     return tokenRequestorId;
   }
+
 
   public void setTokenRequestorId(String tokenRequestorId) {
     this.tokenRequestorId = tokenRequestorId;
   }
 
+
   public TokenizeRequestSchema taskId(String taskId) {
+    
     this.taskId = taskId;
     return this;
   }
@@ -151,15 +169,19 @@ public class TokenizeRequestSchema {
    * @return taskId
   **/
   @ApiModelProperty(example = "123456", required = true, value = "Identifier for this task as assigned by the Token Requestor, unique across a given Token Requestor Identifier. May be used in the Get Task Status API to query the status of this task.      __Max Length:64__ ")
+
   public String getTaskId() {
     return taskId;
   }
+
 
   public void setTaskId(String taskId) {
     this.taskId = taskId;
   }
 
+
   public TokenizeRequestSchema fundingAccountInfo(FundingAccountInfo fundingAccountInfo) {
+    
     this.fundingAccountInfo = fundingAccountInfo;
     return this;
   }
@@ -169,15 +191,19 @@ public class TokenizeRequestSchema {
    * @return fundingAccountInfo
   **/
   @ApiModelProperty(required = true, value = "")
+
   public FundingAccountInfo getFundingAccountInfo() {
     return fundingAccountInfo;
   }
+
 
   public void setFundingAccountInfo(FundingAccountInfo fundingAccountInfo) {
     this.fundingAccountInfo = fundingAccountInfo;
   }
 
+
   public TokenizeRequestSchema consumerLanguage(String consumerLanguage) {
+    
     this.consumerLanguage = consumerLanguage;
     return this;
   }
@@ -188,15 +214,19 @@ public class TokenizeRequestSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "en", value = "Language preference selected by the consumer. Formatted as an ISO- 639-1 two-letter language code.    __Max Length:2__ ")
+
   public String getConsumerLanguage() {
     return consumerLanguage;
   }
+
 
   public void setConsumerLanguage(String consumerLanguage) {
     this.consumerLanguage = consumerLanguage;
   }
 
+
   public TokenizeRequestSchema tokenizationAuthenticationValue(String tokenizationAuthenticationValue) {
+    
     this.tokenizationAuthenticationValue = tokenizationAuthenticationValue;
     return this;
   }
@@ -207,15 +237,19 @@ public class TokenizeRequestSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "RHVtbXkgYmFzZSA2NCBkYXRhIC0gdGhpcyBpcyBub3QgYSByZWFsIFRBViBleGFtcGxl", value = "The Tokenization Authentication Value (TAV) as cryptographically signed by the Issuer to authorize this digitization request.      __Max Length:2048__ ")
+
   public String getTokenizationAuthenticationValue() {
     return tokenizationAuthenticationValue;
   }
+
 
   public void setTokenizationAuthenticationValue(String tokenizationAuthenticationValue) {
     this.tokenizationAuthenticationValue = tokenizationAuthenticationValue;
   }
 
+
   public TokenizeRequestSchema decisioningData(DecisioningData decisioningData) {
+    
     this.decisioningData = decisioningData;
     return this;
   }
@@ -226,9 +260,11 @@ public class TokenizeRequestSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public DecisioningData getDecisioningData() {
     return decisioningData;
   }
+
 
   public void setDecisioningData(DecisioningData decisioningData) {
     this.decisioningData = decisioningData;

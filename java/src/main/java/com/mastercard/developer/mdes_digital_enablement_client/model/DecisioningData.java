@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * DecisioningData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-16T09:54:27.990+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class DecisioningData {
   public static final String SERIALIZED_NAME_RECOMMENDATION = "recommendation";
   @SerializedName(SERIALIZED_NAME_RECOMMENDATION)
@@ -49,7 +49,7 @@ public class DecisioningData {
 
   public static final String SERIALIZED_NAME_RECOMMENDATION_REASONS = "recommendationReasons";
   @SerializedName(SERIALIZED_NAME_RECOMMENDATION_REASONS)
-  private List<String> recommendationReasons = new ArrayList<String>();
+  private List<String> recommendationReasons = null;
 
   public static final String SERIALIZED_NAME_DEVICE_CURRENT_LOCATION = "deviceCurrentLocation";
   @SerializedName(SERIALIZED_NAME_DEVICE_CURRENT_LOCATION)
@@ -67,7 +67,9 @@ public class DecisioningData {
   @SerializedName(SERIALIZED_NAME_ACCOUNT_ID_HASH)
   private String accountIdHash;
 
+
   public DecisioningData recommendation(String recommendation) {
+    
     this.recommendation = recommendation;
     return this;
   }
@@ -78,15 +80,19 @@ public class DecisioningData {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "APPROVE", value = "__(OPTIONAL)__ <br> Digitization decision recommended by the Token Requestor. Must be either APPROVED (Recommend a decision of Approved), DECLINED (Recommend a decision of Decline). <br>   __Max Length:64__ ")
+
   public String getRecommendation() {
     return recommendation;
   }
+
 
   public void setRecommendation(String recommendation) {
     this.recommendation = recommendation;
   }
 
+
   public DecisioningData recommendationAlgorithmVersion(String recommendationAlgorithmVersion) {
+    
     this.recommendationAlgorithmVersion = recommendationAlgorithmVersion;
     return this;
   }
@@ -97,15 +103,19 @@ public class DecisioningData {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "01", value = "__(OPTIONAL)__ <br> Version of the algorithm used by the Token Requestor to determine its recommendation. Must be a value of \"01\". Other values may be supported in the future.<br>     __Max Length:16__ ")
+
   public String getRecommendationAlgorithmVersion() {
     return recommendationAlgorithmVersion;
   }
+
 
   public void setRecommendationAlgorithmVersion(String recommendationAlgorithmVersion) {
     this.recommendationAlgorithmVersion = recommendationAlgorithmVersion;
   }
 
+
   public DecisioningData deviceScore(String deviceScore) {
+    
     this.deviceScore = deviceScore;
     return this;
   }
@@ -116,15 +126,19 @@ public class DecisioningData {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "1", value = "__(OPTIONAL)__ <br> Score assigned by the Token Requestor for the target device being provisioned. Must be a value from 1 to 5. ")
+
   public String getDeviceScore() {
     return deviceScore;
   }
+
 
   public void setDeviceScore(String deviceScore) {
     this.deviceScore = deviceScore;
   }
 
+
   public DecisioningData accountScore(String accountScore) {
+    
     this.accountScore = accountScore;
     return this;
   }
@@ -135,15 +149,19 @@ public class DecisioningData {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "1", value = "__(OPTIONAL)__ <br> Score assigned by the Token Requestor for the consumer account or relationship. Must be a value from 1 to 5. ")
+
   public String getAccountScore() {
     return accountScore;
   }
+
 
   public void setAccountScore(String accountScore) {
     this.accountScore = accountScore;
   }
 
+
   public DecisioningData recommendationReasons(List<String> recommendationReasons) {
+    
     this.recommendationReasons = recommendationReasons;
     return this;
   }
@@ -162,15 +180,19 @@ public class DecisioningData {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "__(OPTIONAL)__ <br> Code indicating the reasons the Token Requestor is suggesting the digitization decision.  See table here - https://developer.mastercard.com/page/mdes-digitization-recommendation-reason-codes ")
+
   public List<String> getRecommendationReasons() {
     return recommendationReasons;
   }
+
 
   public void setRecommendationReasons(List<String> recommendationReasons) {
     this.recommendationReasons = recommendationReasons;
   }
 
+
   public DecisioningData deviceCurrentLocation(String deviceCurrentLocation) {
+    
     this.deviceCurrentLocation = deviceCurrentLocation;
     return this;
   }
@@ -181,15 +203,19 @@ public class DecisioningData {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "38.63, -90.25", value = "__(OPTIONAL)__ <br> Latitude and longitude in the format \"(sign) latitude, (sign) longitude\" with a precision of 2 decimal places.  Ex - \"38.63, -90.25\"  Latitude is between -90 and 90.  Longitude between -180 and 180. Relates to the target device being provisioned. If there is no target device, then this should be the current consumer location, if available. <br>    __Max Length:14__ ")
+
   public String getDeviceCurrentLocation() {
     return deviceCurrentLocation;
   }
+
 
   public void setDeviceCurrentLocation(String deviceCurrentLocation) {
     this.deviceCurrentLocation = deviceCurrentLocation;
   }
 
+
   public DecisioningData deviceIpAddress(String deviceIpAddress) {
+    
     this.deviceIpAddress = deviceIpAddress;
     return this;
   }
@@ -200,15 +226,19 @@ public class DecisioningData {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "127.0.0.1", value = "__(OPTIONAL)__ <br> The IP address of the device through which the device reaches the internet. This may be a temporary or permanent IP address assigned to a home router, or the IP address of a gateway through which the device connects to a network. IPv4 address format of 4 octets separated by \".\" Ex - 127.0.0.1 Relates to the target device being provisioned. If there is no target device, then this should be the current consumer IP address, if available.<br>     __Max Length:15__ ")
+
   public String getDeviceIpAddress() {
     return deviceIpAddress;
   }
+
 
   public void setDeviceIpAddress(String deviceIpAddress) {
     this.deviceIpAddress = deviceIpAddress;
   }
 
+
   public DecisioningData mobileNumberSuffix(String mobileNumberSuffix) {
+    
     this.mobileNumberSuffix = mobileNumberSuffix;
     return this;
   }
@@ -219,15 +249,19 @@ public class DecisioningData {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "3456", value = "__(OPTIONAL)__<br> The last few digits (typically four) of the consumer's mobile phone number as available on file or on the consumer's current device, which may or may not be the mobile number of the target device being provisioned.<br>     __Max Length:32__ ")
+
   public String getMobileNumberSuffix() {
     return mobileNumberSuffix;
   }
+
 
   public void setMobileNumberSuffix(String mobileNumberSuffix) {
     this.mobileNumberSuffix = mobileNumberSuffix;
   }
 
+
   public DecisioningData accountIdHash(String accountIdHash) {
+    
     this.accountIdHash = accountIdHash;
     return this;
   }
@@ -238,9 +272,11 @@ public class DecisioningData {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "NA", value = "__(OPTIONAL)__ <br> SHA-256 hash of the Cardholder’s account ID with the Token Requestor. Typically expected to be an email address.<br>  __Max Length:64__ Alpha-Numeric and Hex-encoded data (case-insensitive). ")
+
   public String getAccountIdHash() {
     return accountIdHash;
   }
+
 
   public void setAccountIdHash(String accountIdHash) {
     this.accountIdHash = accountIdHash;

@@ -32,7 +32,7 @@ import java.util.List;
 /**
  * Token
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-15T21:18:23.871+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class Token {
   public static final String SERIALIZED_NAME_TOKEN_UNIQUE_REFERENCE = "tokenUniqueReference";
   @SerializedName(SERIALIZED_NAME_TOKEN_UNIQUE_REFERENCE)
@@ -44,7 +44,7 @@ public class Token {
 
   public static final String SERIALIZED_NAME_SUSPENDED_BY = "suspendedBy";
   @SerializedName(SERIALIZED_NAME_SUSPENDED_BY)
-  private List<String> suspendedBy = new ArrayList<String>();
+  private List<String> suspendedBy = null;
 
   public static final String SERIALIZED_NAME_STATUS_TIMESTAMP = "statusTimestamp";
   @SerializedName(SERIALIZED_NAME_STATUS_TIMESTAMP)
@@ -52,11 +52,11 @@ public class Token {
 
   public static final String SERIALIZED_NAME_PRODUCT_CONFIG = "productConfig";
   @SerializedName(SERIALIZED_NAME_PRODUCT_CONFIG)
-  private ProductConfig productConfig = null;
+  private ProductConfig productConfig;
 
   public static final String SERIALIZED_NAME_TOKEN_INFO = "tokenInfo";
   @SerializedName(SERIALIZED_NAME_TOKEN_INFO)
-  private TokenInfo tokenInfo = null;
+  private TokenInfo tokenInfo;
 
   public static final String SERIALIZED_NAME_ERROR_CODE = "errorCode";
   @SerializedName(SERIALIZED_NAME_ERROR_CODE)
@@ -68,9 +68,11 @@ public class Token {
 
   public static final String SERIALIZED_NAME_ERRORS = "errors";
   @SerializedName(SERIALIZED_NAME_ERRORS)
-  private List<Error> errors = new ArrayList<Error>();
+  private List<Error> errors = null;
+
 
   public Token tokenUniqueReference(String tokenUniqueReference) {
+    
     this.tokenUniqueReference = tokenUniqueReference;
     return this;
   }
@@ -81,15 +83,19 @@ public class Token {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45", value = "The unique reference allocated to the Token which is always present even if an error occurs. <br>      __Max Length:64__ ")
+
   public String getTokenUniqueReference() {
     return tokenUniqueReference;
   }
+
 
   public void setTokenUniqueReference(String tokenUniqueReference) {
     this.tokenUniqueReference = tokenUniqueReference;
   }
 
+
   public Token status(String status) {
+    
     this.status = status;
     return this;
   }
@@ -100,15 +106,19 @@ public class Token {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "SUSPENDED", value = "The current status of Token. Must be either:    * 'INACTIVE' (Token has not yet been activated)  * 'ACTIVE' (Token is active and ready to transact)  * 'SUSPENDED' (Token is suspended and unable to transact)  * 'DEACTIVATED' (Token has been permanently deactivated).<br>      __Max Length:32__ ")
+
   public String getStatus() {
     return status;
   }
+
 
   public void setStatus(String status) {
     this.status = status;
   }
 
+
   public Token suspendedBy(List<String> suspendedBy) {
+    
     this.suspendedBy = suspendedBy;
     return this;
   }
@@ -127,15 +137,19 @@ public class Token {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "(CONDITIONAL only supplied if status is SUSPENDED) Who or what caused the Token to be suspended One or more values of:     * ISSUER - Suspended by the Issuer.    * TOKEN_REQUESTOR - Suspended by the Token Requestor     * MOBILE_PIN_LOCKED - Suspended due to the Mobile PIN being locked    * CARDHOLDER - Suspended by the Cardholder <br>          __Max Length__: N/A     ")
+
   public List<String> getSuspendedBy() {
     return suspendedBy;
   }
+
 
   public void setSuspendedBy(List<String> suspendedBy) {
     this.suspendedBy = suspendedBy;
   }
 
+
   public Token statusTimestamp(String statusTimestamp) {
+    
     this.statusTimestamp = statusTimestamp;
     return this;
   }
@@ -146,15 +160,19 @@ public class Token {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "The date and time the token status was last updated. Expressed in ISO 8601 extended format as one of the following:     * YYYY-MM-DDThh:mm:ss[.sss]Z    * YYYY-MM-DDThh:mm:ss[.sss]±hh:mm    * Where [.sss] is optional and can be 1 to 3 digits. <br>  __Max Length:29__   ")
+
   public String getStatusTimestamp() {
     return statusTimestamp;
   }
+
 
   public void setStatusTimestamp(String statusTimestamp) {
     this.statusTimestamp = statusTimestamp;
   }
 
+
   public Token productConfig(ProductConfig productConfig) {
+    
     this.productConfig = productConfig;
     return this;
   }
@@ -165,15 +183,19 @@ public class Token {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public ProductConfig getProductConfig() {
     return productConfig;
   }
+
 
   public void setProductConfig(ProductConfig productConfig) {
     this.productConfig = productConfig;
   }
 
+
   public Token tokenInfo(TokenInfo tokenInfo) {
+    
     this.tokenInfo = tokenInfo;
     return this;
   }
@@ -184,15 +206,19 @@ public class Token {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public TokenInfo getTokenInfo() {
     return tokenInfo;
   }
+
 
   public void setTokenInfo(TokenInfo tokenInfo) {
     this.tokenInfo = tokenInfo;
   }
 
+
   public Token errorCode(String errorCode) {
+    
     this.errorCode = errorCode;
     return this;
   }
@@ -203,15 +229,19 @@ public class Token {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "__CONDITIONAL__<br> Returned in the event of an error and contains the reason the operation failed. Only use if errors object is not present.<br> __Max Length: 32__ ")
+
   public String getErrorCode() {
     return errorCode;
   }
+
 
   public void setErrorCode(String errorCode) {
     this.errorCode = errorCode;
   }
 
+
   public Token errorDescription(String errorDescription) {
+    
     this.errorDescription = errorDescription;
     return this;
   }
@@ -222,15 +252,19 @@ public class Token {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "__CONDITIONAL__<br> Returned in the event of an error and contains a description of why the operation failed. Only use if errors object is not present.<br> __Max Length: 32__   ")
+
   public String getErrorDescription() {
     return errorDescription;
   }
+
 
   public void setErrorDescription(String errorDescription) {
     this.errorDescription = errorDescription;
   }
 
+
   public Token errors(List<Error> errors) {
+    
     this.errors = errors;
     return this;
   }
@@ -249,9 +283,11 @@ public class Token {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public List<Error> getErrors() {
     return errors;
   }
+
 
   public void setErrors(List<Error> errors) {
     this.errors = errors;

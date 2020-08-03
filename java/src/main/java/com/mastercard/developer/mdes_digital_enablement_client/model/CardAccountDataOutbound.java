@@ -28,7 +28,7 @@ import java.io.IOException;
  * __(CONDITIONAL)__&lt;br&gt; The credit or debit card information for the account that is being tokenized.  Present in tokenize response if supported by the Token Requestor, if using a pushAccountReceipt and if there is a card account associated with the pushAccountReceipt in case that the issuer decision is not DECLINED. &lt;/br&gt; 
  */
 @ApiModel(description = "__(CONDITIONAL)__<br> The credit or debit card information for the account that is being tokenized.  Present in tokenize response if supported by the Token Requestor, if using a pushAccountReceipt and if there is a card account associated with the pushAccountReceipt in case that the issuer decision is not DECLINED. </br> ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-16T09:54:27.990+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class CardAccountDataOutbound {
   public static final String SERIALIZED_NAME_ACCOUNT_NUMBER = "accountNumber";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_NUMBER)
@@ -42,7 +42,9 @@ public class CardAccountDataOutbound {
   @SerializedName(SERIALIZED_NAME_EXPIRY_YEAR)
   private String expiryYear;
 
+
   public CardAccountDataOutbound accountNumber(String accountNumber) {
+    
     this.accountNumber = accountNumber;
     return this;
   }
@@ -53,15 +55,19 @@ public class CardAccountDataOutbound {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "5123456789012345", value = " The account number of the credit or debit card.   __Min Length:9__<br>  __Max Length:19__ ")
+
   public String getAccountNumber() {
     return accountNumber;
   }
+
 
   public void setAccountNumber(String accountNumber) {
     this.accountNumber = accountNumber;
   }
 
+
   public CardAccountDataOutbound expiryMonth(String expiryMonth) {
+    
     this.expiryMonth = expiryMonth;
     return this;
   }
@@ -72,15 +78,19 @@ public class CardAccountDataOutbound {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "9.0", value = "  The expiry month for the account. Two numeric digits must be supplied.   __Format: MM__<br> __Exact Length:2__ ")
+
   public String getExpiryMonth() {
     return expiryMonth;
   }
+
 
   public void setExpiryMonth(String expiryMonth) {
     this.expiryMonth = expiryMonth;
   }
 
+
   public CardAccountDataOutbound expiryYear(String expiryYear) {
+    
     this.expiryYear = expiryYear;
     return this;
   }
@@ -91,9 +101,11 @@ public class CardAccountDataOutbound {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "21", value = "__(Required as minimum for Tokenization)__  The expiry year for the account. __Format: YY__ <br> __Exact Length:2__ ")
+
   public String getExpiryYear() {
     return expiryYear;
   }
+
 
   public void setExpiryYear(String expiryYear) {
     this.expiryYear = expiryYear;

@@ -28,7 +28,7 @@ import java.io.IOException;
  * Only returned in the event of an error condition for the Transact API
  */
 @ApiModel(description = "Only returned in the event of an error condition for the Transact API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-15T21:18:23.871+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class TransactError {
   public static final String SERIALIZED_NAME_SOURCE = "source";
   @SerializedName(SERIALIZED_NAME_SOURCE)
@@ -50,7 +50,9 @@ public class TransactError {
   @SerializedName(SERIALIZED_NAME_ERROR_DESCRIPTION)
   private String errorDescription;
 
+
   public TransactError source(String source) {
+    
     this.source = source;
     return this;
   }
@@ -61,15 +63,19 @@ public class TransactError {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "An element used to indicate the source of the issue causing this error. Must be one of   * 'MDES'  * 'INPUT' <br> __Max Length: 32__ ")
+
   public String getSource() {
     return source;
   }
+
 
   public void setSource(String source) {
     this.source = source;
   }
 
+
   public TransactError errorCode(String errorCode) {
+    
     this.errorCode = errorCode;
     return this;
   }
@@ -80,15 +86,19 @@ public class TransactError {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "A reason code or information pertaining to the error that has occurred. This will contain the error reported by the platform (e.g. authentication errors) or service (e.g. invalid TUR)<br> __Max Length: 100__ ")
+
   public String getErrorCode() {
     return errorCode;
   }
+
 
   public void setErrorCode(String errorCode) {
     this.errorCode = errorCode;
   }
 
+
   public TransactError description(String description) {
+    
     this.description = description;
     return this;
   }
@@ -99,15 +109,19 @@ public class TransactError {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Description of the reason why the operation failed. <br> __Max Length: 256__ ")
+
   public String getDescription() {
     return description;
   }
+
 
   public void setDescription(String description) {
     this.description = description;
   }
 
+
   public TransactError reasonCode(String reasonCode) {
+    
     this.reasonCode = reasonCode;
     return this;
   }
@@ -118,15 +132,19 @@ public class TransactError {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "A reason code or information pertaining to the error that has occurred from the service (e.g. invalid TUR). See API Response Errors<br> __Max Length: 100__         ")
+
   public String getReasonCode() {
     return reasonCode;
   }
+
 
   public void setReasonCode(String reasonCode) {
     this.reasonCode = reasonCode;
   }
 
+
   public TransactError errorDescription(String errorDescription) {
+    
     this.errorDescription = errorDescription;
     return this;
   }
@@ -137,9 +155,11 @@ public class TransactError {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "__DEPRECATED__<br> Use description instead.<br> __Max Length: 100__  ")
+
   public String getErrorDescription() {
     return errorDescription;
   }
+
 
   public void setErrorDescription(String errorDescription) {
     this.errorDescription = errorDescription;

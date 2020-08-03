@@ -28,7 +28,7 @@ import java.io.IOException;
 /**
  * TokenDetailPAROnly
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-15T21:18:23.871+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class TokenDetailPAROnly {
   public static final String SERIALIZED_NAME_TOKEN_UNIQUE_REFERENCE = "tokenUniqueReference";
   @SerializedName(SERIALIZED_NAME_TOKEN_UNIQUE_REFERENCE)
@@ -52,9 +52,11 @@ public class TokenDetailPAROnly {
 
   public static final String SERIALIZED_NAME_ENCRYPTED_DATA = "encryptedData";
   @SerializedName(SERIALIZED_NAME_ENCRYPTED_DATA)
-  private TokenDetailDataPAROnly encryptedData = null;
+  private TokenDetailDataPAROnly encryptedData;
+
 
   public TokenDetailPAROnly tokenUniqueReference(String tokenUniqueReference) {
+    
     this.tokenUniqueReference = tokenUniqueReference;
     return this;
   }
@@ -65,15 +67,19 @@ public class TokenDetailPAROnly {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45", value = "Globally unique identifier for the Token, as assigned by MDES.<br>     __Max Length:64__ ")
+
   public String getTokenUniqueReference() {
     return tokenUniqueReference;
   }
+
 
   public void setTokenUniqueReference(String tokenUniqueReference) {
     this.tokenUniqueReference = tokenUniqueReference;
   }
 
+
   public TokenDetailPAROnly publicKeyFingerprint(String publicKeyFingerprint) {
+    
     this.publicKeyFingerprint = publicKeyFingerprint;
     return this;
   }
@@ -84,15 +90,19 @@ public class TokenDetailPAROnly {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "4c4ead5927f0df8117f178eea9308daa58e27c2b", value = "The certificate fingerprint identifying the public key used to encrypt the ephemeral AES key.<br>     __Max Length:64__ Hex-encoded data (case-insensitive). ")
+
   public String getPublicKeyFingerprint() {
     return publicKeyFingerprint;
   }
+
 
   public void setPublicKeyFingerprint(String publicKeyFingerprint) {
     this.publicKeyFingerprint = publicKeyFingerprint;
   }
 
+
   public TokenDetailPAROnly encryptedKey(String encryptedKey) {
+    
     this.encryptedKey = encryptedKey;
     return this;
   }
@@ -103,15 +113,19 @@ public class TokenDetailPAROnly {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "A1B2C3D4E5F6112233445566", value = "One-time use AES key encrypted by the MasterCard public key (as identified by 'publicKeyFingerprint') using the OAEP or RSA Encryption Standard PKCS #1 v1.5 scheme (depending on the value of 'oaepHashingAlgorithm'. Requirement is for a 128-bit key (with 256-bit key supported as an option).<br>     __Max Length:512__ ")
+
   public String getEncryptedKey() {
     return encryptedKey;
   }
+
 
   public void setEncryptedKey(String encryptedKey) {
     this.encryptedKey = encryptedKey;
   }
 
+
   public TokenDetailPAROnly oaepHashingAlgorithm(String oaepHashingAlgorithm) {
+    
     this.oaepHashingAlgorithm = oaepHashingAlgorithm;
     return this;
   }
@@ -122,15 +136,19 @@ public class TokenDetailPAROnly {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "SHA512", value = "Hashing algorithm used with the OAEP scheme. If omitted, then the RSA Encryption Standard PKCS #1 v1.5 will be used. Must be either 'SHA256' (Use the SHA-256 algorithm) or 'SHA512' (Use the SHA-512 algorithm).<br>     __Max Length:6__ ")
+
   public String getOaepHashingAlgorithm() {
     return oaepHashingAlgorithm;
   }
+
 
   public void setOaepHashingAlgorithm(String oaepHashingAlgorithm) {
     this.oaepHashingAlgorithm = oaepHashingAlgorithm;
   }
 
+
   public TokenDetailPAROnly iv(String iv) {
+    
     this.iv = iv;
     return this;
   }
@@ -141,15 +159,19 @@ public class TokenDetailPAROnly {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "NA", value = "It is recommended to supply a random initialization vector when encrypting the data using the one-time use AES key. Must be exactly 16 bytes (32 character hex string) to match the block size. Hex-encoded data (case-insensitive).  __Max Length:32__ ")
+
   public String getIv() {
     return iv;
   }
+
 
   public void setIv(String iv) {
     this.iv = iv;
   }
 
+
   public TokenDetailPAROnly encryptedData(TokenDetailDataPAROnly encryptedData) {
+    
     this.encryptedData = encryptedData;
     return this;
   }
@@ -160,9 +182,11 @@ public class TokenDetailPAROnly {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public TokenDetailDataPAROnly getEncryptedData() {
     return encryptedData;
   }
+
 
   public void setEncryptedData(TokenDetailDataPAROnly encryptedData) {
     this.encryptedData = encryptedData;

@@ -28,7 +28,7 @@ import java.io.IOException;
  * __(CONDITIONAL)__ &lt;br&gt; Required in Tokenize or Search Tokens unless a valid panUniqueReference, tokenUniqueReference or pushAccountReceipt is also given in FundingAccountInfo. 
  */
 @ApiModel(description = "__(CONDITIONAL)__ <br> Required in Tokenize or Search Tokens unless a valid panUniqueReference, tokenUniqueReference or pushAccountReceipt is also given in FundingAccountInfo. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-16T09:54:27.990+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class CardAccountDataInbound {
   public static final String SERIALIZED_NAME_ACCOUNT_NUMBER = "accountNumber";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_NUMBER)
@@ -46,7 +46,9 @@ public class CardAccountDataInbound {
   @SerializedName(SERIALIZED_NAME_SECURITY_CODE)
   private String securityCode;
 
+
   public CardAccountDataInbound accountNumber(String accountNumber) {
+    
     this.accountNumber = accountNumber;
     return this;
   }
@@ -57,15 +59,19 @@ public class CardAccountDataInbound {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "5123456789012345", value = "The account number of the credit or debit card.   __(CONDITIONAL)__ <br>required in a Tokenize, or Get Digital Asset request, unless a valid panUniqueReference or tokenUniqueReference or pushAccountReceipt was given in FundingAccountInfo.  </br></br>  __Min Length:9 (See note)__</br> __Max Length:19__ </br> </br> __NOTE__: Only 6 digits can be supplied in SearchTokens if the TokenUniqueReference is provided in fundingAccountInfo. ")
+
   public String getAccountNumber() {
     return accountNumber;
   }
+
 
   public void setAccountNumber(String accountNumber) {
     this.accountNumber = accountNumber;
   }
 
+
   public CardAccountDataInbound expiryMonth(String expiryMonth) {
+    
     this.expiryMonth = expiryMonth;
     return this;
   }
@@ -76,15 +82,19 @@ public class CardAccountDataInbound {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "9.0", value = "  The expiry month for the account. Two numeric digits must be supplied.  <br>Only supplied in tokenization requests if panUniqueReference or tokenUniqueReferenceForPanInfo or pushAccountReceipt is not present.  __Format: MM__<br> __Exact Length:2__ ")
+
   public String getExpiryMonth() {
     return expiryMonth;
   }
+
 
   public void setExpiryMonth(String expiryMonth) {
     this.expiryMonth = expiryMonth;
   }
 
+
   public CardAccountDataInbound expiryYear(String expiryYear) {
+    
     this.expiryYear = expiryYear;
     return this;
   }
@@ -95,15 +105,19 @@ public class CardAccountDataInbound {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "21", value = "__(Required as minimum for Tokenization)__  The expiry year for the account. <br>Only supplied in tokenization requests if panUniqueReference or tokenUniqueReferenceForPanInfo or pushAccountReceipt is not present.   __Format: YY__ <br> __Exact Length:2__ ")
+
   public String getExpiryYear() {
     return expiryYear;
   }
+
 
   public void setExpiryYear(String expiryYear) {
     this.expiryYear = expiryYear;
   }
 
+
   public CardAccountDataInbound securityCode(String securityCode) {
+    
     this.securityCode = securityCode;
     return this;
   }
@@ -114,9 +128,11 @@ public class CardAccountDataInbound {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "123", value = "__(OPTIONAL)__ The security code for the account can optionally be provided for Tokenization. If provided, the validity will be checked. <br> Optional in a Tokenize request, not present otherwise. __Max Length:3__ ")
+
   public String getSecurityCode() {
     return securityCode;
   }
+
 
   public void setSecurityCode(String securityCode) {
     this.securityCode = securityCode;

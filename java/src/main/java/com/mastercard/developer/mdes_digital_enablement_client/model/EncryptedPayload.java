@@ -28,7 +28,7 @@ import java.io.IOException;
 /**
  * EncryptedPayload
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-16T09:54:27.990+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class EncryptedPayload {
   public static final String SERIALIZED_NAME_PUBLIC_KEY_FINGERPRINT = "publicKeyFingerprint";
   @SerializedName(SERIALIZED_NAME_PUBLIC_KEY_FINGERPRINT)
@@ -48,9 +48,11 @@ public class EncryptedPayload {
 
   public static final String SERIALIZED_NAME_ENCRYPTED_DATA = "encryptedData";
   @SerializedName(SERIALIZED_NAME_ENCRYPTED_DATA)
-  private NotifyTokenEncryptedPayload encryptedData = null;
+  private NotifyTokenEncryptedPayload encryptedData;
+
 
   public EncryptedPayload publicKeyFingerprint(String publicKeyFingerprint) {
+    
     this.publicKeyFingerprint = publicKeyFingerprint;
     return this;
   }
@@ -60,15 +62,19 @@ public class EncryptedPayload {
    * @return publicKeyFingerprint
   **/
   @ApiModelProperty(example = "4c4ead5927f0df8117f178eea9308daa58e27c2b", required = true, value = "The fingerprint of the public key used to encrypt the ephemeral AES key.     __Max Length:64__ ")
+
   public String getPublicKeyFingerprint() {
     return publicKeyFingerprint;
   }
+
 
   public void setPublicKeyFingerprint(String publicKeyFingerprint) {
     this.publicKeyFingerprint = publicKeyFingerprint;
   }
 
+
   public EncryptedPayload encryptedKey(String encryptedKey) {
+    
     this.encryptedKey = encryptedKey;
     return this;
   }
@@ -78,15 +84,19 @@ public class EncryptedPayload {
    * @return encryptedKey
   **/
   @ApiModelProperty(example = "A1B2C3D4E5F6112233445566", required = true, value = "One-time use AES key encrypted by the MasterCard public key (as identified by publicKeyFingerprint) using the OAEP or PKCS#1 v1.5 scheme (depending on the value of oaepHashingAlgorithm.     __Max Length:512__ ")
+
   public String getEncryptedKey() {
     return encryptedKey;
   }
+
 
   public void setEncryptedKey(String encryptedKey) {
     this.encryptedKey = encryptedKey;
   }
 
+
   public EncryptedPayload oaepHashingAlgorithm(String oaepHashingAlgorithm) {
+    
     this.oaepHashingAlgorithm = oaepHashingAlgorithm;
     return this;
   }
@@ -97,15 +107,19 @@ public class EncryptedPayload {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "SHA512", value = "Hashing algorithm used with the OAEP scheme. Must be either SHA256 or SHA512. ")
+
   public String getOaepHashingAlgorithm() {
     return oaepHashingAlgorithm;
   }
+
 
   public void setOaepHashingAlgorithm(String oaepHashingAlgorithm) {
     this.oaepHashingAlgorithm = oaepHashingAlgorithm;
   }
 
+
   public EncryptedPayload iv(String iv) {
+    
     this.iv = iv;
     return this;
   }
@@ -116,15 +130,19 @@ public class EncryptedPayload {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "NA", value = "The initialization vector used when encrypting data using the one-time use AES key. Must be exactly 16 bytes (32 character hex string) to match the block size. If not present, an IV of zero is assumed. Length - 32. ")
+
   public String getIv() {
     return iv;
   }
+
 
   public void setIv(String iv) {
     this.iv = iv;
   }
 
+
   public EncryptedPayload encryptedData(NotifyTokenEncryptedPayload encryptedData) {
+    
     this.encryptedData = encryptedData;
     return this;
   }
@@ -134,9 +152,11 @@ public class EncryptedPayload {
    * @return encryptedData
   **/
   @ApiModelProperty(required = true, value = "")
+
   public NotifyTokenEncryptedPayload getEncryptedData() {
     return encryptedData;
   }
+
 
   public void setEncryptedData(NotifyTokenEncryptedPayload encryptedData) {
     this.encryptedData = encryptedData;

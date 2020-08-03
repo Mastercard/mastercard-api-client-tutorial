@@ -30,13 +30,15 @@ import java.util.List;
 /**
  * AssetResponseSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-16T09:54:27.990+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class AssetResponseSchema {
   public static final String SERIALIZED_NAME_MEDIA_CONTENTS = "mediaContents";
   @SerializedName(SERIALIZED_NAME_MEDIA_CONTENTS)
-  private List<MediaContent> mediaContents = new ArrayList<MediaContent>();
+  private List<MediaContent> mediaContents = null;
+
 
   public AssetResponseSchema mediaContents(List<MediaContent> mediaContents) {
+    
     this.mediaContents = mediaContents;
     return this;
   }
@@ -55,9 +57,11 @@ public class AssetResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public List<MediaContent> getMediaContents() {
     return mediaContents;
   }
+
 
   public void setMediaContents(List<MediaContent> mediaContents) {
     this.mediaContents = mediaContents;

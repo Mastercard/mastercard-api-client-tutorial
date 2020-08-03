@@ -28,7 +28,7 @@ import java.io.IOException;
  * \&quot;authenticationMethods not currently used for MDES for Merchants\&quot; 
  */
 @ApiModel(description = "\"authenticationMethods not currently used for MDES for Merchants\" ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-16T09:54:27.990+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class AuthenticationMethods {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -42,7 +42,9 @@ public class AuthenticationMethods {
   @SerializedName(SERIALIZED_NAME_VALUE)
   private String value;
 
+
   public AuthenticationMethods id(String id) {
+    
     this.id = id;
     return this;
   }
@@ -53,15 +55,19 @@ public class AuthenticationMethods {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "334123523456213450000", value = "Unique identifier assigned to this Authentication Method. ")
+
   public String getId() {
     return id;
   }
+
 
   public void setId(String id) {
     this.id = id;
   }
 
+
   public AuthenticationMethods type(String type) {
+    
     this.type = type;
     return this;
   }
@@ -72,15 +78,19 @@ public class AuthenticationMethods {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "TEXT_TO_CARDHOLDER_NUMBER", value = "Specifies the authentication method type and provided in the tokenize response.  See table here - https://developer.mastercard.com/page/mdes-digitization-authentication-method-codes ")
+
   public String getType() {
     return type;
   }
+
 
   public void setType(String type) {
     this.type = type;
   }
 
+
   public AuthenticationMethods value(String value) {
+    
     this.value = value;
     return this;
   }
@@ -91,9 +101,11 @@ public class AuthenticationMethods {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "1", value = "Specifies the authentication method value (meaning varies depending on the authentication method type). ")
+
   public String getValue() {
     return value;
   }
+
 
   public void setValue(String value) {
     this.value = value;

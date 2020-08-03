@@ -32,7 +32,7 @@ import java.util.List;
 /**
  * GetTokenResponseSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-16T09:54:27.990+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class GetTokenResponseSchema {
   public static final String SERIALIZED_NAME_RESPONSE_ID = "responseId";
   @SerializedName(SERIALIZED_NAME_RESPONSE_ID)
@@ -40,17 +40,19 @@ public class GetTokenResponseSchema {
 
   public static final String SERIALIZED_NAME_TOKEN = "token";
   @SerializedName(SERIALIZED_NAME_TOKEN)
-  private Token token = null;
+  private Token token;
 
   public static final String SERIALIZED_NAME_TOKEN_DETAIL = "tokenDetail";
   @SerializedName(SERIALIZED_NAME_TOKEN_DETAIL)
-  private TokenDetail tokenDetail = null;
+  private TokenDetail tokenDetail;
 
   public static final String SERIALIZED_NAME_ERRORS = "errors";
   @SerializedName(SERIALIZED_NAME_ERRORS)
-  private List<Error> errors = new ArrayList<Error>();
+  private List<Error> errors = null;
+
 
   public GetTokenResponseSchema responseId(String responseId) {
+    
     this.responseId = responseId;
     return this;
   }
@@ -61,15 +63,19 @@ public class GetTokenResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "123456", value = "Unique identifier for the response. ")
+
   public String getResponseId() {
     return responseId;
   }
+
 
   public void setResponseId(String responseId) {
     this.responseId = responseId;
   }
 
+
   public GetTokenResponseSchema token(Token token) {
+    
     this.token = token;
     return this;
   }
@@ -80,15 +86,19 @@ public class GetTokenResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public Token getToken() {
     return token;
   }
+
 
   public void setToken(Token token) {
     this.token = token;
   }
 
+
   public GetTokenResponseSchema tokenDetail(TokenDetail tokenDetail) {
+    
     this.tokenDetail = tokenDetail;
     return this;
   }
@@ -99,15 +109,19 @@ public class GetTokenResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public TokenDetail getTokenDetail() {
     return tokenDetail;
   }
+
 
   public void setTokenDetail(TokenDetail tokenDetail) {
     this.tokenDetail = tokenDetail;
   }
 
+
   public GetTokenResponseSchema errors(List<Error> errors) {
+    
     this.errors = errors;
     return this;
   }
@@ -126,9 +140,11 @@ public class GetTokenResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public List<Error> getErrors() {
     return errors;
   }
+
 
   public void setErrors(List<Error> errors) {
     this.errors = errors;

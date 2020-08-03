@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * GetTaskStatusResponseSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-16T09:54:27.990+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class GetTaskStatusResponseSchema {
   public static final String SERIALIZED_NAME_RESPONSE_ID = "responseId";
   @SerializedName(SERIALIZED_NAME_RESPONSE_ID)
@@ -54,9 +54,11 @@ public class GetTaskStatusResponseSchema {
 
   public static final String SERIALIZED_NAME_ERRORS = "errors";
   @SerializedName(SERIALIZED_NAME_ERRORS)
-  private List<Error> errors = new ArrayList<Error>();
+  private List<Error> errors = null;
+
 
   public GetTaskStatusResponseSchema responseId(String responseId) {
+    
     this.responseId = responseId;
     return this;
   }
@@ -67,15 +69,19 @@ public class GetTaskStatusResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "123456", value = "Unique identifier for the response. ")
+
   public String getResponseId() {
     return responseId;
   }
+
 
   public void setResponseId(String responseId) {
     this.responseId = responseId;
   }
 
+
   public GetTaskStatusResponseSchema responseHost(String responseHost) {
+    
     this.responseHost = responseHost;
     return this;
   }
@@ -86,15 +92,19 @@ public class GetTaskStatusResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "site2.payment-app-provider.com", value = "The host that originated the request. Future calls in the same conversation may be routed to this host. ")
+
   public String getResponseHost() {
     return responseHost;
   }
+
 
   public void setResponseHost(String responseHost) {
     this.responseHost = responseHost;
   }
 
+
   public GetTaskStatusResponseSchema status(String status) {
+    
     this.status = status;
     return this;
   }
@@ -105,15 +115,19 @@ public class GetTaskStatusResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "FAILED", value = "The status of the specified task. Must be either 'PENDING' (The Task has been recieved and is pending processing), 'IN_PROGRESS' (The task is currently in progress), 'COMPLETED' (The task was completed successfully) or 'FAILED' The task was processed but failed to complete successfully.     __Max Length:64__ ")
+
   public String getStatus() {
     return status;
   }
+
 
   public void setStatus(String status) {
     this.status = status;
   }
 
+
   public GetTaskStatusResponseSchema errorCode(String errorCode) {
+    
     this.errorCode = errorCode;
     return this;
   }
@@ -124,15 +138,19 @@ public class GetTaskStatusResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "__CONDITIONAL__<br> Returned in the event of an error and contains the reason the operation failed. Only use if errors object is not present.<br> __Max Length: 32__ ")
+
   public String getErrorCode() {
     return errorCode;
   }
+
 
   public void setErrorCode(String errorCode) {
     this.errorCode = errorCode;
   }
 
+
   public GetTaskStatusResponseSchema errorDescription(String errorDescription) {
+    
     this.errorDescription = errorDescription;
     return this;
   }
@@ -143,15 +161,19 @@ public class GetTaskStatusResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "__CONDITIONAL__<br> Returned in the event of an error and contains a description of why the operation failed. Only use if errors object is not present.<br> __Max Length: 32__   ")
+
   public String getErrorDescription() {
     return errorDescription;
   }
+
 
   public void setErrorDescription(String errorDescription) {
     this.errorDescription = errorDescription;
   }
 
+
   public GetTaskStatusResponseSchema errors(List<Error> errors) {
+    
     this.errors = errors;
     return this;
   }
@@ -170,9 +192,11 @@ public class GetTaskStatusResponseSchema {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public List<Error> getErrors() {
     return errors;
   }
+
 
   public void setErrors(List<Error> errors) {
     this.errors = errors;
