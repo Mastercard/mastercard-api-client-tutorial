@@ -1,6 +1,6 @@
 <?php
 /**
- * TokenDetailData
+ * TokenDetailDataGetTokenOnly
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \DigitalEnablementClient\ObjectSerializer;
 
 /**
- * TokenDetailData Class Doc Comment
+ * TokenDetailDataGetTokenOnly Class Doc Comment
  *
  * @category Class
  * @package  DigitalEnablementClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class TokenDetailData implements ModelInterface, ArrayAccess
+class TokenDetailDataGetTokenOnly implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class TokenDetailData implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'tokenDetailData';
+    protected static $openAPIModelName = 'tokenDetailData_getToken_Only';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,9 @@ class TokenDetailData implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'account_holder_data' => '\DigitalEnablementClient\Model\AccountHolderData',
+        'token_number' => 'string',
+        'expiry_month' => 'string',
+        'expiry_year' => 'string',
         'payment_account_reference' => 'string'
     ];
 
@@ -67,7 +69,9 @@ class TokenDetailData implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'account_holder_data' => null,
+        'token_number' => null,
+        'expiry_month' => null,
+        'expiry_year' => null,
         'payment_account_reference' => null
     ];
 
@@ -98,7 +102,9 @@ class TokenDetailData implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'account_holder_data' => 'accountHolderData',
+        'token_number' => 'tokenNumber',
+        'expiry_month' => 'expiryMonth',
+        'expiry_year' => 'expiryYear',
         'payment_account_reference' => 'paymentAccountReference'
     ];
 
@@ -108,7 +114,9 @@ class TokenDetailData implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'account_holder_data' => 'setAccountHolderData',
+        'token_number' => 'setTokenNumber',
+        'expiry_month' => 'setExpiryMonth',
+        'expiry_year' => 'setExpiryYear',
         'payment_account_reference' => 'setPaymentAccountReference'
     ];
 
@@ -118,7 +126,9 @@ class TokenDetailData implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'account_holder_data' => 'getAccountHolderData',
+        'token_number' => 'getTokenNumber',
+        'expiry_month' => 'getExpiryMonth',
+        'expiry_year' => 'getExpiryYear',
         'payment_account_reference' => 'getPaymentAccountReference'
     ];
 
@@ -182,7 +192,9 @@ class TokenDetailData implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['account_holder_data'] = isset($data['account_holder_data']) ? $data['account_holder_data'] : null;
+        $this->container['token_number'] = isset($data['token_number']) ? $data['token_number'] : null;
+        $this->container['expiry_month'] = isset($data['expiry_month']) ? $data['expiry_month'] : null;
+        $this->container['expiry_year'] = isset($data['expiry_year']) ? $data['expiry_year'] : null;
         $this->container['payment_account_reference'] = isset($data['payment_account_reference']) ? $data['payment_account_reference'] : null;
     }
 
@@ -211,25 +223,73 @@ class TokenDetailData implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets account_holder_data
+     * Gets token_number
      *
-     * @return \DigitalEnablementClient\Model\AccountHolderData|null
+     * @return string|null
      */
-    public function getAccountHolderData()
+    public function getTokenNumber()
     {
-        return $this->container['account_holder_data'];
+        return $this->container['token_number'];
     }
 
     /**
-     * Sets account_holder_data
+     * Sets token_number
      *
-     * @param \DigitalEnablementClient\Model\AccountHolderData|null $account_holder_data account_holder_data
+     * @param string|null $token_number The Token Primary Account Number of the Card.  <br>__Max Length: 19__ <br>__Min Length: 9__
      *
      * @return $this
      */
-    public function setAccountHolderData($account_holder_data)
+    public function setTokenNumber($token_number)
     {
-        $this->container['account_holder_data'] = $account_holder_data;
+        $this->container['token_number'] = $token_number;
+
+        return $this;
+    }
+
+    /**
+     * Gets expiry_month
+     *
+     * @return string|null
+     */
+    public function getExpiryMonth()
+    {
+        return $this->container['expiry_month'];
+    }
+
+    /**
+     * Sets expiry_month
+     *
+     * @param string|null $expiry_month The month of the token expiration date. <br> __Max Length: 2__
+     *
+     * @return $this
+     */
+    public function setExpiryMonth($expiry_month)
+    {
+        $this->container['expiry_month'] = $expiry_month;
+
+        return $this;
+    }
+
+    /**
+     * Gets expiry_year
+     *
+     * @return string|null
+     */
+    public function getExpiryYear()
+    {
+        return $this->container['expiry_year'];
+    }
+
+    /**
+     * Sets expiry_year
+     *
+     * @param string|null $expiry_year The year of the token expiration date. <br> __Max Length: 2__
+     *
+     * @return $this
+     */
+    public function setExpiryYear($expiry_year)
+    {
+        $this->container['expiry_year'] = $expiry_year;
 
         return $this;
     }
@@ -247,7 +307,7 @@ class TokenDetailData implements ModelInterface, ArrayAccess
     /**
      * Sets payment_account_reference
      *
-     * @param string|null $payment_account_reference \"The unique account reference assigned to the PAN. Conditionally returned if the Token Requestor has opted to receive PAR and providing PAR is assigned by Mastercard or the Issuer provides PAR in the authorization message response.    __Max Length:__ - 29\"
+     * @param string|null $payment_account_reference The unique account reference assigned to the PAN. Conditionally returned if the Token Requestor has opted to receive PAR and providing PAR is assigned by Mastercard or the Issuer provides PAR in the authorization message response. <br>    __Max Length: 29__
      *
      * @return $this
      */

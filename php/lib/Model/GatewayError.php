@@ -1,6 +1,6 @@
 <?php
 /**
- * TokenDetailData
+ * GatewayError
  *
  * PHP version 5
  *
@@ -33,14 +33,15 @@ use \ArrayAccess;
 use \DigitalEnablementClient\ObjectSerializer;
 
 /**
- * TokenDetailData Class Doc Comment
+ * GatewayError Class Doc Comment
  *
  * @category Class
+ * @description Only returned in the event of an error condition.
  * @package  DigitalEnablementClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class TokenDetailData implements ModelInterface, ArrayAccess
+class GatewayError implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +50,7 @@ class TokenDetailData implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'tokenDetailData';
+    protected static $openAPIModelName = 'GatewayError';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,8 +58,11 @@ class TokenDetailData implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'account_holder_data' => '\DigitalEnablementClient\Model\AccountHolderData',
-        'payment_account_reference' => 'string'
+        'source' => 'string',
+        'description' => 'string',
+        'reason_code' => 'string',
+        'recoverable' => 'bool',
+        'details' => 'bool'
     ];
 
     /**
@@ -67,8 +71,11 @@ class TokenDetailData implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'account_holder_data' => null,
-        'payment_account_reference' => null
+        'source' => null,
+        'description' => null,
+        'reason_code' => null,
+        'recoverable' => null,
+        'details' => null
     ];
 
     /**
@@ -98,8 +105,11 @@ class TokenDetailData implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'account_holder_data' => 'accountHolderData',
-        'payment_account_reference' => 'paymentAccountReference'
+        'source' => 'Source',
+        'description' => 'Description',
+        'reason_code' => 'ReasonCode',
+        'recoverable' => 'Recoverable',
+        'details' => 'Details'
     ];
 
     /**
@@ -108,8 +118,11 @@ class TokenDetailData implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'account_holder_data' => 'setAccountHolderData',
-        'payment_account_reference' => 'setPaymentAccountReference'
+        'source' => 'setSource',
+        'description' => 'setDescription',
+        'reason_code' => 'setReasonCode',
+        'recoverable' => 'setRecoverable',
+        'details' => 'setDetails'
     ];
 
     /**
@@ -118,8 +131,11 @@ class TokenDetailData implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'account_holder_data' => 'getAccountHolderData',
-        'payment_account_reference' => 'getPaymentAccountReference'
+        'source' => 'getSource',
+        'description' => 'getDescription',
+        'reason_code' => 'getReasonCode',
+        'recoverable' => 'getRecoverable',
+        'details' => 'getDetails'
     ];
 
     /**
@@ -182,8 +198,11 @@ class TokenDetailData implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['account_holder_data'] = isset($data['account_holder_data']) ? $data['account_holder_data'] : null;
-        $this->container['payment_account_reference'] = isset($data['payment_account_reference']) ? $data['payment_account_reference'] : null;
+        $this->container['source'] = isset($data['source']) ? $data['source'] : null;
+        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
+        $this->container['reason_code'] = isset($data['reason_code']) ? $data['reason_code'] : null;
+        $this->container['recoverable'] = isset($data['recoverable']) ? $data['recoverable'] : null;
+        $this->container['details'] = isset($data['details']) ? $data['details'] : null;
     }
 
     /**
@@ -211,49 +230,121 @@ class TokenDetailData implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets account_holder_data
+     * Gets source
      *
-     * @return \DigitalEnablementClient\Model\AccountHolderData|null
+     * @return string|null
      */
-    public function getAccountHolderData()
+    public function getSource()
     {
-        return $this->container['account_holder_data'];
+        return $this->container['source'];
     }
 
     /**
-     * Sets account_holder_data
+     * Sets source
      *
-     * @param \DigitalEnablementClient\Model\AccountHolderData|null $account_holder_data account_holder_data
+     * @param string|null $source An element used to indicate the source of the issue causing this error. e.g. Gateway __Max Length: 32__
      *
      * @return $this
      */
-    public function setAccountHolderData($account_holder_data)
+    public function setSource($source)
     {
-        $this->container['account_holder_data'] = $account_holder_data;
+        $this->container['source'] = $source;
 
         return $this;
     }
 
     /**
-     * Gets payment_account_reference
+     * Gets description
      *
      * @return string|null
      */
-    public function getPaymentAccountReference()
+    public function getDescription()
     {
-        return $this->container['payment_account_reference'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets payment_account_reference
+     * Sets description
      *
-     * @param string|null $payment_account_reference \"The unique account reference assigned to the PAN. Conditionally returned if the Token Requestor has opted to receive PAR and providing PAR is assigned by Mastercard or the Issuer provides PAR in the authorization message response.    __Max Length:__ - 29\"
+     * @param string|null $description Description of the reason the operation failed. See API Response Errors <br> __Max Length: 256__
      *
      * @return $this
      */
-    public function setPaymentAccountReference($payment_account_reference)
+    public function setDescription($description)
     {
-        $this->container['payment_account_reference'] = $payment_account_reference;
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets reason_code
+     *
+     * @return string|null
+     */
+    public function getReasonCode()
+    {
+        return $this->container['reason_code'];
+    }
+
+    /**
+     * Sets reason_code
+     *
+     * @param string|null $reason_code A reason code for the error that has occurred.<br> __Max Length: 100__
+     *
+     * @return $this
+     */
+    public function setReasonCode($reason_code)
+    {
+        $this->container['reason_code'] = $reason_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets recoverable
+     *
+     * @return bool|null
+     */
+    public function getRecoverable()
+    {
+        return $this->container['recoverable'];
+    }
+
+    /**
+     * Sets recoverable
+     *
+     * @param bool|null $recoverable Generated by the gateway to indicate if the request could presented again for processing. Either \"TRUE\" or \"FALSE\"
+     *
+     * @return $this
+     */
+    public function setRecoverable($recoverable)
+    {
+        $this->container['recoverable'] = $recoverable;
+
+        return $this;
+    }
+
+    /**
+     * Gets details
+     *
+     * @return bool|null
+     */
+    public function getDetails()
+    {
+        return $this->container['details'];
+    }
+
+    /**
+     * Sets details
+     *
+     * @param bool|null $details Always NULL, present for backwards compatiility
+     *
+     * @return $this
+     */
+    public function setDetails($details)
+    {
+        $this->container['details'] = $details;
 
         return $this;
     }

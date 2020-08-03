@@ -1,6 +1,6 @@
 <?php
 /**
- * TokenDetailData
+ * GatewayErrorsSchema
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \DigitalEnablementClient\ObjectSerializer;
 
 /**
- * TokenDetailData Class Doc Comment
+ * GatewayErrorsSchema Class Doc Comment
  *
  * @category Class
  * @package  DigitalEnablementClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class TokenDetailData implements ModelInterface, ArrayAccess
+class GatewayErrorsSchema implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class TokenDetailData implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'tokenDetailData';
+    protected static $openAPIModelName = 'GatewayErrorsSchema';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,8 +57,7 @@ class TokenDetailData implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'account_holder_data' => '\DigitalEnablementClient\Model\AccountHolderData',
-        'payment_account_reference' => 'string'
+        'error' => '\DigitalEnablementClient\Model\GatewayError[]'
     ];
 
     /**
@@ -67,8 +66,7 @@ class TokenDetailData implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'account_holder_data' => null,
-        'payment_account_reference' => null
+        'error' => null
     ];
 
     /**
@@ -98,8 +96,7 @@ class TokenDetailData implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'account_holder_data' => 'accountHolderData',
-        'payment_account_reference' => 'paymentAccountReference'
+        'error' => 'Error'
     ];
 
     /**
@@ -108,8 +105,7 @@ class TokenDetailData implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'account_holder_data' => 'setAccountHolderData',
-        'payment_account_reference' => 'setPaymentAccountReference'
+        'error' => 'setError'
     ];
 
     /**
@@ -118,8 +114,7 @@ class TokenDetailData implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'account_holder_data' => 'getAccountHolderData',
-        'payment_account_reference' => 'getPaymentAccountReference'
+        'error' => 'getError'
     ];
 
     /**
@@ -182,8 +177,7 @@ class TokenDetailData implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['account_holder_data'] = isset($data['account_holder_data']) ? $data['account_holder_data'] : null;
-        $this->container['payment_account_reference'] = isset($data['payment_account_reference']) ? $data['payment_account_reference'] : null;
+        $this->container['error'] = isset($data['error']) ? $data['error'] : null;
     }
 
     /**
@@ -211,49 +205,25 @@ class TokenDetailData implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets account_holder_data
+     * Gets error
      *
-     * @return \DigitalEnablementClient\Model\AccountHolderData|null
+     * @return \DigitalEnablementClient\Model\GatewayError[]|null
      */
-    public function getAccountHolderData()
+    public function getError()
     {
-        return $this->container['account_holder_data'];
+        return $this->container['error'];
     }
 
     /**
-     * Sets account_holder_data
+     * Sets error
      *
-     * @param \DigitalEnablementClient\Model\AccountHolderData|null $account_holder_data account_holder_data
+     * @param \DigitalEnablementClient\Model\GatewayError[]|null $error error
      *
      * @return $this
      */
-    public function setAccountHolderData($account_holder_data)
+    public function setError($error)
     {
-        $this->container['account_holder_data'] = $account_holder_data;
-
-        return $this;
-    }
-
-    /**
-     * Gets payment_account_reference
-     *
-     * @return string|null
-     */
-    public function getPaymentAccountReference()
-    {
-        return $this->container['payment_account_reference'];
-    }
-
-    /**
-     * Sets payment_account_reference
-     *
-     * @param string|null $payment_account_reference \"The unique account reference assigned to the PAN. Conditionally returned if the Token Requestor has opted to receive PAR and providing PAR is assigned by Mastercard or the Issuer provides PAR in the authorization message response.    __Max Length:__ - 29\"
-     *
-     * @return $this
-     */
-    public function setPaymentAccountReference($payment_account_reference)
-    {
-        $this->container['payment_account_reference'] = $payment_account_reference;
+        $this->container['error'] = $error;
 
         return $this;
     }

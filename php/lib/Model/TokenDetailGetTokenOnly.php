@@ -1,6 +1,6 @@
 <?php
 /**
- * TokenDetailData
+ * TokenDetailGetTokenOnly
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \DigitalEnablementClient\ObjectSerializer;
 
 /**
- * TokenDetailData Class Doc Comment
+ * TokenDetailGetTokenOnly Class Doc Comment
  *
  * @category Class
  * @package  DigitalEnablementClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class TokenDetailData implements ModelInterface, ArrayAccess
+class TokenDetailGetTokenOnly implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class TokenDetailData implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'tokenDetailData';
+    protected static $openAPIModelName = 'tokenDetail_getToken_Only';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,8 +57,11 @@ class TokenDetailData implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'account_holder_data' => '\DigitalEnablementClient\Model\AccountHolderData',
-        'payment_account_reference' => 'string'
+        'token_unique_reference' => 'string',
+        'public_key_fingerprint' => 'string',
+        'encrypted_key' => 'string',
+        'oaep_hashing_algorithm' => 'string',
+        'encrypted_data' => '\DigitalEnablementClient\Model\TokenDetailDataGetTokenOnly'
     ];
 
     /**
@@ -67,8 +70,11 @@ class TokenDetailData implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'account_holder_data' => null,
-        'payment_account_reference' => null
+        'token_unique_reference' => null,
+        'public_key_fingerprint' => null,
+        'encrypted_key' => null,
+        'oaep_hashing_algorithm' => null,
+        'encrypted_data' => null
     ];
 
     /**
@@ -98,8 +104,11 @@ class TokenDetailData implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'account_holder_data' => 'accountHolderData',
-        'payment_account_reference' => 'paymentAccountReference'
+        'token_unique_reference' => 'tokenUniqueReference',
+        'public_key_fingerprint' => 'publicKeyFingerprint',
+        'encrypted_key' => 'encryptedKey',
+        'oaep_hashing_algorithm' => 'oaepHashingAlgorithm',
+        'encrypted_data' => 'encryptedData'
     ];
 
     /**
@@ -108,8 +117,11 @@ class TokenDetailData implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'account_holder_data' => 'setAccountHolderData',
-        'payment_account_reference' => 'setPaymentAccountReference'
+        'token_unique_reference' => 'setTokenUniqueReference',
+        'public_key_fingerprint' => 'setPublicKeyFingerprint',
+        'encrypted_key' => 'setEncryptedKey',
+        'oaep_hashing_algorithm' => 'setOaepHashingAlgorithm',
+        'encrypted_data' => 'setEncryptedData'
     ];
 
     /**
@@ -118,8 +130,11 @@ class TokenDetailData implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'account_holder_data' => 'getAccountHolderData',
-        'payment_account_reference' => 'getPaymentAccountReference'
+        'token_unique_reference' => 'getTokenUniqueReference',
+        'public_key_fingerprint' => 'getPublicKeyFingerprint',
+        'encrypted_key' => 'getEncryptedKey',
+        'oaep_hashing_algorithm' => 'getOaepHashingAlgorithm',
+        'encrypted_data' => 'getEncryptedData'
     ];
 
     /**
@@ -182,8 +197,11 @@ class TokenDetailData implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['account_holder_data'] = isset($data['account_holder_data']) ? $data['account_holder_data'] : null;
-        $this->container['payment_account_reference'] = isset($data['payment_account_reference']) ? $data['payment_account_reference'] : null;
+        $this->container['token_unique_reference'] = isset($data['token_unique_reference']) ? $data['token_unique_reference'] : null;
+        $this->container['public_key_fingerprint'] = isset($data['public_key_fingerprint']) ? $data['public_key_fingerprint'] : null;
+        $this->container['encrypted_key'] = isset($data['encrypted_key']) ? $data['encrypted_key'] : null;
+        $this->container['oaep_hashing_algorithm'] = isset($data['oaep_hashing_algorithm']) ? $data['oaep_hashing_algorithm'] : null;
+        $this->container['encrypted_data'] = isset($data['encrypted_data']) ? $data['encrypted_data'] : null;
     }
 
     /**
@@ -211,49 +229,121 @@ class TokenDetailData implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets account_holder_data
+     * Gets token_unique_reference
      *
-     * @return \DigitalEnablementClient\Model\AccountHolderData|null
+     * @return string|null
      */
-    public function getAccountHolderData()
+    public function getTokenUniqueReference()
     {
-        return $this->container['account_holder_data'];
+        return $this->container['token_unique_reference'];
     }
 
     /**
-     * Sets account_holder_data
+     * Sets token_unique_reference
      *
-     * @param \DigitalEnablementClient\Model\AccountHolderData|null $account_holder_data account_holder_data
+     * @param string|null $token_unique_reference Globally unique identifier for the Token, as assigned by MDES.<br>     __Max Length:64__
      *
      * @return $this
      */
-    public function setAccountHolderData($account_holder_data)
+    public function setTokenUniqueReference($token_unique_reference)
     {
-        $this->container['account_holder_data'] = $account_holder_data;
+        $this->container['token_unique_reference'] = $token_unique_reference;
 
         return $this;
     }
 
     /**
-     * Gets payment_account_reference
+     * Gets public_key_fingerprint
      *
      * @return string|null
      */
-    public function getPaymentAccountReference()
+    public function getPublicKeyFingerprint()
     {
-        return $this->container['payment_account_reference'];
+        return $this->container['public_key_fingerprint'];
     }
 
     /**
-     * Sets payment_account_reference
+     * Sets public_key_fingerprint
      *
-     * @param string|null $payment_account_reference \"The unique account reference assigned to the PAN. Conditionally returned if the Token Requestor has opted to receive PAR and providing PAR is assigned by Mastercard or the Issuer provides PAR in the authorization message response.    __Max Length:__ - 29\"
+     * @param string|null $public_key_fingerprint The certificate fingerprint identifying the public key used to encrypt the ephemeral AES key.<br>     __Max Length:64__ Hex-encoded data (case-insensitive).
      *
      * @return $this
      */
-    public function setPaymentAccountReference($payment_account_reference)
+    public function setPublicKeyFingerprint($public_key_fingerprint)
     {
-        $this->container['payment_account_reference'] = $payment_account_reference;
+        $this->container['public_key_fingerprint'] = $public_key_fingerprint;
+
+        return $this;
+    }
+
+    /**
+     * Gets encrypted_key
+     *
+     * @return string|null
+     */
+    public function getEncryptedKey()
+    {
+        return $this->container['encrypted_key'];
+    }
+
+    /**
+     * Sets encrypted_key
+     *
+     * @param string|null $encrypted_key One-time use AES key encrypted by the MasterCard public key (as identified by 'publicKeyFingerprint') using the OAEP or RSA Encryption Standard PKCS #1 v1.5 scheme (depending on the value of 'oaepHashingAlgorithm'. Requirement is for a 128-bit key (with 256-bit key supported as an option).<br>     __Max Length:512__
+     *
+     * @return $this
+     */
+    public function setEncryptedKey($encrypted_key)
+    {
+        $this->container['encrypted_key'] = $encrypted_key;
+
+        return $this;
+    }
+
+    /**
+     * Gets oaep_hashing_algorithm
+     *
+     * @return string|null
+     */
+    public function getOaepHashingAlgorithm()
+    {
+        return $this->container['oaep_hashing_algorithm'];
+    }
+
+    /**
+     * Sets oaep_hashing_algorithm
+     *
+     * @param string|null $oaep_hashing_algorithm Hashing algorithm used with the OAEP scheme. If omitted, then the RSA Encryption Standard PKCS #1 v1.5 will be used. Must be either 'SHA256' (Use the SHA-256 algorithm) or 'SHA512' (Use the SHA-512 algorithm).<br>     __Max Length:6__
+     *
+     * @return $this
+     */
+    public function setOaepHashingAlgorithm($oaep_hashing_algorithm)
+    {
+        $this->container['oaep_hashing_algorithm'] = $oaep_hashing_algorithm;
+
+        return $this;
+    }
+
+    /**
+     * Gets encrypted_data
+     *
+     * @return \DigitalEnablementClient\Model\TokenDetailDataGetTokenOnly|null
+     */
+    public function getEncryptedData()
+    {
+        return $this->container['encrypted_data'];
+    }
+
+    /**
+     * Sets encrypted_data
+     *
+     * @param \DigitalEnablementClient\Model\TokenDetailDataGetTokenOnly|null $encrypted_data encrypted_data
+     *
+     * @return $this
+     */
+    public function setEncryptedData($encrypted_data)
+    {
+        $this->container['encrypted_data'] = $encrypted_data;
 
         return $this;
     }
