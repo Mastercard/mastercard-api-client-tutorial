@@ -13,36 +13,36 @@ OpenAPI Generator version: 4.3.1
 require 'date'
 
 module OpenapiClient
-  class TokenForLCM
-    # The unique reference allocated to the Token which is always present even if an error occurs. <br>      __Max Length:64__ 
-    attr_accessor :token_unique_reference
+  class TokenDetailDataGetTokenOnly
+    # The Token Primary Account Number of the Card.  <br>__Max Length: 19__ <br>__Min Length: 9__ 
+    attr_accessor :token_number
 
-    # The current status of Token. Must be either:    * 'INACTIVE' (Token has not yet been activated)  * 'ACTIVE' (Token is active and ready to transact)  * 'SUSPENDED' (Token is suspended and unable to transact)  * 'DEACTIVATED' (Token has been permanently deactivated).<br>      __Max Length:32__ 
-    attr_accessor :status
+    # The month of the token expiration date. <br> __Max Length: 2__ 
+    attr_accessor :expiry_month
 
-    # (CONDITIONAL only supplied if status is SUSPENDED) Who or what caused the Token to be suspended One or more values of:     * ISSUER - Suspended by the Issuer.    * TOKEN_REQUESTOR - Suspended by the Token Requestor     * MOBILE_PIN_LOCKED - Suspended due to the Mobile PIN being locked    * CARDHOLDER - Suspended by the Cardholder <br>          __Max Length__: N/A     
-    attr_accessor :suspended_by
+    # The year of the token expiration date. <br> __Max Length: 2__ 
+    attr_accessor :expiry_year
 
-    # The date and time the token status was last updated. Expressed in ISO 8601 extended format as one of the following:     * YYYY-MM-DDThh:mm:ss[.sss]Z    * YYYY-MM-DDThh:mm:ss[.sss]±hh:mm    * Where [.sss] is optional and can be 1 to 3 digits. <br>  __Max Length:29__  
-    attr_accessor :status_timestamp
+    # The unique account reference assigned to the PAN. Conditionally returned if the Token Requestor has opted to receive PAR and providing PAR is assigned by Mastercard or the Issuer provides PAR in the authorization message response. <br>    __Max Length: 29__ 
+    attr_accessor :payment_account_reference
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'token_unique_reference' => :'tokenUniqueReference',
-        :'status' => :'status',
-        :'suspended_by' => :'suspendedBy',
-        :'status_timestamp' => :'statusTimestamp'
+        :'token_number' => :'tokenNumber',
+        :'expiry_month' => :'expiryMonth',
+        :'expiry_year' => :'expiryYear',
+        :'payment_account_reference' => :'paymentAccountReference'
       }
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'token_unique_reference' => :'String',
-        :'status' => :'String',
-        :'suspended_by' => :'Array<String>',
-        :'status_timestamp' => :'String'
+        :'token_number' => :'String',
+        :'expiry_month' => :'String',
+        :'expiry_year' => :'String',
+        :'payment_account_reference' => :'String'
       }
     end
 
@@ -56,33 +56,31 @@ module OpenapiClient
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `OpenapiClient::TokenForLCM` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `OpenapiClient::TokenDetailDataGetTokenOnly` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `OpenapiClient::TokenForLCM`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `OpenapiClient::TokenDetailDataGetTokenOnly`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'token_unique_reference')
-        self.token_unique_reference = attributes[:'token_unique_reference']
+      if attributes.key?(:'token_number')
+        self.token_number = attributes[:'token_number']
       end
 
-      if attributes.key?(:'status')
-        self.status = attributes[:'status']
+      if attributes.key?(:'expiry_month')
+        self.expiry_month = attributes[:'expiry_month']
       end
 
-      if attributes.key?(:'suspended_by')
-        if (value = attributes[:'suspended_by']).is_a?(Array)
-          self.suspended_by = value
-        end
+      if attributes.key?(:'expiry_year')
+        self.expiry_year = attributes[:'expiry_year']
       end
 
-      if attributes.key?(:'status_timestamp')
-        self.status_timestamp = attributes[:'status_timestamp']
+      if attributes.key?(:'payment_account_reference')
+        self.payment_account_reference = attributes[:'payment_account_reference']
       end
     end
 
@@ -104,10 +102,10 @@ module OpenapiClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          token_unique_reference == o.token_unique_reference &&
-          status == o.status &&
-          suspended_by == o.suspended_by &&
-          status_timestamp == o.status_timestamp
+          token_number == o.token_number &&
+          expiry_month == o.expiry_month &&
+          expiry_year == o.expiry_year &&
+          payment_account_reference == o.payment_account_reference
     end
 
     # @see the `==` method
@@ -119,7 +117,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [token_unique_reference, status, suspended_by, status_timestamp].hash
+      [token_number, expiry_month, expiry_year, payment_account_reference].hash
     end
 
     # Builds the object from hash
