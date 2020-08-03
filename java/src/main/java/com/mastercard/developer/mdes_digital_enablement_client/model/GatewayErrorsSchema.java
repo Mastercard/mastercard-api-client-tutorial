@@ -20,96 +20,51 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.mastercard.developer.mdes_digital_enablement_client.model.AccountHolderData;
-import com.mastercard.developer.mdes_digital_enablement_client.model.CardAccountDataInbound;
+import com.mastercard.developer.mdes_digital_enablement_client.model.GatewayError;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * FundingAccountData
+ * GatewayErrorsSchema
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T17:50:56.189471-04:00[America/New_York]")
-public class FundingAccountData {
-  public static final String SERIALIZED_NAME_CARD_ACCOUNT_DATA = "cardAccountData";
-  @SerializedName(SERIALIZED_NAME_CARD_ACCOUNT_DATA)
-  private CardAccountDataInbound cardAccountData;
-
-  public static final String SERIALIZED_NAME_ACCOUNT_HOLDER_DATA = "accountHolderData";
-  @SerializedName(SERIALIZED_NAME_ACCOUNT_HOLDER_DATA)
-  private AccountHolderData accountHolderData;
-
-  public static final String SERIALIZED_NAME_SOURCE = "source";
-  @SerializedName(SERIALIZED_NAME_SOURCE)
-  private String source;
+public class GatewayErrorsSchema {
+  public static final String SERIALIZED_NAME_ERROR = "Error";
+  @SerializedName(SERIALIZED_NAME_ERROR)
+  private List<GatewayError> error = null;
 
 
-  public FundingAccountData cardAccountData(CardAccountDataInbound cardAccountData) {
+  public GatewayErrorsSchema error(List<GatewayError> error) {
     
-    this.cardAccountData = cardAccountData;
+    this.error = error;
+    return this;
+  }
+
+  public GatewayErrorsSchema addErrorItem(GatewayError errorItem) {
+    if (this.error == null) {
+      this.error = new ArrayList<GatewayError>();
+    }
+    this.error.add(errorItem);
     return this;
   }
 
    /**
-   * Get cardAccountData
-   * @return cardAccountData
+   * Get error
+   * @return error
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public CardAccountDataInbound getCardAccountData() {
-    return cardAccountData;
+  public List<GatewayError> getError() {
+    return error;
   }
 
 
-  public void setCardAccountData(CardAccountDataInbound cardAccountData) {
-    this.cardAccountData = cardAccountData;
-  }
-
-
-  public FundingAccountData accountHolderData(AccountHolderData accountHolderData) {
-    
-    this.accountHolderData = accountHolderData;
-    return this;
-  }
-
-   /**
-   * Get accountHolderData
-   * @return accountHolderData
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public AccountHolderData getAccountHolderData() {
-    return accountHolderData;
-  }
-
-
-  public void setAccountHolderData(AccountHolderData accountHolderData) {
-    this.accountHolderData = accountHolderData;
-  }
-
-
-  public FundingAccountData source(String source) {
-    
-    this.source = source;
-    return this;
-  }
-
-   /**
-   * (__Required as minimum for Tokenization__)  The source of the account. Must be one of   * ACCOUNT_ON_FILE   * ACCOUNT_ADDED_MANUALLY   * ACCOUNT_ADDED_VIA_APPLICATION  __Max Length:32__ 
-   * @return source
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "ACCOUNT_ON_FILE", value = "(__Required as minimum for Tokenization__)  The source of the account. Must be one of   * ACCOUNT_ON_FILE   * ACCOUNT_ADDED_MANUALLY   * ACCOUNT_ADDED_VIA_APPLICATION  __Max Length:32__ ")
-
-  public String getSource() {
-    return source;
-  }
-
-
-  public void setSource(String source) {
-    this.source = source;
+  public void setError(List<GatewayError> error) {
+    this.error = error;
   }
 
 
@@ -121,25 +76,21 @@ public class FundingAccountData {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    FundingAccountData fundingAccountData = (FundingAccountData) o;
-    return Objects.equals(this.cardAccountData, fundingAccountData.cardAccountData) &&
-        Objects.equals(this.accountHolderData, fundingAccountData.accountHolderData) &&
-        Objects.equals(this.source, fundingAccountData.source);
+    GatewayErrorsSchema gatewayErrorsSchema = (GatewayErrorsSchema) o;
+    return Objects.equals(this.error, gatewayErrorsSchema.error);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cardAccountData, accountHolderData, source);
+    return Objects.hash(error);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class FundingAccountData {\n");
-    sb.append("    cardAccountData: ").append(toIndentedString(cardAccountData)).append("\n");
-    sb.append("    accountHolderData: ").append(toIndentedString(accountHolderData)).append("\n");
-    sb.append("    source: ").append(toIndentedString(source)).append("\n");
+    sb.append("class GatewayErrorsSchema {\n");
+    sb.append("    error: ").append(toIndentedString(error)).append("\n");
     sb.append("}");
     return sb.toString();
   }

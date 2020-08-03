@@ -25,14 +25,13 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * __(CONDITIONAL)__&lt;br&gt; The credit or debit card information for the account that is being tokenized.  Present in tokenize response if supported by the Token Requestor, if using a pushAccountReceipt and if there is a card account associated with the pushAccountReceipt in case that the issuer decision is not DECLINED. &lt;/br&gt; 
+ * TokenDetailDataGetTokenOnly
  */
-@ApiModel(description = "__(CONDITIONAL)__<br> The credit or debit card information for the account that is being tokenized.  Present in tokenize response if supported by the Token Requestor, if using a pushAccountReceipt and if there is a card account associated with the pushAccountReceipt in case that the issuer decision is not DECLINED. </br> ")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T17:50:56.189471-04:00[America/New_York]")
-public class CardAccountDataOutbound {
-  public static final String SERIALIZED_NAME_ACCOUNT_NUMBER = "accountNumber";
-  @SerializedName(SERIALIZED_NAME_ACCOUNT_NUMBER)
-  private String accountNumber;
+public class TokenDetailDataGetTokenOnly {
+  public static final String SERIALIZED_NAME_TOKEN_NUMBER = "tokenNumber";
+  @SerializedName(SERIALIZED_NAME_TOKEN_NUMBER)
+  private String tokenNumber;
 
   public static final String SERIALIZED_NAME_EXPIRY_MONTH = "expiryMonth";
   @SerializedName(SERIALIZED_NAME_EXPIRY_MONTH)
@@ -42,42 +41,46 @@ public class CardAccountDataOutbound {
   @SerializedName(SERIALIZED_NAME_EXPIRY_YEAR)
   private String expiryYear;
 
+  public static final String SERIALIZED_NAME_PAYMENT_ACCOUNT_REFERENCE = "paymentAccountReference";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_ACCOUNT_REFERENCE)
+  private String paymentAccountReference;
 
-  public CardAccountDataOutbound accountNumber(String accountNumber) {
+
+  public TokenDetailDataGetTokenOnly tokenNumber(String tokenNumber) {
     
-    this.accountNumber = accountNumber;
+    this.tokenNumber = tokenNumber;
     return this;
   }
 
    /**
-   *  The account number of the credit or debit card.   __Min Length:9__&lt;br&gt;  __Max Length:19__ 
-   * @return accountNumber
+   * The Token Primary Account Number of the Card.  &lt;br&gt;__Max Length: 19__ &lt;br&gt;__Min Length: 9__ 
+   * @return tokenNumber
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "5123456789012345", value = " The account number of the credit or debit card.   __Min Length:9__<br>  __Max Length:19__ ")
+  @ApiModelProperty(example = "5123456789012345", value = "The Token Primary Account Number of the Card.  <br>__Max Length: 19__ <br>__Min Length: 9__ ")
 
-  public String getAccountNumber() {
-    return accountNumber;
+  public String getTokenNumber() {
+    return tokenNumber;
   }
 
 
-  public void setAccountNumber(String accountNumber) {
-    this.accountNumber = accountNumber;
+  public void setTokenNumber(String tokenNumber) {
+    this.tokenNumber = tokenNumber;
   }
 
 
-  public CardAccountDataOutbound expiryMonth(String expiryMonth) {
+  public TokenDetailDataGetTokenOnly expiryMonth(String expiryMonth) {
     
     this.expiryMonth = expiryMonth;
     return this;
   }
 
    /**
-   *   The expiry month for the account. Two numeric digits must be supplied.   __Format: MM__&lt;br&gt; __Exact Length:2__ 
+   * The month of the token expiration date. &lt;br&gt; __Max Length: 2__ 
    * @return expiryMonth
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "09", value = "  The expiry month for the account. Two numeric digits must be supplied.   __Format: MM__<br> __Exact Length:2__ ")
+  @ApiModelProperty(example = "12", value = "The month of the token expiration date. <br> __Max Length: 2__ ")
 
   public String getExpiryMonth() {
     return expiryMonth;
@@ -89,18 +92,18 @@ public class CardAccountDataOutbound {
   }
 
 
-  public CardAccountDataOutbound expiryYear(String expiryYear) {
+  public TokenDetailDataGetTokenOnly expiryYear(String expiryYear) {
     
     this.expiryYear = expiryYear;
     return this;
   }
 
    /**
-   * __(Required as minimum for Tokenization)__  The expiry year for the account. __Format: YY__ &lt;br&gt; __Exact Length:2__ 
+   * The year of the token expiration date. &lt;br&gt; __Max Length: 2__ 
    * @return expiryYear
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "21", value = "__(Required as minimum for Tokenization)__  The expiry year for the account. __Format: YY__ <br> __Exact Length:2__ ")
+  @ApiModelProperty(example = "20", value = "The year of the token expiration date. <br> __Max Length: 2__ ")
 
   public String getExpiryYear() {
     return expiryYear;
@@ -112,6 +115,29 @@ public class CardAccountDataOutbound {
   }
 
 
+  public TokenDetailDataGetTokenOnly paymentAccountReference(String paymentAccountReference) {
+    
+    this.paymentAccountReference = paymentAccountReference;
+    return this;
+  }
+
+   /**
+   * The unique account reference assigned to the PAN. Conditionally returned if the Token Requestor has opted to receive PAR and providing PAR is assigned by Mastercard or the Issuer provides PAR in the authorization message response. &lt;br&gt;    __Max Length: 29__ 
+   * @return paymentAccountReference
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "5001a9f027e5629d11e3949a0800a", value = "The unique account reference assigned to the PAN. Conditionally returned if the Token Requestor has opted to receive PAR and providing PAR is assigned by Mastercard or the Issuer provides PAR in the authorization message response. <br>    __Max Length: 29__ ")
+
+  public String getPaymentAccountReference() {
+    return paymentAccountReference;
+  }
+
+
+  public void setPaymentAccountReference(String paymentAccountReference) {
+    this.paymentAccountReference = paymentAccountReference;
+  }
+
+
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -120,25 +146,27 @@ public class CardAccountDataOutbound {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CardAccountDataOutbound cardAccountDataOutbound = (CardAccountDataOutbound) o;
-    return Objects.equals(this.accountNumber, cardAccountDataOutbound.accountNumber) &&
-        Objects.equals(this.expiryMonth, cardAccountDataOutbound.expiryMonth) &&
-        Objects.equals(this.expiryYear, cardAccountDataOutbound.expiryYear);
+    TokenDetailDataGetTokenOnly tokenDetailDataGetTokenOnly = (TokenDetailDataGetTokenOnly) o;
+    return Objects.equals(this.tokenNumber, tokenDetailDataGetTokenOnly.tokenNumber) &&
+        Objects.equals(this.expiryMonth, tokenDetailDataGetTokenOnly.expiryMonth) &&
+        Objects.equals(this.expiryYear, tokenDetailDataGetTokenOnly.expiryYear) &&
+        Objects.equals(this.paymentAccountReference, tokenDetailDataGetTokenOnly.paymentAccountReference);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountNumber, expiryMonth, expiryYear);
+    return Objects.hash(tokenNumber, expiryMonth, expiryYear, paymentAccountReference);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CardAccountDataOutbound {\n");
-    sb.append("    accountNumber: ").append(toIndentedString(accountNumber)).append("\n");
+    sb.append("class TokenDetailDataGetTokenOnly {\n");
+    sb.append("    tokenNumber: ").append(toIndentedString(tokenNumber)).append("\n");
     sb.append("    expiryMonth: ").append(toIndentedString(expiryMonth)).append("\n");
     sb.append("    expiryYear: ").append(toIndentedString(expiryYear)).append("\n");
+    sb.append("    paymentAccountReference: ").append(toIndentedString(paymentAccountReference)).append("\n");
     sb.append("}");
     return sb.toString();
   }

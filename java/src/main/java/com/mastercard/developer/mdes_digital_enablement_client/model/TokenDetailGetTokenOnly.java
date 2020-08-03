@@ -20,16 +20,16 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.mastercard.developer.mdes_digital_enablement_client.model.TokenDetailData;
+import com.mastercard.developer.mdes_digital_enablement_client.model.TokenDetailDataGetTokenOnly;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * TokenDetail
+ * TokenDetailGetTokenOnly
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T17:50:56.189471-04:00[America/New_York]")
-public class TokenDetail {
+public class TokenDetailGetTokenOnly {
   public static final String SERIALIZED_NAME_TOKEN_UNIQUE_REFERENCE = "tokenUniqueReference";
   @SerializedName(SERIALIZED_NAME_TOKEN_UNIQUE_REFERENCE)
   private String tokenUniqueReference;
@@ -46,16 +46,12 @@ public class TokenDetail {
   @SerializedName(SERIALIZED_NAME_OAEP_HASHING_ALGORITHM)
   private String oaepHashingAlgorithm;
 
-  public static final String SERIALIZED_NAME_IV = "iv";
-  @SerializedName(SERIALIZED_NAME_IV)
-  private String iv;
-
   public static final String SERIALIZED_NAME_ENCRYPTED_DATA = "encryptedData";
   @SerializedName(SERIALIZED_NAME_ENCRYPTED_DATA)
-  private TokenDetailData encryptedData;
+  private TokenDetailDataGetTokenOnly encryptedData;
 
 
-  public TokenDetail tokenUniqueReference(String tokenUniqueReference) {
+  public TokenDetailGetTokenOnly tokenUniqueReference(String tokenUniqueReference) {
     
     this.tokenUniqueReference = tokenUniqueReference;
     return this;
@@ -78,7 +74,7 @@ public class TokenDetail {
   }
 
 
-  public TokenDetail publicKeyFingerprint(String publicKeyFingerprint) {
+  public TokenDetailGetTokenOnly publicKeyFingerprint(String publicKeyFingerprint) {
     
     this.publicKeyFingerprint = publicKeyFingerprint;
     return this;
@@ -101,7 +97,7 @@ public class TokenDetail {
   }
 
 
-  public TokenDetail encryptedKey(String encryptedKey) {
+  public TokenDetailGetTokenOnly encryptedKey(String encryptedKey) {
     
     this.encryptedKey = encryptedKey;
     return this;
@@ -124,7 +120,7 @@ public class TokenDetail {
   }
 
 
-  public TokenDetail oaepHashingAlgorithm(String oaepHashingAlgorithm) {
+  public TokenDetailGetTokenOnly oaepHashingAlgorithm(String oaepHashingAlgorithm) {
     
     this.oaepHashingAlgorithm = oaepHashingAlgorithm;
     return this;
@@ -147,30 +143,7 @@ public class TokenDetail {
   }
 
 
-  public TokenDetail iv(String iv) {
-    
-    this.iv = iv;
-    return this;
-  }
-
-   /**
-   * It is recommended to supply a random initialization vector when encrypting the data using the one-time use AES key. Must be exactly 16 bytes (32 character hex string) to match the block size. Hex-encoded data (case-insensitive).  __Max Length:32__ 
-   * @return iv
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "NA", value = "It is recommended to supply a random initialization vector when encrypting the data using the one-time use AES key. Must be exactly 16 bytes (32 character hex string) to match the block size. Hex-encoded data (case-insensitive).  __Max Length:32__ ")
-
-  public String getIv() {
-    return iv;
-  }
-
-
-  public void setIv(String iv) {
-    this.iv = iv;
-  }
-
-
-  public TokenDetail encryptedData(TokenDetailData encryptedData) {
+  public TokenDetailGetTokenOnly encryptedData(TokenDetailDataGetTokenOnly encryptedData) {
     
     this.encryptedData = encryptedData;
     return this;
@@ -183,12 +156,12 @@ public class TokenDetail {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public TokenDetailData getEncryptedData() {
+  public TokenDetailDataGetTokenOnly getEncryptedData() {
     return encryptedData;
   }
 
 
-  public void setEncryptedData(TokenDetailData encryptedData) {
+  public void setEncryptedData(TokenDetailDataGetTokenOnly encryptedData) {
     this.encryptedData = encryptedData;
   }
 
@@ -201,30 +174,28 @@ public class TokenDetail {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    TokenDetail tokenDetail = (TokenDetail) o;
-    return Objects.equals(this.tokenUniqueReference, tokenDetail.tokenUniqueReference) &&
-        Objects.equals(this.publicKeyFingerprint, tokenDetail.publicKeyFingerprint) &&
-        Objects.equals(this.encryptedKey, tokenDetail.encryptedKey) &&
-        Objects.equals(this.oaepHashingAlgorithm, tokenDetail.oaepHashingAlgorithm) &&
-        Objects.equals(this.iv, tokenDetail.iv) &&
-        Objects.equals(this.encryptedData, tokenDetail.encryptedData);
+    TokenDetailGetTokenOnly tokenDetailGetTokenOnly = (TokenDetailGetTokenOnly) o;
+    return Objects.equals(this.tokenUniqueReference, tokenDetailGetTokenOnly.tokenUniqueReference) &&
+        Objects.equals(this.publicKeyFingerprint, tokenDetailGetTokenOnly.publicKeyFingerprint) &&
+        Objects.equals(this.encryptedKey, tokenDetailGetTokenOnly.encryptedKey) &&
+        Objects.equals(this.oaepHashingAlgorithm, tokenDetailGetTokenOnly.oaepHashingAlgorithm) &&
+        Objects.equals(this.encryptedData, tokenDetailGetTokenOnly.encryptedData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(tokenUniqueReference, publicKeyFingerprint, encryptedKey, oaepHashingAlgorithm, iv, encryptedData);
+    return Objects.hash(tokenUniqueReference, publicKeyFingerprint, encryptedKey, oaepHashingAlgorithm, encryptedData);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class TokenDetail {\n");
+    sb.append("class TokenDetailGetTokenOnly {\n");
     sb.append("    tokenUniqueReference: ").append(toIndentedString(tokenUniqueReference)).append("\n");
     sb.append("    publicKeyFingerprint: ").append(toIndentedString(publicKeyFingerprint)).append("\n");
     sb.append("    encryptedKey: ").append(toIndentedString(encryptedKey)).append("\n");
     sb.append("    oaepHashingAlgorithm: ").append(toIndentedString(oaepHashingAlgorithm)).append("\n");
-    sb.append("    iv: ").append(toIndentedString(iv)).append("\n");
     sb.append("    encryptedData: ").append(toIndentedString(encryptedData)).append("\n");
     sb.append("}");
     return sb.toString();

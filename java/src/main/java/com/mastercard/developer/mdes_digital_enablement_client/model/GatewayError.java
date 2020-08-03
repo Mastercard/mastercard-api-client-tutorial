@@ -25,44 +25,44 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Only returned in the event of an error condition for the Transact API
+ * Only returned in the event of an error condition.
  */
-@ApiModel(description = "Only returned in the event of an error condition for the Transact API")
+@ApiModel(description = "Only returned in the event of an error condition.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T17:50:56.189471-04:00[America/New_York]")
-public class TransactError {
-  public static final String SERIALIZED_NAME_SOURCE = "source";
+public class GatewayError {
+  public static final String SERIALIZED_NAME_SOURCE = "Source";
   @SerializedName(SERIALIZED_NAME_SOURCE)
   private String source;
 
-  public static final String SERIALIZED_NAME_ERROR_CODE = "errorCode";
-  @SerializedName(SERIALIZED_NAME_ERROR_CODE)
-  private String errorCode;
-
-  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
+  public static final String SERIALIZED_NAME_DESCRIPTION = "Description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
 
-  public static final String SERIALIZED_NAME_REASON_CODE = "reasonCode";
+  public static final String SERIALIZED_NAME_REASON_CODE = "ReasonCode";
   @SerializedName(SERIALIZED_NAME_REASON_CODE)
   private String reasonCode;
 
-  public static final String SERIALIZED_NAME_ERROR_DESCRIPTION = "errorDescription";
-  @SerializedName(SERIALIZED_NAME_ERROR_DESCRIPTION)
-  private String errorDescription;
+  public static final String SERIALIZED_NAME_RECOVERABLE = "Recoverable";
+  @SerializedName(SERIALIZED_NAME_RECOVERABLE)
+  private Boolean recoverable;
+
+  public static final String SERIALIZED_NAME_DETAILS = "Details";
+  @SerializedName(SERIALIZED_NAME_DETAILS)
+  private Boolean details;
 
 
-  public TransactError source(String source) {
+  public GatewayError source(String source) {
     
     this.source = source;
     return this;
   }
 
    /**
-   * An element used to indicate the source of the issue causing this error. Must be one of   * &#39;MDES&#39;  * &#39;INPUT&#39; &lt;br&gt; __Max Length: 32__ 
+   * An element used to indicate the source of the issue causing this error. e.g. Gateway __Max Length: 32__ 
    * @return source
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "An element used to indicate the source of the issue causing this error. Must be one of   * 'MDES'  * 'INPUT' <br> __Max Length: 32__ ")
+  @ApiModelProperty(example = "GATEWAY", value = "An element used to indicate the source of the issue causing this error. e.g. Gateway __Max Length: 32__ ")
 
   public String getSource() {
     return source;
@@ -74,41 +74,18 @@ public class TransactError {
   }
 
 
-  public TransactError errorCode(String errorCode) {
-    
-    this.errorCode = errorCode;
-    return this;
-  }
-
-   /**
-   * A reason code or information pertaining to the error that has occurred. This will contain the error reported by the platform (e.g. authentication errors) or service (e.g. invalid TUR)&lt;br&gt; __Max Length: 100__ 
-   * @return errorCode
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "A reason code or information pertaining to the error that has occurred. This will contain the error reported by the platform (e.g. authentication errors) or service (e.g. invalid TUR)<br> __Max Length: 100__ ")
-
-  public String getErrorCode() {
-    return errorCode;
-  }
-
-
-  public void setErrorCode(String errorCode) {
-    this.errorCode = errorCode;
-  }
-
-
-  public TransactError description(String description) {
+  public GatewayError description(String description) {
     
     this.description = description;
     return this;
   }
 
    /**
-   * Description of the reason why the operation failed. &lt;br&gt; __Max Length: 256__ 
+   * Description of the reason the operation failed. See API Response Errors &lt;br&gt; __Max Length: 256__ 
    * @return description
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Description of the reason why the operation failed. <br> __Max Length: 256__ ")
+  @ApiModelProperty(example = "OAuth signatures did not match.", value = "Description of the reason the operation failed. See API Response Errors <br> __Max Length: 256__ ")
 
   public String getDescription() {
     return description;
@@ -120,18 +97,18 @@ public class TransactError {
   }
 
 
-  public TransactError reasonCode(String reasonCode) {
+  public GatewayError reasonCode(String reasonCode) {
     
     this.reasonCode = reasonCode;
     return this;
   }
 
    /**
-   * A reason code or information pertaining to the error that has occurred from the service (e.g. invalid TUR). See API Response Errors&lt;br&gt; __Max Length: 100__         
+   * A reason code for the error that has occurred.&lt;br&gt; __Max Length: 100__ 
    * @return reasonCode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A reason code or information pertaining to the error that has occurred from the service (e.g. invalid TUR). See API Response Errors<br> __Max Length: 100__         ")
+  @ApiModelProperty(example = "AUTHENTICATION_FAILED", value = "A reason code for the error that has occurred.<br> __Max Length: 100__ ")
 
   public String getReasonCode() {
     return reasonCode;
@@ -143,26 +120,49 @@ public class TransactError {
   }
 
 
-  public TransactError errorDescription(String errorDescription) {
+  public GatewayError recoverable(Boolean recoverable) {
     
-    this.errorDescription = errorDescription;
+    this.recoverable = recoverable;
     return this;
   }
 
    /**
-   * __DEPRECATED__&lt;br&gt; Use description instead.&lt;br&gt; __Max Length: 100__  
-   * @return errorDescription
+   * Generated by the gateway to indicate if the request could presented again for processing. Either \&quot;TRUE\&quot; or \&quot;FALSE\&quot; 
+   * @return recoverable
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "__DEPRECATED__<br> Use description instead.<br> __Max Length: 100__  ")
+  @ApiModelProperty(example = "false", value = "Generated by the gateway to indicate if the request could presented again for processing. Either \"TRUE\" or \"FALSE\" ")
 
-  public String getErrorDescription() {
-    return errorDescription;
+  public Boolean getRecoverable() {
+    return recoverable;
   }
 
 
-  public void setErrorDescription(String errorDescription) {
-    this.errorDescription = errorDescription;
+  public void setRecoverable(Boolean recoverable) {
+    this.recoverable = recoverable;
+  }
+
+
+  public GatewayError details(Boolean details) {
+    
+    this.details = details;
+    return this;
+  }
+
+   /**
+   * Always NULL, present for backwards compatiility 
+   * @return details
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "false", value = "Always NULL, present for backwards compatiility ")
+
+  public Boolean getDetails() {
+    return details;
+  }
+
+
+  public void setDetails(Boolean details) {
+    this.details = details;
   }
 
 
@@ -174,29 +174,29 @@ public class TransactError {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    TransactError transactError = (TransactError) o;
-    return Objects.equals(this.source, transactError.source) &&
-        Objects.equals(this.errorCode, transactError.errorCode) &&
-        Objects.equals(this.description, transactError.description) &&
-        Objects.equals(this.reasonCode, transactError.reasonCode) &&
-        Objects.equals(this.errorDescription, transactError.errorDescription);
+    GatewayError gatewayError = (GatewayError) o;
+    return Objects.equals(this.source, gatewayError.source) &&
+        Objects.equals(this.description, gatewayError.description) &&
+        Objects.equals(this.reasonCode, gatewayError.reasonCode) &&
+        Objects.equals(this.recoverable, gatewayError.recoverable) &&
+        Objects.equals(this.details, gatewayError.details);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(source, errorCode, description, reasonCode, errorDescription);
+    return Objects.hash(source, description, reasonCode, recoverable, details);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class TransactError {\n");
+    sb.append("class GatewayError {\n");
     sb.append("    source: ").append(toIndentedString(source)).append("\n");
-    sb.append("    errorCode: ").append(toIndentedString(errorCode)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    reasonCode: ").append(toIndentedString(reasonCode)).append("\n");
-    sb.append("    errorDescription: ").append(toIndentedString(errorDescription)).append("\n");
+    sb.append("    recoverable: ").append(toIndentedString(recoverable)).append("\n");
+    sb.append("    details: ").append(toIndentedString(details)).append("\n");
     sb.append("}");
     return sb.toString();
   }
