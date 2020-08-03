@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mv test-requirements.txt test-requirements.txt.bak
+
 # We assume OpenAPI Generator is installed using `npm i -g @openapitools/openapi-generator-cli`
 openapi-generator generate -i MDES_Digital_Enablement.yaml -g python -o .
 
@@ -14,3 +16,5 @@ shopt -s extglob
 cd test
 rm -fv !(test_tokenize_api.py|__init__.py)
 cd ..
+
+mv test-requirements.txt.bak test-requirements.txt
