@@ -5,7 +5,6 @@ from __future__ import absolute_import
 # import apis into api package
 from openapi_client.api.delete_api import DeleteApi
 from openapi_client.api.get_asset_api import GetAssetApi
-from openapi_client.api.get_digital_assets_api import GetDigitalAssetsApi
 from openapi_client.api.get_task_status_api import GetTaskStatusApi
 from openapi_client.api.get_token_api import GetTokenApi
 from openapi_client.api.search_tokens_api import SearchTokensApi

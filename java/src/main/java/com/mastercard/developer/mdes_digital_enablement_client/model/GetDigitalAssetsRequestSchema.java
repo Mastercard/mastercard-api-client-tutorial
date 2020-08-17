@@ -28,7 +28,7 @@ import java.io.IOException;
 /**
  * GetDigitalAssetsRequestSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-16T09:54:27.990+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-08-03T11:33:09.091673-04:00[America/New_York]")
 public class GetDigitalAssetsRequestSchema {
   public static final String SERIALIZED_NAME_RESPONSE_HOST = "responseHost";
   @SerializedName(SERIALIZED_NAME_RESPONSE_HOST)
@@ -40,9 +40,11 @@ public class GetDigitalAssetsRequestSchema {
 
   public static final String SERIALIZED_NAME_ENCRYPTED_PAYLOAD = "encryptedPayload";
   @SerializedName(SERIALIZED_NAME_ENCRYPTED_PAYLOAD)
-  private GetDigitalAssetsRequestSchemaEncryptedPayload encryptedPayload = null;
+  private GetDigitalAssetsRequestSchemaEncryptedPayload encryptedPayload;
+
 
   public GetDigitalAssetsRequestSchema responseHost(String responseHost) {
+    
     this.responseHost = responseHost;
     return this;
   }
@@ -52,15 +54,19 @@ public class GetDigitalAssetsRequestSchema {
    * @return responseHost
   **/
   @ApiModelProperty(example = "site2.payment-app-provider.com", required = true, value = "The host that originated the request. Future calls in the same conversation should be routed to this host. ")
+
   public String getResponseHost() {
     return responseHost;
   }
+
 
   public void setResponseHost(String responseHost) {
     this.responseHost = responseHost;
   }
 
+
   public GetDigitalAssetsRequestSchema requestId(String requestId) {
+    
     this.requestId = requestId;
     return this;
   }
@@ -70,15 +76,19 @@ public class GetDigitalAssetsRequestSchema {
    * @return requestId
   **/
   @ApiModelProperty(example = "123456", required = true, value = "Unique identifier for the request. ")
+
   public String getRequestId() {
     return requestId;
   }
+
 
   public void setRequestId(String requestId) {
     this.requestId = requestId;
   }
 
+
   public GetDigitalAssetsRequestSchema encryptedPayload(GetDigitalAssetsRequestSchemaEncryptedPayload encryptedPayload) {
+    
     this.encryptedPayload = encryptedPayload;
     return this;
   }
@@ -88,9 +98,11 @@ public class GetDigitalAssetsRequestSchema {
    * @return encryptedPayload
   **/
   @ApiModelProperty(required = true, value = "")
+
   public GetDigitalAssetsRequestSchemaEncryptedPayload getEncryptedPayload() {
     return encryptedPayload;
   }
+
 
   public void setEncryptedPayload(GetDigitalAssetsRequestSchemaEncryptedPayload encryptedPayload) {
     this.encryptedPayload = encryptedPayload;

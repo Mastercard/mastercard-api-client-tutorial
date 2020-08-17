@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  version: 1.2.9
+  version: 1.2.10
   title: MDES for Merchants
   description: |
     The MDES APIs are designed as RPC style stateless web services where each API endpoint represents an operation to be performed.  All request and response payloads are sent in the JSON (JavaScript Object Notation) data-interchange format. Each endpoint in the API specifies the HTTP Method used to access it. All strings in request and response objects are to be UTF-8 encoded.  Each API URI includes the major and minor version of API that it conforms to.  This will allow multiple concurrent versions of the API to be deployed simultaneously.
@@ -70,22 +70,25 @@ paths:
             A Tokenize request is used to digitize a PAN. 
           schema:
             $ref: '#/definitions/TokenizeRequestSchema'
+          
       responses:
-        'default':
-          description: |
-             Contains the details of the response message when a push account receipt is not supplied in the tokenize request.
-          schema:
-             $ref: '#/definitions/TokenizeResponseSchema'
         '200':
           description: |
             Contains the details of the token response message when a push account receipt is supplied in the tokenize request.
           schema:
             $ref: '#/definitions/TokenizeResponseSchema'
+          
         '500':
           description: |
-            unexpected error
+            Example application error response
           schema:
             $ref: '#/definitions/ErrorsResponse'
+          
+        '401':
+          description: |
+            Example gateway error response
+          schema:
+            $ref: '#/definitions/GatewayErrorsResponse'
       x-testable: false
       
   '/assets/static/1/0/asset/{AssetId}':
@@ -94,6 +97,7 @@ paths:
         - Get Asset
       summary: >-
         Used to retrieve static Assets from the MDES repository.
+      
       description: >
         This API is used to retrieve static Assets from MDES’s repository, such
         as - Card art, MasterCard brand logos, Issuers’ logos, and Terms and
@@ -160,8 +164,20 @@ paths:
             Contains the details of the response message.
           schema:
             $ref: '#/definitions/SuspendResponseSchema'
-      x-testable: false
-      
+          
+        '500':
+          description: |
+            Example application error response
+          schema:
+            $ref: '#/definitions/ErrorsResponse'
+          
+        '401':
+          description: |
+            Example gateway error response
+          schema:
+            $ref: '#/definitions/GatewayErrorsResponse'
+      x-testable: false      
+  
   '/digitization/static/1/0/unsuspend':
     post:
       tags:
@@ -188,11 +204,17 @@ paths:
             Contains the details of the response message.
           schema:
             $ref: '#/definitions/UnSuspendResponseSchema'
-        default:
+        '500':
           description: |
-            unexpected error
+            Example application error response
           schema:
             $ref: '#/definitions/ErrorsResponse'
+         
+        '401':
+          description: |
+            Example gateway error response
+          schema:
+            $ref: '#/definitions/GatewayErrorsResponse'
       x-testable: false
       
   '/digitization/static/1/0/delete':
@@ -221,11 +243,17 @@ paths:
             Contains the details of the response message.
           schema:
             $ref: '#/definitions/DeleteResponseSchema'
-        default:
+        '500':
           description: |
-            unexpected error
+            Example application error response
           schema:
             $ref: '#/definitions/ErrorsResponse'
+         
+        '401':
+          description: |
+            Example gateway error response
+          schema:
+            $ref: '#/definitions/GatewayErrorsResponse'
       x-testable: false
       
   '/digitization/static/1/0/getTaskStatus':
@@ -252,11 +280,17 @@ paths:
             Contains the details of the response message.
           schema:
             $ref: '#/definitions/GetTaskStatusResponseSchema'
-        default:
+        '500':
           description: |
-            unexpected error
+            Example application error response
           schema:
             $ref: '#/definitions/ErrorsResponse'
+          
+        '401':
+          description: |
+            Example gateway error response
+          schema:
+            $ref: '#/definitions/GatewayErrorsResponse'
       x-testable: false
       
   '/digitization/static/1/0/searchTokens':
@@ -287,11 +321,17 @@ paths:
             Contains the details of the response message.
           schema:
             $ref: '#/definitions/SearchTokensResponseSchema'
-        default:
+        '500':
           description: |
-            unexpected error
+            Example application error response
           schema:
             $ref: '#/definitions/ErrorsResponse'
+          
+        '401':
+          description: |
+            Example gateway error response
+          schema:
+            $ref: '#/definitions/GatewayErrorsResponse'
       x-testable: false
       
   '/digitization/static/1/0/getToken':
@@ -320,41 +360,18 @@ paths:
             Contains the details of the response message.
           schema:
             $ref: '#/definitions/GetTokenResponseSchema'
-        default:
+        '500':
           description: |
-            unexpected error
+            Example application error response
           schema:
             $ref: '#/definitions/ErrorsResponse'
+          
+        '401':
+          description: |
+            Example gateway error response
+          schema:
+            $ref: '#/definitions/GatewayErrorsResponse'
       x-testable: false
-  
-  '/digitization/static/1/0/getDigitalAssets':
-    post:
-      tags:
-        - Get Digital Assets
-      operationId: getDigitalAssets
-      summary: Used to retrieve digital assets derived from a funding PAN.
-      description: >
-        Get Digital Asset API is used to retrieve digital assets from
-        a funding pan. 
-      parameters:
-        - name: encryptedPayload
-          in: body
-          description: |
-            Contains an encrypted CardAccountData object.
-          schema:
-            $ref: '#/definitions/GetDigitalAssetsRequestSchema'
-      responses:
-        '200':
-          description: |
-            Contains the details of the response message.
-          schema:
-            $ref: '#/definitions/GetDigitalAssetsResponseSchema'
-        default:
-          description: |
-            unexpected error
-          schema:
-            $ref: '#/definitions/ErrorsResponse'
-      x-testable: false    
   
   '/digitization/static/1/0/notifyTokenUpdated':
     post:
@@ -422,12 +439,7 @@ paths:
             Contains the details of the response message.
           schema:
             $ref: '#/definitions/NotifyTokenUpdatedResponseSchema'
-        default:
-          description: |
-            unexpected error
-          schema:
-            $ref: '#/definitions/ErrorsResponse'
-      x-testable: false
+      x-testable: false  
   '/remotetransaction/static/1/0/transact':
     post:
       tags:
@@ -456,11 +468,17 @@ paths:
             Contains the details of the response message.
           schema:
             $ref: '#/definitions/TransactResponseSchema'
-        default:
+        '500':
           description: |
-            unexpected error
+            Example application error response
           schema:
             $ref: '#/definitions/TransactError'
+          
+        '401':
+          description: |
+            Example gateway error response
+          schema:
+            $ref: '#/definitions/GatewayErrorsResponse'
       x-testable: false
       
 definitions:
@@ -494,8 +512,7 @@ definitions:
       tokenRequestorId:
         type: string
         description: |
-          Identifies the Token Requestor      
-          __Max Length:11__ 
+          11-digit numeric ID provided by Mastercard that identifies the Token Requestor. 
         example: '98765432101'
       taskId:
         type: string
@@ -581,26 +598,7 @@ definitions:
         $ref: '#/definitions/tokenInfo'
       tokenDetail:
         $ref: '#/definitions/tokenDetail'
-      errorCode:
-        type: string
-        description: >
-          __CONDITIONAL__<br> Returned in the event of an error and contains the
-          reason the operation failed. Only use if errors object is not
-          present.<br>
-
-          __Max Length: 32__
-      errorDescription:
-        type: string
-        description: >
-          __CONDITIONAL__<br> Returned in the event of an error and contains a
-          description of why the operation failed. Only use if errors object is
-          not present.<br>
-
-          __Max Length: 32__  
-      errors:
-        type: array
-        items: 
-         $ref: '#/definitions/Error'
+      
          
   
   AssetResponseSchema:
@@ -892,6 +890,7 @@ definitions:
     required:
       - requestId
       - taskId
+      - tokenRequestorId
     properties:
       responseHost:
         type: string
@@ -907,8 +906,7 @@ definitions:
       tokenRequestorId:
         type: string
         description: |
-          Identifies the Token Requestor. 
-          __Length:11__
+          11-digit numeric ID provided by Mastercard that identifies the Token Requestor. 
         example: 98765432101
       taskId:
         type: string
@@ -942,26 +940,7 @@ definitions:
 
           __Max Length:64__
         example: FAILED
-      errorCode:
-        type: string
-        description: >
-          __CONDITIONAL__<br> Returned in the event of an error and contains the
-          reason the operation failed. Only use if errors object is not
-          present.<br>
-
-          __Max Length: 32__
-      errorDescription:
-        type: string
-        description: >
-          __CONDITIONAL__<br> Returned in the event of an error and contains a
-          description of why the operation failed. Only use if errors object is
-          not present.<br>
-
-          __Max Length: 32__  
-      errors:
-        type: array
-        items: 
-         $ref: '#/definitions/Error'
+      
   SearchTokensRequestSchema:
     required:
       - requestId
@@ -1052,70 +1031,7 @@ definitions:
       token:
         $ref: '#/definitions/token'
       tokenDetail:
-        $ref: '#/definitions/tokenDetail'
-      errors:
-        type: array
-        items: 
-         $ref: '#/definitions/Error'
-  
-  GetDigitalAssetsRequestSchema:
-    required:
-      - responseHost
-      - requestId
-      - encryptedPayload
-    properties:
-      responseHost:
-        type: string
-        description: >
-          The host that originated the request. Future calls in the same
-          conversation should be routed to this host.
-        example: site2.payment-app-provider.com
-      requestId:
-        type: string
-        description: |
-          Unique identifier for the request.
-        example: 123456
-      encryptedPayload:
-        required:
-          - publicKeyFingerprint
-          - encryptedKey
-          - encryptedData
-        properties:
-          publicKeyFingerprint:
-            type: string
-            description: >
-              The fingerpint of the public key used to encrypt the ephemeral AES key.
-
-              __Max Length:64__
-            example: 4c4ead5927f0df8117f178eea9308daa58e27c2b
-          encryptedKey:
-            type: string
-            description: >
-              One-time use AES key encrypted by the Mastercard public key (as
-              identified by publicKeyFingerprint) using the OEAP or PKCS#1 v1.5
-              scheme (depending on the value of oeapHashingAlgorithm.)
-
-              __Max Length:512__
-            example: A1B2C3D4E5F6112233445566
-          oaepHashingAlgorithm:
-            type: string
-            description: >
-              Hashing algorithm used with the OAEP scheme. Must be either SHA256 or
-              SHA512.
-            example: SHA512
-          encryptedData:
-            $ref: '#/definitions/getDigitalAssetsEncryptedData'
-
-  getDigitalAssetsEncryptedData:
-    properties:
-      accountNumber:
-        type: string
-        description: >
-          The Primary Account Number for the transaction - this is the token PAN.
-          
-          <br>__Min Length: 9__
-          <br>__Max Length: 19__
-        example: 5480981500100002
+        $ref: '#/definitions/tokenDetail_getToken_Only'
 
   NotifyTokenUpdatedRequestSchema:
     required:
@@ -1182,151 +1098,6 @@ definitions:
         items:
           $ref: '#/definitions/token'
 
-
-
-  
-  GetDigitalAssetsResponseSchema:
-    properties:
-      responseId:
-        type: string
-        description: |
-          Unique identifier for the response.
-      responseHost:
-        type: string
-        description: >
-          The host that originated the request. Future calls in the same
-          conversation may be routed to this host.
-        example: site2.payment-app-provider.com
-      brandLogoAssetId:
-        type: string
-        description: >
-          The MasterCard or Maestro brand logo associated with this card.
-          Provided as an Asset ID – use the Get Asset API to retrieve the actual
-          asset. Always returned in Product Configuration object <br>   
-
-          __Max Length: 64__<br>
-
-          __Required: Yes__
-        example: 800200c9-629d-11e3-949a-0739d27e5a66
-      issuerLogoAssetId:
-        type: string
-        description: >
-          The logo of the issuing bank. Provided as an Asset ID – use the Get
-          Asset API to retrieve the actual asset. Always returned in Product
-          Configuration object <br>    
-
-          __Max Length:64__<br>
-
-          __Required: Yes__
-        example: dbc55444-986a-4896-b41c-5d5e2dd431e2
-      isCoBranded:
-        type: string
-        description: >
-          Whether the product is co-branded. Must be either true (this is a
-          co-branded product) or false (this is not a co-branded product).
-          Always returned in Product Configuration object <br>   
-
-          __Max Length:5__<br>
-
-          __Required: Yes__
-        example: true
-      coBrandName:
-        type: string
-        description: >
-          Textual name of the co-brand partner. Required if CoBranded is true,
-          not present otherwise.  <br>  
-
-          __Max Length:128__<br>
-
-          __Required: Conditional – required if isCoBranded = "true". Not
-          present otherwise__
-        example: Co brand partner
-      coBrandLogoAssetId:
-        type: string
-        description: >
-          The co-brand logo (if any) for this product. Provided as an Asset ID –
-          use the Get Asset API to retrieve the actual asset. <br>  
-
-          __Max Length:64__<br>
-
-          __Required: No__
-        example: dbc55444-496a-4896-b41c-5d5e2dd431e2
-      cardBackgroundCombinedAssetId:
-        type: string
-        description: >
-          The card image used to represent the digital card in the wallet. This
-          ‘combined’ option contains the MasterCard, bank and any co- brand
-          logos.  Provided as an Asset ID – use the Get Asset API to retrieve
-          the actual asset.    
-
-          __Max Length:64__<br>
-
-          __Required: Conditional – either CardBackgroundCombined or
-          CardBackground will be provided__
-        example: 739d27e5-629d-11e3-949a-0800200c9a66
-      cardBackgroundAssetId:
-        type: string
-        description: >
-          The card image used to represent the digital card in the wallet. This
-          ‘non-combined’ option does not contain the MasterCard, bank, or
-          co-brand logos. Provided as an Asset ID – use the Get Asset API to
-          retrieve the actual asset. <br>    
-
-          __Max Length:64__<br>
-
-          __Required: Conditional – either CardBackgroundCombined or
-          CardBackground will be provided__
-        example: 456d27e5-629d-11e3-949a-0800200c9a66
-      iconAssetId:
-        type: string
-        description: >
-          The icon representing the primary brand(s) associated with this
-          product. Provided as an Asset ID – use the Get Asset API to retrieve
-          the actual asset. Always returned in Product Configuration
-          object<br>   
-
-          __Max Length:64__<br>
-
-          __Required: Yes__
-        example: 739d87e5-629d-11e3-949a-0800200c9a66
-      foregroundColor:
-        type: string
-        description: >
-          Foreground color, used to overlay text on top of the card image.
-          Always returned in Product Configuration object<br>   
-
-          __Max Length:6__ Hexadecimal RGB color format (case-insensitive).<br>
-
-          __Required: Yes__
-        example: 0
-      issuerName:
-        type: string
-        description: >
-          Name of the issuing bank. Always returned in Product Configuration
-          object <br>   
-
-          __Max Length:64__<br>
-
-          __Required: Yes__
-        example: Issuing Bank
-      shortDescription:
-        type: string
-        description: >
-          A short description for this product. Always returned in Product
-          Configuration object  <br>  
-
-          __Max Length:128__<br>
-
-          __Required: Yes__
-        example: Bank Rewards MasterCard
-      longDescription:
-        type: string
-        description: |
-          A long description for this product.  <br>  
-          __Max Length:256__<br>
-          __Required: No__
-        example: Bank Rewards MasterCard with the super duper rewards program
-
   NotifyTokenUpdatedResponseSchema:
     properties:
       responseHost:
@@ -1345,7 +1116,6 @@ definitions:
       - requestId
       - tokenUniqueReference
       - dsrpType
-      - unpredictableNumber
     properties:
       responseHost:
         type: string
@@ -1375,26 +1145,11 @@ definitions:
       unpredictableNumber:
         type: string
         description: >
-          HEX Encoded data (case sensitive) provided by the merchant to provide
+          __CONDITIONAL__<br>HEX Encoded data (case sensitive) provided by the merchant to provide
           variability and uniqueness to the generation of a cryptogram. 
-
-          __Length:8__
+          Required if the shouldGenerateUnpredictableNumber flag is not set during on-boarding.<br>
+          __Length:8__          
         example: 23424563
-      amount:
-        type: string
-        description: >
-          Transaction amount to be authorized. Note that refund transactions are
-          not supported – this value must be a positive amount and can contain
-          up to 12 digits, inclusive of any digits in the currency exponent.    
-
-          __Max Length:13__
-        example: 122
-      currencyCode:
-        type: string
-        description: >
-          The transaction currency. Expressed as a 3-character ISO 4217 currency
-          code.
-        example: USD
   TransactResponseSchema:
     properties:
       responseId:
@@ -1409,8 +1164,7 @@ definitions:
         example: site2.payment-app-provider.com
       encryptedPayload:
         $ref: '#/definitions/encryptedPayloadTransact'
-      errors:
-        $ref: '#/definitions/TransactError'
+     
   encryptedPayloadTransact:
     properties:
       publicKeyFingerprint:
@@ -1480,19 +1234,64 @@ definitions:
           padded to whole bytes using one hex nibble 'F' as needed.  <br>  
 
           __Max Length: 38__
-        example: 5480981500100002D18112011000000000000F
+        example: "5480981500100002D18112011000000000000F"
       de48se43Data:
         type: string
         description: |
           Data for DE 48 Subelement 43 containing the cryptogram.<br>
+          DSRP cryptogram is required to be sent in the DE104 – DPD (Digital Payment Data) field 
+          – please refer to AN3363 bulletin for more details.<br>
           __Max Length: 32__
-        example: 1.122334455667789e+37
-      de55Data:
+        example: "11223344556677889900112233445566778899"
+  
+  GatewayErrorsResponse:
+    properties:
+      Errors:
+         $ref: '#/definitions/GatewayErrorsSchema'
+  
+  GatewayErrorsSchema:
+    properties: 
+      Error:
+        type: array
+        items: 
+         $ref: '#/definitions/GatewayError'
+  
+  GatewayError:
+    description: Only returned in the event of an error condition.
+    properties:
+      Source:
+        type: string
+        description: >
+          An element used to indicate the source of the issue causing this
+          error. e.g. Gateway
+          __Max Length: 32__
+        example: "GATEWAY" 
+      Description:
+        type: string
+        description: >
+          Description of the reason the operation failed. See API Response
+          Errors <br>
+
+          __Max Length: 256__
+        example: "OAuth signatures did not match."
+      ReasonCode:
         type: string
         description: |
-          Data for DE 55 if present<br>
-          __Max Length: 200__
-        example: 1.122334455667789e+99
+          A reason code for the error that has occurred.<br>
+          __Max Length: 100__
+        example: "AUTHENTICATION_FAILED"
+      
+      Recoverable:
+        type: boolean
+        description: >
+          Generated by the gateway to indicate if the request could presented
+          again for processing. Either "TRUE" or "FALSE"
+        example: 'false'        
+      Details:
+        type: boolean
+        description: >
+          Always NULL, present for backwards compatiility
+        example: "null"
   ErrorsResponse:
     properties:
       errorCode:
@@ -1610,7 +1409,7 @@ definitions:
           For repeat digitizations, the unique reference allocated to the
           Primary Account Number. When supplied, the
           tokenUniqueReferenceForPanInfo, accountNumber, expiryMonth and
-          expiryYear must be omitted from CardInfoData. Only allowed if Only allowed if tokenUniqueReference and pushAccountReceipt are not present and encrypted data does not contain the account information. <br>
+          expiryYear must be omitted from CardInfoData. Only allowed if tokenUniqueReference and pushAccountReceipt are not present and encrypted data does not contain the account information. <br>
 
           __Max Length:64__
       tokenUniqueReference:
@@ -1753,7 +1552,7 @@ definitions:
         __(OPTIONAL)__
         The country code for the phone number. E.g. 1 for US or 44 for UK.<br>
         __Max Length: 4__
-       example: "0044"
+       example: "00 44"
       phoneNumber: 
        type: number
        description: | 
@@ -1793,7 +1592,7 @@ definitions:
           __Format: MM__<br>
 
           __Exact Length:2__
-        example: 09
+        example: '09'
       expiryYear:
         type: string
         description: >
@@ -1849,7 +1648,7 @@ definitions:
           __Format: MM__<br>
 
           __Exact Length:2__
-        example: 09
+        example: '09'
       expiryYear:
         type: string
         description: >
@@ -2325,7 +2124,47 @@ definitions:
           __Max Length:32__
         example: NA
       encryptedData:
-        $ref: '#/definitions/tokenDetailData_TCC_Only'
+        $ref: '#/definitions/tokenDetailData'
+
+  tokenDetail_getToken_Only:
+    properties:
+      tokenUniqueReference:
+        type: string
+        description: |
+          Globally unique identifier for the Token, as assigned by MDES.<br>    
+          __Max Length:64__
+        example: DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45
+      publicKeyFingerprint:
+        type: string
+        description: >
+          The certificate fingerprint identifying the public key used to encrypt
+          the ephemeral AES key.<br>    
+
+          __Max Length:64__ Hex-encoded data (case-insensitive).
+        example: 4c4ead5927f0df8117f178eea9308daa58e27c2b
+      encryptedKey:
+        type: string
+        description: >
+          One-time use AES key encrypted by the MasterCard public key (as
+          identified by 'publicKeyFingerprint') using the OAEP or RSA Encryption
+          Standard PKCS #1 v1.5 scheme (depending on the value of
+          'oaepHashingAlgorithm'. Requirement is for a 128-bit key (with 256-bit
+          key supported as an option).<br>    
+
+          __Max Length:512__
+        example: A1B2C3D4E5F6112233445566
+      oaepHashingAlgorithm:
+        type: string
+        description: >
+          Hashing algorithm used with the OAEP scheme. If omitted, then the RSA
+          Encryption Standard PKCS #1 v1.5 will be used. Must be either 'SHA256'
+          (Use the SHA-256 algorithm) or 'SHA512' (Use the SHA-512
+          algorithm).<br>    
+
+          __Max Length:6__
+        example: SHA512
+      encryptedData:
+        $ref: '#/definitions/tokenDetailData_getToken_Only'   
         
   tokenDetail_PAR_Only:
     properties:
@@ -2383,10 +2222,6 @@ definitions:
        description: | 
         Account holder information. Present in tokenize response if supported by the Token Requestor, if using a pushAccountReceipt and if there is account holder data associated with the push account receipt in case that the issuer decision is APPROVED..
        $ref: '#/definitions/accountHolderData'
-      cardAccountData: 
-       description: | 
-        The credit or debit card information for the account that is being tokenized.  Present in tokenize response if supported by the Token Requestor, if using a pushAccountReceipt and if there is a card account associated with the pushAccountReceipt in case that the issuer decision is not DECLINED.
-       $ref: '#/definitions/CardAccountData_outbound'
       paymentAccountReference:
         type: string
         description: >
@@ -2396,11 +2231,31 @@ definitions:
           authorization message response.    __Max Length:__ - 29"
         example: 5001a9f027e5629d11e3949a0800a
 
-
-  tokenDetailData_TCC_Only:
+  
+  tokenDetailData_getToken_Only:
     properties:
-      accountHolderData:
-        $ref: '#/definitions/accountHolderData_outbound'
+      tokenNumber:
+        type: string
+        description: >
+          The Token Primary Account Number of the Card. 
+          <br>__Max Length: 19__
+          <br>__Min Length: 9__
+        example: 5123456789012345
+          
+      expiryMonth:
+        type: string
+        description: >
+          The month of the token expiration date. <br>
+          __Max Length: 2__
+        example: 12
+      
+      expiryYear:
+        type: string
+        description: >
+          The year of the token expiration date. <br>
+          __Max Length: 2__
+        example: 20
+          
 
       paymentAccountReference:
         type: string
@@ -2412,9 +2267,7 @@ definitions:
           __Max Length: 29__
         example: 5001a9f027e5629d11e3949a0800a
       
-      cardAccountData:
-        $ref: '#/definitions/CardAccountData_outbound'
-        
+            
   tokenDetailData_PAR_Only:
     properties:
       paymentAccountReference:
@@ -2494,26 +2347,7 @@ definitions:
            $ref: '#/definitions/productConfig'
       tokenInfo:
            $ref: '#/definitions/tokenInfo'
-      errorCode:
-        type: string
-        description: >
-          __CONDITIONAL__<br> Returned in the event of an error and contains the
-          reason the operation failed. Only use if errors object is not
-          present.<br>
-
-          __Max Length: 32__
-      errorDescription:
-        type: string
-        description: >
-          __CONDITIONAL__<br> Returned in the event of an error and contains a
-          description of why the operation failed. Only use if errors object is
-          not present.<br>
-
-          __Max Length: 32__  
-      errors:
-       type: array
-       items: 
-         $ref: '#/definitions/Error'
+      
   token_for_LCM:
     properties:
       tokenUniqueReference:
@@ -2556,24 +2390,3 @@ definitions:
              * Where [.sss] is optional and can be 1 to 3 digits. <br>
            __Max Length:29__
            
-      errorCode:
-        type: string
-        description: >
-          __CONDITIONAL__<br> Returned in the event of an error and contains the
-          reason the operation failed. Only use if errors object is not
-          present.<br>
-
-          __Max Length: 32__
-      errorDescription:
-        type: string
-        description: >
-          __CONDITIONAL__<br> Returned in the event of an error and contains a
-          description of why the operation failed. Only use if errors object is
-          not present.<br>
-
-          __Max Length: 32__  
-      errors:
-       type: array
-       items: 
-         $ref: '#/definitions/Error'
-  
