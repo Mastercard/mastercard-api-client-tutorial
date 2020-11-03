@@ -13,6 +13,6 @@ jobs:
         id: lc
         uses: peter-evans/link-checker@v1.2.2
         with:
-          args: -v -r .
+          args: -v ./README.md ./csharp/README.md ./java/README.md ./nodejs/README.md ./php/README.md ./python/README.md ./ruby/README.md -x GIT_REPO_ID
       - name: Fail?
         run: exit ${{ steps.lc.outputs.exit_code }}
