@@ -4,7 +4,6 @@
 openapi-generator generate -i MDES_Digital_Enablement.yaml -g csharp -c config.json -o .
 
 # Remove some generated files we don't use in this tutorial
-rm -rf ./docs/
 rm .gitignore
 rm git_push.sh
 rm .openapi-generator-ignore

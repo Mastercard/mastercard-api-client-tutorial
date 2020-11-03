@@ -2,9 +2,10 @@
 
 mv package.json package.json.bak
 
+# We assume OpenAPI Generator is installed using `npm i -g @openapitools/openapi-generator-cli`
 openapi-generator generate -i MDES_Digital_Enablement.yaml -g javascript -o . -c config.json
 
-rm -rf ./docs/
+# Remove some generated files we don't use in this tutorial
 rm git_push.sh
 rm .openapi-generator-ignore
 rm .travis.yml

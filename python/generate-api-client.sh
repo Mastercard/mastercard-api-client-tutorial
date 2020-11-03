@@ -6,7 +6,6 @@ mv test-requirements.txt test-requirements.txt.bak
 openapi-generator generate -i MDES_Digital_Enablement.yaml -g python -o .
 
 # Remove some generated files we don't use in this tutorial
-rm -rf ./docs/
 rm .gitlab-ci.yml
 rm git_push.sh
 rm .openapi-generator-ignore

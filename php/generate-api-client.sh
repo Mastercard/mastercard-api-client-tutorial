@@ -2,9 +2,10 @@
 
 mv composer.json composer.json.bak
 
+# We assume OpenAPI Generator is installed using `npm i -g @openapitools/openapi-generator-cli`
 openapi-generator generate -g php -c config.json -i MDES_Digital_Enablement.yaml -o .
 
-rm -rf ./docs/
+# Remove some generated files we don't use in this tutorial
 rm git_push.sh
 rm .openapi-generator-ignore
 rm .travis.yml

@@ -1,8 +1,10 @@
 #!/bin/sh
 
+# We assume OpenAPI Generator is installed using `npm i -g @openapitools/openapi-generator-cli`
 openapi-generator generate -g java --library okhttp-gson -c config.json -i MDES_Digital_Enablement.yaml -o .
 
-rm -rf ./docs/
+# Remove some generated files we don't use in this tutorial
+rm .gitignore
 rm -rf .gradle
 rm -rf .idea
 rm -rf target
