@@ -1,4 +1,4 @@
-# mastercard-api-client-tutorial
+# Generating and Configuring a Mastercard API Client
 
 [![](https://github.com/Mastercard/mastercard-api-client-tutorial/workflows/broken%20links%3F/badge.svg)](https://github.com/Mastercard/mastercard-api-client-tutorial/actions?query=workflow%3A%22broken+links%3F%22)
 
