@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.3</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Acme.App.MastercardApi.Client</AssemblyName>
     <PackageId>Acme.App.MastercardApi.Client</PackageId>
     <OutputType>Library</OutputType>
@@ -18,14 +18,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FubarCoder.RestSharp.Portable.Core" Version="4.0.7" />
-    <PackageReference Include="FubarCoder.RestSharp.Portable.HttpClient" Version="4.0.7" />
+    <PackageReference Include="JsonSubTypes" Version="1.7.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="JsonSubTypes" Version="1.6.0" />
-    <PackageReference Include="Mastercard.Developer.OAuth1Signer.RestSharp" Version="1.2.5" />
-    <PackageReference Include="Mastercard.Developer.ClientEncryption.RestSharp" Version="1.0.2" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
+    <PackageReference Include="RestSharp" Version="106.11.4" />
+    <PackageReference Include="Polly" Version="7.2.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+    <PackageReference Include="Mastercard.Developer.ClientEncryption.RestSharpV2" Version="1.1.0" />
+    <PackageReference Include="Mastercard.Developer.OAuth1Signer.RestSharpV2" Version="1.3.0" />
   </ItemGroup>
-
 
 </Project>

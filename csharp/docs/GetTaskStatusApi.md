@@ -7,9 +7,8 @@ Method | HTTP request | Description
 [**GetTaskStatus**](GetTaskStatusApi.md#gettaskstatus) | **POST** /digitization/static/1/0/getTaskStatus | Used to check the status of any asynchronous task that was previously requested.
 
 
-
-## GetTaskStatus
-
+<a name="gettaskstatus"></a>
+# **GetTaskStatus**
 > GetTaskStatusResponseSchema GetTaskStatus (GetTaskStatusRequestSchema getTaskStatusRequestSchema = null)
 
 Used to check the status of any asynchronous task that was previously requested.
@@ -17,7 +16,6 @@ Used to check the status of any asynchronous task that was previously requested.
 Used to check the status of any asynchronous task that was previously requested. 
 
 ### Example
-
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -31,8 +29,9 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://api.mastercard.com/mdes";
-            var apiInstance = new GetTaskStatusApi(Configuration.Default);
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.mastercard.com/mdes";
+            var apiInstance = new GetTaskStatusApi(config);
             var getTaskStatusRequestSchema = new GetTaskStatusRequestSchema(); // GetTaskStatusRequestSchema | Contains the details of the request message.  (optional) 
 
             try
@@ -41,7 +40,7 @@ namespace Example
                 GetTaskStatusResponseSchema result = apiInstance.GetTaskStatus(getTaskStatusRequestSchema);
                 Debug.WriteLine(result);
             }
-            catch (ApiException e)
+            catch (ApiException  e)
             {
                 Debug.Print("Exception when calling GetTaskStatusApi.GetTaskStatus: " + e.Message );
                 Debug.Print("Status Code: "+ e.ErrorCode);
@@ -53,7 +52,6 @@ namespace Example
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -69,8 +67,8 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -79,8 +77,5 @@ No authorization required
 | **401** | Example gateway error response  |  -  |
 | **500** | Example application error response  |  -  |
 
-[[Back to top]](#)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

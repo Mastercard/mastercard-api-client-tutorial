@@ -1,6 +1,4 @@
-
 # Acme.App.MastercardApi.Client.Model.UnSuspendRequestSchema
-
 ## Properties
 
 Name | Type | Description | Notes
@@ -13,7 +11,5 @@ Name | Type | Description | Notes
 **Reason** | **string** | Free form reason why the Tokens are being suspended.    __Max Length:256__  | [optional] 
 **ReasonCode** | **string** | The reason for the action to be unsuspended. Must be one of &#39;SUSPECTED_FRAUD&#39; (suspected fraudulent token transactions), &#39;OTHER&#39; (Other - default used if value not provided).     __Max Length:64__  | 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

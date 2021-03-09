@@ -1,6 +1,4 @@
-
 # Acme.App.MastercardApi.Client.Model.TokenInfo
-
 ## Properties
 
 Name | Type | Description | Notes
@@ -13,7 +11,5 @@ Name | Type | Description | Notes
 **TokenAssuranceLevel** | **string** | A value indicating the confidence level of the token to Account PAN binding.&lt;br&gt;     __Max Length:2__&lt;br&gt; __Required: No__  | [optional] 
 **ProductCategory** | **string** | The product category of the Account PAN. When supplied will be one of the following values -  * CREDIT * DEBIT * PREPAID * UNKNOWN  __Max Length: 32__&lt;br&gt; __Required: No__  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

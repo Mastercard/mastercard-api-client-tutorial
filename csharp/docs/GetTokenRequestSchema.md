@@ -1,6 +1,4 @@
-
 # Acme.App.MastercardApi.Client.Model.GetTokenRequestSchema
-
 ## Properties
 
 Name | Type | Description | Notes
@@ -11,7 +9,5 @@ Name | Type | Description | Notes
 **TokenUniqueReference** | **string** | The specific Token to be queried.     __Max Length:64__   | 
 **IncludeTokenDetail** | **string** | Flag to indicate if the encrypted token should be returned.     __Max Length:5__   | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -1,6 +1,5 @@
-
 # Acme.App.MastercardApi.Client.Model.CardAccountDataInbound
-
+__(CONDITIONAL)__ <br> Required in Tokenize or Search Tokens unless a valid panUniqueReference, tokenUniqueReference or pushAccountReceipt is also given in FundingAccountInfo. 
 ## Properties
 
 Name | Type | Description | Notes
@@ -10,7 +9,5 @@ Name | Type | Description | Notes
 **ExpiryYear** | **string** | __(Required as minimum for Tokenization)__  The expiry year for the account. &lt;br&gt;Only supplied in tokenization requests if panUniqueReference or tokenUniqueReferenceForPanInfo or pushAccountReceipt is not present.   __Format: YY__ &lt;br&gt; __Exact Length:2__  | [optional] 
 **SecurityCode** | **string** | __(OPTIONAL)__ The security code for the account can optionally be provided for Tokenization. If provided, the validity will be checked. &lt;br&gt; Optional in a Tokenize request, not present otherwise. __Max Length:3__  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

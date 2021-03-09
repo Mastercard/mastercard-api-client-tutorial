@@ -1,6 +1,4 @@
-
 # Acme.App.MastercardApi.Client.Model.FundingAccountInfo
-
 ## Properties
 
 Name | Type | Description | Notes
@@ -10,7 +8,5 @@ Name | Type | Description | Notes
 **PushAccountReceipt** | **string** | __(CONDITIONAL)__&lt;br&gt; The push account receipt is supplied by the Issuer to the Merchant during a push provisioning operation. The pushAccountReceipt is then submitted by the merchant in the tokenize request and will be used by MDES to retrieve the associated funding account information. Only allowed if panUniqueReference and tokenUniqueReference are not present and encrypted data does not contain the funding account information. Refer to the &lt;a href&#x3D;\&quot;https://developer.mastercard.com/page/push-provisioning-merchant\&quot;&gt;Push Provisioning Use Case Guide &lt;/a&gt;  for more information about pushAccountReceipt.  __Max Length:64__  | [optional] 
 **EncryptedPayload** | [**FundingAccountInfoEncryptedPayload**](FundingAccountInfoEncryptedPayload.md) |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

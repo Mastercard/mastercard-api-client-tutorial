@@ -1,14 +1,13 @@
-using System;
+using System.Security.Cryptography;
 using Mastercard.Developer.ClientEncryption.Core.Encryption;
 using Mastercard.Developer.ClientEncryption.Core.Utils;
-using Mastercard.Developer.ClientEncryption.RestSharp.Interceptors;
 using Mastercard.Developer.OAuth1Signer.Core.Utils;
-using Mastercard.Developer.OAuth1Signer.RestSharp.Authenticators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Acme.App.MastercardApi.Client.Api;
 using Acme.App.MastercardApi.Client.Client;
 using Acme.App.MastercardApi.Client.Model;
 using System.Security.Cryptography.X509Certificates;
+using Mastercard.Developer.ClientEncryption.RestSharpV2.Interceptors;
 using static Mastercard.Developer.ClientEncryption.Core.Encryption.FieldLevelEncryptionConfig;
 
 namespace Mastercard.Developer.DigitalEnablement.Tests
@@ -23,7 +22,11 @@ namespace Mastercard.Developer.DigitalEnablement.Tests
         private const string SigningKeyAlias = "fake-key";
         private const string SigningKeyPassword = "fakepassword";
         private const string SigningKeyPkcs12FilePath = "./_Resources/fake-signing-key.p12";
+        private const string BasePath = "https://sandbox.api.mastercard.com/mdes/";
 
+        private static RSA SigningKey { set; get; }
+        private static ApiClient Client { set; get; }
+        
         // Encryption keys from https://developer.mastercard.com/page/digital-enablement-api-sandbox-configuration
         private const string EncryptionCertificateFilePath = "./_Resources/digital-enablement-sandbox-encryption-key.crt";
         private const string DecryptionKeyFilePath = "./_Resources/digital-enablement-sandbox-decryption-key.key";
@@ -36,7 +39,7 @@ namespace Mastercard.Developer.DigitalEnablement.Tests
 
         private static void SetupApiClient()
         {
-            var signingKey = AuthenticationUtils.LoadSigningKey(SigningKeyPkcs12FilePath, SigningKeyAlias, SigningKeyPassword, X509KeyStorageFlags.MachineKeySet | X509KeyStorageFlags.Exportable);
+            SigningKey = AuthenticationUtils.LoadSigningKey(SigningKeyPkcs12FilePath, SigningKeyAlias, SigningKeyPassword, X509KeyStorageFlags.MachineKeySet | X509KeyStorageFlags.Exportable);
             var encryptionCertificate = EncryptionUtils.LoadEncryptionCertificate(EncryptionCertificateFilePath);
             var decryptionKey = EncryptionUtils.LoadDecryptionKey(DecryptionKeyFilePath);
 
@@ -56,16 +59,17 @@ namespace Mastercard.Developer.DigitalEnablement.Tests
                 .WithValueEncoding(FieldValueEncoding.Hex)
                 .Build();
 
-            var config = Configuration.Default;
-            config.BasePath = "https://sandbox.api.mastercard.com/mdes/";
-            config.ApiClient.RestClient.Authenticator = new RestSharpOAuth1Authenticator(ConsumerKey, signingKey, new Uri(config.BasePath));
-            config.ApiClient.EncryptionInterceptor = new RestSharpFieldLevelEncryptionInterceptor(fieldLevelEncryptionConfig);
+            Client = new ApiClient(SigningKey, BasePath, ConsumerKey)
+            {
+                EncryptionInterceptor = new RestSharpFieldLevelEncryptionInterceptor(fieldLevelEncryptionConfig)
+            };
         }
 
         [TestMethod]
         public void TestTokenizeEndpoint()
         {
-            var tokenizeApi = new TokenizeApi(Configuration.Default);
+            var tokenizeApi = new TokenizeApi();
+            tokenizeApi.Client = Client;
             var response = tokenizeApi.CreateTokenize(BuildTokenizeRequestSchema());
             Assert.IsNotNull(response);
             Assert.AreEqual("APPROVED", response.Decision);

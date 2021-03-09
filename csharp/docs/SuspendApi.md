@@ -7,9 +7,8 @@ Method | HTTP request | Description
 [**CreateSuspend**](SuspendApi.md#createsuspend) | **POST** /digitization/static/1/0/suspend | Used to temporarily suspend one or more Tokens.
 
 
-
-## CreateSuspend
-
+<a name="createsuspend"></a>
+# **CreateSuspend**
 > SuspendResponseSchema CreateSuspend (SuspendRequestSchema suspendRequestSchema = null)
 
 Used to temporarily suspend one or more Tokens.
@@ -17,7 +16,6 @@ Used to temporarily suspend one or more Tokens.
 This API is used to temporarily suspend one or more Tokens (for example, suspending all Tokens on a device in response to the device being lost).  The API is limited to 10 Tokens per request. MDES will coordinate the suspension of the Tokens and notify any relevant parties that the Tokens have been suspended. A suspended Token can be unsuspended using the Unsuspend resource. 
 
 ### Example
-
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -31,8 +29,9 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://api.mastercard.com/mdes";
-            var apiInstance = new SuspendApi(Configuration.Default);
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.mastercard.com/mdes";
+            var apiInstance = new SuspendApi(config);
             var suspendRequestSchema = new SuspendRequestSchema(); // SuspendRequestSchema | Contains the details of the request message.  (optional) 
 
             try
@@ -41,7 +40,7 @@ namespace Example
                 SuspendResponseSchema result = apiInstance.CreateSuspend(suspendRequestSchema);
                 Debug.WriteLine(result);
             }
-            catch (ApiException e)
+            catch (ApiException  e)
             {
                 Debug.Print("Exception when calling SuspendApi.CreateSuspend: " + e.Message );
                 Debug.Print("Status Code: "+ e.ErrorCode);
@@ -53,7 +52,6 @@ namespace Example
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -69,8 +67,8 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -79,8 +77,5 @@ No authorization required
 | **401** | Example gateway error response  |  -  |
 | **500** | Example application error response  |  -  |
 
-[[Back to top]](#)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

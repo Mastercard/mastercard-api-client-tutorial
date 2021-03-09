@@ -1,6 +1,4 @@
-
 # Acme.App.MastercardApi.Client.Model.FundingAccountInfoEncryptedPayload
-
 ## Properties
 
 Name | Type | Description | Notes
@@ -11,7 +9,5 @@ Name | Type | Description | Notes
 **Iv** | **string** | The initialization vector used when encrypting data using the one-time use AES key. Must be exactly 16 bytes (32 character hex string) to match the block size. If not present, an IV of zero is assumed.  &lt;br&gt;__Length: 32__  | [optional] 
 **EncryptedData** | [**FundingAccountData**](FundingAccountData.md) |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

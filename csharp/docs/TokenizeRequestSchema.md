@@ -1,6 +1,4 @@
-
 # Acme.App.MastercardApi.Client.Model.TokenizeRequestSchema
-
 ## Properties
 
 Name | Type | Description | Notes
@@ -15,7 +13,5 @@ Name | Type | Description | Notes
 **TokenizationAuthenticationValue** | **string** | The Tokenization Authentication Value (TAV) as cryptographically signed by the Issuer to authorize this digitization request.      __Max Length:2048__  | [optional] 
 **DecisioningData** | [**DecisioningData**](DecisioningData.md) |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

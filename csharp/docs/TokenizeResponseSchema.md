@@ -1,6 +1,4 @@
-
 # Acme.App.MastercardApi.Client.Model.TokenizeResponseSchema
-
 ## Properties
 
 Name | Type | Description | Notes
@@ -15,7 +13,5 @@ Name | Type | Description | Notes
 **TokenInfo** | [**TokenInfo**](TokenInfo.md) |  | [optional] 
 **TokenDetail** | [**TokenDetail**](TokenDetail.md) |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
