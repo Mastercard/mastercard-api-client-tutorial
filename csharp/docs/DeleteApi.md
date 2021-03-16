@@ -7,9 +7,8 @@ Method | HTTP request | Description
 [**DeleteDigitization**](DeleteApi.md#deletedigitization) | **POST** /digitization/static/1/0/delete | Used to delete one or more Tokens. The API is limited to 10 Tokens per request.
 
 
-
-## DeleteDigitization
-
+<a name="deletedigitization"></a>
+# **DeleteDigitization**
 > DeleteResponseSchema DeleteDigitization (DeleteRequestSchema deleteRequestSchema = null)
 
 Used to delete one or more Tokens. The API is limited to 10 Tokens per request.
@@ -17,7 +16,6 @@ Used to delete one or more Tokens. The API is limited to 10 Tokens per request.
 This API is used to delete one or more Tokens.  The API is limited to 10 Tokens per request. MDES will coordinate the deactivation of the Tokens and notify any relevant parties that the Tokens have now been deactivated. 
 
 ### Example
-
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -31,8 +29,9 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://api.mastercard.com/mdes";
-            var apiInstance = new DeleteApi(Configuration.Default);
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.mastercard.com/mdes";
+            var apiInstance = new DeleteApi(config);
             var deleteRequestSchema = new DeleteRequestSchema(); // DeleteRequestSchema | Contains the details of the request message.  (optional) 
 
             try
@@ -41,7 +40,7 @@ namespace Example
                 DeleteResponseSchema result = apiInstance.DeleteDigitization(deleteRequestSchema);
                 Debug.WriteLine(result);
             }
-            catch (ApiException e)
+            catch (ApiException  e)
             {
                 Debug.Print("Exception when calling DeleteApi.DeleteDigitization: " + e.Message );
                 Debug.Print("Status Code: "+ e.ErrorCode);
@@ -53,7 +52,6 @@ namespace Example
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -69,8 +67,8 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -79,8 +77,5 @@ No authorization required
 | **401** | Example gateway error response  |  -  |
 | **500** | Example application error response  |  -  |
 
-[[Back to top]](#)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

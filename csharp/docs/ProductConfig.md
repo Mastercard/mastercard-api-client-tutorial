@@ -1,6 +1,4 @@
-
 # Acme.App.MastercardApi.Client.Model.ProductConfig
-
 ## Properties
 
 Name | Type | Description | Notes
@@ -20,13 +18,11 @@ Name | Type | Description | Notes
 **CustomerServiceUrl** | **string** | Customer service website of the issuing bank. &lt;br&gt;    __Max Length:128__&lt;br&gt; __Required: No__  | [optional] 
 **CustomerServiceEmail** | **string** | Customer service email address of the issuing bank. &lt;br&gt;    __Max Length:64__&lt;br&gt; __Required: No__  | [optional] 
 **CustomerServicePhoneNumber** | **string** | Customer service phone number of the issuing bank. &lt;br&gt;    __Max Length:64__&lt;br&gt; __Required: No__  | [optional] 
-**IssuerMobileApp** | [**Object**](.md) | Contains one or more mobile app details that may be used to deep link from the Mobile Payment App to the issuer mobile app. &lt;br&gt;    __Max Length:64__&lt;br&gt; __Required: No__  | [optional] 
+**IssuerMobileApp** | **Object** | Contains one or more mobile app details that may be used to deep link from the Mobile Payment App to the issuer mobile app. &lt;br&gt;    __Max Length:64__&lt;br&gt; __Required: No__  | [optional] 
 **OnlineBankingLoginUrl** | **string** | Logon URL for the issuing bank’s online banking website.&lt;br&gt;     __Max Length:128__  | [optional] 
 **TermsAndConditionsUrl** | **string** | URL linking to the issuing bank’s terms and conditions for this product.&lt;br&gt;     __Max Length:128__&lt;br&gt; __Required: No__  | [optional] 
 **PrivacyPolicyUrl** | **string** | URL linking to the issuing bank’s privacy policy for this product.&lt;br&gt;     __Max Length:128__&lt;br&gt; __Required: No__  | [optional] 
 **IssuerProductConfigCode** | **string** | Freeform identifier for this product configuration as assigned by the issuer.&lt;br&gt;     __Max Length:128__&lt;br&gt; __Required: No__  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

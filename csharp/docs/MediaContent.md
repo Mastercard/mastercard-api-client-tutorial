@@ -1,6 +1,4 @@
-
 # Acme.App.MastercardApi.Client.Model.MediaContent
-
 ## Properties
 
 Name | Type | Description | Notes
@@ -10,7 +8,5 @@ Name | Type | Description | Notes
 **Height** | **string** | For image assets, the height of this image. Specified in pixels.     __Max Length:6__   | [optional] 
 **Width** | **string** | For image assets, the width of this image. Specified in pixels.        __Max Length:6__   | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -7,9 +7,8 @@ Method | HTTP request | Description
 [**SearchTokens**](SearchTokensApi.md#searchtokens) | **POST** /digitization/static/1/0/searchTokens | Used to get basic token information for all tokens on a specified device, or all tokens mapped to the given Account PAN.
 
 
-
-## SearchTokens
-
+<a name="searchtokens"></a>
+# **SearchTokens**
 > SearchTokensResponseSchema SearchTokens (SearchTokensRequestSchema searchTokensRequestSchema = null)
 
 Used to get basic token information for all tokens on a specified device, or all tokens mapped to the given Account PAN.
@@ -17,7 +16,6 @@ Used to get basic token information for all tokens on a specified device, or all
 This API is used to get basic token information for all tokens on a specified device, or all tokens mapped to the given Account PAN. It may be used to check current Token(s) state or, in exception scenarios (such as network time out), to ensure that external systems remain in sync with the Token state as maintained by MDES. Deactivated tokens are not returned. 
 
 ### Example
-
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -31,8 +29,9 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://api.mastercard.com/mdes";
-            var apiInstance = new SearchTokensApi(Configuration.Default);
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.mastercard.com/mdes";
+            var apiInstance = new SearchTokensApi(config);
             var searchTokensRequestSchema = new SearchTokensRequestSchema(); // SearchTokensRequestSchema | Contains the details of the request message.  (optional) 
 
             try
@@ -41,7 +40,7 @@ namespace Example
                 SearchTokensResponseSchema result = apiInstance.SearchTokens(searchTokensRequestSchema);
                 Debug.WriteLine(result);
             }
-            catch (ApiException e)
+            catch (ApiException  e)
             {
                 Debug.Print("Exception when calling SearchTokensApi.SearchTokens: " + e.Message );
                 Debug.Print("Status Code: "+ e.ErrorCode);
@@ -53,7 +52,6 @@ namespace Example
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -69,8 +67,8 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -79,8 +77,5 @@ No authorization required
 | **401** | Example gateway error response  |  -  |
 | **500** | Example application error response  |  -  |
 
-[[Back to top]](#)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

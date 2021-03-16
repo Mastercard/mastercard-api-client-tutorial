@@ -1,6 +1,5 @@
-
 # Acme.App.MastercardApi.Client.Model.TransactError
-
+Only returned in the event of an error condition for the Transact API
 ## Properties
 
 Name | Type | Description | Notes
@@ -11,7 +10,5 @@ Name | Type | Description | Notes
 **ReasonCode** | **string** | A reason code or information pertaining to the error that has occurred from the service (e.g. invalid TUR). See API Response Errors&lt;br&gt; __Max Length: 100__          | [optional] 
 **ErrorDescription** | **string** | __DEPRECATED__&lt;br&gt; Use description instead.&lt;br&gt; __Max Length: 100__   | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

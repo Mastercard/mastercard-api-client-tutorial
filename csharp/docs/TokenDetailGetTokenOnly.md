@@ -1,6 +1,4 @@
-
 # Acme.App.MastercardApi.Client.Model.TokenDetailGetTokenOnly
-
 ## Properties
 
 Name | Type | Description | Notes
@@ -11,7 +9,5 @@ Name | Type | Description | Notes
 **OaepHashingAlgorithm** | **string** | Hashing algorithm used with the OAEP scheme. If omitted, then the RSA Encryption Standard PKCS #1 v1.5 will be used. Must be either &#39;SHA256&#39; (Use the SHA-256 algorithm) or &#39;SHA512&#39; (Use the SHA-512 algorithm).&lt;br&gt;     __Max Length:6__  | [optional] 
 **EncryptedData** | [**TokenDetailDataGetTokenOnly**](TokenDetailDataGetTokenOnly.md) |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

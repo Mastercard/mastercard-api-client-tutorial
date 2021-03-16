@@ -1,6 +1,4 @@
-
 # Acme.App.MastercardApi.Client.Model.DecisioningData
-
 ## Properties
 
 Name | Type | Description | Notes
@@ -15,7 +13,5 @@ Name | Type | Description | Notes
 **MobileNumberSuffix** | **string** | __(OPTIONAL)__&lt;br&gt; The last few digits (typically four) of the consumer&#39;s mobile phone number as available on file or on the consumer&#39;s current device, which may or may not be the mobile number of the target device being provisioned.&lt;br&gt;     __Max Length:32__  | [optional] 
 **AccountIdHash** | **string** | __(OPTIONAL)__ &lt;br&gt; SHA-256 hash of the Cardholder’s account ID with the Token Requestor. Typically expected to be an email address.&lt;br&gt;  __Max Length:64__ Alpha-Numeric and Hex-encoded data (case-insensitive).  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -7,9 +7,8 @@ Method | HTTP request | Description
 [**CreateUnsuspend**](UnsuspendApi.md#createunsuspend) | **POST** /digitization/static/1/0/unsuspend | Used to unsuspend one or more previously suspended Tokens. The API is limited to 10 Tokens per request.
 
 
-
-## CreateUnsuspend
-
+<a name="createunsuspend"></a>
+# **CreateUnsuspend**
 > UnSuspendResponseSchema CreateUnsuspend (UnSuspendRequestSchema unsuspendRequestSchema = null)
 
 Used to unsuspend one or more previously suspended Tokens. The API is limited to 10 Tokens per request.
@@ -17,7 +16,6 @@ Used to unsuspend one or more previously suspended Tokens. The API is limited to
 This API is used to unsuspend one or more previously suspended Tokens. The API is limited to 10 Tokens per request. MDES will coordinate the unsuspension of the Tokens and notify any relevant parties that the Tokens have now been unsuspended. 
 
 ### Example
-
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -31,8 +29,9 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://api.mastercard.com/mdes";
-            var apiInstance = new UnsuspendApi(Configuration.Default);
+            Configuration config = new Configuration();
+            config.BasePath = "https://api.mastercard.com/mdes";
+            var apiInstance = new UnsuspendApi(config);
             var unsuspendRequestSchema = new UnSuspendRequestSchema(); // UnSuspendRequestSchema | Contains the details of the request message.  (optional) 
 
             try
@@ -41,7 +40,7 @@ namespace Example
                 UnSuspendResponseSchema result = apiInstance.CreateUnsuspend(unsuspendRequestSchema);
                 Debug.WriteLine(result);
             }
-            catch (ApiException e)
+            catch (ApiException  e)
             {
                 Debug.Print("Exception when calling UnsuspendApi.CreateUnsuspend: " + e.Message );
                 Debug.Print("Status Code: "+ e.ErrorCode);
@@ -53,7 +52,6 @@ namespace Example
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -69,8 +67,8 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -79,8 +77,5 @@ No authorization required
 | **401** | Example gateway error response  |  -  |
 | **500** | Example application error response  |  -  |
 
-[[Back to top]](#)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

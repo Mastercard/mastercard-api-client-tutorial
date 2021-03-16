@@ -1,6 +1,4 @@
-
 # Acme.App.MastercardApi.Client.Model.TokenDetailPAROnly
-
 ## Properties
 
 Name | Type | Description | Notes
@@ -12,7 +10,5 @@ Name | Type | Description | Notes
 **Iv** | **string** | It is recommended to supply a random initialization vector when encrypting the data using the one-time use AES key. Must be exactly 16 bytes (32 character hex string) to match the block size. Hex-encoded data (case-insensitive).  __Max Length:32__  | [optional] 
 **EncryptedData** | [**TokenDetailDataPAROnly**](TokenDetailDataPAROnly.md) |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
