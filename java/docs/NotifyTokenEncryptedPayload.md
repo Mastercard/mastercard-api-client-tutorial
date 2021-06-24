@@ -2,11 +2,12 @@
 
 # NotifyTokenEncryptedPayload
 
+
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**tokens** | [**List&lt;Token&gt;**](Token.md) |  |  [optional]
+**tokens** | [**List&lt;TokenForNTU&gt;**](TokenForNTU.md) |  |  [optional]
 
 
 

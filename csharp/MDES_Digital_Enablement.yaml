@@ -1,59 +1,34 @@
-swagger: '2.0'
+openapi: 3.0.0
 info:
-  version: 1.2.10
-  title: MDES for Merchants
+  version: 1.3.0
+  title: MDES Digital Enablement API
   description: |
-    The MDES APIs are designed as RPC style stateless web services where each API endpoint represents an operation to be performed.  All request and response payloads are sent in the JSON (JavaScript Object Notation) data-interchange format. Each endpoint in the API specifies the HTTP Method used to access it. All strings in request and response objects are to be UTF-8 encoded.  Each API URI includes the major and minor version of API that it conforms to.  This will allow multiple concurrent versions of the API to be deployed simultaneously.
-    <br>
-    __Authentication__
-    Mastercard uses OAuth 1.0a with body hash extension for authenticating the API clients. This requires every request that you send to 
-    Mastercard to be signed with an RSA private key. A private-public RSA key pair must be generated consisting of: <br>
-    1 . A private key for the OAuth signature for API requests. It is recommended to keep the private key in a password-protected or hardware keystore.
+    These APIs are designed as RPC style stateless web services where each API endpoint represents an operation to be performed.  All request and response payloads are sent in the JSON (JavaScript Object Notation) data-interchange format. Each endpoint in the API specifies the HTTP Method used to access it. All strings in request and response objects are to be UTF-8 encoded.  Each API URI includes the major and minor version of API that it conforms to.  This will allow multiple concurrent versions of the API to be deployed simultaneously.
+    <br><br>
+    **Authentication**
+    <br><br>
+    Mastercard uses OAuth 1.0a with body hash extension for authenticating the API clients. This requires every request that you send to  Mastercard to be signed with an RSA private key. A private-public RSA key pair must be generated consisting of:
+    <br><br>
+    1. A private key for the OAuth signature for API requests. It is recommended to keep the private key in a password-protected or hardware keystore.
     <br>
     2. A public key is shared with Mastercard during the project setup process through either a certificate signing request (CSR) or the API Key Generator. Mastercard will use the public key to verify the OAuth signature that is provided on every API call.<br>
 
     An OAUTH1.0a signer library is available on [GitHub](https://github.com/Mastercard/oauth1-signer-java)
-    <br> 
-    __Encryption__<br>
-    
+    <br><br>
+    **Encryption**
+    <br><br>
     All communications between Issuer web service and the Mastercard gateway is encrypted using TLS.
-    <br>
-    __Additional Encryption of Sensitive Data__
+    <br><br>
+    **Additional Encryption of Sensitive Data**
+    <br><br>
     In addition to the OAuth authentication, when using MDES Digital Enablement Service, any PCI sensitive and all account holder Personally Identifiable Information (PII) data must be encrypted. This requirement applies to the API fields containing encryptedData. Sensitive data is encrypted using a symmetric session (one-time-use) key. The symmetric session key is then wrapped with an RSA Public Key supplied by Mastercard during API setup phase (the Customer Encryption Key). <br>
 
     Java Client Encryption Library available on [GitHub](https://github.com/Mastercard/client-encryption-java)
-    
-  x-artifactId: mdes-merchants
-  x-field-level-encryption:
-    implementation: MDESCryptography
-    triggeringEndPath:
-      - /tokenize
-      - /searchTokens
-      - /getToken
-      - /transact
-      - /notifyTokenUpdated
-    objectsToEncrypt:
-      - fundingAccountInfo.encryptedPayload.encryptedData
-      - encryptedPayload.encryptedData
-    objectsToDecrypt:
-      - encryptedPayload.encryptedData
-      - tokenDetail.encryptedData
-  x-test-on-environment:
-    environment: SANDBOX_STATIC
-host: api.mastercard.com
-schemes:
-  - https
-basePath: /mdes
-consumes:
-  - application/json
-produces:
-  - application/json
 paths:
-  '/digitization/static/1/0/tokenize':
+  /digitization/static/1/0/tokenize:
     post:
       tags:
         - Tokenize
-      summary: Used to digitize a card to create a server-based Token.
       description: >
         Used to digitize a card to create a server-based Token. MDES will
         perform both card availability and eligibility checks to check that this
@@ -63,44 +38,151 @@ paths:
         digitization. No Tokenization Eligibility message is sent. The
         digitization decision will be one of Approved or Declined.
       operationId: createTokenize
-      parameters:
-        - name: TokenizeRequestSchema
-          in: body
-          description: |
-            A Tokenize request is used to digitize a PAN. 
-          schema:
-            $ref: '#/definitions/TokenizeRequestSchema'
-          
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TokenizeRequestSchema"
+        description: |
+          A Tokenize request is used to digitize a PAN.
       responses:
-        '200':
-          description: |
-            Contains the details of the token response message when a push account receipt is supplied in the tokenize request.
-          schema:
-            $ref: '#/definitions/TokenizeResponseSchema'
-          
-        '500':
-          description: |
-            Example application error response
-          schema:
-            $ref: '#/definitions/ErrorsResponse'
-          
-        '401':
+        "200":
+          description: >
+            Contains the details of the token response message when a push
+            account receipt is supplied in the tokenize request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TokenizeResponseSchema"
+        "401":
           description: |
             Example gateway error response
-          schema:
-            $ref: '#/definitions/GatewayErrorsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GatewayErrorsResponse"
+        "500":
+          description: |
+            Example application error response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorsResponse"
+      x-testable: true
+  /digitization/static/1/0/notifyTokenUpdated:
+    post:
+      tags:
+        - notifyTokenUpdated
+      operationId: notifyTokenUpdate (for token state change)
+      summary: Outbound API used by MDES to notify the Token Requestor of significant
+        Token updates, such as when the Token is activated, suspended,
+        unsuspended or deleted; or when information about the Token or its
+        product configuration has changed.
+      description: >
+        This API is used by MDES to notify the Token Requestor of significant
+        Token updates. Typical notification scenarios include
+
+
+        1. Informing the merchant a token is active
+
+        2. Informing the merchant a token has been suspended by the Issuer
+
+        3. Informing the merchant a token has been unsuspended by the Issuer
+
+        4. Informing the merchant a token has been deleted by the Issuer
+
+        5. Informing the merchant of a product configuration change (such as a change in Card Art)
+
+        6. Informing the merchant of underlying changes to the FPAN metadata associated to the token
+
+
+        **Connection Security**
+
+
+        Mastercard will connect via TLS protocol and verify the server certificate before establishing a connection to the client endpoint. During this handshake, the client server can request TLS client authentication. Mastercard will present a client certificate which identifies as ?ws.mastercard.com? This client certificate is issued by the Entrust L1K certificate and should be available in most trust stores.
+
+
+
+        **Conditional Objects**
+
+
+        The contents of the notifyTokenUpdated API will vary depending which of the above scneraios triggered the notification.
+
+
+        1. *productConfig* - Provided when Product Configuration has changed (e.g. such as card art).
+
+        2. *tokenInfo* - Provided when either the details of the token or associated FPAN have changed (such as token or PAN expiry).
+
+         The optional objects will always contain a minimum set of data which be returned regardless of whether or not updates have been made. These fields are denoted as required fields.
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NotifyTokenUpdatedRequestSchema"
+        description: |
+          Contains the details of the request message.
+      responses:
+        "200":
+          description: |
+            Contains the details of the response message.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotifyTokenUpdatedResponseSchema"
       x-testable: false
-      
-  '/assets/static/1/0/asset/{AssetId}':
+  /remotetransaction/static/1/0/transact:
+    post:
+      tags:
+        - Transact
+      operationId: createTransact
+      summary: Used by the Token Requestor to create a Digital Secure Remote Payment
+        ("DSRP") transaction cryptogram using the credentials stored within MDES
+        in order to perform a DSRP transaction.
+      description: >
+        This API is used by the Token Requestor to create a Digital Secure
+        Remote Payment ("DSRP") transaction cryptogram using the credentials
+        stored within MDES in order to perform a DSRP transaction through a
+        payment processor.  The entire response is encrypted. The caller may
+        only transact using the Tokens belonging to them.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TransactRequestSchema"
+        description: |
+          Contains the details of the request message.
+      responses:
+        "200":
+          description: |
+            Contains the details of the response message.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactResponseSchema"
+        "401":
+          description: |
+            Example gateway error response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GatewayErrorsResponse"
+        "500":
+          description: |
+            Example application error response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactError"
+      x-testable: false
+  "/assets/static/1/0/asset/{AssetId}":
     get:
       tags:
         - Get Asset
-      summary: >-
-        Used to retrieve static Assets from the MDES repository.
-      
+      summary: Used to retrieve static Assets from the MDES repository.
       description: >
-        This API is used to retrieve static Assets from MDES’s repository, such
-        as - Card art, MasterCard brand logos, Issuers’ logos, and Terms and
+        This API is used to retrieve static Assets from MDES?s repository, such
+        as - Card art, MasterCard brand logos, Issuers? logos, and Terms and
         Conditions. Every Asset in the repository is referenced using an Asset
         ID. Once an Asset has been assigned to an Asset ID, the contents of the
         Asset will not change. If contents do need to change (for example,
@@ -121,28 +203,31 @@ paths:
             Tokenize Response. The Asset ID itself is supplied as a Get request
             in the form of https://{INSERT ENVIRONMENT URL
             HERE}/mdes/assets/static/1/0/asset/{AssetID} - See JSON examples for
-            details. 
-          type: string
+            details.
           required: true
+          schema:
+            type: string
       responses:
-        '200':
+        "200":
           description: |
             Contains the details of the response message.
-          schema:
-            $ref: '#/definitions/AssetResponseSchema'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AssetResponseSchema"
         default:
           description: |
             unexpected error
-          schema:
-            $ref: '#/definitions/ErrorsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorsResponse"
       x-testable: false
-      
-  '/digitization/static/1/0/suspend':
+  /digitization/static/1/0/suspend:
     post:
       tags:
         - Suspend
-      summary: >-
-        Used to temporarily suspend one or more Tokens.
+      summary: Used to temporarily suspend one or more Tokens.
       description: >
         This API is used to temporarily suspend one or more Tokens (for example,
         suspending all Tokens on a device in response to the device being
@@ -151,39 +236,41 @@ paths:
         that the Tokens have been suspended. A suspended Token can be
         unsuspended using the Unsuspend resource.
       operationId: createSuspend
-      parameters:
-        - name: SuspendRequestSchema
-          in: body
-          description: |
-            Contains the details of the request message.
-          schema:
-            $ref: '#/definitions/SuspendRequestSchema'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SuspendRequestSchema"
+        description: |
+          Contains the details of the request message.
       responses:
-        '200':
+        "200":
           description: |
             Contains the details of the response message.
-          schema:
-            $ref: '#/definitions/SuspendResponseSchema'
-          
-        '500':
-          description: |
-            Example application error response
-          schema:
-            $ref: '#/definitions/ErrorsResponse'
-          
-        '401':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuspendResponseSchema"
+        "401":
           description: |
             Example gateway error response
-          schema:
-            $ref: '#/definitions/GatewayErrorsResponse'
-      x-testable: false      
-  
-  '/digitization/static/1/0/unsuspend':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GatewayErrorsResponse"
+        "500":
+          description: |
+            Example application error response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorsResponse"
+      x-testable: false
+  /digitization/static/1/0/unsuspend:
     post:
       tags:
         - Unsuspend
-      summary: >-
-        Used to unsuspend one or more previously suspended Tokens. The API is
+      summary: Used to unsuspend one or more previously suspended Tokens. The API is
         limited to 10 Tokens per request.
       description: >
         This API is used to unsuspend one or more previously suspended Tokens.
@@ -191,38 +278,41 @@ paths:
         unsuspension of the Tokens and notify any relevant parties that the
         Tokens have now been unsuspended.
       operationId: createUnsuspend
-      parameters:
-        - name: UnsuspendRequestSchema
-          in: body
-          description: |
-            Contains the details of the request message.
-          schema:
-            $ref: '#/definitions/UnSuspendRequestSchema'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UnSuspendRequestSchema"
+        description: |
+          Contains the details of the request message.
       responses:
-        '200':
+        "200":
           description: |
             Contains the details of the response message.
-          schema:
-            $ref: '#/definitions/UnSuspendResponseSchema'
-        '500':
-          description: |
-            Example application error response
-          schema:
-            $ref: '#/definitions/ErrorsResponse'
-         
-        '401':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnSuspendResponseSchema"
+        "401":
           description: |
             Example gateway error response
-          schema:
-            $ref: '#/definitions/GatewayErrorsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GatewayErrorsResponse"
+        "500":
+          description: |
+            Example application error response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorsResponse"
       x-testable: false
-      
-  '/digitization/static/1/0/delete':
+  /digitization/static/1/0/delete:
     post:
       tags:
         - Delete
-      summary: >-
-        Used to delete one or more Tokens. The API is limited to 10 Tokens per
+      summary: Used to delete one or more Tokens. The API is limited to 10 Tokens per
         request.
       description: >
         This API is used to delete one or more Tokens.  The API is limited to 10
@@ -230,75 +320,81 @@ paths:
         and notify any relevant parties that the Tokens have now been
         deactivated.
       operationId: deleteDigitization
-      parameters:
-        - name: DeleteRequestSchema
-          in: body
-          description: |
-            Contains the details of the request message.
-          schema:
-            $ref: '#/definitions/DeleteRequestSchema'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DeleteRequestSchema"
+        description: |
+          Contains the details of the request message.
       responses:
-        '200':
+        "200":
           description: |
             Contains the details of the response message.
-          schema:
-            $ref: '#/definitions/DeleteResponseSchema'
-        '500':
-          description: |
-            Example application error response
-          schema:
-            $ref: '#/definitions/ErrorsResponse'
-         
-        '401':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponseSchema"
+        "401":
           description: |
             Example gateway error response
-          schema:
-            $ref: '#/definitions/GatewayErrorsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GatewayErrorsResponse"
+        "500":
+          description: |
+            Example application error response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorsResponse"
       x-testable: false
-      
-  '/digitization/static/1/0/getTaskStatus':
+  /digitization/static/1/0/getTaskStatus:
     post:
       tags:
         - Get Task Status
-      summary: >-
-        Used to check the status of any asynchronous task that was previously
+      summary: Used to check the status of any asynchronous task that was previously
         requested.
       description: >
         Used to check the status of any asynchronous task that was previously
         requested.
       operationId: getTaskStatus
-      parameters:
-        - name: GetTaskStatusRequestSchema
-          in: body
-          description: |
-            Contains the details of the request message.
-          schema:
-            $ref: '#/definitions/GetTaskStatusRequestSchema'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GetTaskStatusRequestSchema"
+        description: |
+          Contains the details of the request message.
       responses:
-        '200':
+        "200":
           description: |
             Contains the details of the response message.
-          schema:
-            $ref: '#/definitions/GetTaskStatusResponseSchema'
-        '500':
-          description: |
-            Example application error response
-          schema:
-            $ref: '#/definitions/ErrorsResponse'
-          
-        '401':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetTaskStatusResponseSchema"
+        "401":
           description: |
             Example gateway error response
-          schema:
-            $ref: '#/definitions/GatewayErrorsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GatewayErrorsResponse"
+        "500":
+          description: |
+            Example application error response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorsResponse"
       x-testable: false
-      
-  '/digitization/static/1/0/searchTokens':
+  /digitization/static/1/0/searchTokens:
     post:
       tags:
         - Search Tokens
-      summary: >-
-        Used to get basic token information for all tokens on a specified
+      summary: Used to get basic token information for all tokens on a specified
         device, or all tokens mapped to the given Account PAN.
       description: >
         This API is used to get basic token information for all tokens on a
@@ -308,33 +404,37 @@ paths:
         with the Token state as maintained by MDES. Deactivated tokens are not
         returned.
       operationId: SearchTokens
-      parameters:
-        - name: SearchTokensRequestSchema
-          in: body
-          description: |
-            Contains the details of the request message.
-          schema:
-            $ref: '#/definitions/SearchTokensRequestSchema'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SearchTokensRequestSchema"
+        description: |
+          Contains the details of the request message.
       responses:
-        '200':
+        "200":
           description: |
             Contains the details of the response message.
-          schema:
-            $ref: '#/definitions/SearchTokensResponseSchema'
-        '500':
-          description: |
-            Example application error response
-          schema:
-            $ref: '#/definitions/ErrorsResponse'
-          
-        '401':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SearchTokensResponseSchema"
+        "401":
           description: |
             Example gateway error response
-          schema:
-            $ref: '#/definitions/GatewayErrorsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GatewayErrorsResponse"
+        "500":
+          description: |
+            Example application error response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorsResponse"
       x-testable: false
-      
-  '/digitization/static/1/0/getToken':
+  /digitization/static/1/0/getToken:
     post:
       tags:
         - Get Token
@@ -346,2047 +446,1966 @@ paths:
         (such as network time out) to ensure that external systems remain in
         sync with the Token state as maintained by MDES. Optionally, if
         requested, the token number can also be provided in the response (in
-        encrypted form). 
-      parameters:
-        - name: GetTokenRequestSchema
-          in: body
-          description: |
-            Contains the details of the request message.
-          schema:
-            $ref: '#/definitions/GetTokenRequestSchema'
+        encrypted form).
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GetTokenRequestSchema"
+        description: |
+          Contains the details of the request message.
       responses:
-        '200':
+        "200":
           description: |
             Contains the details of the response message.
-          schema:
-            $ref: '#/definitions/GetTokenResponseSchema'
-        '500':
-          description: |
-            Example application error response
-          schema:
-            $ref: '#/definitions/ErrorsResponse'
-          
-        '401':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetTokenResponseSchema"
+        "401":
           description: |
             Example gateway error response
-          schema:
-            $ref: '#/definitions/GatewayErrorsResponse'
-      x-testable: false
-  
-  '/digitization/static/1/0/notifyTokenUpdated':
-    post:
-      tags:
-        - notifyTokenUpdated
-      operationId: notifyTokenUpdate (for token state change)
-      summary: >-
-        Outbound API used by MDES to notify the Token Requestor of significant
-        Token updates, such as when the Token is activated, suspended,
-        unsuspended or deleted; or when information about the Token or its
-        product configuration has changed.
-      description: >
-        This API is used by MDES to notify the Token Requestor of significant
-        Token updates. Typical notification scenarios include  <br> <br>
-
-
-        1. Informing the merchant a token is active
-
-        2. Informing the merchant a token has been suspended by the Issuer
-
-        3. Informing the merchant a token has been unsuspended by the Issuer
-
-        4. Informing the merchant a token has been deleted by the Issuer
-
-        5. Informing the merchant of a product configuration change (such as a
-        change in Card Art)
-
-        6. Informing the merchant of underlying changes to the FPAN metadata
-        associated to the token<br>
-         
-        __Connection Security__<br>
-
-        Mastercard will connect via TLS protocol and verify the server
-        certificate before establishing a connection to the client endpoint.
-        During this handshake, the client server can request TLS client
-        authentication. Mastercard will present a client certificate which
-        identifies as “ws.mastercard.com” This client certificate is issued by
-        the Entrust L1K certificate and should be available in most trust
-        stores.
-         <br><br>
-        __Conditional Objects__<br>
-
-        The contents of the notifyTokenUpdated API will vary depending which of
-        the above scneraios triggered the notification. <br>
-         
-        1. *productConfig* - Provided when Product Configuration has changed
-        (e.g. such as card art).     
-
-        2. *tokenInfo* - Provided when either the details of the token or
-        associated FPAN have changed (such as token or PAN expiry).  
-         
-         The optional objects will always contain a minimum set of data which be returned regardless of whether or not updates have been made. These fields are denoted as required fields.<br>
-         
-         
-      parameters:
-        - name: NotifyTokenUpdatedRequestSchema
-          in: body
-          description: |
-            Contains the details of the request message.
-          schema:
-            $ref: '#/definitions/NotifyTokenUpdatedRequestSchema'
-      responses:
-        '200':
-          description: |
-            Contains the details of the response message.
-          schema:
-            $ref: '#/definitions/NotifyTokenUpdatedResponseSchema'
-      x-testable: false  
-  '/remotetransaction/static/1/0/transact':
-    post:
-      tags:
-        - Transact
-      operationId: createTransact
-      summary: >-
-        Used by the Token Requestor to create a Digital Secure Remote Payment
-        ("DSRP") transaction cryptogram using the credentials stored within MDES
-        in order to perform a DSRP transaction.
-      description: >
-        This API is used by the Token Requestor to create a Digital Secure
-        Remote Payment ("DSRP") transaction cryptogram using the credentials
-        stored within MDES in order to perform a DSRP transaction through a
-        payment processor.  The entire response is encrypted. The caller may
-        only transact using the Tokens belonging to them.
-      parameters:
-        - name: TransactRequestSchema
-          in: body
-          description: |
-            Contains the details of the request message.
-          schema:
-            $ref: '#/definitions/TransactRequestSchema'
-      responses:
-        '200':
-          description: |
-            Contains the details of the response message.
-          schema:
-            $ref: '#/definitions/TransactResponseSchema'
-        '500':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GatewayErrorsResponse"
+        "500":
           description: |
             Example application error response
-          schema:
-            $ref: '#/definitions/TransactError'
-          
-        '401':
-          description: |
-            Example gateway error response
-          schema:
-            $ref: '#/definitions/GatewayErrorsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorsResponse"
       x-testable: false
-      
-definitions:
-  TokenizeRequestSchema:
-    required:
-      - tokenRequestorId
-      - tokenType
-      - taskId
-      - fundingAccountInfo
-    properties:
-      responseHost:
-        type: string
-        description: >
-          "The host that originated the request. Future calls in the same
-          conversation may be routed to this host. Must be provided as:
-          host[:port][/contextRoot] Where port and contextRoot are optional. If
-          contextRoot is not provided, the default (per the URL Scheme) is
-          assumed and must be used."
-        example: site1.your-server.com
-      requestId:
-        type: string
-        description: |
-          Unique identifier for the request.
-        example: '123456'
-      tokenType:
-        type: string
-        description: |
-          The type of Token requested. Must be CLOUD      
-          __Max Length:32__   
-        example: CLOUD
-      tokenRequestorId:
-        type: string
-        description: |
-          11-digit numeric ID provided by Mastercard that identifies the Token Requestor. 
-        example: '98765432101'
-      taskId:
-        type: string
-        description: >
-          Identifier for this task as assigned by the Token Requestor, unique
-          across a given Token Requestor Identifier. May be used in the Get Task
-          Status API to query the status of this task.     
-
-          __Max Length:64__
-        example: '123456'
-      fundingAccountInfo:
-        description: |
-          Contains the information of the funding account to be tokenized. <br> 
-           __Note:__ fundingAccountInfo replaces cardInfo from previous versions.  
-        $ref: '#/definitions/fundingAccountInfo'
-      
-      consumerLanguage:
-        type: string
-        description: >
-          Language preference selected by the consumer. Formatted as an ISO-
-          639-1 two-letter language code.   
-
-          __Max Length:2__
-        example: en
-      tokenizationAuthenticationValue:
-        type: string
-        description: >
-          The Tokenization Authentication Value (TAV) as cryptographically
-          signed by the Issuer to authorize this digitization request.     
-
-          __Max Length:2048__
-        example: RHVtbXkgYmFzZSA2NCBkYXRhIC0gdGhpcyBpcyBub3QgYSByZWFsIFRBViBleGFtcGxl
-      decisioningData:
-        $ref: '#/definitions/DecisioningData'
-  TokenizeResponseSchema:
-    properties:
-      responseHost:
-        type: string
-        description: >
-          The MasterCard host that originated the request. Future calls in the
-          same conversation may be routed to this host. 
-        example: site2.payment-app-provider.com
-      responseId:
-        type: string
-        description: |
-          Unique identifier for the response.
-        example: 123456
-      decision:
-        type: string
-        description: >
-          The tokenization decision for this digitization request. Must be
-          either APPROVED (Digitization request was approved), DECLINED
-          (Digitization request was declined) OR
-          REQUIRE_ADDITIONAL_AUTHENTICATION Digitization request was approved
-          but optionally requires additional authentication. One or more
-          Authentication methods may be provided).
-        example: APPROVED
-      authenticationMethods:
-        type: array
-        items:
-          $ref: '#/definitions/authenticationMethods'
-      tokenUniqueReference:
-        type: string
-        description: >
-          The unique reference allocated to the new Token. Serves as a unique
-          identifier for all subsequent queries or management functions relating
-          to this Token. Provided if the decision was APPROVED or
-          REQUIRE_ADDITIONAL_AUTHENTICATION.   
-
-          __Max Length:64__
-        example: DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45
-      panUniqueReference:
-        type: string
-        description: >
-          The unique reference allocated to the Account Primary Account Number.
-          Provided if the decision was APPROVED or
-          REQUIRE_ADDITIONAL_AUTHENTICATION.
-           __Max Length:64__
-        example: FWSPMC000000000159f71f703d2141efaf04dd26803f922b
-      productConfig:
-        $ref: '#/definitions/productConfig'
-      tokenInfo:
-        $ref: '#/definitions/tokenInfo'
-      tokenDetail:
-        $ref: '#/definitions/tokenDetail'
-      
-         
-  
-  AssetResponseSchema:
-    properties:
-      mediaContents:
-        type: array
-        items:
-          $ref: '#/definitions/mediaContent'
-  mediaContent:
-    required:
-      - type
-      - data
-    properties:
-      type:
-        type: string
-        description: >
-          What type of media this is. Specified as a MIME type, which will be
-          one of the following supported types 
-
-
-          * applicatoin/pdf (for images must be a vector PDF image)
-
-          * image/png (includes alpha channel)
-
-          * text/plain 
-
-          * text/html
-
-
-          __Max Length:32__ 
-        example: image/png
-      data:
-        type: string
-        description: >
-          The data for this item of media. Base64-encoded data, given in the
-          format as specified in ‘type’.
-        example: >-
-          iVBORw0KGgoAAAANSUhEUgAAAXcAAAF3CAIAAADRopypAAAABGdBTUEAANbY1E9YMgAAAAlwSFlzAAAASAAAAEgARslrPgAAGtNJREFUeNrt3W9oW
-      height:
-        type: string
-        description: |
-          For image assets, the height of this image. Specified in pixels.    
-          __Max Length:6__ 
-        example: '375'
-      width:
-        type: string
-        description: |
-          For image assets, the width of this image. Specified in pixels.       
-          __Max Length:6__ 
-        example: '375'
-  SuspendRequestSchema:
-    required:
-      - requestId
-      - tokenUniqueReferences
-      - causedBy
-      - reasonCode
-    properties:
-      responseHost:
-        type: string
-        description: >
-          The host that originated the request. Future calls in the same
-          conversation may be routed to this host.
-        example: site2.payment-app-provider.com
-      requestId:
-        type: string
-        description: |
-          Unique identifier for the request.
-        example: 123456
-      paymentAppInstanceId:
-        type: string
-        description: >
-          Identifier for the specific Mobile Payment App instance, unique across
-          a given Wallet Identifier. This value cannot be changed after
-          digitization. This field is alphanumeric and additionally web-safe
-          base64 characters per RFC 4648 (minus "-", underscore "_") up to a
-          maximum length of 48, = should not be URL encoded. Conditional - not
-          applicable for server based tokens but required otherwise.    
-
-          __Max Length:48__
-        example: 123456789
-      tokenUniqueReferences:
-        type: array
-        items:
+servers:
+  - url: https://api.mastercard.com/mdes
+components:
+  schemas:
+    TokenizeRequestSchema:
+      required:
+        - tokenRequestorId
+        - tokenType
+        - taskId
+        - fundingAccountInfo
+      properties:
+        responseHost:
           type: string
-        description: >
-          The specific Token to be suspended. Array of more or more valid
-          references as assigned by MDES 
-        example: DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45
-      causedBy:
-        type: string
-        description: >
-          Who or what caused the Token to be suspended. Must be either the
-          'CARDHOLDER' (operation requested by the Cardholder) or
-          'TOKEN_REQUESTOR' (operation requested by the token requestor).    
-
-          __Max Length:64__
-        example: CARDHOLDER
-      reason:
-        type: string
-        description: |
-          Free form reason why the Tokens are being suspended.    
-          __Max Length:256__
-        example: Lost/stolen device
-      reasonCode:
-        type: string
-        description: >
-          The reason for the action to be suspended. Must be one of
-          'SUSPECTED_FRAUD' (suspected fraudulent token transactions), 'OTHER'
-          (Other - default used if value not provided).    
-
-          __Max Length:64__
-        example: SUSPECTED_FRAUD
-  SuspendResponseSchema:
-    properties:
-      responseHost:
-        type: string
-        description: >
-          The host that originated the request. Future calls in the same
-          conversation may be routed to this host.
-        example: site1.mastercard.com
-      responseId:
-        type: string
-        description: |
-          Unique identifier for the response.
-        example: 123456
-      tokens:
-        type: array
-        items:
-          $ref: '#/definitions/token_for_LCM'
-  DeleteRequestSchema:
-    required:
-      - requestId
-      - tokenUniqueReferences
-      - causedBy
-      - reasonCode
-    properties:
-      responseHost:
-        type: string
-        description: >
-          The host that originated the request. Future calls in the same
-          conversation may be routed to this host.
-        example: site2.payment-app-provider.com
-      requestId:
-        type: string
-        description: |
-          Unique identifier for the request.
-        example: 123456
-      paymentAppInstanceId:
-        type: string
-        description: >
-          Identifier for the specific Mobile Payment App instance, unique across
-          a given Wallet Identifier. This value cannot be changed after
-          digitization. This field is alphanumeric and additionally web-safe
-          base64 characters per RFC 4648 (minus "-", underscore "_") up to a
-          maximum length of 48, = should not be URL encoded. Conditional - not
-          applicable for server based tokens but required otherwise.    
-
-          __Max Length:48__
-        example: 123456789
-      tokenUniqueReferences:
-        type: array
-        items:
+          description: >
+            "The host that originated the request. Future calls in the same
+            conversation may be routed to this host. Must be provided as:
+            host[:port][/contextRoot] Where port and contextRoot are optional.
+            If contextRoot is not provided, the default (per the URL Scheme) is
+            assumed and must be used."
+          example: site1.your-server.com
+        requestId:
           type: string
-        description: >
-          The specific Token to be deleted. Array of more or more valid
-          references as assigned by MDES 
-        example: DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45
-      causedBy:
-        type: string
-        description: >
-          Who or what caused the Token to be deleted. Must be either the
-          'CARDHOLDER' (operation requested by the Cardholder) or
-          'TOKEN_REQUESTOR' (operation requested by the token requestor).   
-
-          __Max Length:64__
-        example: CARDHOLDER
-      reason:
-        type: string
-        description: |
-          Free form reason why the Tokens are being suspended.    
-          __Max Length:256__
-        example: Lost/stolen device
-      reasonCode:
-        type: string
-        description: >
-          The reason for the action to be deleted. Must be one of
-          'SUSPECTED_FRAUD' (suspected fraudulent token transactions), 'OTHER'
-          (Other - default used if value not provided).    
-
-          __Max Length:64__
-        example: SUSPECTED_FRAUD
-  DeleteResponseSchema:
-    properties:
-      responseHost:
-        type: string
-        description: >
-          The host that originated the request. Future calls in the same
-          conversation may be routed to this host.
-        example: site1.mastercard.com
-      responseId:
-        type: string
-        description: |
-          Unique identifier for the response.
-        example: 123456
-      tokens:
-        type: array
-        items:
-          $ref: '#/definitions/token_for_LCM'
-  UnSuspendRequestSchema:
-    required:
-      - requestId
-      - tokenUniqueReferences
-      - causedBy
-      - reasonCode
-    properties:
-      responseHost:
-        type: string
-        description: >
-          The host that originated the request. Future calls in the same
-          conversation may be routed to this host.
-        example: site2.payment-app-provider.com
-      requestId:
-        type: string
-        description: |
-          Unique identifier for the request.
-        example: 123456
-      paymentAppInstanceId:
-        type: string
-        description: >
-          Identifier for the specific Mobile Payment App instance, unique across
-          a given Wallet Identifier. This value cannot be changed after
-          digitization. This field is alphanumeric and additionally web-safe
-          base64 characters per RFC 4648 (minus "-", underscore "_") up to a
-          maximum length of 48, = should not be URL encoded. Conditional - not
-          applicable for server based tokens but required otherwise.    
-
-          __Max Length:48__
-        example: 123456789
-      tokenUniqueReferences:
-        type: array
-        items:
+          description: |
+            Unique identifier for the request.
+          example: "123456"
+        tokenType:
           type: string
-        description: >
-          The specific Token to be unsuspended. Array of more or more valid
-          references as assigned by MDES 
-        example: DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45
-      causedBy:
-        type: string
-        description: >
-          Who or what caused the Token to be unsuspended. Must be either the
-          'CARDHOLDER' (operation requested by the Cardholder) or
-          'TOKEN_REQUESTOR' (operation requested by the token requestor).    
-
-          __Max Length:64__
-        example: CARDHOLDER
-      reason:
-        type: string
-        description: |
-          Free form reason why the Tokens are being suspended.   
-          __Max Length:256__
-        example: Lost/stolen device
-      reasonCode:
-        type: string
-        description: >
-          The reason for the action to be unsuspended. Must be one of
-          'SUSPECTED_FRAUD' (suspected fraudulent token transactions), 'OTHER'
-          (Other - default used if value not provided).    
-
-          __Max Length:64__
-        example: SUSPECTED_FRAUD
-  UnSuspendResponseSchema:
-    properties:
-      responseHost:
-        type: string
-        description: >
-          The host that originated the request. Future calls in the same
-          conversation may be routed to this host.
-        example: site1.mastercard.com
-      responseId:
-        type: string
-        description: |
-          Unique identifier for the response.
-        example: 123456
-      tokens:
-        type: array
-        items:
-          $ref: '#/definitions/token_for_LCM'
-  GetTaskStatusRequestSchema:
-    required:
-      - requestId
-      - taskId
-      - tokenRequestorId
-    properties:
-      responseHost:
-        type: string
-        description: >
-          The host that originated the request. Future calls in the same
-          conversation may be routed to this host.
-        example: site2.payment-app-provider.com
-      requestId:
-        type: string
-        description: |
-          Unique identifier for the request.
-        example: 123456
-      tokenRequestorId:
-        type: string
-        description: |
-          11-digit numeric ID provided by Mastercard that identifies the Token Requestor. 
-        example: 98765432101
-      taskId:
-        type: string
-        description: >
-          Unique identifier for this task. Must be an identifier previously used
-          when requesting a task.   
-
-          __Max Length:64__
-        example: 123456
-  GetTaskStatusResponseSchema:
-    properties:
-      responseId:
-        type: string
-        description: |
-          Unique identifier for the response.
-        example: 123456
-      responseHost:
-        type: string
-        description: >
-          The host that originated the request. Future calls in the same
-          conversation may be routed to this host.
-        example: site2.payment-app-provider.com
-      status:
-        type: string
-        description: >
-          The status of the specified task. Must be either 'PENDING' (The Task
-          has been recieved and is pending processing), 'IN_PROGRESS' (The task
-          is currently in progress), 'COMPLETED' (The task was completed
-          successfully) or 'FAILED' The task was processed but failed to
-          complete successfully.    
-
-          __Max Length:64__
-        example: FAILED
-      
-  SearchTokensRequestSchema:
-    required:
-      - requestId
-    properties:
-      requestId:
-        type: string
-        description: |
-          Unique identifier for the request.
-        example: 123456
-      responseHost:
-        type: string
-        description: >
-          The host that originated the request. Future calls in the same
-          conversation may be routed to this host.
-        example: site2.payment-app-provider.com
-      fundingAccountInfo:
-        $ref: '#/definitions/fundingAccountInfo'
-      tokenRequestorId:
-        type: string
-        description: >
-          Identifies the Token Requestor. Only tokens associated with the token
-          requestor will be returned. Length - 11. 
-        example: 98765432101
-  SearchTokensResponseSchema:
-    properties:
-      responseHost:
-        type: string
-        description: >
-          The host that originated the request. Future calls in the same
-          conversation may be routed to this host.
-        example: site1.mastercard.com
-      responseId:
-        type: string
-        description: |
-          Unique identifier for the response.
-        example: 123456
-      tokens:
-        type: array
-        items:
-          $ref: '#/definitions/token'
-  GetTokenRequestSchema:
-    required:
-      - requestId
-      - tokenUniqueReference
-    properties:
-      responseHost:
-        type: string
-        description: >
-          The host that originated the request. Future calls in the same
-          conversation may be routed to this host.
-        example: site2.payment-app-provider.com
-      requestId:
-        type: string
-        description: |
-          Unique identifier for the request.
-        example: 123456
-      paymentAppInstanceId:
-        type: string
-        description: >
-          Identifier for the specific Mobile Payment App instance, unique across
-          a given Wallet Identifier. This value cannot be changed after
-          digitization. This field is alphanumeric and additionally web-safe
-          base64 characters per RFC 4648 (minus "-", underscore "_") up to a
-          maximum length of 48, = should not be URL encoded. Conditional - not
-          applicable for server-based tokens but required otherwise.    
-
-          __Max Length:48__
-        example: 123456789
-      tokenUniqueReference:
-        type: string
-        description: |
-          The specific Token to be queried.    
-          __Max Length:64__ 
-        example: DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45
-      includeTokenDetail:
-        type: string
-        description: |
-          Flag to indicate if the encrypted token should be returned.    
-          __Max Length:5__ 
-        example: true
-  GetTokenResponseSchema:
-    properties:
-      responseId:
-        type: string
-        description: |
-          Unique identifier for the response.
-        example: 123456
-      token:
-        $ref: '#/definitions/token'
-      tokenDetail:
-        $ref: '#/definitions/tokenDetail_getToken_Only'
-
-  NotifyTokenUpdatedRequestSchema:
-    required:
-      - responseHost
-      - requestId
-      - encryptedPayload
-    properties:
-      responseHost:
-        type: string
-        description: >
-          The host that originated the request. Future calls in the same
-          conversation should be routed to this host.
-        example: site2.payment-app-provider.com
-      requestId:
-        type: string
-        description: |
-          Unique identifier for the request.
-        example: 123456
-      encryptedPayload:
-        $ref: '#/definitions/encryptedPayload'
-  encryptedPayload:
-    required:
-      - publicKeyFingerprint
-      - encryptedKey
-      - encryptedData
-    properties:
-      publicKeyFingerprint:
-        type: string
-        description: >
-          The fingerprint of the public key used to encrypt the ephemeral AES
-          key.    
-
-          __Max Length:64__
-        example: 4c4ead5927f0df8117f178eea9308daa58e27c2b
-      encryptedKey:
-        type: string
-        description: >
-          One-time use AES key encrypted by the MasterCard public key (as
-          identified by publicKeyFingerprint) using the OAEP or PKCS#1 v1.5
-          scheme (depending on the value of oaepHashingAlgorithm.    
-
-          __Max Length:512__
-        example: A1B2C3D4E5F6112233445566
-      oaepHashingAlgorithm:
-        type: string
-        description: >
-          Hashing algorithm used with the OAEP scheme. Must be either SHA256 or
-          SHA512.
-        example: SHA512
-      iv:
-        type: string
-        description: >
-          The initialization vector used when encrypting data using the one-time
-          use AES key. Must be exactly 16 bytes (32 character hex string) to
-          match the block size. If not present, an IV of zero is assumed. Length
-          - 32.
-        example: NA
-      encryptedData:
-        $ref: '#/definitions/notifyTokenEncryptedPayload'
-  notifyTokenEncryptedPayload:
-    properties:
-      tokens:
-        type: array
-        items:
-          $ref: '#/definitions/token'
-
-  NotifyTokenUpdatedResponseSchema:
-    properties:
-      responseHost:
-        type: string
-        description: >
-          The host that originated the request. Future calls in the same
-          conversation may be routed to this host.
-        example: site1.mastercard.com
-      responseId:
-        type: string
-        description: |
-          Unique identifier for the response.
-        example: 123456
-  TransactRequestSchema:
-    required:
-      - requestId
-      - tokenUniqueReference
-      - dsrpType
-    properties:
-      responseHost:
-        type: string
-        description: >
-          The host that originated the request. Future calls in the same
-          conversation may be routed to this host.
-        example: site2.payment-app-provider.com
-      requestId:
-        type: string
-        description: |
-          Unique identifier for the request.
-        example: 123456
-      tokenUniqueReference:
-        type: string
-        description: |
-          Globally unique identifier for the Token, as assigned by MDES.   
-          __Max Length:64__
-        example: DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45
-      dsrpType:
-        type: string
-        description: >
-          What type of DSRP cryptogram to create. Must be either UCAF or
-          M_CHIP.    
-
-          __Max Length:64__
-        example: UCAF
-      unpredictableNumber:
-        type: string
-        description: >
-          __CONDITIONAL__<br>HEX Encoded data (case sensitive) provided by the merchant to provide
-          variability and uniqueness to the generation of a cryptogram. 
-          Required if the shouldGenerateUnpredictableNumber flag is not set during on-boarding.<br>
-          __Length:8__          
-        example: 23424563
-  TransactResponseSchema:
-    properties:
-      responseId:
-        type: string
-        description: |
-          Unique identifier for the response.
-      responseHost:
-        type: string
-        description: >
-          The host that originated the request. Future calls in the same
-          conversation may be routed to this host.
-        example: site2.payment-app-provider.com
-      encryptedPayload:
-        $ref: '#/definitions/encryptedPayloadTransact'
-     
-  encryptedPayloadTransact:
-    properties:
-      publicKeyFingerprint:
-        type: string
-        description: >
-          The fingerprint of the public key used to encrypt the ephemeral AES
-          key.<br>
-
-          __Max Length: 64__
-        example: 4c4ead5927f0df8117f178eea9308daa58e27c2b
-      encryptedKey:
-        type: string
-        description: >
-          One-time use AES key encrypted by the MasterCard public key (as
-          identified by publicKeyFingerprint) using the OAEP or PKCS#1 v1.5
-          scheme (depending on the value of oaepHashingAlgorithm. <br>
-
-          __Max Length: 512__
-        example: A1B2C3D4E5F6112233445566
-      oaepHashingAlgorithm:
-        type: string
-        description: >
-          Hashing algorithm used with the OAEP scheme. Must be either SHA256 or
-          SHA512.
-        example: SHA512
-      iv:
-        type: string
-        description: >
-          The initialization vector used when encrypting data using the one-time
-          use AES key. Must be exactly 16 bytes (32 character hex string) to
-          match the block size. If not present, an IV of zero is assumed. 
-
-          <br>__Length: 32__
-        example: NA
-      encryptedData:
-        $ref: '#/definitions/transactEncryptedData'
-  transactEncryptedData:
-    properties:
-      accountNumber:
-        type: string
-        description: >
-          The Primary Account Number for the transaction – this is the Token
-          PAN. 
-
-          <br>__Min Length: 9__
-
-          <br>__Max Length: 19__
-        example: 5480981500100002
-      applicationExpiryDate:
-        type: string
-        description: |
-          Application expiry date for the Token. Expressed in YYMMDD format. 
-          <br> __Length: 6__
-        example: '210931'
-      panSequenceNumber:
-        type: string
-        description: |
-          Application PAN sequence number for the Token <br> 
-          __Length: 2__
-        example: '01'
-      track2Equivalent:
-        type: string
-        description: >
-          Track 2 equivalent data for the Token. Expressed according to ISO/IEC
-          7813, excluding start sentinel, end sentinel, and Longitudinal
-          Redundancy Check (LRC), using hex nibble 'D' as field separator, and
-          padded to whole bytes using one hex nibble 'F' as needed.  <br>  
-
-          __Max Length: 38__
-        example: "5480981500100002D18112011000000000000F"
-      de48se43Data:
-        type: string
-        description: |
-          Data for DE 48 Subelement 43 containing the cryptogram.<br>
-          DSRP cryptogram is required to be sent in the DE104 – DPD (Digital Payment Data) field 
-          – please refer to AN3363 bulletin for more details.<br>
-          __Max Length: 32__
-        example: "11223344556677889900112233445566778899"
-  
-  GatewayErrorsResponse:
-    properties:
-      Errors:
-         $ref: '#/definitions/GatewayErrorsSchema'
-  
-  GatewayErrorsSchema:
-    properties: 
-      Error:
-        type: array
-        items: 
-         $ref: '#/definitions/GatewayError'
-  
-  GatewayError:
-    description: Only returned in the event of an error condition.
-    properties:
-      Source:
-        type: string
-        description: >
-          An element used to indicate the source of the issue causing this
-          error. e.g. Gateway
-          __Max Length: 32__
-        example: "GATEWAY" 
-      Description:
-        type: string
-        description: >
-          Description of the reason the operation failed. See API Response
-          Errors <br>
-
-          __Max Length: 256__
-        example: "OAuth signatures did not match."
-      ReasonCode:
-        type: string
-        description: |
-          A reason code for the error that has occurred.<br>
-          __Max Length: 100__
-        example: "AUTHENTICATION_FAILED"
-      
-      Recoverable:
-        type: boolean
-        description: >
-          Generated by the gateway to indicate if the request could presented
-          again for processing. Either "TRUE" or "FALSE"
-        example: 'false'        
-      Details:
-        type: boolean
-        description: >
-          Always NULL, present for backwards compatiility
-        example: "null"
-  ErrorsResponse:
-    properties:
-      errorCode:
-        type: string
-        description: >
-          __CONDITIONAL__<br> Returned in the event of an error and contains the
-          reason the operation failed. Only use if errors object is not present.
-          <br>
-
-          __Max Length: 32__
-      errorDescription:
-        type: string
-        description: >
-          __CONDITIONAL__<br> Returned in the event of an error and contains a
-          description of why the operation failed. Only use if errors object is
-          not present. <br>
-
-          __Max Length: 32__ 
-      responseHost:
-        type: string
-        description: >
-          The MasterCard host that originated the request. Future calls in the
-          same conversation may be routed to this host. 
-        example: site2.payment-app-provider.com
-      responseId:
-        type: string
-        description: |
-          Unique identifier for the response.
-        example: 123456
-      Errors:
-        description: | 
-         __CONDITIONAL__ <br>Returned if one or more errors occurred performing the operation. Not present Get Token error conditions.
-        $ref: '#/definitions/Error'
-  Error:
-    description: Only returned in the event of an error condition.
-    properties:
-      source:
-        type: string
-        description: >
-          An element used to indicate the source of the issue causing this
-          error. Must be one of 
-           * 'MDES'
-           * 'INPUT'<br>
-          __Max Length: 32__
-      errorCode: 
-         type: string
-         description: | 
-          An error code generated by the gateway if the error occurs before reaching the MDES application. 
-            __Max Length: 100__
-          
-      description:
-        type: string
-        description: >
-          Description of the reason the operation failed. See API Response
-          Errors <br>
-
-          __Max Length: 256__
-      reasonCode:
-        type: string
-        description: |
-          A reason code for the error that has occurred.<br>
-          __Max Length: 100__
-      recoverable:
-        type: boolean
-        description: >
-          Generated by the gateway to indicate if the request could presented
-          again for processing. Either "TRUE" or "FALSE"
-        example: 'TRUE'
-  TransactError:
-    description: Only returned in the event of an error condition for the Transact API
-    properties:
-      source:
-        type: string
-        description: >
-          An element used to indicate the source of the issue causing this
-          error. Must be one of 
-           * 'MDES'
-           * 'INPUT' <br>
-          __Max Length: 32__
-      errorCode:
-        type: string
-        description: >
-          A reason code or information pertaining to the error that has
-          occurred. This will contain the error reported by the platform (e.g.
-          authentication errors) or service (e.g. invalid TUR)<br>
-
-          __Max Length: 100__
-      description:
-        type: string
-        description: |
-          Description of the reason why the operation failed. <br>
-          __Max Length: 256__
-      reasonCode:
-        type: string
-        description: >
-          A reason code or information pertaining to the error that has occurred
-          from the service (e.g. invalid TUR). See API Response Errors<br>
-
-          __Max Length: 100__        
-      errorDescription:
-        type: string
-        description: |
-          __DEPRECATED__<br>
-          Use description instead.<br>
-          __Max Length: 100__ 
-  fundingAccountInfo:
-    properties:
-      panUniqueReference:
-        type: string
-        description: >
-
-          __(CONDITIONAL)__ <br>
-
-
-          For repeat digitizations, the unique reference allocated to the
-          Primary Account Number. When supplied, the
-          tokenUniqueReferenceForPanInfo, accountNumber, expiryMonth and
-          expiryYear must be omitted from CardInfoData. Only allowed if tokenUniqueReference and pushAccountReceipt are not present and encrypted data does not contain the account information. <br>
-
-          __Max Length:64__
-      tokenUniqueReference:
-        type: string
-        description: >
-
-          __(CONDITIONAL)__<br>
-
-
-          A unique reference assigned following the allocation of a token used
-          to identify the token for the duration of its lifetime.  For repeat
-          digitizations, the unique reference allocated to the token will be
-          used to retrieve the financial account information. When supplied, the
-          account information is omitted from FundingAccountData. Only allowed if panUniqueReference and pushAccountReceipt are not present and encrypted data does not contain the account information. <br>
-
-          __Max Length:64__
-      
-      pushAccountReceipt: 
-        type: string
-        description: | 
-          __(CONDITIONAL)__<br>
-          The push account receipt is supplied by the Issuer to the Merchant during a push provisioning operation. The pushAccountReceipt is then submitted by the merchant in the tokenize request and will be used by MDES to retrieve the associated funding account information. Only allowed if panUniqueReference and tokenUniqueReference are not present and encrypted data does not contain the funding account information. Refer to the <a href="https://developer.mastercard.com/page/push-provisioning-merchant">Push Provisioning Use Case Guide </a>  for more information about pushAccountReceipt.
-          
-          __Max Length:64__
-
-      encryptedPayload:
-        description: |
-          __(CONDITIONAL)__ 
-        $ref: '#/definitions/fundingAccountInfo-EncryptedPayload'
-  fundingAccountInfo-EncryptedPayload:
-    properties:
-      publicKeyFingerprint:
-        type: string
-        description: >
-          The fingerprint of the public key used to encrypt the ephemeral AES
-          key.<br>
-
-          __Max Length: 64__
-        example: 4c4ead5927f0df8117f178eea9308daa58e27c2b
-      encryptedKey:
-        type: string
-        description: >
-          One-time use AES key encrypted by the MasterCard public key (as
-          identified by publicKeyFingerprint) using the OAEP or PKCS#1 v1.5
-          scheme (depending on the value of oaepHashingAlgorithm. <br>
-
-          __Max Length: 512__
-        example: A1B2C3D4E5F6112233445566
-      oaepHashingAlgorithm:
-        type: string
-        description: >
-          Hashing algorithm used with the OAEP scheme. Must be either SHA256 or
-          SHA512.
-        example: SHA512
-      iv:
-        type: string
-        description: >
-          The initialization vector used when encrypting data using the one-time
-          use AES key. Must be exactly 16 bytes (32 character hex string) to
-          match the block size. If not present, an IV of zero is assumed. 
-
-          <br>__Length: 32__
-        example: NA
-      encryptedData:
-        $ref: '#/definitions/FundingAccountData'
-  FundingAccountData:
-    properties:
-      cardAccountData:
-        $ref: '#/definitions/CardAccountData_inbound'
-      accountHolderData:
-        $ref: '#/definitions/accountHolderData'
-      source:
-        type: string
-        description: |
-          (__Required as minimum for Tokenization__) 
-          The source of the account. Must be one of
-            * ACCOUNT_ON_FILE
-            * ACCOUNT_ADDED_MANUALLY
-            * ACCOUNT_ADDED_VIA_APPLICATION 
-          __Max Length:32__
-        example: ACCOUNT_ON_FILE
-  accountHolderData:
-    properties:
-      accountHolderName:
-        type: string
-        description: |
-          __(OPTIONAL)__
-          The name of the cardholder in the format LASTNAME/FIRSTNAME or FIRSTNAME LASTNAME<br>
-          __Max Length:27__
-      accountHolderAddress:
-        $ref: '#/definitions/billingAddress'
-      consumerIdentifier:
-        type: string
-        description: |
-          __(OPTIONAL)__
-          Customer Identifier that may be required in some regions.<br>
-          __Max Length:88__
-      accountHolderEmailAddress:
-        type: string
-        description: |   
-         __(OPTIONAL)__
-         The e-mail address of the Account Holder<br>
-         __Max Length: 320__
-      accountHolderMobilePhoneNumber: 
-        description: |
-         __(OPTIONAL)__
-         The mobile phone number of the account holder.
-        $ref: '#/definitions/PhoneNumber'
-
-  accountHolderData_outbound:
-    description: |
-        __(CONDITIONAL)__<br>
-        Present in tokenize response if supported by the Merchant, if using a pushAccountReceipt and if there is account holder data associated with the pushAccountReceipt in case that the issuer decision is APPROVED. Refer to <a href="https://developer.mastercard.com/devzone/api/portal/download/0000016a-f9a1-d055-ad7a-f9efc8d50000">MDES Token Connect Token Requestor Implementation Guide and Specification </a> for more details. </br>
-    properties:
-      accountHolderName:
-        type: string
-        description: |
-          __(OPTIONAL)__
-          The name of the cardholder<br>
-          __Max Length:27__
-      accountHolderAddress:
-        $ref: '#/definitions/billingAddress'
-      accountHolderEmailAddress:
-        type: string
-        description: |
-          __(OPTIONAL)__
-          The e-mail address of the Account Holder<br>
-          __Max Length:320__
-      accountHolderMobilePhoneNumber:
-        description: |
-          __(OPTIONAL)__
-          The mobile phone number of the account holder.
-        $ref: '#/definitions/PhoneNumber'
-
-  PhoneNumber: 
-    properties: 
-      countryDialInCode: 
-       type: number
-       description: |
-        __(OPTIONAL)__
-        The country code for the phone number. E.g. 1 for US or 44 for UK.<br>
-        __Max Length: 4__
-       example: "00 44"
-      phoneNumber: 
-       type: number
-       description: | 
-        __(OPTIONAL)__
-        The phone number of the account holder <br> 
-        __Max Length: 20__
-       example: "07777 777 777"
-  
-  CardAccountData_inbound:
-    description: | 
-     __(CONDITIONAL)__ <br> Required in Tokenize or Search Tokens unless a valid panUniqueReference, tokenUniqueReference or pushAccountReceipt is also given in FundingAccountInfo.
-    properties:
-      accountNumber:
-        type: string
-        description: | 
-          The account number of the credit or debit card. 
-          
-          __(CONDITIONAL)__ <br>required in a Tokenize, or Get Digital Asset request, unless a valid panUniqueReference or tokenUniqueReference or pushAccountReceipt was given in FundingAccountInfo. 
-          </br></br>
-          
-          __Min Length:9 (See note)__</br>
-          __Max Length:19__
-          </br> </br>
-          __NOTE__: Only 6 digits can be supplied in SearchTokens if the TokenUniqueReference is provided in fundingAccountInfo.
-        example: '5123456789012345'
-      expiryMonth:
-        type: string
-        description: >
-          
-
-          The expiry month for the account. Two numeric digits
-          must be supplied. 
-          
-          <br>Only supplied in tokenization requests if panUniqueReference or tokenUniqueReferenceForPanInfo or pushAccountReceipt is not present.
-          
-
-          __Format: MM__<br>
-
-          __Exact Length:2__
-        example: '09'
-      expiryYear:
-        type: string
-        description: >
-          __(Required as minimum for Tokenization)__ 
-
-          The expiry year for the account.
-          
-          <br>Only supplied in tokenization requests if panUniqueReference or tokenUniqueReferenceForPanInfo or pushAccountReceipt is not present.
-          
-         
-
-          __Format: YY__ <br>
-
-          __Exact Length:2__
-        example: '21'
-      securityCode:
-        type: string
-        description: >
-          __(OPTIONAL)__
-
-          The security code for the account can optionally be provided for
-          Tokenization. If provided, the validity will be checked. <br>
-          
-          Optional in a Tokenize request, not present otherwise.
-
-          __Max Length:3__
-        example: '123'
-        
-  CardAccountData_outbound:
-    description: |
-      __(CONDITIONAL)__<br>
-      The credit or debit card information for the account that is being tokenized.  Present in tokenize response if supported by the Token Requestor, if using a pushAccountReceipt and if there is a card account associated with the pushAccountReceipt in case that the issuer decision is not DECLINED. </br>
-    properties:
-      accountNumber:
-        type: string
-        description: |
-
-          The account number of the credit or debit card. 
-
-          __Min Length:9__<br>
-
-          __Max Length:19__
-        example: '5123456789012345'
-      expiryMonth:
-        type: string
-        description: >
-          
-
-          The expiry month for the account. Two numeric digits
-          must be supplied. 
-          
-
-          __Format: MM__<br>
-
-          __Exact Length:2__
-        example: '09'
-      expiryYear:
-        type: string
-        description: >
-          __(Required as minimum for Tokenization)__ 
-
-          The expiry year for the account.
-
-          __Format: YY__ <br>
-
-          __Exact Length:2__
-        example: '21'
-            
-  
-  billingAddress:
-    properties:
-      line1:
-        type: string
-        description: |
-          __(OPTIONAL)__<br>
-          The first line of the street address for the billing address.<br>
-          __Max Length:64__
-        example: 100 1st Street
-      line2:
-        type: string
-        description: |
-          __(OPTIONAL)__
-          The second line of the street address for the billing address.<br>
-          __Max Length:64__
-        example: Apt. 4B
-      city:
-        type: string
-        description: |
-          __(OPTIONAL)__<br>
-          The city of the billing address.<br>
-          __Max Length:32__
-        example: St. Louis
-      countrySubdivision:
-        type: string
-        description: |
-          __(OPTIONAL)__<br>
-          The state or country subdivision of the billing address.<br>
-          __Max Length:12__
-        example: MO
-      postalCode:
-        type: string
-        description: |
-          __(OPTIONAL)__<br>
-          The postal of code of the billing address.<br>
-          __Max Length:16__
-        example: '61000'
-      country:
-        type: string
-        description: |
-          __(OPTIONAL)__
-          The country of the billing address. <br>
-          __Max Length:3__
-        example: USA
-  DecisioningData:
-    properties:
-      recommendation:
-        type: string
-        description: >
-          __(OPTIONAL)__ <br>
-
-          Digitization decision recommended by the Token Requestor. Must be
-          either APPROVED (Recommend a decision of Approved), DECLINED
-          (Recommend a decision of Decline). <br>  
-
-          __Max Length:64__
-        example: APPROVE
-      recommendationAlgorithmVersion:
-        type: string
-        description: >
-          __(OPTIONAL)__ <br>
-
-          Version of the algorithm used by the Token Requestor to determine its
-          recommendation. Must be a value of "01". Other values may be supported
-          in the future.<br>    
-
-          __Max Length:16__
-        example: '01'
-      deviceScore:
-        type: string
-        description: >
-          __(OPTIONAL)__ <br>
-
-          Score assigned by the Token Requestor for the target device being
-          provisioned. Must be a value from 1 to 5.
-        example: '1'
-      accountScore:
-        type: string
-        description: >
-          __(OPTIONAL)__ <br>
-
-          Score assigned by the Token Requestor for the consumer account or
-          relationship. Must be a value from 1 to 5.
-        example: '1'
-      recommendationReasons:
-        type: array
-        description: >
-          __(OPTIONAL)__ <br>
-
-          Code indicating the reasons the Token Requestor is suggesting the
-          digitization decision.  See table here -
-          https://developer.mastercard.com/page/mdes-digitization-recommendation-reason-codes
-        items:
+          description: |
+            The type of Token requested. Must be CLOUD
+          maxLength: 32
+          example: CLOUD
+        tokenRequestorId:
           type: string
-          example: LONG_ACCOUNT_TENTURE
-      deviceCurrentLocation:
-        type: string
-        description: >
-          __(OPTIONAL)__ <br>
-
-          Latitude and longitude in the format "(sign) latitude, (sign)
-          longitude" with a precision of 2 decimal places.  Ex - "38.63,
-          -90.25"  Latitude is between -90 and 90.  Longitude between -180 and
-          180. Relates to the target device being provisioned. If there is no
-          target device, then this should be the current consumer location, if
-          available. <br>   
-
-          __Max Length:14__
-        example: '38.63, -90.25'
-      deviceIpAddress:
-        type: string
-        description: >
-          __(OPTIONAL)__ <br>
-
-          The IP address of the device through which the device reaches the
-          internet. This may be a temporary or permanent IP address assigned to
-          a home router, or the IP address of a gateway through which the device
-          connects to a network. IPv4 address format of 4 octets separated by
-          "." Ex - 127.0.0.1 Relates to the target device being provisioned. If
-          there is no target device, then this should be the current consumer IP
-          address, if available.<br>    
-
-          __Max Length:15__
-        example: 127.0.0.1
-      mobileNumberSuffix:
-        type: string
-        description: >
-          __(OPTIONAL)__<br>
-
-          The last few digits (typically four) of the consumer's mobile phone
-          number as available on file or on the consumer's current device, which
-          may or may not be the mobile number of the target device being
-          provisioned.<br>    
-
-          __Max Length:32__
-        example: 3456
-      accountIdHash:
-        type: string
-        description: >
-          __(OPTIONAL)__ <br>
-
-          SHA-256 hash of the Cardholder’s account ID with the Token Requestor.
-          Typically expected to be an email address.<br> 
-
-          __Max Length:64__ Alpha-Numeric and Hex-encoded data
-          (case-insensitive).
-        example: NA
-  productConfig:
-    properties:
-      brandLogoAssetId:
-        type: string
-        description: >
-          The MasterCard or Maestro brand logo associated with this card.
-          Provided as an Asset ID – use the Get Asset API to retrieve the actual
-          asset. Always returned in Product Configuration object <br>   
-
-          __Max Length: 64__<br>
-
-          __Required: Yes__
-        example: 800200c9-629d-11e3-949a-0739d27e5a66
-      issuerLogoAssetId:
-        type: string
-        description: >
-          The logo of the issuing bank. Provided as an Asset ID – use the Get
-          Asset API to retrieve the actual asset. Always returned in Product
-          Configuration object <br>    
-
-          __Max Length:64__<br>
-
-          __Required: Yes__
-        example: dbc55444-986a-4896-b41c-5d5e2dd431e2
-      isCoBranded:
-        type: string
-        description: >
-          Whether the product is co-branded. Must be either true (this is a
-          co-branded product) or false (this is not a co-branded product).
-          Always returned in Product Configuration object <br>   
-
-          __Max Length:5__<br>
-
-          __Required: Yes__
-        example: true
-      coBrandName:
-        type: string
-        description: >
-          Textual name of the co-brand partner. Required if CoBranded is true,
-          not present otherwise.  <br>  
-
-          __Max Length:128__<br>
-
-          __Required: Conditional – required if isCoBranded = "true". Not
-          present otherwise__
-        example: Co brand partner
-      coBrandLogoAssetId:
-        type: string
-        description: >
-          The co-brand logo (if any) for this product. Provided as an Asset ID –
-          use the Get Asset API to retrieve the actual asset. <br>  
-
-          __Max Length:64__<br>
-
-          __Required: No__
-        example: dbc55444-496a-4896-b41c-5d5e2dd431e2
-      cardBackgroundCombinedAssetId:
-        type: string
-        description: >
-          The card image used to represent the digital card in the wallet. This
-          ‘combined’ option contains the MasterCard, bank and any co- brand
-          logos.  Provided as an Asset ID – use the Get Asset API to retrieve
-          the actual asset.    
-
-          __Max Length:64__<br>
-
-          __Required: Conditional – either CardBackgroundCombined or
-          CardBackground will be provided__
-        example: 739d27e5-629d-11e3-949a-0800200c9a66
-      cardBackgroundAssetId:
-        type: string
-        description: >
-          The card image used to represent the digital card in the wallet. This
-          ‘non-combined’ option does not contain the MasterCard, bank, or
-          co-brand logos. Provided as an Asset ID – use the Get Asset API to
-          retrieve the actual asset. <br>    
-
-          __Max Length:64__<br>
-
-          __Required: Conditional – either CardBackgroundCombined or
-          CardBackground will be provided__
-        example: 456d27e5-629d-11e3-949a-0800200c9a66
-      iconAssetId:
-        type: string
-        description: >
-          The icon representing the primary brand(s) associated with this
-          product. Provided as an Asset ID – use the Get Asset API to retrieve
-          the actual asset. Always returned in Product Configuration
-          object<br>   
-
-          __Max Length:64__<br>
-
-          __Required: Yes__
-        example: 739d87e5-629d-11e3-949a-0800200c9a66
-      foregroundColor:
-        type: string
-        description: >
-          Foreground color, used to overlay text on top of the card image.
-          Always returned in Product Configuration object<br>   
-
-          __Max Length:6__ Hexadecimal RGB color format (case-insensitive).<br>
-
-          __Required: Yes__
-        example: 0
-      issuerName:
-        type: string
-        description: >
-          Name of the issuing bank. Always returned in Product Configuration
-          object <br>   
-
-          __Max Length:64__<br>
-
-          __Required: Yes__
-        example: Issuing Bank
-      shortDescription:
-        type: string
-        description: >
-          A short description for this product. Always returned in Product
-          Configuration object  <br>  
-
-          __Max Length:128__<br>
-
-          __Required: Yes__
-        example: Bank Rewards MasterCard
-      longDescription:
-        type: string
-        description: |
-          A long description for this product.  <br>  
-          __Max Length:256__<br>
-          __Required: No__
-        example: Bank Rewards MasterCard with the super duper rewards program
-      customerServiceUrl:
-        type: string
-        description: |
-          Customer service website of the issuing bank. <br>   
-          __Max Length:128__<br>
-          __Required: No__
-        example: 'https://bank.com/customerservice'
-      customerServiceEmail:
-        type: string
-        description: |
-          Customer service email address of the issuing bank. <br>   
-          __Max Length:64__<br>
-          __Required: No__
-        example: customerservice@bank.com
-      customerServicePhoneNumber:
-        type: string
-        description: |
-          Customer service phone number of the issuing bank. <br>   
-          __Max Length:64__<br>
-          __Required: No__
-        example: 1234567891
-      issuerMobileApp:
-        description: >
-          Contains one or more mobile app details that may be used to deep link
-          from the Mobile Payment App to the issuer mobile app. <br>   
-
-          __Max Length:64__<br>
-
-          __Required: No__
-        type: object
-        example: null
-      onlineBankingLoginUrl:
-        type: string
-        description: |
-          Logon URL for the issuing bank’s online banking website.<br>    
-          __Max Length:128__
-        example: bank.com
-      termsAndConditionsUrl:
-        type: string
-        description: >
-          URL linking to the issuing bank’s terms and conditions for this
-          product.<br>    
-
-          __Max Length:128__<br>
-
-          __Required: No__
-        example: 'https://bank.com/termsAndConditions'
-      privacyPolicyUrl:
-        type: string
-        description: >
-          URL linking to the issuing bank’s privacy policy for this
-          product.<br>    
-
-          __Max Length:128__<br>
-
-          __Required: No__
-        example: 'https://bank.com/privacy'
-      issuerProductConfigCode:
-        type: string
-        description: >
-          Freeform identifier for this product configuration as assigned by the
-          issuer.<br>    
-
-          __Max Length:128__<br>
-
-          __Required: No__
-        example: 123456
-  tokenInfo:
-    properties:
-      tokenPanSuffix:
-        type: string
-        description: |
-          The last few digits (typically four) of the Token PAN.<br>    
-          __Max Length:8__<br>
-          __Required: Yes__
-        example: '0001'
-      accountPanSuffix:
-        type: string
-        description: |
-          The last few digits (typically four) of the Account PAN.<br>    
-          __Max Length:8__<br>
-          __Required: Yes__
-        example: '0011'
-      tokenExpiry:
-        type: string
-        description: |
-          The expiry of the Token PAN, given in MMYY format.<br>    
-          __Max Length:4__<br>
-          __Required: Yes__
-        example: 0921
-      accountPanExpiry:
-        type: string
-        description: |
-          The expiry of the Account PAN, given in MMYY format. <br>
-          __Max Length: 4__<br>
-          __Required: No__
-        example: 0921
-      dsrpCapable:
-        type: string
-        description: >
-          Whether DSRP transactions are supported by this Token. Must be either
-          'true' (DSRP capable) or 'false' (Not DSRP capable).<br>
-
-          __Max Length: 5__<br>
-
-          __Required: Yes__
-        example: true
-      tokenAssuranceLevel:
-        type: string
-        description: >
-          A value indicating the confidence level of the token to Account PAN
-          binding.<br>    
-
-          __Max Length:2__<br>
-
-          __Required: No__
-        example: 3
-      productCategory:
-        type: string
-        description: >
-          The product category of the Account PAN. When supplied will be one of
-          the following values - 
-
-          * CREDIT
-
-          * DEBIT
-
-          * PREPAID
-
-          * UNKNOWN
-
-
-          __Max Length: 32__<br>
-
-          __Required: No__
-        example: CREDIT
-  tokenDetail:
-    properties:
-      tokenUniqueReference:
-        type: string
-        description: |
-          Globally unique identifier for the Token, as assigned by MDES.<br>    
-          __Max Length:64__
-        example: DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45
-      publicKeyFingerprint:
-        type: string
-        description: >
-          The certificate fingerprint identifying the public key used to encrypt
-          the ephemeral AES key.<br>    
-
-          __Max Length:64__ Hex-encoded data (case-insensitive).
-        example: 4c4ead5927f0df8117f178eea9308daa58e27c2b
-      encryptedKey:
-        type: string
-        description: >
-          One-time use AES key encrypted by the MasterCard public key (as
-          identified by 'publicKeyFingerprint') using the OAEP or RSA Encryption
-          Standard PKCS #1 v1.5 scheme (depending on the value of
-          'oaepHashingAlgorithm'. Requirement is for a 128-bit key (with 256-bit
-          key supported as an option).<br>    
-
-          __Max Length:512__
-        example: A1B2C3D4E5F6112233445566
-      oaepHashingAlgorithm:
-        type: string
-        description: >
-          Hashing algorithm used with the OAEP scheme. If omitted, then the RSA
-          Encryption Standard PKCS #1 v1.5 will be used. Must be either 'SHA256'
-          (Use the SHA-256 algorithm) or 'SHA512' (Use the SHA-512
-          algorithm).<br>    
-
-          __Max Length:6__
-        example: SHA512
-      iv:
-        type: string
-        description: >
-          It is recommended to supply a random initialization vector when
-          encrypting the data using the one-time use AES key. Must be exactly 16
-          bytes (32 character hex string) to match the block size. Hex-encoded
-          data (case-insensitive). 
-
-          __Max Length:32__
-        example: NA
-      encryptedData:
-        $ref: '#/definitions/tokenDetailData'
-
-  tokenDetail_getToken_Only:
-    properties:
-      tokenUniqueReference:
-        type: string
-        description: |
-          Globally unique identifier for the Token, as assigned by MDES.<br>    
-          __Max Length:64__
-        example: DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45
-      publicKeyFingerprint:
-        type: string
-        description: >
-          The certificate fingerprint identifying the public key used to encrypt
-          the ephemeral AES key.<br>    
-
-          __Max Length:64__ Hex-encoded data (case-insensitive).
-        example: 4c4ead5927f0df8117f178eea9308daa58e27c2b
-      encryptedKey:
-        type: string
-        description: >
-          One-time use AES key encrypted by the MasterCard public key (as
-          identified by 'publicKeyFingerprint') using the OAEP or RSA Encryption
-          Standard PKCS #1 v1.5 scheme (depending on the value of
-          'oaepHashingAlgorithm'. Requirement is for a 128-bit key (with 256-bit
-          key supported as an option).<br>    
-
-          __Max Length:512__
-        example: A1B2C3D4E5F6112233445566
-      oaepHashingAlgorithm:
-        type: string
-        description: >
-          Hashing algorithm used with the OAEP scheme. If omitted, then the RSA
-          Encryption Standard PKCS #1 v1.5 will be used. Must be either 'SHA256'
-          (Use the SHA-256 algorithm) or 'SHA512' (Use the SHA-512
-          algorithm).<br>    
-
-          __Max Length:6__
-        example: SHA512
-      encryptedData:
-        $ref: '#/definitions/tokenDetailData_getToken_Only'   
-        
-  tokenDetail_PAR_Only:
-    properties:
-      tokenUniqueReference:
-        type: string
-        description: |
-          Globally unique identifier for the Token, as assigned by MDES.<br>    
-          __Max Length:64__
-        example: DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45
-      publicKeyFingerprint:
-        type: string
-        description: >
-          The certificate fingerprint identifying the public key used to encrypt
-          the ephemeral AES key.<br>    
-
-          __Max Length:64__ Hex-encoded data (case-insensitive).
-        example: 4c4ead5927f0df8117f178eea9308daa58e27c2b
-      encryptedKey:
-        type: string
-        description: >
-          One-time use AES key encrypted by the MasterCard public key (as
-          identified by 'publicKeyFingerprint') using the OAEP or RSA Encryption
-          Standard PKCS #1 v1.5 scheme (depending on the value of
-          'oaepHashingAlgorithm'. Requirement is for a 128-bit key (with 256-bit
-          key supported as an option).<br>    
-
-          __Max Length:512__
-        example: A1B2C3D4E5F6112233445566
-      oaepHashingAlgorithm:
-        type: string
-        description: >
-          Hashing algorithm used with the OAEP scheme. If omitted, then the RSA
-          Encryption Standard PKCS #1 v1.5 will be used. Must be either 'SHA256'
-          (Use the SHA-256 algorithm) or 'SHA512' (Use the SHA-512
-          algorithm).<br>    
-
-          __Max Length:6__
-        example: SHA512
-      iv:
-        type: string
-        description: >
-          It is recommended to supply a random initialization vector when
-          encrypting the data using the one-time use AES key. Must be exactly 16
-          bytes (32 character hex string) to match the block size. Hex-encoded
-          data (case-insensitive). 
-
-          __Max Length:32__
-        example: NA
-      encryptedData:
-        $ref: '#/definitions/tokenDetailData_PAR_Only'
-  
-  tokenDetailData:
-    properties:
-      accountHolderData: 
-       description: | 
-        Account holder information. Present in tokenize response if supported by the Token Requestor, if using a pushAccountReceipt and if there is account holder data associated with the push account receipt in case that the issuer decision is APPROVED..
-       $ref: '#/definitions/accountHolderData'
-      paymentAccountReference:
-        type: string
-        description: >
-          "The unique account reference assigned to the PAN. Conditionally
-          returned if the Token Requestor has opted to receive PAR and providing
-          PAR is assigned by Mastercard or the Issuer provides PAR in the
-          authorization message response.    __Max Length:__ - 29"
-        example: 5001a9f027e5629d11e3949a0800a
-
-  
-  tokenDetailData_getToken_Only:
-    properties:
-      tokenNumber:
-        type: string
-        description: >
-          The Token Primary Account Number of the Card. 
-          <br>__Max Length: 19__
-          <br>__Min Length: 9__
-        example: 5123456789012345
-          
-      expiryMonth:
-        type: string
-        description: >
-          The month of the token expiration date. <br>
-          __Max Length: 2__
-        example: 12
-      
-      expiryYear:
-        type: string
-        description: >
-          The year of the token expiration date. <br>
-          __Max Length: 2__
-        example: 20
-          
-
-      paymentAccountReference:
-        type: string
-        description: >
-          The unique account reference assigned to the PAN. Conditionally
-          returned if the Token Requestor has opted to receive PAR and providing
-          PAR is assigned by Mastercard or the Issuer provides PAR in the
-          authorization message response. <br>   
-          __Max Length: 29__
-        example: 5001a9f027e5629d11e3949a0800a
-      
-            
-  tokenDetailData_PAR_Only:
-    properties:
-      paymentAccountReference:
-        type: string
-        description: >
-          "The unique account reference assigned to the PAN. Conditionally
-          returned if the Token Requestor has opted to receive PAR and providing
-          PAR is assigned by Mastercard or the Issuer provides PAR in the
-          authorization message response.    __Max Length:__ - 29"
-        example: 5001a9f027e5629d11e3949a0800a
- 
-  authenticationMethods:
-    description: |
-      "authenticationMethods not currently used for MDES for Merchants"
-    properties:
-      id:
-        type: string
-        description: |
-          Unique identifier assigned to this Authentication Method.
-        example: 334123523456213450000
-      type:
-        type: string
-        description: >
-          Specifies the authentication method type and provided in the tokenize
-          response.  See table here -
-          https://developer.mastercard.com/page/mdes-digitization-authentication-method-codes
-        example: TEXT_TO_CARDHOLDER_NUMBER
-      value:
-        type: string
-        description: >
-          Specifies the authentication method value (meaning varies depending on
-          the authentication method type).
-        example: 1
-  token:
-    properties:
-      tokenUniqueReference:
-        type: string
-        description: >
-          The unique reference allocated to the Token which is always present
-          even if an error occurs. <br>   
-            __Max Length:64__
-        example: DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45
-      status:
-        type: string
-        description: |
-          The current status of Token. Must be either:  
-           * 'INACTIVE' (Token has not yet been activated)
-           * 'ACTIVE' (Token is active and ready to transact)
-           * 'SUSPENDED' (Token is suspended and unable to transact)
-           * 'DEACTIVATED' (Token has been permanently deactivated).<br>   
-            __Max Length:32__
-        example: SUSPENDED
-      suspendedBy:
-        type: array
-        items:
+          description: >
+            11-digit numeric ID provided by Mastercard that identifies the Token
+            Requestor.
+          maxLength: 11
+          example: "98765432101"
+        taskId:
           type: string
+          description: >
+            Identifier for this task as assigned by the Token Requestor, unique
+            across a given Token Requestor Identifier. May be used in the Get
+            Task Status API to query the status of this task.
+          maxLength: 64
+          example: "123456"
+        fundingAccountInfo:
+          $ref: "#/components/schemas/fundingAccountInfo"
+        consumerLanguage:
+          type: string
+          description: >
+            Language preference selected by the consumer. Formatted as an ISO-
+            639-1 two-letter language code.
+          maxLength: 2
+          example: en
+        tokenizationAuthenticationValue:
+          type: string
+          description: >
+            The Tokenization Authentication Value (TAV) as cryptographically
+            signed by the Issuer to authorize this digitization request.
+          maxLength: 2048
+          example: RHVtbXkgYmFzZSA2NCBkYXRhIC0gdGhpcyBpcyBub3QgYSByZWFsIFRBViBleGFtcGxl
+        decisioningData:
+          $ref: "#/components/schemas/DecisioningData"
+    TokenizeResponseSchema:
+      properties:
+        responseHost:
+          type: string
+          description: >
+            The MasterCard host that originated the request. Future calls in the
+            same conversation may be routed to this host.
+          example: site2.payment-app-provider.com
+        responseId:
+          type: string
+          description: |
+            Unique identifier for the response.
+          example: 123456
+        decision:
+          type: string
+          description: >
+            The tokenization decision for this digitization request. Must be
+            either APPROVED (Digitization request was approved), DECLINED
+            (Digitization request was declined) OR
+            REQUIRE_ADDITIONAL_AUTHENTICATION Digitization request was approved
+            but optionally requires additional authentication. One or more
+            Authentication methods may be provided).
+          example: APPROVED
+        authenticationMethods:
+          type: array
+          items:
+            $ref: "#/components/schemas/authenticationMethods"
+        tokenUniqueReference:
+          type: string
+          description: >
+            The unique reference allocated to the new Token. Serves as a unique
+            identifier for all subsequent queries or management functions
+            relating to this Token. Provided if the decision was APPROVED or
+            REQUIRE_ADDITIONAL_AUTHENTICATION.
+          maxLength: 64
+          example: DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45
+        panUniqueReference:
+          type: string
+          description: >
+            The unique reference allocated to the Account Primary Account
+            Number. Provided if the decision was APPROVED or
+            REQUIRE_ADDITIONAL_AUTHENTICATION.
+          maxLength: 64
+          example: FWSPMC000000000159f71f703d2141efaf04dd26803f922b
+        productConfig:
+          $ref: "#/components/schemas/productConfig"
+        tokenInfo:
+          $ref: "#/components/schemas/tokenInfo"
+        tokenDetail:
+          $ref: "#/components/schemas/tokenDetail"
+    AssetResponseSchema:
+      properties:
+        mediaContents:
+          type: array
+          items:
+            $ref: "#/components/schemas/mediaContent"
+    mediaContent:
+      required:
+        - type
+        - data
+      properties:
+        type:
+          type: string
+          description: >
+            What type of media this is. Specified as a MIME type, which will be
+            one of the following supported types
+
+
+            * applicatoin/pdf (for images must be a vector PDF image)
+
+            * image/png (includes alpha channel)
+
+            * text/plain
+
+            * text/html
+
+
+          maxLength: 32
+          example: image/png
+        data:
+          type: string
+          description: >
+            The data for this item of media. Base64-encoded data, given in the
+            format as specified in ?type?.
+          example: iVBORw0KGgoAAAANSUhEUgAAAXcAAAF3CAIAAADRopypAAAABGdBTUEAANbY1E9YMgAAAAlwSFlzAAAASAAAAEgARslrPgAAGtNJREFUeNrt3W9oW
+        height:
+          type: string
+          description: |
+            For image assets, the height of this image. Specified in pixels.
+          maxLength: 6
+          example: "375"
+        width:
+          type: string
+          description: >
+            For image assets, the width of this image. Specified in
+            pixels.
+          maxLength: 6
+          example: "375"
+    SuspendRequestSchema:
+      required:
+        - requestId
+        - tokenUniqueReferences
+        - causedBy
+        - reasonCode
+      properties:
+        responseHost:
+          type: string
+          description: >
+            The host that originated the request. Future calls in the same
+            conversation may be routed to this host.
+          example: site2.payment-app-provider.com
+        requestId:
+          type: string
+          description: |
+            Unique identifier for the request.
+          example: 123456
+        paymentAppInstanceId:
+          type: string
+          description: >
+            Identifier for the specific Mobile Payment App instance, unique
+            across a given Wallet Identifier. This value cannot be changed after
+            digitization. This field is alphanumeric and additionally web-safe
+            base64 characters per RFC 4648 (minus "-", underscore "_") up to a
+            maximum length of 48, = should not be URL encoded. Conditional - not
+            applicable for server based tokens but required otherwise.
+          maxLength: 48
+          example: 123456789
+        tokenUniqueReferences:
+          type: array
+          items:
+            type: string
+          description: >
+            The specific Token to be suspended. Array of more or more valid
+            references as assigned by MDES
+          example: DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45
+        causedBy:
+          type: string
+          description: >
+            Who or what caused the Token to be suspended. Must be either the
+            'CARDHOLDER' (operation requested by the Cardholder) or
+            'TOKEN_REQUESTOR' (operation requested by the token requestor).
+          maxLength: 64
           example: CARDHOLDER
-        description: |
-          (CONDITIONAL only supplied if status is SUSPENDED)
-          Who or what caused the Token to be suspended One or more values of: 
-             * ISSUER - Suspended by the Issuer.
-             * TOKEN_REQUESTOR - Suspended by the Token Requestor 
-             * MOBILE_PIN_LOCKED - Suspended due to the Mobile PIN being locked
-             * CARDHOLDER - Suspended by the Cardholder <br>       
-            __Max Length__: N/A    
-      statusTimestamp:
-        type: string
-        description: >
-          The date and time the token status was last updated. Expressed in ISO
-          8601 extended format as one of the following: 
-             * YYYY-MM-DDThh:mm:ss[.sss]Z
-             * YYYY-MM-DDThh:mm:ss[.sss]±hh:mm
-             * Where [.sss] is optional and can be 1 to 3 digits. <br>
-           __Max Length:29__
-           
-      productConfig:
-           $ref: '#/definitions/productConfig'
-      tokenInfo:
-           $ref: '#/definitions/tokenInfo'
-      
-  token_for_LCM:
-    properties:
-      tokenUniqueReference:
-        type: string
-        description: >
-          The unique reference allocated to the Token which is always present
-          even if an error occurs. <br>   
-            __Max Length:64__
-        example: DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45
-      status:
-        type: string
-        description: |
-          The current status of Token. Must be either:  
-           * 'INACTIVE' (Token has not yet been activated)
-           * 'ACTIVE' (Token is active and ready to transact)
-           * 'SUSPENDED' (Token is suspended and unable to transact)
-           * 'DEACTIVATED' (Token has been permanently deactivated).<br>   
-            __Max Length:32__
-        example: SUSPENDED
-      suspendedBy:
-        type: array
-        items:
+        reason:
           type: string
+          description: |
+            Free form reason why the Tokens are being suspended.
+          maxLength: 256
+          example: Lost/stolen device
+        reasonCode:
+          type: string
+          description: >
+            The reason for the action to be suspended. Must be one of
+            'SUSPECTED_FRAUD' (suspected fraudulent token transactions), 'OTHER'
+            (Other - default used if value not provided).
+          maxLength: 64
+          example: SUSPECTED_FRAUD
+    SuspendResponseSchema:
+      properties:
+        responseHost:
+          type: string
+          description: >
+            The host that originated the request. Future calls in the same
+            conversation may be routed to this host.
+          example: site1.mastercard.com
+        responseId:
+          type: string
+          description: |
+            Unique identifier for the response.
+          example: 123456
+        tokens:
+          type: array
+          items:
+            $ref: "#/components/schemas/token_for_LCM"
+    DeleteRequestSchema:
+      required:
+        - requestId
+        - tokenUniqueReferences
+        - causedBy
+        - reasonCode
+      properties:
+        responseHost:
+          type: string
+          description: >
+            The host that originated the request. Future calls in the same
+            conversation may be routed to this host.
+          example: site2.payment-app-provider.com
+        requestId:
+          type: string
+          description: |
+            Unique identifier for the request.
+          example: 123456
+        paymentAppInstanceId:
+          type: string
+          description: >
+            Identifier for the specific Mobile Payment App instance, unique
+            across a given Wallet Identifier. This value cannot be changed after
+            digitization. This field is alphanumeric and additionally web-safe
+            base64 characters per RFC 4648 (minus "-", underscore "_") up to a
+            maximum length of 48, = should not be URL encoded. Conditional - not
+            applicable for server based tokens but required otherwise.
+          maxLength: 48
+          example: 123456789
+        tokenUniqueReferences:
+          type: array
+          items:
+            type: string
+          description: >
+            The specific Token to be deleted. Array of more or more valid
+            references as assigned by MDES
+          example: DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45
+        causedBy:
+          type: string
+          description: >
+            Who or what caused the Token to be deleted. Must be either the
+            'CARDHOLDER' (operation requested by the Cardholder) or
+            'TOKEN_REQUESTOR' (operation requested by the token requestor).
+          maxLength: 64
           example: CARDHOLDER
-        description: |
-          (CONDITIONAL only supplied if status is SUSPENDED)
-          Who or what caused the Token to be suspended One or more values of: 
-             * ISSUER - Suspended by the Issuer.
-             * TOKEN_REQUESTOR - Suspended by the Token Requestor 
-             * MOBILE_PIN_LOCKED - Suspended due to the Mobile PIN being locked
-             * CARDHOLDER - Suspended by the Cardholder <br>       
-            __Max Length__: N/A    
-      statusTimestamp:
-        type: string
-        description: >
-          The date and time the token status was last updated. Expressed in ISO
-          8601 extended format as one of the following: 
-             * YYYY-MM-DDThh:mm:ss[.sss]Z
-             * YYYY-MM-DDThh:mm:ss[.sss]±hh:mm
-             * Where [.sss] is optional and can be 1 to 3 digits. <br>
-           __Max Length:29__
-           
+        reason:
+          type: string
+          description: |
+            Free form reason why the Tokens are being suspended.
+          maxLength: 256
+          example: Lost/stolen device
+        reasonCode:
+          type: string
+          description: >
+            The reason for the action to be deleted. Must be one of
+            'SUSPECTED_FRAUD' (suspected fraudulent token transactions), 'OTHER'
+            (Other - default used if value not provided).
+          maxLength: 64
+          example: SUSPECTED_FRAUD
+    DeleteResponseSchema:
+      properties:
+        responseHost:
+          type: string
+          description: >
+            The host that originated the request. Future calls in the same
+            conversation may be routed to this host.
+          example: site1.mastercard.com
+        responseId:
+          type: string
+          description: |
+            Unique identifier for the response.
+          example: 123456
+        tokens:
+          type: array
+          items:
+            $ref: "#/components/schemas/token_for_LCM"
+    UnSuspendRequestSchema:
+      required:
+        - requestId
+        - tokenUniqueReferences
+        - causedBy
+        - reasonCode
+      properties:
+        responseHost:
+          type: string
+          description: >
+            The host that originated the request. Future calls in the same
+            conversation may be routed to this host.
+          example: site2.payment-app-provider.com
+        requestId:
+          type: string
+          description: |
+            Unique identifier for the request.
+          example: 123456
+        paymentAppInstanceId:
+          type: string
+          description: >
+            Identifier for the specific Mobile Payment App instance, unique
+            across a given Wallet Identifier. This value cannot be changed after
+            digitization. This field is alphanumeric and additionally web-safe
+            base64 characters per RFC 4648 (minus "-", underscore "_") up to a
+            maximum length of 48, = should not be URL encoded. Conditional - not
+            applicable for server based tokens but required otherwise.
+          maxLength: 48
+          example: 123456789
+        tokenUniqueReferences:
+          type: array
+          items:
+            type: string
+          description: >
+            The specific Token to be unsuspended. Array of more or more valid
+            references as assigned by MDES
+          example: DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45
+        causedBy:
+          type: string
+          description: >
+            Who or what caused the Token to be unsuspended. Must be either the
+            'CARDHOLDER' (operation requested by the Cardholder) or
+            'TOKEN_REQUESTOR' (operation requested by the token requestor).
+          maxLength: 64
+          example: CARDHOLDER
+        reason:
+          type: string
+          description: |
+            Free form reason why the Tokens are being suspended.
+          maxLength: 256
+          example: Lost/stolen device
+        reasonCode:
+          type: string
+          description: >
+            The reason for the action to be unsuspended. Must be one of
+            'SUSPECTED_FRAUD' (suspected fraudulent token transactions), 'OTHER'
+            (Other - default used if value not provided).
+          maxLength: 64
+          example: SUSPECTED_FRAUD
+    UnSuspendResponseSchema:
+      properties:
+        responseHost:
+          type: string
+          description: >
+            The host that originated the request. Future calls in the same
+            conversation may be routed to this host.
+          example: site1.mastercard.com
+        responseId:
+          type: string
+          description: |
+            Unique identifier for the response.
+          example: 123456
+        tokens:
+          type: array
+          items:
+            $ref: "#/components/schemas/token_for_LCM"
+    GetTaskStatusRequestSchema:
+      required:
+        - requestId
+        - taskId
+        - tokenRequestorId
+      properties:
+        responseHost:
+          type: string
+          description: >
+            The host that originated the request. Future calls in the same
+            conversation may be routed to this host.
+          example: site2.payment-app-provider.com
+        requestId:
+          type: string
+          description: |
+            Unique identifier for the request.
+          example: 123456
+        tokenRequestorId:
+          type: string
+          description: >
+            11-digit numeric ID provided by Mastercard that identifies the Token
+            Requestor.
+          maxLength: 11
+          minLength: 11
+          example: 98765432101
+        taskId:
+          type: string
+          description: >
+            Unique identifier for this task. Must be an identifier previously
+            used when requesting a task.
+          maxLength: 64
+          example: 123456
+    GetTaskStatusResponseSchema:
+      properties:
+        responseId:
+          type: string
+          description: |
+            Unique identifier for the response.
+          example: 123456
+        responseHost:
+          type: string
+          description: >
+            The host that originated the request. Future calls in the same
+            conversation may be routed to this host.
+          example: site2.payment-app-provider.com
+        status:
+          type: string
+          description: >
+            The status of the specified task. Must be either 'PENDING' (The Task
+            has been recieved and is pending processing), 'IN_PROGRESS' (The
+            task is currently in progress), 'COMPLETED' (The task was completed
+            successfully) or 'FAILED' The task was processed but failed to
+            complete successfully.
+          maxLength: 64
+          example: FAILED
+    SearchTokensRequestSchema:
+      required:
+        - requestId
+      properties:
+        requestId:
+          type: string
+          description: |
+            Unique identifier for the request.
+          example: 123456
+        responseHost:
+          type: string
+          description: >
+            The host that originated the request. Future calls in the same
+            conversation may be routed to this host.
+          example: site2.payment-app-provider.com
+        fundingAccountInfo:
+          $ref: "#/components/schemas/fundingAccountInfo"
+        tokenRequestorId:
+          type: string
+          description: >
+            Identifies the Token Requestor. Only tokens associated with the
+            token requestor will be returned. Length - 11.
+          example: 98765432101
+    SearchTokensResponseSchema:
+      properties:
+        responseHost:
+          type: string
+          description: >
+            The host that originated the request. Future calls in the same
+            conversation may be routed to this host.
+          example: site1.mastercard.com
+        responseId:
+          type: string
+          description: |
+            Unique identifier for the response.
+          example: 123456
+        tokens:
+          type: array
+          items:
+            $ref: "#/components/schemas/token"
+    GetTokenRequestSchema:
+      required:
+        - requestId
+        - tokenUniqueReference
+      properties:
+        responseHost:
+          type: string
+          description: >
+            The host that originated the request. Future calls in the same
+            conversation may be routed to this host.
+          example: site2.payment-app-provider.com
+        requestId:
+          type: string
+          description: |
+            Unique identifier for the request.
+          example: 123456
+        paymentAppInstanceId:
+          type: string
+          description: >
+            Identifier for the specific Mobile Payment App instance, unique
+            across a given Wallet Identifier. This value cannot be changed after
+            digitization. This field is alphanumeric and additionally web-safe
+            base64 characters per RFC 4648 (minus "-", underscore "_") up to a
+            maximum length of 48, = should not be URL encoded. Conditional - not
+            applicable for server-based tokens but required otherwise.
+          maxLength: 48
+          example: 123456789
+        tokenUniqueReference:
+          type: string
+          description: |
+            The specific Token to be queried.
+          maxLength: 64
+          example: DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45
+        includeTokenDetail:
+          type: string
+          description: |
+            Flag to indicate if the encrypted token should be returned.
+          maxLength: 5
+          example: true
+    GetTokenResponseSchema:
+      properties:
+        responseId:
+          type: string
+          description: |
+            Unique identifier for the response.
+          example: 123456
+        token:
+          $ref: "#/components/schemas/token_for_getToken"
+        tokenDetail:
+          $ref: "#/components/schemas/tokenDetail_getToken_Only"
+    NotifyTokenUpdatedRequestSchema:
+      required:
+        - responseHost
+        - requestId
+        - encryptedPayload
+      properties:
+        responseHost:
+          type: string
+          description: >
+            The host that originated the request. Future calls in the same
+            conversation should be routed to this host.
+          example: site2.payment-app-provider.com
+        requestId:
+          type: string
+          description: |
+            Unique identifier for the request.
+          example: 123456
+        encryptedPayload:
+          $ref: "#/components/schemas/encryptedPayload"
+    encryptedPayload:
+      required:
+        - publicKeyFingerprint
+        - encryptedKey
+        - encryptedData
+      properties:
+        publicKeyFingerprint:
+          type: string
+          description: >
+            The fingerprint of the public key used to encrypt the ephemeral AES
+            key.
+          maxLength: 64
+          example: 4c4ead5927f0df8117f178eea9308daa58e27c2b
+        encryptedKey:
+          type: string
+          description: >
+            One-time use AES key encrypted by the MasterCard public key (as
+            identified by publicKeyFingerprint) using the OAEP or PKCS#1 v1.5
+            scheme (depending on the value of oaepHashingAlgorithm.
+          maxLength: 512
+          example: A1B2C3D4E5F6112233445566
+        oaepHashingAlgorithm:
+          type: string
+          description: >
+            Hashing algorithm used with the OAEP scheme. Must be either SHA256
+            or SHA512.
+          example: SHA512
+        iv:
+          type: string
+          description: >
+            The initialization vector used when encrypting data using the
+            one-time use AES key. Must be exactly 16 bytes (32 character hex
+            string) to match the block size. If not present, an IV of zero is
+            assumed. Length - 32.
+          example: NA
+        encryptedData:
+          $ref: "#/components/schemas/notifyTokenEncryptedPayload"
+    notifyTokenEncryptedPayload:
+      properties:
+        tokens:
+          type: array
+          items:
+            $ref: "#/components/schemas/token_for_NTU"
+    NotifyTokenUpdatedResponseSchema:
+      properties:
+        responseHost:
+          type: string
+          description: >
+            The host that originated the request. Future calls in the same
+            conversation may be routed to this host.
+          example: site1.mastercard.com
+        responseId:
+          type: string
+          description: |
+            Unique identifier for the response.
+          example: 123456
+    TransactRequestSchema:
+      required:
+        - requestId
+        - tokenUniqueReference
+        - dsrpType
+      properties:
+        responseHost:
+          type: string
+          description: >
+            The host that originated the request. Future calls in the same
+            conversation may be routed to this host.
+          example: site2.payment-app-provider.com
+        requestId:
+          type: string
+          description: |
+            Unique identifier for the request.
+          example: 123456
+        tokenUniqueReference:
+          type: string
+          description: |
+            Globally unique identifier for the Token, as assigned by MDES.
+          maxLength: 64
+          example: DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45
+        dsrpType:
+          type: string
+          description: >
+            What type of DSRP cryptogram to create. Must be either UCAF or
+            M_CHIP.
+          maxLength: 64
+          example: UCAF
+        unpredictableNumber:
+          type: string
+          description: >
+            HEX Encoded data (case sensitive) provided by the merchant to
+            provide variability and uniqueness to the generation of a
+            cryptogram.
+          maxLength: 8
+          minLength: 8
+          example: 23424563
+    TransactResponseSchema:
+      properties:
+        responseId:
+          type: string
+          description: |
+            Unique identifier for the response.
+        responseHost:
+          type: string
+          description: >
+            The host that originated the request. Future calls in the same
+            conversation may be routed to this host.
+          example: site2.payment-app-provider.com
+        encryptedPayload:
+          $ref: "#/components/schemas/encryptedPayloadTransact"
+    encryptedPayloadTransact:
+      properties:
+        publicKeyFingerprint:
+          type: string
+          description: >
+            The fingerprint of the public key used to encrypt the ephemeral AES
+            key.
+
+          maxLength: 64
+          example: 4c4ead5927f0df8117f178eea9308daa58e27c2b
+        encryptedKey:
+          type: string
+          description: >
+            One-time use AES key encrypted by the MasterCard public key (as
+            identified by publicKeyFingerprint) using the OAEP or PKCS#1 v1.5
+            scheme (depending on the value of oaepHashingAlgorithm.
+
+          maxLength: 512
+          example: A1B2C3D4E5F6112233445566
+        oaepHashingAlgorithm:
+          type: string
+          description: >
+            Hashing algorithm used with the OAEP scheme. Must be either SHA256
+            or SHA512.
+          example: SHA512
+        iv:
+          type: string
+          description: >
+            The initialization vector used when encrypting data using the
+            one-time use AES key. Must be exactly 16 bytes (32 character hex
+            string) to match the block size. If not present, an IV of zero is
+            assumed.
+          maxLength: 32
+          minLength: 32
+          example: NA
+        encryptedData:
+          $ref: "#/components/schemas/transactEncryptedData"
+    transactEncryptedData:
+      properties:
+        accountNumber:
+          type: string
+          description: >
+            The Primary Account Number for the transaction ? this is the Token
+            PAN.
+          minLength: 9
+          maxLength: 19
+          example: 5480981500100002
+        applicationExpiryDate:
+          type: string
+          description: |
+            Application expiry date for the Token. Expressed in YYMMDD format.
+          maxLength: 6
+          minLength: 6
+          example: "210931"
+        panSequenceNumber:
+          type: string
+          description: |
+            Application PAN sequence number for the Token
+          maxLength: 2
+          minLength: 2
+          example: "01"
+        track2Equivalent:
+          type: string
+          description: >
+            Track 2 equivalent data for the Token. Expressed according to
+            ISO/IEC 7813, excluding start sentinel, end sentinel, and
+            Longitudinal Redundancy Check (LRC), using hex nibble 'D' as field
+            separator, and padded to whole bytes using one hex nibble 'F' as
+            needed.
+          maxLength: 38
+          example: 5480981500100002D18112011000000000000F
+        de48se43Data:
+          type: string
+          description: |
+            Data for DE 48 Subelement 43 containing the cryptogram.
+            DSRP cryptogram must be sent in DE104. Please refer to AN 3363 for details.
+          maxLength: 32
+          example: "11223344556677889900112233445566778899"
+    GatewayErrorsResponse:
+      properties:
+        Errors:
+          $ref: "#/components/schemas/GatewayErrorsSchema"
+    GatewayErrorsSchema:
+      properties:
+        Error:
+          type: array
+          items:
+            $ref: "#/components/schemas/GatewayError"
+    GatewayError:
+      description: Only returned in the event of an error condition.
+      properties:
+        Source:
+          type: string
+          description: >
+            An element used to indicate the source of the issue causing this
+            error. e.g. Gateway
+          maxLength: 32
+          example: GATEWAY
+        Description:
+          type: string
+          description: >
+            Description of the reason the operation failed. See API Response
+            Errors
+
+          maxLength: 256
+          example: OAuth signatures did not match.
+        ReasonCode:
+          type: string
+          description: |
+            A reason code for the error that has occurred.
+          maxLength: 100
+          example: AUTHENTICATION_FAILED
+        Recoverable:
+          type: boolean
+          description: >
+            Generated by the gateway to indicate if the request could presented
+            again for processing. Either "TRUE" or "FALSE"
+          example: "false"
+        Details:
+          type: boolean
+          description: |
+            Always NULL, present for backwards compatiility
+          example: "null"
+    ErrorsResponse:
+      properties:
+        errorCode:
+          type: string
+          description: >
+            **CONDITIONAL**
+            Returned in the event of an error and contains
+            the reason the operation failed. Only use if errors object is not
+            present.
+          maxLength: 32
+        errorDescription:
+          type: string
+          description: >
+            **CONDITIONAL**
+            Returned in the event of an error and contains a
+            description of why the operation failed. Only use if errors object
+            is not present.
+          maxLength: 32
+        responseHost:
+          type: string
+          description: >
+            The MasterCard host that originated the request. Future calls in the
+            same conversation may be routed to this host.
+          example: site2.payment-app-provider.com
+        responseId:
+          type: string
+          description: |
+            Unique identifier for the response.
+          example: 123456
+        Errors:
+          $ref: "#/components/schemas/Error"
+    Error:
+      description: Only returned in the event of an error condition.
+      properties:
+        source:
+          type: string
+          description: >
+            An element used to indicate the source of the issue causing this
+            error. Must be one of
+             * 'MDES'
+             * 'INPUT'
+          maxLength: 32
+        errorCode:
+          type: string
+          description: >
+            An error code generated by the gateway if the error occurs before
+            reaching the MDES application.
+            maxLength: 100
+        description:
+          type: string
+          description: >
+            Description of the reason the operation failed. See API Response
+            Errors
+
+          maxLength: 256
+        reasonCode:
+          type: string
+          description: |
+            A reason code for the error that has occurred.
+          maxLength: 100
+        recoverable:
+          type: boolean
+          description: >
+            Generated by the gateway to indicate if the request could presented
+            again for processing. Either "TRUE" or "FALSE"
+          example: "TRUE"
+    TransactError:
+      description: Only returned in the event of an error condition for the Transact API
+      properties:
+        source:
+          type: string
+          description: >
+            An element used to indicate the source of the issue causing this
+            error. Must be one of
+             * 'MDES'
+             * 'INPUT'
+          maxLength: 32
+        errorCode:
+          type: string
+          description: >
+            A reason code or information pertaining to the error that has
+            occurred. This will contain the error reported by the platform (e.g.
+            authentication errors) or service (e.g. invalid TUR)
+
+          maxLength: 100
+        description:
+          type: string
+          description: |
+            Description of the reason why the operation failed.
+          maxLength: 256
+        reasonCode:
+          type: string
+          description: >
+            A reason code or information pertaining to the error that has
+            occurred from the service (e.g. invalid TUR). See API Response
+            Errors
+
+          maxLength: 100
+        errorDescription:
+          type: string
+          description: |
+            **DEPRECATED**
+            Use description instead.
+          maxLength: 100
+    fundingAccountInfo:
+      properties:
+        panUniqueReference:
+          type: string
+          description: >
+            **(CONDITIONAL)**
+
+            For repeat digitizations, the unique reference allocated to the Primary Account Number. When supplied, the tokenUniqueReferenceForPanInfo, accountNumber, expiryMonth and expiryYear must be omitted from CardInfoData. Only allowed if Only allowed if tokenUniqueReference and pushAccountReceipt are not present and encrypted data does not contain the account information.
+
+          maxLength: 64
+        tokenUniqueReference:
+          type: string
+          description: >
+            **(CONDITIONAL)**
+
+            A unique reference assigned following the allocation of a token used to identify the token for the duration of its lifetime.  For repeat digitizations, the unique reference allocated to the token will be used to retrieve the financial account information. When supplied, the account information is omitted from FundingAccountData. Only allowed if panUniqueReference and pushAccountReceipt are not present and encrypted data does not contain the account information.
+
+          maxLength: 64
+        encryptedPayload:
+          $ref: "#/components/schemas/fundingAccountInfo-EncryptedPayload"
+    fundingAccountInfo-EncryptedPayload:
+      properties:
+        publicKeyFingerprint:
+          type: string
+          description: >
+            The fingerprint of the public key used to encrypt the ephemeral AES
+            key.
+
+          maxLength: 64
+          example: 4c4ead5927f0df8117f178eea9308daa58e27c2b
+        encryptedKey:
+          type: string
+          description: >
+            One-time use AES key encrypted by the MasterCard public key (as
+            identified by publicKeyFingerprint) using the OAEP or PKCS#1 v1.5
+            scheme (depending on the value of oaepHashingAlgorithm.
+
+          maxLength: 512
+          example: A1B2C3D4E5F6112233445566
+        oaepHashingAlgorithm:
+          type: string
+          description: >
+            Hashing algorithm used with the OAEP scheme. Must be either SHA256
+            or SHA512.
+          example: SHA512
+        iv:
+          type: string
+          description: >
+            The initialization vector used when encrypting data using the
+            one-time use AES key. Must be exactly 16 bytes (32 character hex
+            string) to match the block size. If not present, an IV of zero is
+            assumed.
+          maxLength: 32
+          minLength: 32
+          example: NA
+        encryptedData:
+          $ref: "#/components/schemas/FundingAccountData"
+    FundingAccountData:
+      properties:
+        cardAccountData:
+          $ref: "#/components/schemas/CardAccountData_inbound"
+        accountHolderData:
+          $ref: "#/components/schemas/accountHolderData"
+        source:
+          type: string
+          description: |
+            (**Required as minimum for Tokenization**)
+            The source of the account. Must be one of
+              * ACCOUNT_ON_FILE
+              * ACCOUNT_ADDED_MANUALLY
+              * ACCOUNT_ADDED_VIA_APPLICATION
+          maxLength: 32
+          example: ACCOUNT_ON_FILE
+    accountHolderData:
+      properties:
+        accountHolderName:
+          type: string
+          description: >
+            **(OPTIONAL)**
+            The name of the cardholder in the format LASTNAME/FIRSTNAME or FIRSTNAME LASTNAME
+
+          maxLength: 27
+        accountHolderAddress:
+          $ref: "#/components/schemas/billingAddress"
+        consumerIdentifier:
+          type: string
+          description: |
+            **(OPTIONAL)**
+            Customer Identifier that may be required in some regions.
+          maxLength: 88
+        accountHolderEmailAddress:
+          type: string
+          description: |
+            **(OPTIONAL)**
+            The e-mail address of the Account Holder
+          maxLength: 320
+        accountHolderMobilePhoneNumber:
+          $ref: "#/components/schemas/PhoneNumber"
+    accountHolderData_outbound:
+      description: >
+        **(CONDITIONAL)**
+
+        Present in tokenize response if supported by the Merchant, if using a pushAccountReceipt and if there is account holder data associated with the pushAccountReceipt in case that the issuer decision is APPROVED. Refer to MDES Token Connect Token Requestor Implementation Guide and Specification  for more details.
+      properties:
+        accountHolderName:
+          type: string
+          description: |
+            **(OPTIONAL)**
+            The name of the cardholder
+          maxLength: 27
+        accountHolderAddress:
+          $ref: "#/components/schemas/billingAddress"
+        accountHolderEmailAddress:
+          type: string
+          description: |
+            **(OPTIONAL)**
+            The e-mail address of the Account Holder
+          maxLength: 320
+        accountHolderMobilePhoneNumber:
+          $ref: "#/components/schemas/PhoneNumber"
+    PhoneNumber:
+      properties:
+        countryDialInCode:
+          type: number
+          description: >
+            **(OPTIONAL)**
+            The country code for the phone number. E.g. 1 for US or 44 for UK.
+
+          maxLength: 4
+          example: "44"
+        phoneNumber:
+          type: number
+          description: |
+            **(OPTIONAL)**
+            The phone number of the account holder
+          maxLength: 20
+          example: 07777 777 777
+    CardAccountData_inbound:
+      description: >
+        **(CONDITIONAL)**
+        Required in Tokenize or Search Tokens unless a
+        valid panUniqueReference, tokenUniqueReference or pushAccountReceipt is
+        also given in FundingAccountInfo.
+      properties:
+        accountNumber:
+          type: string
+          description: >
+            The account number of the credit or debit card.
+            **(CONDITIONAL)** required in a Tokenize, or Get Digital Asset request,
+            unless a valid panUniqueReference or tokenUniqueReference or pushAccountReceipt was given in FundingAccountInfo.
+            **NOTE**:Only 6 digits can be supplied in SearchTokens if the TokenUniqueReference is provided in fundingAccountInfo.
+          minLength: 9
+          maxLength: 19
+          example: "5123456789012345"
+        expiryMonth:
+          type: string
+          description: >
+            The expiry month for the account. Two numeric digits must be supplied.
+            Only supplied in tokenization requests if panUniqueReference or tokenUniqueReferenceForPanInfo or pushAccountReceipt is not present.
+            **Format: MM**
+          minLength: 2
+          maxLength: 2
+          example: "09"
+        expiryYear:
+          type: string
+          description: >
+            **(Required as minimum for Tokenization)**
+            The expiry year for the account.
+            Only supplied in tokenization requests if panUniqueReference or tokenUniqueReferenceForPanInfo or pushAccountReceipt is not present.
+
+            **Format: YY**
+          minLength: 2
+          maxLength: 2
+          example: "21"
+        securityCode:
+          type: string
+          description: >
+            **(OPTIONAL)**
+            The security code for the account can optionally be provided for Tokenization. If provided, the validity will be checked.
+
+            Optional in a Tokenize request, not present otherwise.
+          maxLength: 3
+          example: "123"
+    CardAccountData_outbound:
+      description: >
+        **(CONDITIONAL)**
+
+        The credit or debit card information for the account that is being tokenized.  Present in tokenize response if supported by the Token Requestor, if using a pushAccountReceipt and if there is a card account associated with the pushAccountReceipt in case that the issuer decision is not DECLINED.
+      properties:
+        accountNumber:
+          type: string
+          description: |
+            The account number of the credit or debit card.
+          minLength: 9
+          maxLength: 19
+          example: "5123456789012345"
+        expiryMonth:
+          type: string
+          description: >
+
+            The expiry month for the account. Two numeric digits must be supplied.
+
+            **Format: MM**
+          minLength: 2
+          maxLength: 2
+          example: "09"
+        expiryYear:
+          type: string
+          description: |
+            **(Required as minimum for Tokenization)**
+            The expiry year for the account.
+            **Format: YY**
+          minLength: 2
+          maxLength: 2
+          example: "21"
+    billingAddress:
+      properties:
+        line1:
+          type: string
+          description: |
+            **(OPTIONAL)**
+            The first line of the street address for the billing address.
+          maxLength: 64
+          example: 100 1st Street
+        line2:
+          type: string
+          description: |
+            **(OPTIONAL)**
+            The second line of the street address for the billing address.
+          maxLength: 64
+          example: Apt. 4B
+        city:
+          type: string
+          description: |
+            **(OPTIONAL)**
+            The city of the billing address.
+          maxLength: 32
+          example: St. Louis
+        countrySubdivision:
+          type: string
+          description: |
+            **(OPTIONAL)**
+            The state or country subdivision of the billing address.
+          maxLength: 12
+          example: MO
+        postalCode:
+          type: string
+          description: |
+            **(OPTIONAL)**
+            The postal of code of the billing address.
+          maxLength: 16
+          example: "61000"
+        country:
+          type: string
+          description: |
+            **(OPTIONAL)**
+            The country of the billing address.
+          maxLength: 3
+          example: USA
+    DecisioningData:
+      properties:
+        recommendation:
+          type: string
+          description: >
+            **(OPTIONAL)**
+
+            Digitization decision recommended by the Token Requestor. Must be either APPROVED (Recommend a decision of Approved), DECLINED (Recommend a decision of Decline).
+
+          maxLength: 64
+          example: APPROVED
+        recommendationAlgorithmVersion:
+          type: string
+          description: >
+            **(OPTIONAL)**
+
+            Version of the algorithm used by the Token Requestor to determine its recommendation. Must be a value of "01". Other values may be supported in the future.
+
+          maxLength: 16
+          example: "01"
+        deviceScore:
+          type: string
+          description: >
+            **(OPTIONAL)**
+
+            Score assigned by the Token Requestor for the target device being provisioned. Must be a value from 1 to 5.
+          example: "1"
+        accountScore:
+          type: string
+          description: >
+            **(OPTIONAL)**
+
+            Score assigned by the Token Requestor for the consumer account or relationship. Must be a value from 1 to 5.
+          example: "1"
+        recommendationReasons:
+          type: array
+          description: >
+            **(OPTIONAL)**
+
+            Code indicating the reasons the Token Requestor is suggesting the digitization decision.  See table here - https://developer.mastercard.com/mdes-digital-enablement/documentation/code-and-formats/#recommendation-reason-codes
+          items:
+            type: string
+            example: LONG_ACCOUNT_TENURE
+        deviceCurrentLocation:
+          type: string
+          description: >
+            **(OPTIONAL)**
+
+            Latitude and longitude in the format "(sign) latitude, (sign) longitude" with a precision of 2 decimal places.  Ex - "38.63, -90.25"  Latitude is between -90 and 90.  Longitude between -180 and 180. Relates to the target device being provisioned. If there is no target device, then this should be the current consumer location, if available.
+
+          maxLength: 14
+          example: 38.63,-90.25
+        deviceIpAddress:
+          type: string
+          description: >
+            **(OPTIONAL)**
+
+            The IP address of the device through which the device reaches the internet. This may be a temporary or permanent IP address assigned to a home router, or the IP address of a gateway through which the device connects to a network. IPv4 address format of 4 octets separated by "." Ex - 127.0.0.1 Relates to the target device being provisioned. If there is no target device, then this should be the current consumer IP address, if available.
+          maxLength: 15
+          example: 127.0.0.1
+        mobileNumberSuffix:
+          type: string
+          description: >
+            **(OPTIONAL)**
+            The last few digits (typically four) of the consumer's mobile phone number as available on file or on the consumer's current device, which may or may not be the mobile number of the target device being provisioned.
+          maxLength: 32
+          example: 3456
+        accountIdHash:
+          type: string
+          description: >
+            **(OPTIONAL)**
+            SHA-256 hash of the Cardholder?s account ID with the Token Requestor. Typically expected to be an email address.
+          maxLength: 64
+          format: Alpha-Numeric and Hex-encoded data (case-insensitive).
+    productConfig:
+      required:
+        - brandLogoAssetId
+        - issuerLogoAssetId
+        - isCoBranded
+        - iconAssetId
+        - foregroundColor
+        - issuerName
+        - shortDescription
+      properties:
+        brandLogoAssetId:
+          type: string
+          description: >
+            The MasterCard or Maestro brand logo associated with this card.
+            Provided as an Asset ID ? use the Get Asset API to retrieve the
+            actual asset. Always returned in Product Configuration object
+          maxLength: 64
+          example: 800200c9-629d-11e3-949a-0739d27e5a66
+        issuerLogoAssetId:
+          type: string
+          description: >
+            The logo of the issuing bank. Provided as an Asset ID ? use the Get
+            Asset API to retrieve the actual asset. Always returned in Product
+            Configuration object
+          maxLength: 64
+          example: dbc55444-986a-4896-b41c-5d5e2dd431e2
+        isCoBranded:
+          type: boolean
+          description: >
+            Whether the product is co-branded. Must be either true (this is a
+            co-branded product) or false (this is not a co-branded product).
+            Always returned in Product Configuration object
+          maxLength: 5
+          example: true
+        coBrandName:
+          type: string
+          description: >
+            Textual name of the co-brand partner. Required if CoBranded is true,
+            not present otherwise.
+            **Conditional: Conditionally required if isCoBranded = "true". Not present otherwise**
+          maxLength: 128
+          example: Co brand partner
+        coBrandLogoAssetId:
+          type: string
+          description: >
+            The co-brand logo (if any) for this product. Provided as an Asset ID
+            ? use the Get Asset API to retrieve the actual asset.
+          maxLength: 64
+          example: dbc55444-496a-4896-b41c-5d5e2dd431e2
+        cardBackgroundCombinedAssetId:
+          type: string
+          description: >
+            The card image used to represent the digital card in the wallet.
+            This ?combined? option contains the MasterCard, bank and any co-
+            brand logos.  Provided as an Asset ID ? use the Get Asset API to
+            retrieve the actual asset.
+            **Conditional: either CardBackgroundCombined or CardBackground will be provided**
+          maxLength: 64
+          example: 739d27e5-629d-11e3-949a-0800200c9a66
+        cardBackgroundAssetId:
+          type: string
+          description: >
+            The card image used to represent the digital card in the wallet.
+            This ?non-combined? option does not contain the MasterCard, bank, or
+            co-brand logos. Provided as an Asset ID ? use the Get Asset API to
+            retrieve the actual asset.
+            **Conditional: either CardBackgroundCombined or CardBackground will be provided**
+          maxLength: 64
+          example: 456d27e5-629d-11e3-949a-0800200c9a66
+        iconAssetId:
+          type: string
+          description: >
+            The icon representing the primary brand(s) associated with this
+            product. Provided as an Asset ID ? use the Get Asset API to retrieve
+            the actual asset. Always returned in Product Configuration
+            object
+          maxLength: 64
+          example: 739d87e5-629d-11e3-949a-0800200c9a66
+        foregroundColor:
+          type: string
+          description: >
+            Foreground color, used to overlay text on top of the card image.
+            Always returned in Product Configuration object
+          maxLength: 6
+          format: Hexadecimal RGB color format (case-insensitive).
+          example: 0
+        issuerName:
+          type: string
+          description: >
+            Name of the issuing bank. Always returned in Product Configuration
+            object
+          maxLength: 64
+          example: Issuing Bank
+        shortDescription:
+          type: string
+          description: >
+            A short description for this product. Always returned in Product
+            Configuration object
+          maxLength: 128
+          example: Bank Rewards MasterCard
+        longDescription:
+          type: string
+          description: |
+            A long description for this product.
+          maxLength: 256
+          example: Bank Rewards MasterCard with the super duper rewards program
+        customerServiceUrl:
+          type: string
+          description: |
+            Customer service website of the issuing bank.
+          maxLength: 128
+          example: https://bank.com/customerservice
+        customerServiceEmail:
+          type: string
+          description: |
+            Customer service email address of the issuing bank.
+          maxLength: 64
+          example: customerservice@bank.com
+        customerServicePhoneNumber:
+          type: string
+          description: |
+            Customer service phone number of the issuing bank.
+          maxLength: 64
+          example: 1234567891
+        issuerMobileApp:
+          description: >
+            Contains one or more mobile app details that may be used to deep
+            link from the Mobile Payment App to the issuer mobile app.
+          maxLength: 64
+          type: object
+          example: null
+        onlineBankingLoginUrl:
+          type: string
+          description: |
+            Logon URL for the issuing bank?s online banking website.
+          maxLength: 128
+          example: bank.com
+        termsAndConditionsUrl:
+          type: string
+          description: >
+            URL linking to the issuing bank?s terms and conditions for this
+            product.
+          maxLength: 128
+          example: https://bank.com/termsAndConditions
+        privacyPolicyUrl:
+          type: string
+          description: >
+            URL linking to the issuing bank?s privacy policy for this
+            product.
+          maxLength: 128
+          example: https://bank.com/privacy
+        issuerProductConfigCode:
+          type: string
+          description: >
+            Freeform identifier for this product configuration as assigned by
+            the issuer.
+          maxLength: 128
+          example: 123456
+    tokenInfo:
+      required:
+        - tokenPanSuffix
+        - accountPanSuffix
+        - tokenExpiry
+        - dsrpCapable
+      properties:
+        tokenPanSuffix:
+          type: string
+          description: |
+            The last few digits (typically four) of the Token PAN.
+          maxLength: 8
+          example: "0001"
+        accountPanSuffix:
+          type: string
+          description: |
+            The last few digits (typically four) of the Account PAN.
+          maxLength: 8
+          example: "0011"
+        tokenExpiry:
+          type: string
+          description: |
+            The expiry of the Token PAN, given in MMYY format.
+          maxLength: 4
+          example: 921
+        accountPanExpiry:
+          type: string
+          description: |
+            The expiry of the Account PAN, given in MMYY format.
+          maxLength: 4
+          example: 921
+        dsrpCapable:
+          type: string
+          description: >
+            Whether DSRP transactions are supported by this Token. Must be
+            either 'true' (DSRP capable) or 'false' (Not DSRP capable).
+          maxLength: 5
+          example: true
+        tokenAssuranceLevel:
+          type: integer
+          description: >
+            A value indicating the confidence level of the token to Account PAN
+            binding.
+          maxLength: 2
+          example: 3
+        productCategory:
+          type: string
+          description: >
+            The product category of the Account PAN. When supplied will be one
+            of the following values:
+
+              * CREDIT
+              * DEBIT
+              * PREPAID
+              * UNKNOWN
+
+          maxLength: 32
+          example: CREDIT
+    tokenDetail:
+      properties:
+        tokenUniqueReference:
+          type: string
+          description: >
+            Globally unique identifier for the Token, as assigned by
+            MDES.
+
+          maxLength: 64
+          example: DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45
+        publicKeyFingerprint:
+          type: string
+          description: >
+            The certificate fingerprint identifying the public key used to
+            encrypt the ephemeral AES key.
+
+          maxLength: 64
+          format: Hex-encoded data (case-insensitive).
+          example: 4c4ead5927f0df8117f178eea9308daa58e27c2b
+        encryptedKey:
+          type: string
+          description: >
+            One-time use AES key encrypted by the MasterCard public key (as
+            identified by 'publicKeyFingerprint') using the OAEP or RSA
+            Encryption Standard PKCS #1 v1.5 scheme (depending on the value of
+            'oaepHashingAlgorithm'. Requirement is for a 128-bit key (with
+            256-bit key supported as an option).
+
+          maxLength: 512
+          example: A1B2C3D4E5F6112233445566
+        oaepHashingAlgorithm:
+          type: string
+          description: >
+            Hashing algorithm used with the OAEP scheme. If omitted, then the
+            RSA Encryption Standard PKCS #1 v1.5 will be used. Must be either
+            'SHA256' (Use the SHA-256 algorithm) or 'SHA512' (Use the SHA-512
+            algorithm).
+
+          maxLength: 6
+          example: SHA512
+        iv:
+          type: string
+          description: >
+            It is recommended to supply a random initialization vector when
+            encrypting the data using the one-time use AES key. Must be exactly
+            16 bytes (32 character hex string) to match the block size.
+            Hex-encoded data (case-insensitive).
+          maxLength: 32
+          example: NA
+        encryptedData:
+          $ref: "#/components/schemas/tokenDetailData"
+    tokenDetail_getToken_Only:
+      properties:
+        tokenUniqueReference:
+          type: string
+          description: >
+            Globally unique identifier for the Token, as assigned by
+            MDES.
+
+          maxLength: 64
+          example: DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45
+        publicKeyFingerprint:
+          type: string
+          description: >
+            The certificate fingerprint identifying the public key used to
+            encrypt the ephemeral AES key.
+          maxLength: 64
+          format: Hex-encoded data (case-insensitive).
+          example: 4c4ead5927f0df8117f178eea9308daa58e27c2b
+        encryptedKey:
+          type: string
+          description: >
+            One-time use AES key encrypted by the MasterCard public key (as
+            identified by 'publicKeyFingerprint') using the OAEP or RSA
+            Encryption Standard PKCS #1 v1.5 scheme (depending on the value of
+            'oaepHashingAlgorithm'. Requirement is for a 128-bit key (with
+            256-bit key supported as an option).
+
+          maxLength: 512
+          example: A1B2C3D4E5F6112233445566
+        oaepHashingAlgorithm:
+          type: string
+          description: >
+            Hashing algorithm used with the OAEP scheme. If omitted, then the
+            RSA Encryption Standard PKCS #1 v1.5 will be used. Must be either
+            'SHA256' (Use the SHA-256 algorithm) or 'SHA512' (Use the SHA-512
+            algorithm).
+
+          maxLength: 6
+          example: SHA512
+        iv:
+          type: string
+          description: >
+            It is recommended to supply a random initialization vector when
+            encrypting the data using the one-time use AES key. Must be exactly
+            16 bytes (32 character hex string) to match the block size.
+            Hex-encoded data (case-insensitive).
+          maxLength: 32
+          example: NA
+        encryptedData:
+          $ref: "#/components/schemas/tokenDetailData_getToken_Only"
+    tokenDetail_PAR_Only:
+      properties:
+        tokenUniqueReference:
+          type: string
+          description: >
+            Globally unique identifier for the Token, as assigned by
+            MDES.<br>
+          maxLength: 64
+          example: DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45
+        publicKeyFingerprint:
+          type: string
+          description: >
+            The certificate fingerprint identifying the public key used to
+            encrypt the ephemeral AES key.
+
+          maxLength: 64
+          format: Hex-encoded data (case-insensitive).
+          example: 4c4ead5927f0df8117f178eea9308daa58e27c2b
+        encryptedKey:
+          type: string
+          description: >
+            One-time use AES key encrypted by the MasterCard public key (as
+            identified by 'publicKeyFingerprint') using the OAEP or RSA
+            Encryption Standard PKCS #1 v1.5 scheme (depending on the value of
+            'oaepHashingAlgorithm'. Requirement is for a 128-bit key (with
+            256-bit key supported as an option).
+
+          maxLength: 512
+          example: A1B2C3D4E5F6112233445566
+        oaepHashingAlgorithm:
+          type: string
+          description: >
+            Hashing algorithm used with the OAEP scheme. If omitted, then the
+            RSA Encryption Standard PKCS #1 v1.5 will be used. Must be either
+            'SHA256' (Use the SHA-256 algorithm) or 'SHA512' (Use the SHA-512
+            algorithm).
+
+          maxLength: 6
+          example: SHA512
+        iv:
+          type: string
+          description: >
+            It is recommended to supply a random initialization vector when
+            encrypting the data using the one-time use AES key. Must be exactly
+            16 bytes (32 character hex string) to match the block size.
+            Hex-encoded data (case-insensitive).
+          maxLength: 32
+          example: NA
+        encryptedData:
+          $ref: "#/components/schemas/tokenDetailData_PAR_Only"
+    tokenDetailData:
+      properties:
+        paymentAccountReference:
+          type: string
+          description: >
+            "The unique account reference assigned to the PAN. Conditionally
+            returned if the Token Requestor has opted to receive PAR and
+            providing PAR is assigned by Mastercard or the Issuer provides PAR
+            in the authorization message response."
+          maxLength: 29
+          example: 5001a9f027e5629d11e3949a0800a
+    tokenDetailData_getToken_Only:
+      properties:
+        tokenNumber:
+          type: string
+          description: >
+            The Token Primary Account Number of the Card.
+          maxLength: 19
+          minLength: 9
+        expiryMonth:
+          type: string
+          description: |
+            The month of the token expiration date.
+          maxLength: 2
+        expiryYear:
+          type: string
+          description: |
+            The year of the token expiration date.
+          maxLength: 2
+        accountHolderData:
+          $ref: "#/components/schemas/accountHolderData_outbound"
+        paymentAccountReference:
+          type: string
+          description: >
+            The unique account reference assigned to the PAN. Conditionally
+            returned if the Token Requestor has opted to receive PAR and
+            providing PAR is assigned by Mastercard or the Issuer provides PAR
+            in the authorization message response.
+          maxLength: 29
+          example: 5001a9f027e5629d11e3949a0800a
+        cardAccountData:
+          $ref: "#/components/schemas/CardAccountData_outbound"
+    tokenDetailData_PAR_Only:
+      properties:
+        paymentAccountReference:
+          type: string
+          description: >
+            The unique account reference assigned to the PAN. Conditionally
+            returned if the Token Requestor has opted to receive PAR and
+            providing PAR is assigned by Mastercard or the Issuer provides PAR
+            in the authorization message response.
+          maxLength: 29
+          example: 5001a9f027e5629d11e3949a0800a
+    authenticationMethods:
+      description: |
+        "authenticationMethods not currently used for MDES for Merchants"
+      properties:
+        id:
+          type: string
+          description: |
+            Unique identifier assigned to this Authentication Method.
+          example: 334123523456213450000
+        type:
+          type: string
+          description: >
+            Specifies the authentication method type and provided in the
+            tokenize response.  See table here -
+            https://developer.mastercard.com/mdes-digital-enablement/documentation/code-and-formats/#authentication-method-codes
+          example: TEXT_TO_CARDHOLDER_NUMBER
+        value:
+          type: string
+          description: >
+            Specifies the authentication method value (meaning varies depending
+            on the authentication method type).
+          example: 1
+    token:
+      properties:
+        tokenUniqueReference:
+          type: string
+          description: >
+            The unique reference allocated to the Token which is always present
+            even if an error occurs.
+            maxLength: 64
+          example: DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45
+        status:
+          type: string
+          description: |
+            The current status of Token. Must be either:
+             * 'INACTIVE' (Token has not yet been activated)
+             * 'ACTIVE' (Token is active and ready to transact)
+             * 'SUSPENDED' (Token is suspended and unable to transact)
+             * 'DEACTIVATED' (Token has been permanently deactivated).
+            maxLength: 32
+          example: SUSPENDED
+        suspendedBy:
+          type: array
+          items:
+            type: string
+            example: CARDHOLDER
+          description: >
+            (CONDITIONAL only supplied if status is SUSPENDED)
+            Who or what caused the Token to be suspended One or more values of:
+               * ISSUER - Suspended by the Issuer.
+               * TOKEN_REQUESTOR - Suspended by the Token Requestor
+               * MOBILE_PIN_LOCKED - Suspended due to the Mobile PIN being locked
+               * CARDHOLDER - Suspended by the Cardholder
+        statusTimestamp:
+          type: string
+          description: >
+            The date and time the token status was last updated. Expressed in
+            ISO 8601 extended format as one of the following:
+               * YYYY-MM-DDThh:mm:ss[.sss]Z
+               * YYYY-MM-DDThh:mm:ss[.sss]±hh:mm
+               * Where [.sss] is optional and can be 1 to 3 digits.
+          maxLength: 29
+        productConfig:
+          $ref: "#/components/schemas/productConfig"
+        tokenInfo:
+          $ref: "#/components/schemas/tokenInfo"
+    token_for_getToken:
+      properties:
+        tokenUniqueReference:
+          type: string
+          description: >
+            The unique reference allocated to the Token which is always present
+            even if an error occurs.
+            maxLength: 64
+          example: DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45
+        tokenRequestorId:
+          type: string
+          description: >
+            Identifies the Token Requestor. <br>
+            minLength: 11
+            maxLength: 11
+          example: "98765432101"
+        status:
+          type: string
+          description: |
+            The current status of Token. Must be either:
+             * 'INACTIVE' (Token has not yet been activated)
+             * 'ACTIVE' (Token is active and ready to transact)
+             * 'SUSPENDED' (Token is suspended and unable to transact)
+             * 'DEACTIVATED' (Token has been permanently deactivated).
+            maxLength: 32
+          example: SUSPENDED
+        suspendedBy:
+          type: array
+          items:
+            type: string
+            example: CARDHOLDER
+          description: >
+            (CONDITIONAL only supplied if status is SUSPENDED)
+            Who or what caused the Token to be suspended One or more values of:
+               * ISSUER - Suspended by the Issuer.
+               * TOKEN_REQUESTOR - Suspended by the Token Requestor
+               * MOBILE_PIN_LOCKED - Suspended due to the Mobile PIN being locked
+               * CARDHOLDER - Suspended by the Cardholder
+        statusTimestamp:
+          type: string
+          description: >
+            The date and time the token status was last updated. Expressed in
+            ISO 8601 extended format as one of the following:
+               * YYYY-MM-DDThh:mm:ss[.sss]Z
+               * YYYY-MM-DDThh:mm:ss[.sss]±hh:mm
+               * Where [.sss] is optional and can be 1 to 3 digits.
+          maxLength: 29
+        productConfig:
+          $ref: "#/components/schemas/productConfig"
+        tokenInfo:
+          $ref: "#/components/schemas/tokenInfo_for_NTU_and_getToken"
+    token_for_NTU:
+      properties:
+        tokenUniqueReference:
+          type: string
+          description: >
+            The unique reference allocated to the Token which is always present
+            even if an error occurs. <br>
+            maxLength: 64
+          example: DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45
+        tokenRequestorId:
+          type: string
+          description: >
+            Identifies the Token Requestor. <br>
+            minLength: 11
+            maxLength: 11
+          example: "98765432101"
+        status:
+          type: string
+          description: |
+            The current status of Token. Must be either:
+            * 'INACTIVE' (Token has not yet been activated)
+            * 'ACTIVE' (Token is active and ready to transact)
+            * 'SUSPENDED' (Token is suspended and unable to transact)
+            * 'DEACTIVATED' (Token has been permanently deactivated).<br>
+            maxLength: 32
+          example: SUSPENDED
+        eventReasonCode:
+          type: string
+          description: |
+            An optional Reason Code provided by the Issuer to explain why the token status has changed.
+            Not present if the Issuer has not supplied a reason code.
+            Note: Recommended that Partners be resilient to new values as new reason codes may be added in the future without notice.
+            * 'DEVICE_LOST' - Cardholder confirmed token device lost.
+            * 'DEVICE_STOLEN' - Cardholder confirmed token device stolen.
+            * 'SUSPECTED_FRAUD' -  Issuer or cardholder reported fraudulent token transactions.
+            * 'ACCOUNT_CLOSED' - Account closed.
+            * 'NOT_FRAUD' - Issuer or cardholder confirmed no fraudulent token transactions.
+            * 'DEVICE_FOUND' - Cardholder reported token device found or not stolen.
+            * 'REDIGITIZATION_COMPLETE' - Token has been re-digitized successfully with either the expiry date extended or both expiry and token number changed.
+            * 'OTHER' -  Other. <br>
+            maxLength: 32
+          example: SUSPECTED_FRAUD
+        suspendedBy:
+          type: array
+          items:
+            type: string
+            example: CARDHOLDER
+          description: |
+            (CONDITIONAL only supplied if status is SUSPENDED)
+            Who or what caused the Token to be suspended One or more values of:
+              * ISSUER - Suspended by the Issuer.
+              * TOKEN_REQUESTOR - Suspended by the Token Requestor
+              * MOBILE_PIN_LOCKED - Suspended due to the Mobile PIN being locked
+              * CARDHOLDER - Suspended by the Cardholder <br>
+        statusTimestamp:
+          type: string
+          description: >
+            The date and time the token status was last updated. Expressed in ISO
+            8601 extended format as one of the following:
+              * YYYY-MM-DDThh:mm:ss[.sss]Z
+              * YYYY-MM-DDThh:mm:ss[.sss]±hh:mm
+              * Where [.sss] is optional and can be 1 to 3 digits. <br>
+          maxLength: 29
+        productConfig:
+            $ref: '#/components/schemas/productConfig'
+        tokenInfo:
+            $ref: '#/components/schemas/tokenInfo_for_NTU_and_getToken'
+    tokenInfo_for_NTU_and_getToken:
+      required:
+        - tokenPanSuffix
+        - accountPanPrefix
+        - accountPanSuffix
+        - tokenExpiry
+        - dsrpCapable
+      properties:
+        tokenPanSuffix:
+          type: string
+          description: |
+            The last few digits (typically four) of the Token PAN.
+          maxLength: 8
+          example: "0001"
+        accountPanPrefix:
+          type: string
+          description: |
+           The first few digits (typically six) of the Account PAN.
+          example: "500000"
+        accountPanSuffix:
+          type: string
+          description: |
+            The last few digits (typically four) of the Account PAN.
+          maxLength: 8
+          example: "0011"
+        tokenExpiry:
+          type: string
+          description: |
+            The expiry of the Token PAN, given in MMYY format.
+          maxLength: 4
+          example: 921
+        accountPanExpiry:
+          type: string
+          description: |
+            The expiry of the Account PAN, given in MMYY format.
+          maxLength: 4
+          example: 921
+        dsrpCapable:
+          type: string
+          description: >
+            Whether DSRP transactions are supported by this Token. Must be
+            either 'true' (DSRP capable) or 'false' (Not DSRP capable).
+          maxLength: 5
+          example: true
+        tokenAssuranceLevel:
+          type: integer
+          description: >
+            A value indicating the confidence level of the token to Account PAN
+            binding.
+          maxLength: 2
+          example: 3
+        productCategory:
+          type: string
+          description: >
+            The product category of the Account PAN. When supplied will be one
+            of the following values:
+
+              * CREDIT
+              * DEBIT
+              * PREPAID
+              * UNKNOWN
+
+          maxLength: 32
+          example: CREDIT
+    token_for_LCM:
+      properties:
+        tokenUniqueReference:
+          type: string
+          description: >
+            The unique reference allocated to the Token which is always present
+            even if an error occurs.
+            maxLength: 64
+          example: DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45
+        status:
+          type: string
+          description: |
+            The current status of Token. Must be either:
+             * 'INACTIVE' (Token has not yet been activated)
+             * 'ACTIVE' (Token is active and ready to transact)
+             * 'SUSPENDED' (Token is suspended and unable to transact)
+             * 'DEACTIVATED' (Token has been permanently deactivated).
+            maxLength: 32
+          example: SUSPENDED
+        suspendedBy:
+          type: array
+          items:
+            type: string
+            example: CARDHOLDER
+          description: >
+            (CONDITIONAL only supplied if status is SUSPENDED)
+            Who or what caused the Token to be suspended One or more values of:
+               * ISSUER - Suspended by the Issuer.
+               * TOKEN_REQUESTOR - Suspended by the Token Requestor
+               * MOBILE_PIN_LOCKED - Suspended due to the Mobile PIN being locked
+               * CARDHOLDER - Suspended by the Cardholder
+        statusTimestamp:
+          type: string
+          description: >
+            The date and time the token status was last updated. Expressed in
+            ISO 8601 extended format as one of the following:
+               * YYYY-MM-DDThh:mm:ss[.sss]Z
+               * YYYY-MM-DDThh:mm:ss[.sss]±hh:mm
+               * Where [.sss] is optional and can be 1 to 3 digits.
+
+          maxLength: 29

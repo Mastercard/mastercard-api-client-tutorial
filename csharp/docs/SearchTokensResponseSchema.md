@@ -1,4 +1,5 @@
 # Acme.App.MastercardApi.Client.Model.SearchTokensResponseSchema
+
 ## Properties
 
 Name | Type | Description | Notes

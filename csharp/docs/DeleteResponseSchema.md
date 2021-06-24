@@ -1,4 +1,5 @@
 # Acme.App.MastercardApi.Client.Model.DeleteResponseSchema
+
 ## Properties
 
 Name | Type | Description | Notes

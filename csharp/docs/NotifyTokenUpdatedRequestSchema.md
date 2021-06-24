@@ -1,4 +1,5 @@
 # Acme.App.MastercardApi.Client.Model.NotifyTokenUpdatedRequestSchema
+
 ## Properties
 
 Name | Type | Description | Notes

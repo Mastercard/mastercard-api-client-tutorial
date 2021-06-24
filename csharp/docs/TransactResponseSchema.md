@@ -1,4 +1,5 @@
 # Acme.App.MastercardApi.Client.Model.TransactResponseSchema
+
 ## Properties
 
 Name | Type | Description | Notes

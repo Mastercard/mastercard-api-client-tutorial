@@ -1,4 +1,5 @@
 # Acme.App.MastercardApi.Client.Model.AssetResponseSchema
+
 ## Properties
 
 Name | Type | Description | Notes

@@ -1,25 +1,27 @@
 # mdes-digital-enablement-client
 
-MDES for Merchants
-- API version: 1.2.10
-  - Build date: 2020-11-03T17:53:41.573204900Z[Europe/Dublin]
+MDES Digital Enablement API
+- API version: 1.3.0
+  - Build date: 2021-06-24T14:19:40.105+01:00[Europe/London]
 
-The MDES APIs are designed as RPC style stateless web services where each API endpoint represents an operation to be performed.  All request and response payloads are sent in the JSON (JavaScript Object Notation) data-interchange format. Each endpoint in the API specifies the HTTP Method used to access it. All strings in request and response objects are to be UTF-8 encoded.  Each API URI includes the major and minor version of API that it conforms to.  This will allow multiple concurrent versions of the API to be deployed simultaneously.
-<br>
-__Authentication__
-Mastercard uses OAuth 1.0a with body hash extension for authenticating the API clients. This requires every request that you send to 
-Mastercard to be signed with an RSA private key. A private-public RSA key pair must be generated consisting of: <br>
-1 . A private key for the OAuth signature for API requests. It is recommended to keep the private key in a password-protected or hardware keystore.
+These APIs are designed as RPC style stateless web services where each API endpoint represents an operation to be performed.  All request and response payloads are sent in the JSON (JavaScript Object Notation) data-interchange format. Each endpoint in the API specifies the HTTP Method used to access it. All strings in request and response objects are to be UTF-8 encoded.  Each API URI includes the major and minor version of API that it conforms to.  This will allow multiple concurrent versions of the API to be deployed simultaneously.
+<br><br>
+**Authentication**
+<br><br>
+Mastercard uses OAuth 1.0a with body hash extension for authenticating the API clients. This requires every request that you send to  Mastercard to be signed with an RSA private key. A private-public RSA key pair must be generated consisting of:
+<br><br>
+1. A private key for the OAuth signature for API requests. It is recommended to keep the private key in a password-protected or hardware keystore.
 <br>
 2. A public key is shared with Mastercard during the project setup process through either a certificate signing request (CSR) or the API Key Generator. Mastercard will use the public key to verify the OAuth signature that is provided on every API call.<br>
 
 An OAUTH1.0a signer library is available on [GitHub](https://github.com/Mastercard/oauth1-signer-java)
-<br> 
-__Encryption__<br>
-
+<br><br>
+**Encryption**
+<br><br>
 All communications between Issuer web service and the Mastercard gateway is encrypted using TLS.
-<br>
-__Additional Encryption of Sensitive Data__
+<br><br>
+**Additional Encryption of Sensitive Data**
+<br><br>
 In addition to the OAuth authentication, when using MDES Digital Enablement Service, any PCI sensitive and all account holder Personally Identifiable Information (PII) data must be encrypted. This requirement applies to the API fields containing encryptedData. Sensitive data is encrypted using a symmetric session (one-time-use) key. The symmetric session key is then wrapped with an RSA Public Key supplied by Mastercard during API setup phase (the Customer Encryption Key). <br>
 
 Java Client Encryption Library available on [GitHub](https://github.com/Mastercard/client-encryption-java)
@@ -133,7 +135,7 @@ Class | Method | HTTP request | Description
 *NotifyTokenUpdatedApi* | [**notifyTokenUpdateForTokenStateChange**](docs/NotifyTokenUpdatedApi.md#notifyTokenUpdateForTokenStateChange) | **POST** /digitization/static/1/0/notifyTokenUpdated | Outbound API used by MDES to notify the Token Requestor of significant Token updates, such as when the Token is activated, suspended, unsuspended or deleted; or when information about the Token or its product configuration has changed.
 *SearchTokensApi* | [**searchTokens**](docs/SearchTokensApi.md#searchTokens) | **POST** /digitization/static/1/0/searchTokens | Used to get basic token information for all tokens on a specified device, or all tokens mapped to the given Account PAN.
 *SuspendApi* | [**createSuspend**](docs/SuspendApi.md#createSuspend) | **POST** /digitization/static/1/0/suspend | Used to temporarily suspend one or more Tokens.
-*TokenizeApi* | [**createTokenize**](docs/TokenizeApi.md#createTokenize) | **POST** /digitization/static/1/0/tokenize | Used to digitize a card to create a server-based Token.
+*TokenizeApi* | [**createTokenize**](docs/TokenizeApi.md#createTokenize) | **POST** /digitization/static/1/0/tokenize | 
 *TransactApi* | [**createTransact**](docs/TransactApi.md#createTransact) | **POST** /remotetransaction/static/1/0/transact | Used by the Token Requestor to create a Digital Secure Remote Payment (\&quot;DSRP\&quot;) transaction cryptogram using the credentials stored within MDES in order to perform a DSRP transaction.
 *UnsuspendApi* | [**createUnsuspend**](docs/UnsuspendApi.md#createUnsuspend) | **POST** /digitization/static/1/0/unsuspend | Used to unsuspend one or more previously suspended Tokens. The API is limited to 10 Tokens per request.
 
@@ -181,8 +183,11 @@ Class | Method | HTTP request | Description
  - [TokenDetailDataPAROnly](docs/TokenDetailDataPAROnly.md)
  - [TokenDetailGetTokenOnly](docs/TokenDetailGetTokenOnly.md)
  - [TokenDetailPAROnly](docs/TokenDetailPAROnly.md)
+ - [TokenForGetToken](docs/TokenForGetToken.md)
  - [TokenForLCM](docs/TokenForLCM.md)
+ - [TokenForNTU](docs/TokenForNTU.md)
  - [TokenInfo](docs/TokenInfo.md)
+ - [TokenInfoForNTUAndGetToken](docs/TokenInfoForNTUAndGetToken.md)
  - [TokenizeRequestSchema](docs/TokenizeRequestSchema.md)
  - [TokenizeResponseSchema](docs/TokenizeResponseSchema.md)
  - [TransactEncryptedData](docs/TransactEncryptedData.md)

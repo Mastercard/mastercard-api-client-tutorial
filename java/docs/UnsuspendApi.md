@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="createUnsuspend"></a>
 # **createUnsuspend**
-> UnSuspendResponseSchema createUnsuspend(unsuspendRequestSchema)
+> UnSuspendResponseSchema createUnsuspend(unSuspendRequestSchema)
 
 Used to unsuspend one or more previously suspended Tokens. The API is limited to 10 Tokens per request.
 
@@ -30,9 +30,9 @@ public class Example {
     defaultClient.setBasePath("https://api.mastercard.com/mdes");
 
     UnsuspendApi apiInstance = new UnsuspendApi(defaultClient);
-    UnSuspendRequestSchema unsuspendRequestSchema = new UnSuspendRequestSchema(); // UnSuspendRequestSchema | Contains the details of the request message. 
+    UnSuspendRequestSchema unSuspendRequestSchema = new UnSuspendRequestSchema(); // UnSuspendRequestSchema | Contains the details of the request message. 
     try {
-      UnSuspendResponseSchema result = apiInstance.createUnsuspend(unsuspendRequestSchema);
+      UnSuspendResponseSchema result = apiInstance.createUnsuspend(unSuspendRequestSchema);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling UnsuspendApi#createUnsuspend");
@@ -49,7 +49,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **unsuspendRequestSchema** | [**UnSuspendRequestSchema**](UnSuspendRequestSchema.md)| Contains the details of the request message.  | [optional]
+ **unSuspendRequestSchema** | [**UnSuspendRequestSchema**](UnSuspendRequestSchema.md)| Contains the details of the request message.  | [optional]
 
 ### Return type
 

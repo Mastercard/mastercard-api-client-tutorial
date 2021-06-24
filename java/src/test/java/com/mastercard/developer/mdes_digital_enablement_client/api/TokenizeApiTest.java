@@ -23,14 +23,14 @@ import static com.mastercard.developer.encryption.FieldLevelEncryptionConfig.Fie
 public class TokenizeApiTest {
 
     //
-    // TODO: add your credentials here or those dummy values will cause an INVALID_CLIENT_ID error to be returned.
+    // TODO: add your credentials here or those dummy values will cause an INVALID_CLIENT_ID error to be returned 😀
     //
     private final static String consumerKey = "000000000000000000000000000000000000000000000000!000000000000000000000000000000000000000000000000";
     private final static String signingKeyAlias = "fake-key";
     private final static String signingKeyPassword = "fakepassword";
     private final static String signingKeyPkcs12FilePath = "src/test/resources/fake-signing-key.p12";
 
-    // Encryption keys from https://developer.mastercard.com/page/digital-enablement-api-sandbox-configuration
+    // Encryption keys to be used in Sandbox (see: https://mstr.cd/2T53Ltv)
     private final static String encryptionCertificateFilePath = "src/test/resources/digital-enablement-sandbox-encryption-key.crt";
     private final static String decryptionKeyFilePath = "src/test/resources/digital-enablement-sandbox-decryption-key.key";
 
@@ -77,6 +77,8 @@ public class TokenizeApiTest {
         TokenizeResponseSchema response = api.createTokenize(tokenizeRequestSchema);
         Assert.assertNotNull(response);
         Assert.assertEquals("APPROVED", response.getDecision());
+        assert response.getTokenDetail() != null;
+        assert response.getTokenDetail().getEncryptedData() != null;
         Assert.assertEquals("500181d9f8e0629211e3949a08002", response.getTokenDetail().getEncryptedData().getPaymentAccountReference());
     }
 

@@ -4,14 +4,14 @@ All URIs are relative to *https://api.mastercard.com/mdes*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateTokenize**](TokenizeApi.md#createtokenize) | **POST** /digitization/static/1/0/tokenize | Used to digitize a card to create a server-based Token.
+[**CreateTokenize**](TokenizeApi.md#createtokenize) | **POST** /digitization/static/1/0/tokenize | 
 
 
 <a name="createtokenize"></a>
 # **CreateTokenize**
 > TokenizeResponseSchema CreateTokenize (TokenizeRequestSchema tokenizeRequestSchema = null)
 
-Used to digitize a card to create a server-based Token.
+
 
 Used to digitize a card to create a server-based Token. MDES will perform both card availability and eligibility checks to check that this specific card is eligible for digitization. As both availability and eligibility are combined, only a Tokenization Authorization message is sent to the issuer as part of this request to authorize the digitization. No Tokenization Eligibility message is sent. The digitization decision will be one of Approved or Declined. 
 
@@ -32,11 +32,10 @@ namespace Example
             Configuration config = new Configuration();
             config.BasePath = "https://api.mastercard.com/mdes";
             var apiInstance = new TokenizeApi(config);
-            var tokenizeRequestSchema = new TokenizeRequestSchema(); // TokenizeRequestSchema | A Tokenize request is used to digitize a PAN.   (optional) 
+            var tokenizeRequestSchema = new TokenizeRequestSchema(); // TokenizeRequestSchema | A Tokenize request is used to digitize a PAN.  (optional) 
 
             try
             {
-                // Used to digitize a card to create a server-based Token.
                 TokenizeResponseSchema result = apiInstance.CreateTokenize(tokenizeRequestSchema);
                 Debug.WriteLine(result);
             }
@@ -55,7 +54,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tokenizeRequestSchema** | [**TokenizeRequestSchema**](TokenizeRequestSchema.md)| A Tokenize request is used to digitize a PAN.   | [optional] 
+ **tokenizeRequestSchema** | [**TokenizeRequestSchema**](TokenizeRequestSchema.md)| A Tokenize request is used to digitize a PAN.  | [optional] 
 
 ### Return type
 
@@ -69,6 +68,7 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |

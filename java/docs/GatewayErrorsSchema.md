@@ -2,6 +2,7 @@
 
 # GatewayErrorsSchema
 
+
 ## Properties
 
 Name | Type | Description | Notes

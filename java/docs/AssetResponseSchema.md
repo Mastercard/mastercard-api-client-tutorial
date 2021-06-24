@@ -2,6 +2,7 @@
 
 # AssetResponseSchema
 
+
 ## Properties
 
 Name | Type | Description | Notes

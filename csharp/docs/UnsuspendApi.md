@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="createunsuspend"></a>
 # **CreateUnsuspend**
-> UnSuspendResponseSchema CreateUnsuspend (UnSuspendRequestSchema unsuspendRequestSchema = null)
+> UnSuspendResponseSchema CreateUnsuspend (UnSuspendRequestSchema unSuspendRequestSchema = null)
 
 Used to unsuspend one or more previously suspended Tokens. The API is limited to 10 Tokens per request.
 
@@ -32,12 +32,12 @@ namespace Example
             Configuration config = new Configuration();
             config.BasePath = "https://api.mastercard.com/mdes";
             var apiInstance = new UnsuspendApi(config);
-            var unsuspendRequestSchema = new UnSuspendRequestSchema(); // UnSuspendRequestSchema | Contains the details of the request message.  (optional) 
+            var unSuspendRequestSchema = new UnSuspendRequestSchema(); // UnSuspendRequestSchema | Contains the details of the request message.  (optional) 
 
             try
             {
                 // Used to unsuspend one or more previously suspended Tokens. The API is limited to 10 Tokens per request.
-                UnSuspendResponseSchema result = apiInstance.CreateUnsuspend(unsuspendRequestSchema);
+                UnSuspendResponseSchema result = apiInstance.CreateUnsuspend(unSuspendRequestSchema);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -55,7 +55,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **unsuspendRequestSchema** | [**UnSuspendRequestSchema**](UnSuspendRequestSchema.md)| Contains the details of the request message.  | [optional] 
+ **unSuspendRequestSchema** | [**UnSuspendRequestSchema**](UnSuspendRequestSchema.md)| Contains the details of the request message.  | [optional] 
 
 ### Return type
 
@@ -69,6 +69,7 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |

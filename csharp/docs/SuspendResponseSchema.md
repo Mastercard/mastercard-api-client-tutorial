@@ -1,4 +1,5 @@
 # Acme.App.MastercardApi.Client.Model.SuspendResponseSchema
+
 ## Properties
 
 Name | Type | Description | Notes

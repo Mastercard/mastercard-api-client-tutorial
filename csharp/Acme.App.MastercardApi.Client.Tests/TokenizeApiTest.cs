@@ -1,22 +1,20 @@
-using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using Acme.App.MastercardApi.Client.Api;
+using Acme.App.MastercardApi.Client.Client;
+using Acme.App.MastercardApi.Client.Model;
 using Mastercard.Developer.ClientEncryption.Core.Encryption;
 using Mastercard.Developer.ClientEncryption.Core.Utils;
 using Mastercard.Developer.OAuth1Signer.Core.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Acme.App.MastercardApi.Client.Api;
-using Acme.App.MastercardApi.Client.Client;
-using Acme.App.MastercardApi.Client.Model;
-using System.Security.Cryptography.X509Certificates;
-using Mastercard.Developer.ClientEncryption.RestSharpV2.Interceptors;
 using static Mastercard.Developer.ClientEncryption.Core.Encryption.FieldLevelEncryptionConfig;
 
-namespace Mastercard.Developer.DigitalEnablement.Tests
+namespace Acme.App.MastercardApi.Client.Tests
 {
     [TestClass]
     public class TokenizeApiTest
     {
         //
-        // TODO: add your credentials here or those dummy values will cause an INVALID_CLIENT_ID error to be returned.
+        // TODO: add your credentials here or those dummy values will cause an INVALID_CLIENT_ID error to be returned 😀
         //
         private const string ConsumerKey = "000000000000000000000000000000000000000000000000!000000000000000000000000000000000000000000000000";
         private const string SigningKeyAlias = "fake-key";
@@ -24,10 +22,9 @@ namespace Mastercard.Developer.DigitalEnablement.Tests
         private const string SigningKeyPkcs12FilePath = "./_Resources/fake-signing-key.p12";
         private const string BasePath = "https://sandbox.api.mastercard.com/mdes/";
 
-        private static RSA SigningKey { set; get; }
-        private static ApiClient Client { set; get; }
+        private static ApiClient _client;
         
-        // Encryption keys from https://developer.mastercard.com/page/digital-enablement-api-sandbox-configuration
+        // Encryption keys to be used in Sandbox (see: https://mstr.cd/2T53Ltv)
         private const string EncryptionCertificateFilePath = "./_Resources/digital-enablement-sandbox-encryption-key.crt";
         private const string DecryptionKeyFilePath = "./_Resources/digital-enablement-sandbox-decryption-key.key";
 
@@ -39,11 +36,12 @@ namespace Mastercard.Developer.DigitalEnablement.Tests
 
         private static void SetupApiClient()
         {
-            SigningKey = AuthenticationUtils.LoadSigningKey(SigningKeyPkcs12FilePath, SigningKeyAlias, SigningKeyPassword, X509KeyStorageFlags.MachineKeySet | X509KeyStorageFlags.Exportable);
+            var signingKey = AuthenticationUtils.LoadSigningKey(SigningKeyPkcs12FilePath, SigningKeyAlias,
+                SigningKeyPassword, X509KeyStorageFlags.MachineKeySet | X509KeyStorageFlags.Exportable);
             var encryptionCertificate = EncryptionUtils.LoadEncryptionCertificate(EncryptionCertificateFilePath);
             var decryptionKey = EncryptionUtils.LoadDecryptionKey(DecryptionKeyFilePath);
-
-            var fieldLevelEncryptionConfig = FieldLevelEncryptionConfigBuilder.AFieldLevelEncryptionConfig()
+            
+            var config = FieldLevelEncryptionConfigBuilder.AFieldLevelEncryptionConfig()
                 .WithEncryptionPath("$.fundingAccountInfo.encryptedPayload.encryptedData", "$.fundingAccountInfo.encryptedPayload")
                 .WithEncryptionPath("$.encryptedPayload.encryptedData", "$.encryptedPayload")
                 .WithDecryptionPath("$.tokenDetail", "$.tokenDetail.encryptedData")
@@ -58,18 +56,14 @@ namespace Mastercard.Developer.DigitalEnablement.Tests
                 .WithEncryptionCertificateFingerprintFieldName("publicKeyFingerprint")
                 .WithValueEncoding(FieldValueEncoding.Hex)
                 .Build();
-
-            Client = new ApiClient(SigningKey, BasePath, ConsumerKey)
-            {
-                EncryptionInterceptor = new RestSharpFieldLevelEncryptionInterceptor(fieldLevelEncryptionConfig)
-            };
+            
+            _client = new ApiClient(signingKey, BasePath, ConsumerKey, config);
         }
 
         [TestMethod]
         public void TestTokenizeEndpoint()
         {
-            var tokenizeApi = new TokenizeApi();
-            tokenizeApi.Client = Client;
+            var tokenizeApi = new TokenizeApi {Client = _client};
             var response = tokenizeApi.CreateTokenize(BuildTokenizeRequestSchema());
             Assert.IsNotNull(response);
             Assert.AreEqual("APPROVED", response.Decision);
@@ -88,52 +82,40 @@ namespace Mastercard.Developer.DigitalEnablement.Tests
                 "RHVtbXkgYmFzZSA2NCBkYXRhIC0gdGhpcyBpcyBub3QgYSByZWFsIFRBViBleGFtcGxl");
         }
 
-        private static FundingAccountInfo BuildFundingAccountInfo()
-        {
-            return new FundingAccountInfo(
+        private static FundingAccountInfo BuildFundingAccountInfo() =>
+            new FundingAccountInfo(
                 string.Empty,
                 string.Empty,
-                string.Empty,
-                BuildFundingAccountInfoEncryptedPayload());
-        }
+                BuildFundingAccountInfoPayload());
 
-        private static FundingAccountInfoEncryptedPayload BuildFundingAccountInfoEncryptedPayload()
-        {
-            return new FundingAccountInfoEncryptedPayload(
+        private static FundingAccountInfoEncryptedPayload BuildFundingAccountInfoPayload() =>
+            new FundingAccountInfoEncryptedPayload(
                 string.Empty,
                 string.Empty,
                 string.Empty,
                 string.Empty,
                 BuildFundingAccountData());
-        }
 
-        private static FundingAccountData BuildFundingAccountData()
-        {
-            return new FundingAccountData(
+        private static FundingAccountData BuildFundingAccountData() =>
+            new FundingAccountData(
                 BuildCardAccountDataInbound(),
                 BuildAccountHolderData(),
                 "ACCOUNT_ON_FILE");
-        }
 
-        private static AccountHolderData BuildAccountHolderData()
-        {
-            return new AccountHolderData(
+        private static AccountHolderData BuildAccountHolderData() =>
+            new AccountHolderData(
                 "John Doe",
                 BuildBillingAddress());
-        }
 
-        private static CardAccountDataInbound BuildCardAccountDataInbound()
-        {
-            return new CardAccountDataInbound(
+        private static CardAccountDataInbound BuildCardAccountDataInbound() =>
+            new CardAccountDataInbound(
                 "5123456789012345",
                 "09",
                 "21",
                 "123");
-        }
 
-        private static BillingAddress BuildBillingAddress()
-        {
-            return new BillingAddress
+        private static BillingAddress BuildBillingAddress() =>
+            new BillingAddress
             {
                 Line1 = "100 1st Street",
                 Line2 = "Apt. 4B",
@@ -142,6 +124,5 @@ namespace Mastercard.Developer.DigitalEnablement.Tests
                 CountrySubdivision = "MO",
                 PostalCode = "61000"
             };
-        }
     }
 }

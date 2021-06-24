@@ -1,4 +1,5 @@
 # Acme.App.MastercardApi.Client.Model.GatewayErrorsResponse
+
 ## Properties
 
 Name | Type | Description | Notes
