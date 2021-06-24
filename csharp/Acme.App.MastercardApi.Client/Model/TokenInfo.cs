@@ -46,7 +46,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <param name="dsrpCapable">Whether DSRP transactions are supported by this Token. Must be either &#39;true&#39; (DSRP capable) or &#39;false&#39; (Not DSRP capable).  (required).</param>
         /// <param name="tokenAssuranceLevel">A value indicating the confidence level of the token to Account PAN binding. .</param>
         /// <param name="productCategory">The product category of the Account PAN. When supplied will be one of the following values:    * CREDIT   * DEBIT   * PREPAID   * UNKNOWN .</param>
-        public TokenInfo(string tokenPanSuffix = default(string), string accountPanSuffix = default(string), string tokenExpiry = default(string), string accountPanExpiry = default(string), string dsrpCapable = default(string), int tokenAssuranceLevel = default(int), string productCategory = default(string))
+        public TokenInfo(string tokenPanSuffix = default(string), string accountPanSuffix = default(string), string tokenExpiry = default(string), string accountPanExpiry = default(string), bool dsrpCapable = default(bool), int tokenAssuranceLevel = default(int), string productCategory = default(string))
         {
             // to ensure "tokenPanSuffix" is required (not null)
             this.TokenPanSuffix = tokenPanSuffix ?? throw new ArgumentNullException("tokenPanSuffix is a required property for TokenInfo and cannot be null");
@@ -54,8 +54,7 @@ namespace Acme.App.MastercardApi.Client.Model
             this.AccountPanSuffix = accountPanSuffix ?? throw new ArgumentNullException("accountPanSuffix is a required property for TokenInfo and cannot be null");
             // to ensure "tokenExpiry" is required (not null)
             this.TokenExpiry = tokenExpiry ?? throw new ArgumentNullException("tokenExpiry is a required property for TokenInfo and cannot be null");
-            // to ensure "dsrpCapable" is required (not null)
-            this.DsrpCapable = dsrpCapable ?? throw new ArgumentNullException("dsrpCapable is a required property for TokenInfo and cannot be null");
+            this.DsrpCapable = dsrpCapable;
             this.AccountPanExpiry = accountPanExpiry;
             this.TokenAssuranceLevel = tokenAssuranceLevel;
             this.ProductCategory = productCategory;
@@ -93,8 +92,8 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Whether DSRP transactions are supported by this Token. Must be either &#39;true&#39; (DSRP capable) or &#39;false&#39; (Not DSRP capable). 
         /// </summary>
         /// <value>Whether DSRP transactions are supported by this Token. Must be either &#39;true&#39; (DSRP capable) or &#39;false&#39; (Not DSRP capable). </value>
-        [DataMember(Name = "dsrpCapable", IsRequired = true, EmitDefaultValue = false)]
-        public string DsrpCapable { get; set; }
+        [DataMember(Name = "dsrpCapable", IsRequired = true, EmitDefaultValue = true)]
+        public bool DsrpCapable { get; set; }
 
         /// <summary>
         /// A value indicating the confidence level of the token to Account PAN binding. 
@@ -181,8 +180,7 @@ namespace Acme.App.MastercardApi.Client.Model
                 ) && 
                 (
                     this.DsrpCapable == input.DsrpCapable ||
-                    (this.DsrpCapable != null &&
-                    this.DsrpCapable.Equals(input.DsrpCapable))
+                    this.DsrpCapable.Equals(input.DsrpCapable)
                 ) && 
                 (
                     this.TokenAssuranceLevel == input.TokenAssuranceLevel ||
@@ -212,8 +210,7 @@ namespace Acme.App.MastercardApi.Client.Model
                     hashCode = hashCode * 59 + this.TokenExpiry.GetHashCode();
                 if (this.AccountPanExpiry != null)
                     hashCode = hashCode * 59 + this.AccountPanExpiry.GetHashCode();
-                if (this.DsrpCapable != null)
-                    hashCode = hashCode * 59 + this.DsrpCapable.GetHashCode();
+                hashCode = hashCode * 59 + this.DsrpCapable.GetHashCode();
                 hashCode = hashCode * 59 + this.TokenAssuranceLevel.GetHashCode();
                 if (this.ProductCategory != null)
                     hashCode = hashCode * 59 + this.ProductCategory.GetHashCode();
@@ -250,12 +247,6 @@ namespace Acme.App.MastercardApi.Client.Model
             if(this.AccountPanExpiry != null && this.AccountPanExpiry.Length > 4)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountPanExpiry, length must be less than 4.", new [] { "AccountPanExpiry" });
-            }
-
-            // DsrpCapable (string) maxLength
-            if(this.DsrpCapable != null && this.DsrpCapable.Length > 5)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DsrpCapable, length must be less than 5.", new [] { "DsrpCapable" });
             }
 
             // ProductCategory (string) maxLength

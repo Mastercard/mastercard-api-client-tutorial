@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **AccountPanSuffix** | **string** | The last few digits (typically four) of the Account PAN.  | 
 **TokenExpiry** | **string** | The expiry of the Token PAN, given in MMYY format.  | 
 **AccountPanExpiry** | **string** | The expiry of the Account PAN, given in MMYY format.  | [optional] 
-**DsrpCapable** | **string** | Whether DSRP transactions are supported by this Token. Must be either &#39;true&#39; (DSRP capable) or &#39;false&#39; (Not DSRP capable).  | 
+**DsrpCapable** | **bool** | Whether DSRP transactions are supported by this Token. Must be either &#39;true&#39; (DSRP capable) or &#39;false&#39; (Not DSRP capable).  | 
 **TokenAssuranceLevel** | **int** | A value indicating the confidence level of the token to Account PAN binding.  | [optional] 
 **ProductCategory** | **string** | The product category of the Account PAN. When supplied will be one of the following values:    * CREDIT   * DEBIT   * PREPAID   * UNKNOWN  | [optional] 
 

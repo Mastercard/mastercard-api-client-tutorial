@@ -37,7 +37,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <param name="id">Unique identifier assigned to this Authentication Method. .</param>
         /// <param name="type">Specifies the authentication method type and provided in the tokenize response.  See table here - https://developer.mastercard.com/mdes-digital-enablement/documentation/code-and-formats/#authentication-method-codes .</param>
         /// <param name="value">Specifies the authentication method value (meaning varies depending on the authentication method type). .</param>
-        public AuthenticationMethods(string id = default(string), string type = default(string), string value = default(string))
+        public AuthenticationMethods(int id = default(int), string type = default(string), string value = default(string))
         {
             this.Id = id;
             this.Type = type;
@@ -49,7 +49,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// </summary>
         /// <value>Unique identifier assigned to this Authentication Method. </value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Specifies the authentication method type and provided in the tokenize response.  See table here - https://developer.mastercard.com/mdes-digital-enablement/documentation/code-and-formats/#authentication-method-codes 
@@ -112,8 +112,7 @@ namespace Acme.App.MastercardApi.Client.Model
             return 
                 (
                     this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
+                    this.Id.Equals(input.Id)
                 ) && 
                 (
                     this.Type == input.Type ||
@@ -136,8 +135,7 @@ namespace Acme.App.MastercardApi.Client.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                hashCode = hashCode * 59 + this.Id.GetHashCode();
                 if (this.Type != null)
                     hashCode = hashCode * 59 + this.Type.GetHashCode();
                 if (this.Value != null)

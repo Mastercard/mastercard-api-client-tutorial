@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BrandLogoAssetId** | **string** | The MasterCard or Maestro brand logo associated with this card. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object  | 
-**IssuerLogoAssetId** | **string** | The logo of the issuing bank. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object  | 
-**IsCoBranded** | **bool** | Whether the product is co-branded. Must be either true (this is a co-branded product) or false (this is not a co-branded product). Always returned in Product Configuration object  | 
+**BrandLogoAssetId** | **string** | The MasterCard or Maestro brand logo associated with this card. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object  | [optional] 
+**IssuerLogoAssetId** | **string** | The logo of the issuing bank. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object  | [optional] 
+**IsCoBranded** | **bool** | Whether the product is co-branded. Must be either true (this is a co-branded product) or false (this is not a co-branded product). Always returned in Product Configuration object  | [optional] 
 **CoBrandName** | **string** | Textual name of the co-brand partner. Required if CoBranded is true, not present otherwise. **Conditional: Conditionally required if isCoBranded &#x3D; \&quot;true\&quot;. Not present otherwise**  | [optional] 
 **CoBrandLogoAssetId** | **string** | The co-brand logo (if any) for this product. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset.  | [optional] 
 **CardBackgroundCombinedAssetId** | **string** | The card image used to represent the digital card in the wallet. This ?combined? option contains the MasterCard, bank and any co- brand logos.  Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. **Conditional: either CardBackgroundCombined or CardBackground will be provided**  | [optional] 
 **CardBackgroundAssetId** | **string** | The card image used to represent the digital card in the wallet. This ?non-combined? option does not contain the MasterCard, bank, or co-brand logos. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. **Conditional: either CardBackgroundCombined or CardBackground will be provided**  | [optional] 
-**IconAssetId** | **string** | The icon representing the primary brand(s) associated with this product. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object  | 
-**ForegroundColor** | **string** | Foreground color, used to overlay text on top of the card image. Always returned in Product Configuration object  | 
-**IssuerName** | **string** | Name of the issuing bank. Always returned in Product Configuration object  | 
-**ShortDescription** | **string** | A short description for this product. Always returned in Product Configuration object  | 
+**IconAssetId** | **string** | The icon representing the primary brand(s) associated with this product. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object  | [optional] 
+**ForegroundColor** | **string** | Foreground color, used to overlay text on top of the card image. Always returned in Product Configuration object  | [optional] 
+**IssuerName** | **string** | Name of the issuing bank. Always returned in Product Configuration object  | [optional] 
+**ShortDescription** | **string** | A short description for this product. Always returned in Product Configuration object  | [optional] 
 **LongDescription** | **string** | A long description for this product.  | [optional] 
 **CustomerServiceUrl** | **string** | Customer service website of the issuing bank.  | [optional] 
 **CustomerServiceEmail** | **string** | Customer service email address of the issuing bank.  | [optional] 

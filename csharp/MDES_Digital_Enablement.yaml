@@ -1701,14 +1701,6 @@ components:
           maxLength: 64
           format: Alpha-Numeric and Hex-encoded data (case-insensitive).
     productConfig:
-      required:
-        - brandLogoAssetId
-        - issuerLogoAssetId
-        - isCoBranded
-        - iconAssetId
-        - foregroundColor
-        - issuerName
-        - shortDescription
       properties:
         brandLogoAssetId:
           type: string
@@ -1890,7 +1882,7 @@ components:
           maxLength: 4
           example: 921
         dsrpCapable:
-          type: string
+          type: boolean
           description: >
             Whether DSRP transactions are supported by this Token. Must be
             either 'true' (DSRP capable) or 'false' (Not DSRP capable).
@@ -2125,7 +2117,7 @@ components:
         "authenticationMethods not currently used for MDES for Merchants"
       properties:
         id:
-          type: string
+          type: integer
           description: |
             Unique identifier assigned to this Authentication Method.
           example: 334123523456213450000

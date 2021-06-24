@@ -34,22 +34,17 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ProductConfig" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected ProductConfig() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ProductConfig" /> class.
-        /// </summary>
-        /// <param name="brandLogoAssetId">The MasterCard or Maestro brand logo associated with this card. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object  (required).</param>
-        /// <param name="issuerLogoAssetId">The logo of the issuing bank. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object  (required).</param>
-        /// <param name="isCoBranded">Whether the product is co-branded. Must be either true (this is a co-branded product) or false (this is not a co-branded product). Always returned in Product Configuration object  (required).</param>
+        /// <param name="brandLogoAssetId">The MasterCard or Maestro brand logo associated with this card. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object .</param>
+        /// <param name="issuerLogoAssetId">The logo of the issuing bank. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object .</param>
+        /// <param name="isCoBranded">Whether the product is co-branded. Must be either true (this is a co-branded product) or false (this is not a co-branded product). Always returned in Product Configuration object .</param>
         /// <param name="coBrandName">Textual name of the co-brand partner. Required if CoBranded is true, not present otherwise. **Conditional: Conditionally required if isCoBranded &#x3D; \&quot;true\&quot;. Not present otherwise** .</param>
         /// <param name="coBrandLogoAssetId">The co-brand logo (if any) for this product. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. .</param>
         /// <param name="cardBackgroundCombinedAssetId">The card image used to represent the digital card in the wallet. This ?combined? option contains the MasterCard, bank and any co- brand logos.  Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. **Conditional: either CardBackgroundCombined or CardBackground will be provided** .</param>
         /// <param name="cardBackgroundAssetId">The card image used to represent the digital card in the wallet. This ?non-combined? option does not contain the MasterCard, bank, or co-brand logos. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. **Conditional: either CardBackgroundCombined or CardBackground will be provided** .</param>
-        /// <param name="iconAssetId">The icon representing the primary brand(s) associated with this product. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object  (required).</param>
-        /// <param name="foregroundColor">Foreground color, used to overlay text on top of the card image. Always returned in Product Configuration object  (required).</param>
-        /// <param name="issuerName">Name of the issuing bank. Always returned in Product Configuration object  (required).</param>
-        /// <param name="shortDescription">A short description for this product. Always returned in Product Configuration object  (required).</param>
+        /// <param name="iconAssetId">The icon representing the primary brand(s) associated with this product. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object .</param>
+        /// <param name="foregroundColor">Foreground color, used to overlay text on top of the card image. Always returned in Product Configuration object .</param>
+        /// <param name="issuerName">Name of the issuing bank. Always returned in Product Configuration object .</param>
+        /// <param name="shortDescription">A short description for this product. Always returned in Product Configuration object .</param>
         /// <param name="longDescription">A long description for this product. .</param>
         /// <param name="customerServiceUrl">Customer service website of the issuing bank. .</param>
         /// <param name="customerServiceEmail">Customer service email address of the issuing bank. .</param>
@@ -61,23 +56,17 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <param name="issuerProductConfigCode">Freeform identifier for this product configuration as assigned by the issuer. .</param>
         public ProductConfig(string brandLogoAssetId = default(string), string issuerLogoAssetId = default(string), bool isCoBranded = default(bool), string coBrandName = default(string), string coBrandLogoAssetId = default(string), string cardBackgroundCombinedAssetId = default(string), string cardBackgroundAssetId = default(string), string iconAssetId = default(string), string foregroundColor = default(string), string issuerName = default(string), string shortDescription = default(string), string longDescription = default(string), string customerServiceUrl = default(string), string customerServiceEmail = default(string), string customerServicePhoneNumber = default(string), Object issuerMobileApp = default(Object), string onlineBankingLoginUrl = default(string), string termsAndConditionsUrl = default(string), string privacyPolicyUrl = default(string), string issuerProductConfigCode = default(string))
         {
-            // to ensure "brandLogoAssetId" is required (not null)
-            this.BrandLogoAssetId = brandLogoAssetId ?? throw new ArgumentNullException("brandLogoAssetId is a required property for ProductConfig and cannot be null");
-            // to ensure "issuerLogoAssetId" is required (not null)
-            this.IssuerLogoAssetId = issuerLogoAssetId ?? throw new ArgumentNullException("issuerLogoAssetId is a required property for ProductConfig and cannot be null");
+            this.BrandLogoAssetId = brandLogoAssetId;
+            this.IssuerLogoAssetId = issuerLogoAssetId;
             this.IsCoBranded = isCoBranded;
-            // to ensure "iconAssetId" is required (not null)
-            this.IconAssetId = iconAssetId ?? throw new ArgumentNullException("iconAssetId is a required property for ProductConfig and cannot be null");
-            // to ensure "foregroundColor" is required (not null)
-            this.ForegroundColor = foregroundColor ?? throw new ArgumentNullException("foregroundColor is a required property for ProductConfig and cannot be null");
-            // to ensure "issuerName" is required (not null)
-            this.IssuerName = issuerName ?? throw new ArgumentNullException("issuerName is a required property for ProductConfig and cannot be null");
-            // to ensure "shortDescription" is required (not null)
-            this.ShortDescription = shortDescription ?? throw new ArgumentNullException("shortDescription is a required property for ProductConfig and cannot be null");
             this.CoBrandName = coBrandName;
             this.CoBrandLogoAssetId = coBrandLogoAssetId;
             this.CardBackgroundCombinedAssetId = cardBackgroundCombinedAssetId;
             this.CardBackgroundAssetId = cardBackgroundAssetId;
+            this.IconAssetId = iconAssetId;
+            this.ForegroundColor = foregroundColor;
+            this.IssuerName = issuerName;
+            this.ShortDescription = shortDescription;
             this.LongDescription = longDescription;
             this.CustomerServiceUrl = customerServiceUrl;
             this.CustomerServiceEmail = customerServiceEmail;
@@ -93,21 +82,21 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The MasterCard or Maestro brand logo associated with this card. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object 
         /// </summary>
         /// <value>The MasterCard or Maestro brand logo associated with this card. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object </value>
-        [DataMember(Name = "brandLogoAssetId", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "brandLogoAssetId", EmitDefaultValue = false)]
         public string BrandLogoAssetId { get; set; }
 
         /// <summary>
         /// The logo of the issuing bank. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object 
         /// </summary>
         /// <value>The logo of the issuing bank. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object </value>
-        [DataMember(Name = "issuerLogoAssetId", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "issuerLogoAssetId", EmitDefaultValue = false)]
         public string IssuerLogoAssetId { get; set; }
 
         /// <summary>
         /// Whether the product is co-branded. Must be either true (this is a co-branded product) or false (this is not a co-branded product). Always returned in Product Configuration object 
         /// </summary>
         /// <value>Whether the product is co-branded. Must be either true (this is a co-branded product) or false (this is not a co-branded product). Always returned in Product Configuration object </value>
-        [DataMember(Name = "isCoBranded", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "isCoBranded", EmitDefaultValue = true)]
         public bool IsCoBranded { get; set; }
 
         /// <summary>
@@ -142,28 +131,28 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The icon representing the primary brand(s) associated with this product. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object 
         /// </summary>
         /// <value>The icon representing the primary brand(s) associated with this product. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object </value>
-        [DataMember(Name = "iconAssetId", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "iconAssetId", EmitDefaultValue = false)]
         public string IconAssetId { get; set; }
 
         /// <summary>
         /// Foreground color, used to overlay text on top of the card image. Always returned in Product Configuration object 
         /// </summary>
         /// <value>Foreground color, used to overlay text on top of the card image. Always returned in Product Configuration object </value>
-        [DataMember(Name = "foregroundColor", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "foregroundColor", EmitDefaultValue = false)]
         public string ForegroundColor { get; set; }
 
         /// <summary>
         /// Name of the issuing bank. Always returned in Product Configuration object 
         /// </summary>
         /// <value>Name of the issuing bank. Always returned in Product Configuration object </value>
-        [DataMember(Name = "issuerName", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "issuerName", EmitDefaultValue = false)]
         public string IssuerName { get; set; }
 
         /// <summary>
         /// A short description for this product. Always returned in Product Configuration object 
         /// </summary>
         /// <value>A short description for this product. Always returned in Product Configuration object </value>
-        [DataMember(Name = "shortDescription", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "shortDescription", EmitDefaultValue = false)]
         public string ShortDescription { get; set; }
 
         /// <summary>
