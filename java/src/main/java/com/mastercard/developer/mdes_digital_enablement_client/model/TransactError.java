@@ -28,7 +28,7 @@ import java.io.IOException;
  * Only returned in the event of an error condition for the Transact API
  */
 @ApiModel(description = "Only returned in the event of an error condition for the Transact API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-24T14:19:40.105+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
 public class TransactError {
   public static final String SERIALIZED_NAME_SOURCE = "source";
   @SerializedName(SERIALIZED_NAME_SOURCE)

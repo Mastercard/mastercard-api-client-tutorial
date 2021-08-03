@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * ProductConfig
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-24T14:19:40.105+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
 public class ProductConfig {
   public static final String SERIALIZED_NAME_BRAND_LOGO_ASSET_ID = "brandLogoAssetId";
   @SerializedName(SERIALIZED_NAME_BRAND_LOGO_ASSET_ID)

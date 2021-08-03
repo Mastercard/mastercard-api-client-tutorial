@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **productConfig** | [**ProductConfig**](ProductConfig.md) |  |  [optional]
 **tokenInfo** | [**TokenInfo**](TokenInfo.md) |  |  [optional]
 **tokenDetail** | [**TokenDetail**](TokenDetail.md) |  |  [optional]
+**supportsAuthentication** | **Boolean** | (required)Flag to indicate if the issuer supports authentication of the cardholder on the token. Must be one of:   - TRUE   - FALSE  |  [optional]
 
 
 

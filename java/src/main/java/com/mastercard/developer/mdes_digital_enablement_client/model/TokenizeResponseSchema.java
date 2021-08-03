@@ -33,7 +33,7 @@ import java.util.List;
 /**
  * TokenizeResponseSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-24T14:19:40.105+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
 public class TokenizeResponseSchema {
   public static final String SERIALIZED_NAME_RESPONSE_HOST = "responseHost";
   @SerializedName(SERIALIZED_NAME_RESPONSE_HOST)
@@ -70,6 +70,10 @@ public class TokenizeResponseSchema {
   public static final String SERIALIZED_NAME_TOKEN_DETAIL = "tokenDetail";
   @SerializedName(SERIALIZED_NAME_TOKEN_DETAIL)
   private TokenDetail tokenDetail;
+
+  public static final String SERIALIZED_NAME_SUPPORTS_AUTHENTICATION = "supportsAuthentication";
+  @SerializedName(SERIALIZED_NAME_SUPPORTS_AUTHENTICATION)
+  private Boolean supportsAuthentication;
 
 
   public TokenizeResponseSchema responseHost(String responseHost) {
@@ -287,6 +291,29 @@ public class TokenizeResponseSchema {
   }
 
 
+  public TokenizeResponseSchema supportsAuthentication(Boolean supportsAuthentication) {
+    
+    this.supportsAuthentication = supportsAuthentication;
+    return this;
+  }
+
+   /**
+   * (required)Flag to indicate if the issuer supports authentication of the cardholder on the token. Must be one of:   - TRUE   - FALSE 
+   * @return supportsAuthentication
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "true", value = "(required)Flag to indicate if the issuer supports authentication of the cardholder on the token. Must be one of:   - TRUE   - FALSE ")
+
+  public Boolean getSupportsAuthentication() {
+    return supportsAuthentication;
+  }
+
+
+  public void setSupportsAuthentication(Boolean supportsAuthentication) {
+    this.supportsAuthentication = supportsAuthentication;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -304,12 +331,13 @@ public class TokenizeResponseSchema {
         Objects.equals(this.panUniqueReference, tokenizeResponseSchema.panUniqueReference) &&
         Objects.equals(this.productConfig, tokenizeResponseSchema.productConfig) &&
         Objects.equals(this.tokenInfo, tokenizeResponseSchema.tokenInfo) &&
-        Objects.equals(this.tokenDetail, tokenizeResponseSchema.tokenDetail);
+        Objects.equals(this.tokenDetail, tokenizeResponseSchema.tokenDetail) &&
+        Objects.equals(this.supportsAuthentication, tokenizeResponseSchema.supportsAuthentication);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(responseHost, responseId, decision, authenticationMethods, tokenUniqueReference, panUniqueReference, productConfig, tokenInfo, tokenDetail);
+    return Objects.hash(responseHost, responseId, decision, authenticationMethods, tokenUniqueReference, panUniqueReference, productConfig, tokenInfo, tokenDetail, supportsAuthentication);
   }
 
   @Override
@@ -325,6 +353,7 @@ public class TokenizeResponseSchema {
     sb.append("    productConfig: ").append(toIndentedString(productConfig)).append("\n");
     sb.append("    tokenInfo: ").append(toIndentedString(tokenInfo)).append("\n");
     sb.append("    tokenDetail: ").append(toIndentedString(tokenDetail)).append("\n");
+    sb.append("    supportsAuthentication: ").append(toIndentedString(supportsAuthentication)).append("\n");
     sb.append("}");
     return sb.toString();
   }

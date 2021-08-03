@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * TransactRequestSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-24T14:19:40.105+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
 public class TransactRequestSchema {
   public static final String SERIALIZED_NAME_RESPONSE_HOST = "responseHost";
   @SerializedName(SERIALIZED_NAME_RESPONSE_HOST)
@@ -124,10 +124,10 @@ public class TransactRequestSchema {
   }
 
    /**
-   * What type of DSRP cryptogram to create. Must be either UCAF or M_CHIP. 
+   * What type of DSRP cryptogram to create. Must be UCAF. 
    * @return dsrpType
   **/
-  @ApiModelProperty(example = "UCAF", required = true, value = "What type of DSRP cryptogram to create. Must be either UCAF or M_CHIP. ")
+  @ApiModelProperty(example = "UCAF", required = true, value = "What type of DSRP cryptogram to create. Must be UCAF. ")
 
   public String getDsrpType() {
     return dsrpType;

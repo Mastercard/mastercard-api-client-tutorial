@@ -28,7 +28,7 @@ import java.io.IOException;
  * **(CONDITIONAL)** Required in Tokenize or Search Tokens unless a valid panUniqueReference, tokenUniqueReference or pushAccountReceipt is also given in FundingAccountInfo. 
  */
 @ApiModel(description = "**(CONDITIONAL)** Required in Tokenize or Search Tokens unless a valid panUniqueReference, tokenUniqueReference or pushAccountReceipt is also given in FundingAccountInfo. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-24T14:19:40.105+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
 public class CardAccountDataInbound {
   public static final String SERIALIZED_NAME_ACCOUNT_NUMBER = "accountNumber";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_NUMBER)

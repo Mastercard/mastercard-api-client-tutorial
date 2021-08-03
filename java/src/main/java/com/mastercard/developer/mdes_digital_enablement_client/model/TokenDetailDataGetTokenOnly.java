@@ -20,8 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.mastercard.developer.mdes_digital_enablement_client.model.AccountHolderDataOutbound;
-import com.mastercard.developer.mdes_digital_enablement_client.model.CardAccountDataOutbound;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -29,7 +27,7 @@ import java.io.IOException;
 /**
  * TokenDetailDataGetTokenOnly
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-24T14:19:40.105+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
 public class TokenDetailDataGetTokenOnly {
   public static final String SERIALIZED_NAME_TOKEN_NUMBER = "tokenNumber";
   @SerializedName(SERIALIZED_NAME_TOKEN_NUMBER)
@@ -43,17 +41,9 @@ public class TokenDetailDataGetTokenOnly {
   @SerializedName(SERIALIZED_NAME_EXPIRY_YEAR)
   private String expiryYear;
 
-  public static final String SERIALIZED_NAME_ACCOUNT_HOLDER_DATA = "accountHolderData";
-  @SerializedName(SERIALIZED_NAME_ACCOUNT_HOLDER_DATA)
-  private AccountHolderDataOutbound accountHolderData;
-
   public static final String SERIALIZED_NAME_PAYMENT_ACCOUNT_REFERENCE = "paymentAccountReference";
   @SerializedName(SERIALIZED_NAME_PAYMENT_ACCOUNT_REFERENCE)
   private String paymentAccountReference;
-
-  public static final String SERIALIZED_NAME_CARD_ACCOUNT_DATA = "cardAccountData";
-  @SerializedName(SERIALIZED_NAME_CARD_ACCOUNT_DATA)
-  private CardAccountDataOutbound cardAccountData;
 
 
   public TokenDetailDataGetTokenOnly tokenNumber(String tokenNumber) {
@@ -125,29 +115,6 @@ public class TokenDetailDataGetTokenOnly {
   }
 
 
-  public TokenDetailDataGetTokenOnly accountHolderData(AccountHolderDataOutbound accountHolderData) {
-    
-    this.accountHolderData = accountHolderData;
-    return this;
-  }
-
-   /**
-   * Get accountHolderData
-   * @return accountHolderData
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public AccountHolderDataOutbound getAccountHolderData() {
-    return accountHolderData;
-  }
-
-
-  public void setAccountHolderData(AccountHolderDataOutbound accountHolderData) {
-    this.accountHolderData = accountHolderData;
-  }
-
-
   public TokenDetailDataGetTokenOnly paymentAccountReference(String paymentAccountReference) {
     
     this.paymentAccountReference = paymentAccountReference;
@@ -171,29 +138,6 @@ public class TokenDetailDataGetTokenOnly {
   }
 
 
-  public TokenDetailDataGetTokenOnly cardAccountData(CardAccountDataOutbound cardAccountData) {
-    
-    this.cardAccountData = cardAccountData;
-    return this;
-  }
-
-   /**
-   * Get cardAccountData
-   * @return cardAccountData
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public CardAccountDataOutbound getCardAccountData() {
-    return cardAccountData;
-  }
-
-
-  public void setCardAccountData(CardAccountDataOutbound cardAccountData) {
-    this.cardAccountData = cardAccountData;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -206,14 +150,12 @@ public class TokenDetailDataGetTokenOnly {
     return Objects.equals(this.tokenNumber, tokenDetailDataGetTokenOnly.tokenNumber) &&
         Objects.equals(this.expiryMonth, tokenDetailDataGetTokenOnly.expiryMonth) &&
         Objects.equals(this.expiryYear, tokenDetailDataGetTokenOnly.expiryYear) &&
-        Objects.equals(this.accountHolderData, tokenDetailDataGetTokenOnly.accountHolderData) &&
-        Objects.equals(this.paymentAccountReference, tokenDetailDataGetTokenOnly.paymentAccountReference) &&
-        Objects.equals(this.cardAccountData, tokenDetailDataGetTokenOnly.cardAccountData);
+        Objects.equals(this.paymentAccountReference, tokenDetailDataGetTokenOnly.paymentAccountReference);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(tokenNumber, expiryMonth, expiryYear, accountHolderData, paymentAccountReference, cardAccountData);
+    return Objects.hash(tokenNumber, expiryMonth, expiryYear, paymentAccountReference);
   }
 
   @Override
@@ -223,9 +165,7 @@ public class TokenDetailDataGetTokenOnly {
     sb.append("    tokenNumber: ").append(toIndentedString(tokenNumber)).append("\n");
     sb.append("    expiryMonth: ").append(toIndentedString(expiryMonth)).append("\n");
     sb.append("    expiryYear: ").append(toIndentedString(expiryYear)).append("\n");
-    sb.append("    accountHolderData: ").append(toIndentedString(accountHolderData)).append("\n");
     sb.append("    paymentAccountReference: ").append(toIndentedString(paymentAccountReference)).append("\n");
-    sb.append("    cardAccountData: ").append(toIndentedString(cardAccountData)).append("\n");
     sb.append("}");
     return sb.toString();
   }

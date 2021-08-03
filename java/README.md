@@ -2,7 +2,7 @@
 
 MDES Digital Enablement API
 - API version: 1.3.0
-  - Build date: 2021-06-24T14:19:40.105+01:00[Europe/London]
+  - Build date: 2021-08-03T18:13:45.340+01:00[Europe/London]
 
 These APIs are designed as RPC style stateless web services where each API endpoint represents an operation to be performed.  All request and response payloads are sent in the JSON (JavaScript Object Notation) data-interchange format. Each endpoint in the API specifies the HTTP Method used to access it. All strings in request and response objects are to be UTF-8 encoded.  Each API URI includes the major and minor version of API that it conforms to.  This will allow multiple concurrent versions of the API to be deployed simultaneously.
 <br><br>

@@ -591,6 +591,14 @@ components:
           $ref: "#/components/schemas/tokenInfo"
         tokenDetail:
           $ref: "#/components/schemas/tokenDetail"
+        supportsAuthentication:
+          type: boolean
+          description: >
+            (required)Flag to indicate if the issuer supports authentication of the cardholder on the token. Must be one of:
+              - TRUE
+              - FALSE
+          maxLength: 5
+          example: true
     AssetResponseSchema:
       properties:
         mediaContents:
@@ -1113,8 +1121,7 @@ components:
         dsrpType:
           type: string
           description: >
-            What type of DSRP cryptogram to create. Must be either UCAF or
-            M_CHIP.
+            What type of DSRP cryptogram to create. Must be UCAF.
           maxLength: 64
           example: UCAF
         unpredictableNumber:
@@ -2096,8 +2103,6 @@ components:
           description: |
             The year of the token expiration date.
           maxLength: 2
-        accountHolderData:
-          $ref: "#/components/schemas/accountHolderData_outbound"
         paymentAccountReference:
           type: string
           description: >
@@ -2107,8 +2112,6 @@ components:
             in the authorization message response.
           maxLength: 29
           example: 5001a9f027e5629d11e3949a0800a
-        cardAccountData:
-          $ref: "#/components/schemas/CardAccountData_outbound"
     tokenDetailData_PAR_Only:
       properties:
         paymentAccountReference:

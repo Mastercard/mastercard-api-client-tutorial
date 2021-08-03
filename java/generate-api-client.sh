@@ -10,6 +10,7 @@ rm .travis.yml
 rm build.sbt
 rm git_push.sh
 rm -rf gradle
+rm -rf api
 rm gradle*
 rm *gradle
 rm src/main/AndroidManifest.xml
