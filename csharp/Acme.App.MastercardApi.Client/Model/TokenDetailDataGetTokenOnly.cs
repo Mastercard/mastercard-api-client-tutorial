@@ -37,17 +37,13 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <param name="tokenNumber">The Token Primary Account Number of the Card. .</param>
         /// <param name="expiryMonth">The month of the token expiration date. .</param>
         /// <param name="expiryYear">The year of the token expiration date. .</param>
-        /// <param name="accountHolderData">accountHolderData.</param>
         /// <param name="paymentAccountReference">The unique account reference assigned to the PAN. Conditionally returned if the Token Requestor has opted to receive PAR and providing PAR is assigned by Mastercard or the Issuer provides PAR in the authorization message response. .</param>
-        /// <param name="cardAccountData">cardAccountData.</param>
-        public TokenDetailDataGetTokenOnly(string tokenNumber = default(string), string expiryMonth = default(string), string expiryYear = default(string), AccountHolderDataOutbound accountHolderData = default(AccountHolderDataOutbound), string paymentAccountReference = default(string), CardAccountDataOutbound cardAccountData = default(CardAccountDataOutbound))
+        public TokenDetailDataGetTokenOnly(string tokenNumber = default(string), string expiryMonth = default(string), string expiryYear = default(string), string paymentAccountReference = default(string))
         {
             this.TokenNumber = tokenNumber;
             this.ExpiryMonth = expiryMonth;
             this.ExpiryYear = expiryYear;
-            this.AccountHolderData = accountHolderData;
             this.PaymentAccountReference = paymentAccountReference;
-            this.CardAccountData = cardAccountData;
         }
 
         /// <summary>
@@ -72,23 +68,11 @@ namespace Acme.App.MastercardApi.Client.Model
         public string ExpiryYear { get; set; }
 
         /// <summary>
-        /// Gets or Sets AccountHolderData
-        /// </summary>
-        [DataMember(Name = "accountHolderData", EmitDefaultValue = false)]
-        public AccountHolderDataOutbound AccountHolderData { get; set; }
-
-        /// <summary>
         /// The unique account reference assigned to the PAN. Conditionally returned if the Token Requestor has opted to receive PAR and providing PAR is assigned by Mastercard or the Issuer provides PAR in the authorization message response. 
         /// </summary>
         /// <value>The unique account reference assigned to the PAN. Conditionally returned if the Token Requestor has opted to receive PAR and providing PAR is assigned by Mastercard or the Issuer provides PAR in the authorization message response. </value>
         [DataMember(Name = "paymentAccountReference", EmitDefaultValue = false)]
         public string PaymentAccountReference { get; set; }
-
-        /// <summary>
-        /// Gets or Sets CardAccountData
-        /// </summary>
-        [DataMember(Name = "cardAccountData", EmitDefaultValue = false)]
-        public CardAccountDataOutbound CardAccountData { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -101,9 +85,7 @@ namespace Acme.App.MastercardApi.Client.Model
             sb.Append("  TokenNumber: ").Append(TokenNumber).Append("\n");
             sb.Append("  ExpiryMonth: ").Append(ExpiryMonth).Append("\n");
             sb.Append("  ExpiryYear: ").Append(ExpiryYear).Append("\n");
-            sb.Append("  AccountHolderData: ").Append(AccountHolderData).Append("\n");
             sb.Append("  PaymentAccountReference: ").Append(PaymentAccountReference).Append("\n");
-            sb.Append("  CardAccountData: ").Append(CardAccountData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -154,19 +136,9 @@ namespace Acme.App.MastercardApi.Client.Model
                     this.ExpiryYear.Equals(input.ExpiryYear))
                 ) && 
                 (
-                    this.AccountHolderData == input.AccountHolderData ||
-                    (this.AccountHolderData != null &&
-                    this.AccountHolderData.Equals(input.AccountHolderData))
-                ) && 
-                (
                     this.PaymentAccountReference == input.PaymentAccountReference ||
                     (this.PaymentAccountReference != null &&
                     this.PaymentAccountReference.Equals(input.PaymentAccountReference))
-                ) && 
-                (
-                    this.CardAccountData == input.CardAccountData ||
-                    (this.CardAccountData != null &&
-                    this.CardAccountData.Equals(input.CardAccountData))
                 );
         }
 
@@ -185,12 +157,8 @@ namespace Acme.App.MastercardApi.Client.Model
                     hashCode = hashCode * 59 + this.ExpiryMonth.GetHashCode();
                 if (this.ExpiryYear != null)
                     hashCode = hashCode * 59 + this.ExpiryYear.GetHashCode();
-                if (this.AccountHolderData != null)
-                    hashCode = hashCode * 59 + this.AccountHolderData.GetHashCode();
                 if (this.PaymentAccountReference != null)
                     hashCode = hashCode * 59 + this.PaymentAccountReference.GetHashCode();
-                if (this.CardAccountData != null)
-                    hashCode = hashCode * 59 + this.CardAccountData.GetHashCode();
                 return hashCode;
             }
         }

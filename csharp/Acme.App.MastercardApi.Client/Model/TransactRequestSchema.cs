@@ -42,7 +42,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <param name="responseHost">The host that originated the request. Future calls in the same conversation may be routed to this host. .</param>
         /// <param name="requestId">Unique identifier for the request.  (required).</param>
         /// <param name="tokenUniqueReference">Globally unique identifier for the Token, as assigned by MDES.  (required).</param>
-        /// <param name="dsrpType">What type of DSRP cryptogram to create. Must be either UCAF or M_CHIP.  (required).</param>
+        /// <param name="dsrpType">What type of DSRP cryptogram to create. Must be UCAF.  (required).</param>
         /// <param name="unpredictableNumber">HEX Encoded data (case sensitive) provided by the merchant to provide variability and uniqueness to the generation of a cryptogram. .</param>
         public TransactRequestSchema(string responseHost = default(string), string requestId = default(string), string tokenUniqueReference = default(string), string dsrpType = default(string), string unpredictableNumber = default(string))
         {
@@ -78,9 +78,9 @@ namespace Acme.App.MastercardApi.Client.Model
         public string TokenUniqueReference { get; set; }
 
         /// <summary>
-        /// What type of DSRP cryptogram to create. Must be either UCAF or M_CHIP. 
+        /// What type of DSRP cryptogram to create. Must be UCAF. 
         /// </summary>
-        /// <value>What type of DSRP cryptogram to create. Must be either UCAF or M_CHIP. </value>
+        /// <value>What type of DSRP cryptogram to create. Must be UCAF. </value>
         [DataMember(Name = "dsrpType", IsRequired = true, EmitDefaultValue = false)]
         public string DsrpType { get; set; }
 

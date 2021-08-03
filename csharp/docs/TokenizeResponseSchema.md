@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **ProductConfig** | [**ProductConfig**](ProductConfig.md) |  | [optional] 
 **TokenInfo** | [**TokenInfo**](TokenInfo.md) |  | [optional] 
 **TokenDetail** | [**TokenDetail**](TokenDetail.md) |  | [optional] 
+**SupportsAuthentication** | **bool** | (required)Flag to indicate if the issuer supports authentication of the cardholder on the token. Must be one of:   - TRUE   - FALSE  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

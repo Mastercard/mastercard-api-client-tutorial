@@ -43,7 +43,8 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <param name="productConfig">productConfig.</param>
         /// <param name="tokenInfo">tokenInfo.</param>
         /// <param name="tokenDetail">tokenDetail.</param>
-        public TokenizeResponseSchema(string responseHost = default(string), string responseId = default(string), string decision = default(string), List<AuthenticationMethods> authenticationMethods = default(List<AuthenticationMethods>), string tokenUniqueReference = default(string), string panUniqueReference = default(string), ProductConfig productConfig = default(ProductConfig), TokenInfo tokenInfo = default(TokenInfo), TokenDetail tokenDetail = default(TokenDetail))
+        /// <param name="supportsAuthentication">(required)Flag to indicate if the issuer supports authentication of the cardholder on the token. Must be one of:   - TRUE   - FALSE .</param>
+        public TokenizeResponseSchema(string responseHost = default(string), string responseId = default(string), string decision = default(string), List<AuthenticationMethods> authenticationMethods = default(List<AuthenticationMethods>), string tokenUniqueReference = default(string), string panUniqueReference = default(string), ProductConfig productConfig = default(ProductConfig), TokenInfo tokenInfo = default(TokenInfo), TokenDetail tokenDetail = default(TokenDetail), bool supportsAuthentication = default(bool))
         {
             this.ResponseHost = responseHost;
             this.ResponseId = responseId;
@@ -54,6 +55,7 @@ namespace Acme.App.MastercardApi.Client.Model
             this.ProductConfig = productConfig;
             this.TokenInfo = tokenInfo;
             this.TokenDetail = tokenDetail;
+            this.SupportsAuthentication = supportsAuthentication;
         }
 
         /// <summary>
@@ -116,6 +118,13 @@ namespace Acme.App.MastercardApi.Client.Model
         public TokenDetail TokenDetail { get; set; }
 
         /// <summary>
+        /// (required)Flag to indicate if the issuer supports authentication of the cardholder on the token. Must be one of:   - TRUE   - FALSE 
+        /// </summary>
+        /// <value>(required)Flag to indicate if the issuer supports authentication of the cardholder on the token. Must be one of:   - TRUE   - FALSE </value>
+        [DataMember(Name = "supportsAuthentication", EmitDefaultValue = true)]
+        public bool SupportsAuthentication { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -132,6 +141,7 @@ namespace Acme.App.MastercardApi.Client.Model
             sb.Append("  ProductConfig: ").Append(ProductConfig).Append("\n");
             sb.Append("  TokenInfo: ").Append(TokenInfo).Append("\n");
             sb.Append("  TokenDetail: ").Append(TokenDetail).Append("\n");
+            sb.Append("  SupportsAuthentication: ").Append(SupportsAuthentication).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -211,6 +221,10 @@ namespace Acme.App.MastercardApi.Client.Model
                     this.TokenDetail == input.TokenDetail ||
                     (this.TokenDetail != null &&
                     this.TokenDetail.Equals(input.TokenDetail))
+                ) && 
+                (
+                    this.SupportsAuthentication == input.SupportsAuthentication ||
+                    this.SupportsAuthentication.Equals(input.SupportsAuthentication)
                 );
         }
 
@@ -241,6 +255,7 @@ namespace Acme.App.MastercardApi.Client.Model
                     hashCode = hashCode * 59 + this.TokenInfo.GetHashCode();
                 if (this.TokenDetail != null)
                     hashCode = hashCode * 59 + this.TokenDetail.GetHashCode();
+                hashCode = hashCode * 59 + this.SupportsAuthentication.GetHashCode();
                 return hashCode;
             }
         }
