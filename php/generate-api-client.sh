@@ -13,6 +13,7 @@ rm .travis.yml
 rm git_push.sh
 rm -rf gradle
 rm -rf api
+rm -rf lib/test
 rm -rf test/Model
 shopt -s extglob
 cd test/Api
