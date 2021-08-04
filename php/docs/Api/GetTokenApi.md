@@ -1,16 +1,17 @@
 # DigitalEnablementClient\GetTokenApi
 
-All URIs are relative to *https://api.mastercard.com/mdes*
+All URIs are relative to https://api.mastercard.com/mdes.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getToken**](GetTokenApi.md#getToken) | **POST** /digitization/static/1/0/getToken | Used to get the status and details of a single given Token.
+[**getToken()**](GetTokenApi.md#getToken) | **POST** /digitization/static/1/0/getToken | Used to get the status and details of a single given Token.
 
 
+## `getToken()`
 
-## getToken
-
-> \DigitalEnablementClient\Model\GetTokenResponseSchema getToken($get_token_request_schema)
+```php
+getToken($get_token_request_schema): \DigitalEnablementClient\Model\GetTokenResponseSchema
+```
 
 Used to get the status and details of a single given Token.
 
@@ -21,6 +22,7 @@ This API is used to get the status and details of a single given Token. It may b
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new DigitalEnablementClient\Api\GetTokenApi(
@@ -36,11 +38,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling GetTokenApi->getToken: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -56,10 +56,9 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

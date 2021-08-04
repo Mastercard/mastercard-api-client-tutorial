@@ -13,6 +13,8 @@ namespace DigitalEnablementClient\Client;
 
 use DigitalEnablementClient\Api\TokenizeApi;
 use DigitalEnablementClient\ApiException;
+use Mastercard\Developer\Encryption\EncryptionException;
+use Mastercard\Developer\Encryption\FieldLevelEncryptionConfig;
 use Mastercard\Developer\Encryption\FieldLevelEncryptionConfigBuilder;
 use Mastercard\Developer\Encryption\FieldValueEncoding;
 use Mastercard\Developer\Interceptors\PsrHttpMessageEncryptionInterceptor;
@@ -44,18 +46,23 @@ class TokenizeApiTest extends TestCase
     private $config;
 
     //
-    // TODO: add your credentials here or those dummy values will cause an INVALID_CLIENT_ID error to be returned.
+    // TODO: add your credentials here or those dummy values will cause an INVALID_CLIENT_ID error to be returned 😀
     //
     const ConsumerKey = "000000000000000000000000000000000000000000000000!000000000000000000000000000000000000000000000000";
     const SigningKeyAlias = "fake-key";
     const SigningKeyPassword = "fakepassword";
     const SigningKeyPkcs12FilePath = "./resources/fake-signing-key.p12";
 
-    // Encryption keys from https://developer.mastercard.com/page/digital-enablement-api-sandbox-configuration
+    // Encryption keys to be used in Sandbox (see: https://mstr.cd/2T53Ltv)
     const EncryptionCertificateFilePath = "./resources/digital-enablement-sandbox-encryption-key.crt";
     const DecryptionKeyFilePath = "./resources/digital-enablement-sandbox-decryption-key.key";
 
-    private static function getFieldLevelEncryptionConfig() {
+    /**
+     * @return FieldLevelEncryptionConfig
+     * @throws EncryptionException
+     */
+    private static function getFieldLevelEncryptionConfig(): FieldLevelEncryptionConfig
+    {
         $encryptionCertificate = EncryptionUtils::LoadEncryptionCertificate(self::EncryptionCertificateFilePath);
         $decryptionKey =  EncryptionUtils::LoadDecryptionKey(self::DecryptionKeyFilePath);
 
@@ -75,8 +82,13 @@ class TokenizeApiTest extends TestCase
             ->withFieldValueEncoding(FieldValueEncoding::HEX)
             ->build();
     }
-    
-    private function createClientOptions() {
+
+    /**
+     * @return array
+     * @throws EncryptionException
+     */
+    private function createClientOptions(): array
+    {
         $signingKey = AuthenticationUtils::loadSigningKey(self::SigningKeyPkcs12FilePath, self::SigningKeyAlias, self::SigningKeyPassword);
         $stack = new GuzzleHttp\HandlerStack();
         $stack->setHandler(new GuzzleHttp\Handler\CurlHandler());
@@ -84,13 +96,15 @@ class TokenizeApiTest extends TestCase
         $stack->push(GuzzleHttp\Middleware::mapRequest([$fieldLevelEncryptionInterceptor, 'interceptRequest']));
         $stack->push(GuzzleHttp\Middleware::mapResponse([$fieldLevelEncryptionInterceptor, 'interceptResponse']));
         $stack->push(GuzzleHttp\Middleware::mapRequest([new PsrHttpMessageSigner(self::ConsumerKey, $signingKey), 'sign']));
-        $options = [
+        return [
             'verify' => false, // Do not verify the server certificate (to be removed)
             'handler' => $stack
         ];
-        return $options;
     }
 
+    /**
+     * @throws EncryptionException
+     */
     private function createClient() {
         $this->client = new GuzzleHttp\Client($this->createClientOptions());
     }
@@ -104,8 +118,9 @@ class TokenizeApiTest extends TestCase
 
     /**
      * Setup before running each test case
+     * @throws EncryptionException
      */
-    public function setUp() {
+    public function setUp(): void {
         ini_set('xdebug.var_display_max_depth', '10');
         ini_set('xdebug.var_display_max_children', '256');
         ini_set('xdebug.var_display_max_data', '1024');
@@ -133,7 +148,8 @@ class TokenizeApiTest extends TestCase
         }
     }
 
-    static function buildTokenizeRequestSchema(){
+    static function buildTokenizeRequestSchema(): TokenizeRequestSchema
+    {
         $data = [
             'request_id' => '123456',
             'response_host' => 'site1.your-server.com',
@@ -147,21 +163,24 @@ class TokenizeApiTest extends TestCase
         return new TokenizeRequestSchema($data);
     }
 
-    static function buildFundingAccountInfo(){
+    static function buildFundingAccountInfo(): FundingAccountInfo
+    {
         $data = [
             'encrypted_payload' => self::buildFundingAccountInfoEncryptedPayload()
         ];
         return new FundingAccountInfo($data);
     }
 
-    static function buildFundingAccountInfoEncryptedPayload(){
+    static function buildFundingAccountInfoEncryptedPayload(): FundingAccountInfoEncryptedPayload
+    {
         $data = [
             'encrypted_data' => self::buildFundingAccountData()
         ];
         return new FundingAccountInfoEncryptedPayload($data);
     }
 
-    static function buildFundingAccountData(){
+    static function buildFundingAccountData(): FundingAccountData
+    {
         $data = [
             'account_holder_data' => self::buildAccountHolderData(),
             'source' => 'ACCOUNT_ON_FILE',
@@ -170,7 +189,8 @@ class TokenizeApiTest extends TestCase
         return new FundingAccountData($data);
     }
 
-    static function buildAccountHolderData(){
+    static function buildAccountHolderData(): AccountHolderData
+    {
         $data = [
             'account_holder_address' => self::buildBillingAddress(),
             'account_holder_name' => 'John Doe'
@@ -178,7 +198,8 @@ class TokenizeApiTest extends TestCase
         return new AccountHolderData($data);
     }
 
-    static function buildCardAccountDataInbound(){
+    static function buildCardAccountDataInbound(): CardAccountDataInbound
+    {
         $data = [
             'account_number' => '5123456789012345',
             'security_code' => '123',
@@ -188,7 +209,8 @@ class TokenizeApiTest extends TestCase
         return new CardAccountDataInbound($data);
     }
 
-    static function buildBillingAddress(){
+    static function buildBillingAddress(): BillingAddress
+    {
         $data = [
             'line1' => '100 1st Street',
             'line2' => 'Apt. 4B',

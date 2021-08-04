@@ -4,10 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**account_number** | **string** | The account number of the credit or debit card.   __Min Length:9__&lt;br&gt;  __Max Length:19__ | [optional] 
-**expiry_month** | **string** | The expiry month for the account. Two numeric digits must be supplied.   __Format: MM__&lt;br&gt; __Exact Length:2__ | [optional] 
-**expiry_year** | **string** | __(Required as minimum for Tokenization)__  The expiry year for the account. __Format: YY__ &lt;br&gt; __Exact Length:2__ | [optional] 
+**account_number** | **string** | The account number of the credit or debit card. | [optional]
+**expiry_month** | **string** | The expiry month for the account. Two numeric digits must be supplied. **Format: MM** | [optional]
+**expiry_year** | **string** | **(Required as minimum for Tokenization)** The expiry year for the account. **Format: YY** | [optional]
 
-[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
-
-
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

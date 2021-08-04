@@ -1,16 +1,17 @@
 # DigitalEnablementClient\SearchTokensApi
 
-All URIs are relative to *https://api.mastercard.com/mdes*
+All URIs are relative to https://api.mastercard.com/mdes.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**searchTokens**](SearchTokensApi.md#searchTokens) | **POST** /digitization/static/1/0/searchTokens | Used to get basic token information for all tokens on a specified device, or all tokens mapped to the given Account PAN.
+[**searchTokens()**](SearchTokensApi.md#searchTokens) | **POST** /digitization/static/1/0/searchTokens | Used to get basic token information for all tokens on a specified device, or all tokens mapped to the given Account PAN.
 
 
+## `searchTokens()`
 
-## searchTokens
-
-> \DigitalEnablementClient\Model\SearchTokensResponseSchema searchTokens($search_tokens_request_schema)
+```php
+searchTokens($search_tokens_request_schema): \DigitalEnablementClient\Model\SearchTokensResponseSchema
+```
 
 Used to get basic token information for all tokens on a specified device, or all tokens mapped to the given Account PAN.
 
@@ -21,6 +22,7 @@ This API is used to get basic token information for all tokens on a specified de
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new DigitalEnablementClient\Api\SearchTokensApi(
@@ -36,11 +38,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling SearchTokensApi->searchTokens: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -56,10 +56,9 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

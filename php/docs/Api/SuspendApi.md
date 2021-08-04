@@ -1,16 +1,17 @@
 # DigitalEnablementClient\SuspendApi
 
-All URIs are relative to *https://api.mastercard.com/mdes*
+All URIs are relative to https://api.mastercard.com/mdes.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createSuspend**](SuspendApi.md#createSuspend) | **POST** /digitization/static/1/0/suspend | Used to temporarily suspend one or more Tokens.
+[**createSuspend()**](SuspendApi.md#createSuspend) | **POST** /digitization/static/1/0/suspend | Used to temporarily suspend one or more Tokens.
 
 
+## `createSuspend()`
 
-## createSuspend
-
-> \DigitalEnablementClient\Model\SuspendResponseSchema createSuspend($suspend_request_schema)
+```php
+createSuspend($suspend_request_schema): \DigitalEnablementClient\Model\SuspendResponseSchema
+```
 
 Used to temporarily suspend one or more Tokens.
 
@@ -21,6 +22,7 @@ This API is used to temporarily suspend one or more Tokens (for example, suspend
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new DigitalEnablementClient\Api\SuspendApi(
@@ -36,11 +38,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling SuspendApi->createSuspend: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -56,10 +56,9 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

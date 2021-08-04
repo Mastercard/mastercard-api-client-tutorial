@@ -1,16 +1,17 @@
 # DigitalEnablementClient\GetTaskStatusApi
 
-All URIs are relative to *https://api.mastercard.com/mdes*
+All URIs are relative to https://api.mastercard.com/mdes.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getTaskStatus**](GetTaskStatusApi.md#getTaskStatus) | **POST** /digitization/static/1/0/getTaskStatus | Used to check the status of any asynchronous task that was previously requested.
+[**getTaskStatus()**](GetTaskStatusApi.md#getTaskStatus) | **POST** /digitization/static/1/0/getTaskStatus | Used to check the status of any asynchronous task that was previously requested.
 
 
+## `getTaskStatus()`
 
-## getTaskStatus
-
-> \DigitalEnablementClient\Model\GetTaskStatusResponseSchema getTaskStatus($get_task_status_request_schema)
+```php
+getTaskStatus($get_task_status_request_schema): \DigitalEnablementClient\Model\GetTaskStatusResponseSchema
+```
 
 Used to check the status of any asynchronous task that was previously requested.
 
@@ -21,6 +22,7 @@ Used to check the status of any asynchronous task that was previously requested.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new DigitalEnablementClient\Api\GetTaskStatusApi(
@@ -36,11 +38,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling GetTaskStatusApi->getTaskStatus: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -56,10 +56,9 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

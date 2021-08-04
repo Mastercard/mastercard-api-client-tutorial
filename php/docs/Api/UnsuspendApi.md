@@ -1,16 +1,17 @@
 # DigitalEnablementClient\UnsuspendApi
 
-All URIs are relative to *https://api.mastercard.com/mdes*
+All URIs are relative to https://api.mastercard.com/mdes.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createUnsuspend**](UnsuspendApi.md#createUnsuspend) | **POST** /digitization/static/1/0/unsuspend | Used to unsuspend one or more previously suspended Tokens. The API is limited to 10 Tokens per request.
+[**createUnsuspend()**](UnsuspendApi.md#createUnsuspend) | **POST** /digitization/static/1/0/unsuspend | Used to unsuspend one or more previously suspended Tokens. The API is limited to 10 Tokens per request.
 
 
+## `createUnsuspend()`
 
-## createUnsuspend
-
-> \DigitalEnablementClient\Model\UnSuspendResponseSchema createUnsuspend($unsuspend_request_schema)
+```php
+createUnsuspend($un_suspend_request_schema): \DigitalEnablementClient\Model\UnSuspendResponseSchema
+```
 
 Used to unsuspend one or more previously suspended Tokens. The API is limited to 10 Tokens per request.
 
@@ -23,28 +24,27 @@ This API is used to unsuspend one or more previously suspended Tokens. The API i
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+
 $apiInstance = new DigitalEnablementClient\Api\UnsuspendApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$unsuspend_request_schema = new \DigitalEnablementClient\Model\UnSuspendRequestSchema(); // \DigitalEnablementClient\Model\UnSuspendRequestSchema | Contains the details of the request message.
+$un_suspend_request_schema = new \DigitalEnablementClient\Model\UnSuspendRequestSchema(); // \DigitalEnablementClient\Model\UnSuspendRequestSchema | Contains the details of the request message.
 
 try {
-    $result = $apiInstance->createUnsuspend($unsuspend_request_schema);
+    $result = $apiInstance->createUnsuspend($un_suspend_request_schema);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UnsuspendApi->createUnsuspend: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **unsuspend_request_schema** | [**\DigitalEnablementClient\Model\UnSuspendRequestSchema**](../Model/UnSuspendRequestSchema.md)| Contains the details of the request message. | [optional]
+ **un_suspend_request_schema** | [**\DigitalEnablementClient\Model\UnSuspendRequestSchema**](../Model/UnSuspendRequestSchema.md)| Contains the details of the request message. | [optional]
 
 ### Return type
 
@@ -56,10 +56,9 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-
