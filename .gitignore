@@ -32,3 +32,4 @@
 **/vendor
 **/*.iml
 **/out.trace
+**/.phpunit.result.cache
