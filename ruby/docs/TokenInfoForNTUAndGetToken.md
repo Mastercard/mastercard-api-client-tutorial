@@ -1,10 +1,11 @@
-# OpenapiClient::TokenInfo
+# OpenapiClient::TokenInfoForNTUAndGetToken
 
 ## Properties
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **token_pan_suffix** | **String** | The last few digits (typically four) of the Token PAN.  |  |
+| **account_pan_prefix** | **String** | The first few digits (typically six) of the Account PAN.  |  |
 | **account_pan_suffix** | **String** | The last few digits (typically four) of the Account PAN.  |  |
 | **token_expiry** | **String** | The expiry of the Token PAN, given in MMYY format.  |  |
 | **account_pan_expiry** | **String** | The expiry of the Account PAN, given in MMYY format.  | [optional] |
@@ -17,8 +18,9 @@
 ```ruby
 require 'openapi_client'
 
-instance = OpenapiClient::TokenInfo.new(
+instance = OpenapiClient::TokenInfoForNTUAndGetToken.new(
   token_pan_suffix: 0001,
+  account_pan_prefix: 500000,
   account_pan_suffix: 0011,
   token_expiry: 921,
   account_pan_expiry: 921,

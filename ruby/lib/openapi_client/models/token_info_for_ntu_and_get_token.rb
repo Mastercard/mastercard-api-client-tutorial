@@ -14,9 +14,12 @@ require 'date'
 require 'time'
 
 module OpenapiClient
-  class TokenInfo
+  class TokenInfoForNTUAndGetToken
     # The last few digits (typically four) of the Token PAN. 
     attr_accessor :token_pan_suffix
+
+    # The first few digits (typically six) of the Account PAN. 
+    attr_accessor :account_pan_prefix
 
     # The last few digits (typically four) of the Account PAN. 
     attr_accessor :account_pan_suffix
@@ -40,6 +43,7 @@ module OpenapiClient
     def self.attribute_map
       {
         :'token_pan_suffix' => :'tokenPanSuffix',
+        :'account_pan_prefix' => :'accountPanPrefix',
         :'account_pan_suffix' => :'accountPanSuffix',
         :'token_expiry' => :'tokenExpiry',
         :'account_pan_expiry' => :'accountPanExpiry',
@@ -58,6 +62,7 @@ module OpenapiClient
     def self.openapi_types
       {
         :'token_pan_suffix' => :'String',
+        :'account_pan_prefix' => :'String',
         :'account_pan_suffix' => :'String',
         :'token_expiry' => :'String',
         :'account_pan_expiry' => :'String',
@@ -77,19 +82,23 @@ module OpenapiClient
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `OpenapiClient::TokenInfo` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `OpenapiClient::TokenInfoForNTUAndGetToken` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `OpenapiClient::TokenInfo`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `OpenapiClient::TokenInfoForNTUAndGetToken`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
       if attributes.key?(:'token_pan_suffix')
         self.token_pan_suffix = attributes[:'token_pan_suffix']
+      end
+
+      if attributes.key?(:'account_pan_prefix')
+        self.account_pan_prefix = attributes[:'account_pan_prefix']
       end
 
       if attributes.key?(:'account_pan_suffix')
@@ -127,6 +136,10 @@ module OpenapiClient
 
       if @token_pan_suffix.to_s.length > 8
         invalid_properties.push('invalid value for "token_pan_suffix", the character length must be smaller than or equal to 8.')
+      end
+
+      if @account_pan_prefix.nil?
+        invalid_properties.push('invalid value for "account_pan_prefix", account_pan_prefix cannot be nil.')
       end
 
       if @account_pan_suffix.nil?
@@ -169,6 +182,7 @@ module OpenapiClient
     def valid?
       return false if @token_pan_suffix.nil?
       return false if @token_pan_suffix.to_s.length > 8
+      return false if @account_pan_prefix.nil?
       return false if @account_pan_suffix.nil?
       return false if @account_pan_suffix.to_s.length > 8
       return false if @token_expiry.nil?
@@ -268,6 +282,7 @@ module OpenapiClient
       return true if self.equal?(o)
       self.class == o.class &&
           token_pan_suffix == o.token_pan_suffix &&
+          account_pan_prefix == o.account_pan_prefix &&
           account_pan_suffix == o.account_pan_suffix &&
           token_expiry == o.token_expiry &&
           account_pan_expiry == o.account_pan_expiry &&
@@ -285,7 +300,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [token_pan_suffix, account_pan_suffix, token_expiry, account_pan_expiry, dsrp_capable, token_assurance_level, product_category].hash
+      [token_pan_suffix, account_pan_prefix, account_pan_suffix, token_expiry, account_pan_expiry, dsrp_capable, token_assurance_level, product_category].hash
     end
 
     # Builds the object from hash

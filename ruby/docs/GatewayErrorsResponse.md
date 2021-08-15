@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**errors** | [**GatewayErrorsSchema**](GatewayErrorsSchema.md) |  | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **errors** | [**GatewayErrorsSchema**](GatewayErrorsSchema.md) |  | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OpenapiClient'
+require 'openapi_client'
 
-instance = OpenapiClient::GatewayErrorsResponse.new(errors: null)
+instance = OpenapiClient::GatewayErrorsResponse.new(
+  errors: null
+)
 ```
-
 

@@ -2,18 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**country_dial_in_code** | **Float** | __(OPTIONAL)__ The country code for the phone number. E.g. 1 for US or 44 for UK.&lt;br&gt; __Max Length: 4__  | [optional] 
-**phone_number** | **Float** | __(OPTIONAL)__ The phone number of the account holder &lt;br&gt;  __Max Length: 20__  | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **country_dial_in_code** | **Float** | **(OPTIONAL)** The country code for the phone number. E.g. 1 for US or 44 for UK.  | [optional] |
+| **phone_number** | **Float** | **(OPTIONAL)** The phone number of the account holder  | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OpenapiClient'
+require 'openapi_client'
 
-instance = OpenapiClient::PhoneNumber.new(country_dial_in_code: null,
-                                 phone_number: null)
+instance = OpenapiClient::PhoneNumber.new(
+  country_dial_in_code: 44,
+  phone_number: null
+)
 ```
-
 

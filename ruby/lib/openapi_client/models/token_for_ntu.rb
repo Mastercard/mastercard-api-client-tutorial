@@ -14,30 +14,40 @@ require 'date'
 require 'time'
 
 module OpenapiClient
-  class TransactRequestSchema
-    # The host that originated the request. Future calls in the same conversation may be routed to this host. 
-    attr_accessor :response_host
-
-    # Unique identifier for the request. 
-    attr_accessor :request_id
-
-    # Globally unique identifier for the Token, as assigned by MDES. 
+  class TokenForNTU
+    # The unique reference allocated to the Token which is always present even if an error occurs. <br> maxLength: 64 
     attr_accessor :token_unique_reference
 
-    # What type of DSRP cryptogram to create. Must be UCAF. 
-    attr_accessor :dsrp_type
+    # Identifies the Token Requestor. <br> minLength: 11 maxLength: 11 
+    attr_accessor :token_requestor_id
 
-    # HEX Encoded data (case sensitive) provided by the merchant to provide variability and uniqueness to the generation of a cryptogram. 
-    attr_accessor :unpredictable_number
+    # The current status of Token. Must be either: * 'INACTIVE' (Token has not yet been activated) * 'ACTIVE' (Token is active and ready to transact) * 'SUSPENDED' (Token is suspended and unable to transact) * 'DEACTIVATED' (Token has been permanently deactivated).<br> maxLength: 32 
+    attr_accessor :status
+
+    # An optional Reason Code provided by the Issuer to explain why the token status has changed. Not present if the Issuer has not supplied a reason code. Note: Recommended that Partners be resilient to new values as new reason codes may be added in the future without notice. * 'DEVICE_LOST' - Cardholder confirmed token device lost. * 'DEVICE_STOLEN' - Cardholder confirmed token device stolen. * 'SUSPECTED_FRAUD' -  Issuer or cardholder reported fraudulent token transactions. * 'ACCOUNT_CLOSED' - Account closed. * 'NOT_FRAUD' - Issuer or cardholder confirmed no fraudulent token transactions. * 'DEVICE_FOUND' - Cardholder reported token device found or not stolen. * 'REDIGITIZATION_COMPLETE' - Token has been re-digitized successfully with either the expiry date extended or both expiry and token number changed. * 'OTHER' -  Other. <br> maxLength: 32 
+    attr_accessor :event_reason_code
+
+    # (CONDITIONAL only supplied if status is SUSPENDED) Who or what caused the Token to be suspended One or more values of:   * ISSUER - Suspended by the Issuer.   * TOKEN_REQUESTOR - Suspended by the Token Requestor   * MOBILE_PIN_LOCKED - Suspended due to the Mobile PIN being locked   * CARDHOLDER - Suspended by the Cardholder <br> 
+    attr_accessor :suspended_by
+
+    # The date and time the token status was last updated. Expressed in ISO 8601 extended format as one of the following:   * YYYY-MM-DDThh:mm:ss[.sss]Z   * YYYY-MM-DDThh:mm:ss[.sss]±hh:mm   * Where [.sss] is optional and can be 1 to 3 digits. <br> 
+    attr_accessor :status_timestamp
+
+    attr_accessor :product_config
+
+    attr_accessor :token_info
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'response_host' => :'responseHost',
-        :'request_id' => :'requestId',
         :'token_unique_reference' => :'tokenUniqueReference',
-        :'dsrp_type' => :'dsrpType',
-        :'unpredictable_number' => :'unpredictableNumber'
+        :'token_requestor_id' => :'tokenRequestorId',
+        :'status' => :'status',
+        :'event_reason_code' => :'eventReasonCode',
+        :'suspended_by' => :'suspendedBy',
+        :'status_timestamp' => :'statusTimestamp',
+        :'product_config' => :'productConfig',
+        :'token_info' => :'tokenInfo'
       }
     end
 
@@ -49,11 +59,14 @@ module OpenapiClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'response_host' => :'String',
-        :'request_id' => :'String',
         :'token_unique_reference' => :'String',
-        :'dsrp_type' => :'String',
-        :'unpredictable_number' => :'String'
+        :'token_requestor_id' => :'String',
+        :'status' => :'String',
+        :'event_reason_code' => :'String',
+        :'suspended_by' => :'Array<String>',
+        :'status_timestamp' => :'String',
+        :'product_config' => :'ProductConfig',
+        :'token_info' => :'TokenInfoForNTUAndGetToken'
       }
     end
 
@@ -67,35 +80,49 @@ module OpenapiClient
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `OpenapiClient::TransactRequestSchema` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `OpenapiClient::TokenForNTU` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `OpenapiClient::TransactRequestSchema`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `OpenapiClient::TokenForNTU`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
-
-      if attributes.key?(:'response_host')
-        self.response_host = attributes[:'response_host']
-      end
-
-      if attributes.key?(:'request_id')
-        self.request_id = attributes[:'request_id']
-      end
 
       if attributes.key?(:'token_unique_reference')
         self.token_unique_reference = attributes[:'token_unique_reference']
       end
 
-      if attributes.key?(:'dsrp_type')
-        self.dsrp_type = attributes[:'dsrp_type']
+      if attributes.key?(:'token_requestor_id')
+        self.token_requestor_id = attributes[:'token_requestor_id']
       end
 
-      if attributes.key?(:'unpredictable_number')
-        self.unpredictable_number = attributes[:'unpredictable_number']
+      if attributes.key?(:'status')
+        self.status = attributes[:'status']
+      end
+
+      if attributes.key?(:'event_reason_code')
+        self.event_reason_code = attributes[:'event_reason_code']
+      end
+
+      if attributes.key?(:'suspended_by')
+        if (value = attributes[:'suspended_by']).is_a?(Array)
+          self.suspended_by = value
+        end
+      end
+
+      if attributes.key?(:'status_timestamp')
+        self.status_timestamp = attributes[:'status_timestamp']
+      end
+
+      if attributes.key?(:'product_config')
+        self.product_config = attributes[:'product_config']
+      end
+
+      if attributes.key?(:'token_info')
+        self.token_info = attributes[:'token_info']
       end
     end
 
@@ -103,32 +130,8 @@ module OpenapiClient
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @request_id.nil?
-        invalid_properties.push('invalid value for "request_id", request_id cannot be nil.')
-      end
-
-      if @token_unique_reference.nil?
-        invalid_properties.push('invalid value for "token_unique_reference", token_unique_reference cannot be nil.')
-      end
-
-      if @token_unique_reference.to_s.length > 64
-        invalid_properties.push('invalid value for "token_unique_reference", the character length must be smaller than or equal to 64.')
-      end
-
-      if @dsrp_type.nil?
-        invalid_properties.push('invalid value for "dsrp_type", dsrp_type cannot be nil.')
-      end
-
-      if @dsrp_type.to_s.length > 64
-        invalid_properties.push('invalid value for "dsrp_type", the character length must be smaller than or equal to 64.')
-      end
-
-      if !@unpredictable_number.nil? && @unpredictable_number.to_s.length > 8
-        invalid_properties.push('invalid value for "unpredictable_number", the character length must be smaller than or equal to 8.')
-      end
-
-      if !@unpredictable_number.nil? && @unpredictable_number.to_s.length < 8
-        invalid_properties.push('invalid value for "unpredictable_number", the character length must be great than or equal to 8.')
+      if !@status_timestamp.nil? && @status_timestamp.to_s.length > 29
+        invalid_properties.push('invalid value for "status_timestamp", the character length must be smaller than or equal to 29.')
       end
 
       invalid_properties
@@ -137,56 +140,18 @@ module OpenapiClient
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @request_id.nil?
-      return false if @token_unique_reference.nil?
-      return false if @token_unique_reference.to_s.length > 64
-      return false if @dsrp_type.nil?
-      return false if @dsrp_type.to_s.length > 64
-      return false if !@unpredictable_number.nil? && @unpredictable_number.to_s.length > 8
-      return false if !@unpredictable_number.nil? && @unpredictable_number.to_s.length < 8
+      return false if !@status_timestamp.nil? && @status_timestamp.to_s.length > 29
       true
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] token_unique_reference Value to be assigned
-    def token_unique_reference=(token_unique_reference)
-      if token_unique_reference.nil?
-        fail ArgumentError, 'token_unique_reference cannot be nil'
+    # @param [Object] status_timestamp Value to be assigned
+    def status_timestamp=(status_timestamp)
+      if !status_timestamp.nil? && status_timestamp.to_s.length > 29
+        fail ArgumentError, 'invalid value for "status_timestamp", the character length must be smaller than or equal to 29.'
       end
 
-      if token_unique_reference.to_s.length > 64
-        fail ArgumentError, 'invalid value for "token_unique_reference", the character length must be smaller than or equal to 64.'
-      end
-
-      @token_unique_reference = token_unique_reference
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] dsrp_type Value to be assigned
-    def dsrp_type=(dsrp_type)
-      if dsrp_type.nil?
-        fail ArgumentError, 'dsrp_type cannot be nil'
-      end
-
-      if dsrp_type.to_s.length > 64
-        fail ArgumentError, 'invalid value for "dsrp_type", the character length must be smaller than or equal to 64.'
-      end
-
-      @dsrp_type = dsrp_type
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] unpredictable_number Value to be assigned
-    def unpredictable_number=(unpredictable_number)
-      if !unpredictable_number.nil? && unpredictable_number.to_s.length > 8
-        fail ArgumentError, 'invalid value for "unpredictable_number", the character length must be smaller than or equal to 8.'
-      end
-
-      if !unpredictable_number.nil? && unpredictable_number.to_s.length < 8
-        fail ArgumentError, 'invalid value for "unpredictable_number", the character length must be great than or equal to 8.'
-      end
-
-      @unpredictable_number = unpredictable_number
+      @status_timestamp = status_timestamp
     end
 
     # Checks equality by comparing each attribute.
@@ -194,11 +159,14 @@ module OpenapiClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          response_host == o.response_host &&
-          request_id == o.request_id &&
           token_unique_reference == o.token_unique_reference &&
-          dsrp_type == o.dsrp_type &&
-          unpredictable_number == o.unpredictable_number
+          token_requestor_id == o.token_requestor_id &&
+          status == o.status &&
+          event_reason_code == o.event_reason_code &&
+          suspended_by == o.suspended_by &&
+          status_timestamp == o.status_timestamp &&
+          product_config == o.product_config &&
+          token_info == o.token_info
     end
 
     # @see the `==` method
@@ -210,7 +178,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [response_host, request_id, token_unique_reference, dsrp_type, unpredictable_number].hash
+      [token_unique_reference, token_requestor_id, status, event_reason_code, suspended_by, status_timestamp, product_config, token_info].hash
     end
 
     # Builds the object from hash

@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**media_contents** | [**Array&lt;MediaContent&gt;**](MediaContent.md) |  | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **media_contents** | [**Array&lt;MediaContent&gt;**](MediaContent.md) |  | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OpenapiClient'
+require 'openapi_client'
 
-instance = OpenapiClient::AssetResponseSchema.new(media_contents: null)
+instance = OpenapiClient::AssetResponseSchema.new(
+  media_contents: null
+)
 ```
-
 

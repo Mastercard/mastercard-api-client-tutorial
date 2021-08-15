@@ -28,9 +28,10 @@ BASE_PATH = 'https://sandbox.api.mastercard.com/mdes'.freeze
 
 def create_client(client, config, base_path, p12, key_alias, key_password, consumer_key)
   uri = URI(base_path)
-  client.configure do |config|
-    config.scheme = uri.scheme
-    config.host = uri.host
+  client.configure do |c|
+    c.scheme = uri.scheme
+    c.host = uri.host
+    c.server_index = nil
   end
   api_client = client::ApiClient.new
 

@@ -2,16 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**tokens** | [**Array&lt;Token&gt;**](Token.md) |  | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **tokens** | [**Array&lt;TokenForNTU&gt;**](TokenForNTU.md) |  | [optional] |
 
-## Code Sample
+## Example
 
 ```ruby
-require 'OpenapiClient'
+require 'openapi_client'
 
-instance = OpenapiClient::NotifyTokenEncryptedPayload.new(tokens: null)
+instance = OpenapiClient::NotifyTokenEncryptedPayload.new(
+  tokens: null
+)
 ```
-
 
