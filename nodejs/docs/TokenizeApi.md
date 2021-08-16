@@ -1,10 +1,10 @@
-# MdesForMerchants.TokenizeApi
+# MdesDigitalEnablementApi.TokenizeApi
 
 All URIs are relative to *https://api.mastercard.com/mdes*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createTokenize**](TokenizeApi.md#createTokenize) | **POST** /digitization/static/1/0/tokenize | Used to digitize a card to create a server-based Token.
+[**createTokenize**](TokenizeApi.md#createTokenize) | **POST** /digitization/static/1/0/tokenize | 
 
 
 
@@ -12,18 +12,18 @@ Method | HTTP request | Description
 
 > TokenizeResponseSchema createTokenize(opts)
 
-Used to digitize a card to create a server-based Token.
+
 
 Used to digitize a card to create a server-based Token. MDES will perform both card availability and eligibility checks to check that this specific card is eligible for digitization. As both availability and eligibility are combined, only a Tokenization Authorization message is sent to the issuer as part of this request to authorize the digitization. No Tokenization Eligibility message is sent. The digitization decision will be one of Approved or Declined. 
 
 ### Example
 
 ```javascript
-var MdesForMerchants = require('mdes_for_merchants');
+var MdesDigitalEnablementApi = require('mdes_digital_enablement_api');
 
-var apiInstance = new MdesForMerchants.TokenizeApi();
+var apiInstance = new MdesDigitalEnablementApi.TokenizeApi();
 var opts = {
-  'tokenizeRequestSchema': new MdesForMerchants.TokenizeRequestSchema() // TokenizeRequestSchema | A Tokenize request is used to digitize a PAN.  
+  'tokenizeRequestSchema': new MdesDigitalEnablementApi.TokenizeRequestSchema() // TokenizeRequestSchema | A Tokenize request is used to digitize a PAN. 
 };
 var callback = function(error, data, response) {
   if (error) {
@@ -41,7 +41,7 @@ apiInstance.createTokenize(opts, callback);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tokenizeRequestSchema** | [**TokenizeRequestSchema**](TokenizeRequestSchema.md)| A Tokenize request is used to digitize a PAN.   | [optional] 
+ **tokenizeRequestSchema** | [**TokenizeRequestSchema**](TokenizeRequestSchema.md)| A Tokenize request is used to digitize a PAN.  | [optional] 
 
 ### Return type
 

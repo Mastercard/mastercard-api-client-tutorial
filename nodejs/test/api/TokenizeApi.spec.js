@@ -123,15 +123,15 @@ const forge = require("node-forge");
   
     dataEncoding: 'hex',
   
-    encryptionCertificate: "<TODO>",
-    privateKey: "<TODO>"
+    encryptionCertificate: "test/resources/digital-enablement-sandbox-encryption-key.crt",
+    privateKey: "test/resources/digital-enablement-sandbox-decryption-key.key"
   
   };
 
-  const CONSUMER_KEY = ""; // TODO
-  const SIGNING_KEY_PATH = ""; // TODO
-  const KEY_ALIAS = ""; // TODO
-  const KEY_PASSWORD = ""; // TODO
+  const CONSUMER_KEY = "000000000000000000000000000000000000000000000000!000000000000000000000000000000000000000000000000";
+  const SIGNING_KEY_PATH = "test/resources/fake-signing-key.p12";
+  const KEY_ALIAS = "fake-key";
+  const KEY_PASSWORD = "fakepassword";
 
   function loadSigningKey(){
     const p12Content = fs.readFileSync(SIGNING_KEY_PATH, 'binary');

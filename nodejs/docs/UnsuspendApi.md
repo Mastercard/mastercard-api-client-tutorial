@@ -1,4 +1,4 @@
-# MdesForMerchants.UnsuspendApi
+# MdesDigitalEnablementApi.UnsuspendApi
 
 All URIs are relative to *https://api.mastercard.com/mdes*
 
@@ -19,11 +19,11 @@ This API is used to unsuspend one or more previously suspended Tokens. The API i
 ### Example
 
 ```javascript
-var MdesForMerchants = require('mdes_for_merchants');
+var MdesDigitalEnablementApi = require('mdes_digital_enablement_api');
 
-var apiInstance = new MdesForMerchants.UnsuspendApi();
+var apiInstance = new MdesDigitalEnablementApi.UnsuspendApi();
 var opts = {
-  'unsuspendRequestSchema': new MdesForMerchants.UnSuspendRequestSchema() // UnSuspendRequestSchema | Contains the details of the request message. 
+  'unSuspendRequestSchema': new MdesDigitalEnablementApi.UnSuspendRequestSchema() // UnSuspendRequestSchema | Contains the details of the request message. 
 };
 var callback = function(error, data, response) {
   if (error) {
@@ -41,7 +41,7 @@ apiInstance.createUnsuspend(opts, callback);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **unsuspendRequestSchema** | [**UnSuspendRequestSchema**](UnSuspendRequestSchema.md)| Contains the details of the request message.  | [optional] 
+ **unSuspendRequestSchema** | [**UnSuspendRequestSchema**](UnSuspendRequestSchema.md)| Contains the details of the request message.  | [optional] 
 
 ### Return type
 

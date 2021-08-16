@@ -1,4 +1,4 @@
-# MdesForMerchants.GetTaskStatusApi
+# MdesDigitalEnablementApi.GetTaskStatusApi
 
 All URIs are relative to *https://api.mastercard.com/mdes*
 
@@ -19,11 +19,11 @@ Used to check the status of any asynchronous task that was previously requested.
 ### Example
 
 ```javascript
-var MdesForMerchants = require('mdes_for_merchants');
+var MdesDigitalEnablementApi = require('mdes_digital_enablement_api');
 
-var apiInstance = new MdesForMerchants.GetTaskStatusApi();
+var apiInstance = new MdesDigitalEnablementApi.GetTaskStatusApi();
 var opts = {
-  'getTaskStatusRequestSchema': new MdesForMerchants.GetTaskStatusRequestSchema() // GetTaskStatusRequestSchema | Contains the details of the request message. 
+  'getTaskStatusRequestSchema': new MdesDigitalEnablementApi.GetTaskStatusRequestSchema() // GetTaskStatusRequestSchema | Contains the details of the request message. 
 };
 var callback = function(error, data, response) {
   if (error) {

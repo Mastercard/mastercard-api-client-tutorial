@@ -1,4 +1,4 @@
-# MdesForMerchants.GatewayErrorsResponse
+# MdesDigitalEnablementApi.GatewayErrorsResponse
 
 ## Properties
 

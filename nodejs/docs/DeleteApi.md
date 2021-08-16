@@ -1,4 +1,4 @@
-# MdesForMerchants.DeleteApi
+# MdesDigitalEnablementApi.DeleteApi
 
 All URIs are relative to *https://api.mastercard.com/mdes*
 
@@ -19,11 +19,11 @@ This API is used to delete one or more Tokens.  The API is limited to 10 Tokens 
 ### Example
 
 ```javascript
-var MdesForMerchants = require('mdes_for_merchants');
+var MdesDigitalEnablementApi = require('mdes_digital_enablement_api');
 
-var apiInstance = new MdesForMerchants.DeleteApi();
+var apiInstance = new MdesDigitalEnablementApi.DeleteApi();
 var opts = {
-  'deleteRequestSchema': new MdesForMerchants.DeleteRequestSchema() // DeleteRequestSchema | Contains the details of the request message. 
+  'deleteRequestSchema': new MdesDigitalEnablementApi.DeleteRequestSchema() // DeleteRequestSchema | Contains the details of the request message. 
 };
 var callback = function(error, data, response) {
   if (error) {

@@ -1,4 +1,4 @@
-# MdesForMerchants.TransactApi
+# MdesDigitalEnablementApi.TransactApi
 
 All URIs are relative to *https://api.mastercard.com/mdes*
 
@@ -19,11 +19,11 @@ This API is used by the Token Requestor to create a Digital Secure Remote Paymen
 ### Example
 
 ```javascript
-var MdesForMerchants = require('mdes_for_merchants');
+var MdesDigitalEnablementApi = require('mdes_digital_enablement_api');
 
-var apiInstance = new MdesForMerchants.TransactApi();
+var apiInstance = new MdesDigitalEnablementApi.TransactApi();
 var opts = {
-  'transactRequestSchema': new MdesForMerchants.TransactRequestSchema() // TransactRequestSchema | Contains the details of the request message. 
+  'transactRequestSchema': new MdesDigitalEnablementApi.TransactRequestSchema() // TransactRequestSchema | Contains the details of the request message. 
 };
 var callback = function(error, data, response) {
   if (error) {

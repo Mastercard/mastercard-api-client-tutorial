@@ -1,4 +1,4 @@
-# MdesForMerchants.NotifyTokenUpdatedResponseSchema
+# MdesDigitalEnablementApi.NotifyTokenUpdatedResponseSchema
 
 ## Properties
 
