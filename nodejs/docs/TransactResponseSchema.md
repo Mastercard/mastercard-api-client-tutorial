@@ -1,4 +1,4 @@
-# MdesForMerchants.TransactResponseSchema
+# MdesDigitalEnablementApi.TransactResponseSchema
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# MdesForMerchants.AssetResponseSchema
+# MdesDigitalEnablementApi.AssetResponseSchema
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# MdesForMerchants.SearchTokensResponseSchema
+# MdesDigitalEnablementApi.SearchTokensResponseSchema
 
 ## Properties
 

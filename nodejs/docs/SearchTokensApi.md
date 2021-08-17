@@ -1,4 +1,4 @@
-# MdesForMerchants.SearchTokensApi
+# MdesDigitalEnablementApi.SearchTokensApi
 
 All URIs are relative to *https://api.mastercard.com/mdes*
 
@@ -19,11 +19,11 @@ This API is used to get basic token information for all tokens on a specified de
 ### Example
 
 ```javascript
-var MdesForMerchants = require('mdes_for_merchants');
+var MdesDigitalEnablementApi = require('mdes_digital_enablement_api');
 
-var apiInstance = new MdesForMerchants.SearchTokensApi();
+var apiInstance = new MdesDigitalEnablementApi.SearchTokensApi();
 var opts = {
-  'searchTokensRequestSchema': new MdesForMerchants.SearchTokensRequestSchema() // SearchTokensRequestSchema | Contains the details of the request message. 
+  'searchTokensRequestSchema': new MdesDigitalEnablementApi.SearchTokensRequestSchema() // SearchTokensRequestSchema | Contains the details of the request message. 
 };
 var callback = function(error, data, response) {
   if (error) {

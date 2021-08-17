@@ -1,4 +1,4 @@
-# MdesForMerchants.SuspendApi
+# MdesDigitalEnablementApi.SuspendApi
 
 All URIs are relative to *https://api.mastercard.com/mdes*
 
@@ -19,11 +19,11 @@ This API is used to temporarily suspend one or more Tokens (for example, suspend
 ### Example
 
 ```javascript
-var MdesForMerchants = require('mdes_for_merchants');
+var MdesDigitalEnablementApi = require('mdes_digital_enablement_api');
 
-var apiInstance = new MdesForMerchants.SuspendApi();
+var apiInstance = new MdesDigitalEnablementApi.SuspendApi();
 var opts = {
-  'suspendRequestSchema': new MdesForMerchants.SuspendRequestSchema() // SuspendRequestSchema | Contains the details of the request message. 
+  'suspendRequestSchema': new MdesDigitalEnablementApi.SuspendRequestSchema() // SuspendRequestSchema | Contains the details of the request message. 
 };
 var callback = function(error, data, response) {
   if (error) {

@@ -1,4 +1,4 @@
-# MdesForMerchants.GatewayErrorsSchema
+# MdesDigitalEnablementApi.GatewayErrorsSchema
 
 ## Properties
 

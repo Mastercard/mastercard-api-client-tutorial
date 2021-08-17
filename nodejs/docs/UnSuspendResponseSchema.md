@@ -1,4 +1,4 @@
-# MdesForMerchants.UnSuspendResponseSchema
+# MdesDigitalEnablementApi.UnSuspendResponseSchema
 
 ## Properties
 
