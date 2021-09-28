@@ -16,8 +16,8 @@
   "encryptedKeyFieldName": "encryptedKey",
   "encryptedValueFieldName": "encryptedData",
   "dataEncoding": "hex",
-  "encryptionCertificate": "<TODO>",
-  "decryptionKey": "<TODO>",
+  "encryptionCertificate": "resources/public_key.cer",
+  "decryptionKey": "resources/sbxprivkey.key",
   "oaepPaddingDigestAlgorithm": "SHA-256",
   "encryptionCertificateFingerprintFieldName": "publicKeyFingerprint",
   "oaepPaddingDigestAlgorithmFieldName": "oaepHashingAlgorithm"
