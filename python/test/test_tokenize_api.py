@@ -90,7 +90,7 @@ class TestTokenizeApi(unittest.TestCase):
                         card_account_data=CardAccountDataInbound(
                             account_number="5123456789012345",
                             expiry_month="09",
-                            expiry_year="21",
+                            expiry_year="25",
                             security_code="123",
                         ),
                         source="ACCOUNT_ON_FILE",
@@ -119,7 +119,7 @@ class TestTokenizeApi(unittest.TestCase):
                             "card_account_data": {
                                 "account_number": "5123456789012345",
                                 "expiry_month": "09",
-                                "expiry_year": "21",
+                                "expiry_year": "25",
                                 "security_code": "123"
                             },
                             "source": "ACCOUNT_ON_FILE"
