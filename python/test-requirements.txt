@@ -1,5 +1,5 @@
 pytest~=4.6.7 # needed for python 2.7+3.4
 pytest-cov>=2.8.1
 pytest-randomly==1.2.3 # needed for python 2.7+3.4
-mastercard-oauth1-signer >= 1.1.3
+mastercard-oauth1-signer >= 1.4.0
 mastercard-client-encryption >= 1.1.2

@@ -203,7 +203,7 @@ class TokenizeApiTest extends TestCase
         $data = [
             'account_number' => '5123456789012345',
             'security_code' => '123',
-            'expiry_year' => '21',
+            'expiry_year' => '25',
             'expiry_month' => '09'
         ];
         return new CardAccountDataInbound($data);
