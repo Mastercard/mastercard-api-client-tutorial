@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **create_transact**
-> TransactResponseSchema create_transact(transact_request_schema=transact_request_schema)
+> TransactResponseSchema create_transact()
 
 Used by the Token Requestor to create a Digital Secure Remote Payment (\"DSRP\") transaction cryptogram using the credentials stored within MDES in order to perform a DSRP transaction.
 
@@ -17,10 +17,13 @@ This API is used by the Token Requestor to create a Digital Secure Remote Paymen
 ### Example
 
 ```python
-from __future__ import print_function
 import time
 import openapi_client
-from openapi_client.rest import ApiException
+from openapi_client.api import transact_api
+from openapi_client.model.gateway_errors_response import GatewayErrorsResponse
+from openapi_client.model.transact_error import TransactError
+from openapi_client.model.transact_response_schema import TransactResponseSchema
+from openapi_client.model.transact_request_schema import TransactRequestSchema
 from pprint import pprint
 # Defining the host is optional and defaults to https://api.mastercard.com/mdes
 # See configuration.py for a list of all supported configuration parameters.
@@ -32,22 +35,31 @@ configuration = openapi_client.Configuration(
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient() as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.TransactApi(api_client)
-    transact_request_schema = openapi_client.TransactRequestSchema() # TransactRequestSchema | Contains the details of the request message.  (optional)
+    api_instance = transact_api.TransactApi(api_client)
+    transact_request_schema = TransactRequestSchema(
+        response_host="site2.payment-app-provider.com",
+        request_id="123456",
+        token_unique_reference="DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45",
+        dsrp_type="UCAF",
+        unpredictable_number="23424563",
+    ) # TransactRequestSchema | Contains the details of the request message.  (optional)
 
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
         # Used by the Token Requestor to create a Digital Secure Remote Payment (\"DSRP\") transaction cryptogram using the credentials stored within MDES in order to perform a DSRP transaction.
         api_response = api_instance.create_transact(transact_request_schema=transact_request_schema)
         pprint(api_response)
-    except ApiException as e:
+    except openapi_client.ApiException as e:
         print("Exception when calling TransactApi->create_transact: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **transact_request_schema** | [**TransactRequestSchema**](TransactRequestSchema.md)| Contains the details of the request message.  | [optional] 
+ **transact_request_schema** | [**TransactRequestSchema**](TransactRequestSchema.md)| Contains the details of the request message.  | [optional]
 
 ### Return type
 
@@ -61,6 +73,7 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
 
 ### HTTP response details
 | Status code | Description | Response headers |
