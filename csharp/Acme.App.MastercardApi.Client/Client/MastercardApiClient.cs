@@ -11,27 +11,25 @@ namespace Acme.App.MastercardApi.Client.Client
     {
         private readonly Uri _basePath;
         private readonly RestSharpSigner _signer;
-        private readonly RestSharpFieldLevelEncryptionInterceptor _encryptionInterceptor;
-        
+        private readonly RestSharpEncryptionInterceptor _encryptionInterceptor;
+
         /// <summary>
-        /// 
+        /// Construct an ApiClient which will automatically:
+        /// - Sign requests
+        /// - Encrypt/decrypt requests and responses
         /// </summary>
-        /// <param name="signingKey"></param>
-        /// <param name="basePath"></param>
-        /// <param name="consumerKey"></param>
-        /// <param name="config"></param>
-        public ApiClient(RSA signingKey, string basePath, string consumerKey, FieldLevelEncryptionConfig config)
+        public ApiClient(RSA signingKey, string basePath, string consumerKey, EncryptionConfig config)
         {
             _baseUrl = basePath;
             _basePath = new Uri(basePath);
             _signer = new RestSharpSigner(consumerKey, signingKey);
-            _encryptionInterceptor = new RestSharpFieldLevelEncryptionInterceptor(config);
+            _encryptionInterceptor = RestSharpEncryptionInterceptor.From(config);
         }
 
         partial void InterceptRequest(IRestRequest request)
         {
             _encryptionInterceptor.InterceptRequest(request);
-            _signer.Sign(this._basePath, request);
+            _signer.Sign(_basePath, request);
         }
     }
 }
