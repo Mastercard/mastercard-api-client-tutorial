@@ -48,6 +48,7 @@ namespace Acme.App.MastercardApi.Client.Tests
                 .WithDecryptionPath("$.encryptedPayload", "$.encryptedPayload.encryptedData")
                 .WithEncryptionCertificate(encryptionCertificate)
                 .WithDecryptionKey(decryptionKey)
+                .WithEncryptionCertificateFingerprint("243E6992EA467F1CBB9973FACFCC3BF17B5CD007")
                 .WithOaepPaddingDigestAlgorithm("SHA-512")
                 .WithEncryptedValueFieldName("encryptedData")
                 .WithEncryptedKeyFieldName("encryptedKey")
