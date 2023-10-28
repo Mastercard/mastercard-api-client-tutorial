@@ -1,14 +1,13 @@
-on:
-  push:
-    branches: main
-  schedule:
-    - cron: "0 16 * * *"
-name: broken links?
-jobs:
-  linkChecker:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
+"source": {
+    "type": "card",
+    "number": "4541249167673670",
+    "cvv": "120",
+    "expiry_month": 12,
+    "expiry_year": 2030
+  },
+  "currency": "USD",
+  "amount": 1500,
+  "processing_channel_id": "pc_dkgoofpvuwuerekvd4ssr6jwom"
       - name: Link Checker
         id: lc
         uses: peter-evans/link-checker@v1.2.2
