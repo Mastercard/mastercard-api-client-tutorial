@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **token_unique_reference** | **str** | Globally unique identifier for the Token, as assigned by MDES.  | [optional] 
@@ -10,8 +11,24 @@ Name | Type | Description | Notes
 **oaep_hashing_algorithm** | **str** | Hashing algorithm used with the OAEP scheme. If omitted, then the RSA Encryption Standard PKCS #1 v1.5 will be used. Must be either &#39;SHA256&#39; (Use the SHA-256 algorithm) or &#39;SHA512&#39; (Use the SHA-512 algorithm).  | [optional] 
 **iv** | **str** | It is recommended to supply a random initialization vector when encrypting the data using the one-time use AES key. Must be exactly 16 bytes (32 character hex string) to match the block size. Hex-encoded data (case-insensitive).  | [optional] 
 **encrypted_data** | [**TokenDetailData**](TokenDetailData.md) |  | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
+## Example
+
+```python
+from openapi_client.models.token_detail import TokenDetail
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of TokenDetail from a JSON string
+token_detail_instance = TokenDetail.from_json(json)
+# print the JSON string representation of the object
+print(TokenDetail.to_json())
+
+# convert the object into a dict
+token_detail_dict = token_detail_instance.to_dict()
+# create an instance of TokenDetail from a dict
+token_detail_from_dict = TokenDetail.from_dict(token_detail_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

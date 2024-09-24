@@ -16,13 +16,13 @@ This API is used to retrieve static Assets from MDES?s repository, such as - Car
 
 ### Example
 
+
 ```python
-import time
 import openapi_client
-from openapi_client.api import get_asset_api
-from openapi_client.model.asset_response_schema import AssetResponseSchema
-from openapi_client.model.errors_response import ErrorsResponse
+from openapi_client.models.asset_response_schema import AssetResponseSchema
+from openapi_client.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.mastercard.com/mdes
 # See configuration.py for a list of all supported configuration parameters.
 configuration = openapi_client.Configuration(
@@ -31,26 +31,28 @@ configuration = openapi_client.Configuration(
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient() as api_client:
+with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = get_asset_api.GetAssetApi(api_client)
-    asset_id = "AssetId_example" # str | An Asset ID corresponds to an individual Digital Asset. Digital Assets are returned as part of the Product Configuration from the Tokenize Response. The Asset ID itself is supplied as a Get request in the form of https://{INSERT ENVIRONMENT URL HERE}/mdes/assets/static/1/0/asset/{AssetID} - See JSON examples for details. 
+    api_instance = openapi_client.GetAssetApi(api_client)
+    asset_id = 'asset_id_example' # str | An Asset ID corresponds to an individual Digital Asset. Digital Assets are returned as part of the Product Configuration from the Tokenize Response. The Asset ID itself is supplied as a Get request in the form of https://{INSERT ENVIRONMENT URL HERE}/mdes/assets/static/1/0/asset/{AssetID} - See JSON examples for details. 
 
-    # example passing only required values which don't have defaults set
     try:
         # Used to retrieve static Assets from the MDES repository.
         api_response = api_instance.get_asset(asset_id)
+        print("The response of GetAssetApi->get_asset:\n")
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except Exception as e:
         print("Exception when calling GetAssetApi->get_asset: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **asset_id** | **str**| An Asset ID corresponds to an individual Digital Asset. Digital Assets are returned as part of the Product Configuration from the Tokenize Response. The Asset ID itself is supplied as a Get request in the form of https://{INSERT ENVIRONMENT URL HERE}/mdes/assets/static/1/0/asset/{AssetID} - See JSON examples for details.  |
+ **asset_id** | **str**| An Asset ID corresponds to an individual Digital Asset. Digital Assets are returned as part of the Product Configuration from the Tokenize Response. The Asset ID itself is supplied as a Get request in the form of https://{INSERT ENVIRONMENT URL HERE}/mdes/assets/static/1/0/asset/{AssetID} - See JSON examples for details.  | 
 
 ### Return type
 
@@ -65,8 +67,8 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Contains the details of the response message.  |  -  |
