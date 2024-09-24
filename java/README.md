@@ -35,7 +35,7 @@ Java Client Encryption Library available on [GitHub](https://github.com/Masterca
 ## Requirements
 
 Building the API client library requires:
-1. Java 1.8+
+1. Java 17+
 2. Maven (3.8.3+)/Gradle (7.2+)
 
 ## Installation
