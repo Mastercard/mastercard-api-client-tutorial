@@ -2,12 +2,12 @@
 
 All URIs are relative to *https://api.mastercard.com/mdes*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createTokenize**](TokenizeApi.md#createTokenize) | **POST** /digitization/static/1/0/tokenize | 
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**createTokenize**](TokenizeApi.md#createTokenize) | **POST** /digitization/static/1/0/tokenize |  |
 
 
-<a name="createTokenize"></a>
+<a id="createTokenize"></a>
 # **createTokenize**
 > TokenizeResponseSchema createTokenize(tokenizeRequestSchema)
 
@@ -47,9 +47,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tokenizeRequestSchema** | [**TokenizeRequestSchema**](TokenizeRequestSchema.md)| A Tokenize request is used to digitize a PAN.  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **tokenizeRequestSchema** | [**TokenizeRequestSchema**](TokenizeRequestSchema.md)| A Tokenize request is used to digitize a PAN.  | [optional] |
 
 ### Return type
 
@@ -67,7 +67,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Contains the details of the token response message when a push account receipt is supplied in the tokenize request.  |  -  |
-**401** | Example gateway error response  |  -  |
-**500** | Example application error response  |  -  |
+| **200** | Contains the details of the token response message when a push account receipt is supplied in the tokenize request.  |  -  |
+| **401** | Example gateway error response  |  -  |
+| **500** | Example application error response  |  -  |
 

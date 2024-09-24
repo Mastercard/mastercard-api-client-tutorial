@@ -14,21 +14,43 @@
 package com.mastercard.developer.mdes_digital_enablement_client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.mastercard.developer.mdes_digital_enablement_client.model.NotifyTokenEncryptedPayload;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.mastercard.developer.mdes_digital_enablement_client.JSON;
 
 /**
  * EncryptedPayload
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-24T13:37:45.612619+01:00[Europe/Dublin]", comments = "Generator version: 7.5.0")
 public class EncryptedPayload {
   public static final String SERIALIZED_NAME_PUBLIC_KEY_FINGERPRINT = "publicKeyFingerprint";
   @SerializedName(SERIALIZED_NAME_PUBLIC_KEY_FINGERPRINT)
@@ -50,9 +72,10 @@ public class EncryptedPayload {
   @SerializedName(SERIALIZED_NAME_ENCRYPTED_DATA)
   private NotifyTokenEncryptedPayload encryptedData;
 
+  public EncryptedPayload() {
+  }
 
   public EncryptedPayload publicKeyFingerprint(String publicKeyFingerprint) {
-    
     this.publicKeyFingerprint = publicKeyFingerprint;
     return this;
   }
@@ -61,12 +84,10 @@ public class EncryptedPayload {
    * The fingerprint of the public key used to encrypt the ephemeral AES key. 
    * @return publicKeyFingerprint
   **/
-  @ApiModelProperty(example = "4c4ead5927f0df8117f178eea9308daa58e27c2b", required = true, value = "The fingerprint of the public key used to encrypt the ephemeral AES key. ")
-
+  @javax.annotation.Nonnull
   public String getPublicKeyFingerprint() {
     return publicKeyFingerprint;
   }
-
 
   public void setPublicKeyFingerprint(String publicKeyFingerprint) {
     this.publicKeyFingerprint = publicKeyFingerprint;
@@ -74,7 +95,6 @@ public class EncryptedPayload {
 
 
   public EncryptedPayload encryptedKey(String encryptedKey) {
-    
     this.encryptedKey = encryptedKey;
     return this;
   }
@@ -83,12 +103,10 @@ public class EncryptedPayload {
    * One-time use AES key encrypted by the MasterCard public key (as identified by publicKeyFingerprint) using the OAEP or PKCS#1 v1.5 scheme (depending on the value of oaepHashingAlgorithm. 
    * @return encryptedKey
   **/
-  @ApiModelProperty(example = "A1B2C3D4E5F6112233445566", required = true, value = "One-time use AES key encrypted by the MasterCard public key (as identified by publicKeyFingerprint) using the OAEP or PKCS#1 v1.5 scheme (depending on the value of oaepHashingAlgorithm. ")
-
+  @javax.annotation.Nonnull
   public String getEncryptedKey() {
     return encryptedKey;
   }
-
 
   public void setEncryptedKey(String encryptedKey) {
     this.encryptedKey = encryptedKey;
@@ -96,7 +114,6 @@ public class EncryptedPayload {
 
 
   public EncryptedPayload oaepHashingAlgorithm(String oaepHashingAlgorithm) {
-    
     this.oaepHashingAlgorithm = oaepHashingAlgorithm;
     return this;
   }
@@ -106,12 +123,9 @@ public class EncryptedPayload {
    * @return oaepHashingAlgorithm
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "SHA512", value = "Hashing algorithm used with the OAEP scheme. Must be either SHA256 or SHA512. ")
-
   public String getOaepHashingAlgorithm() {
     return oaepHashingAlgorithm;
   }
-
 
   public void setOaepHashingAlgorithm(String oaepHashingAlgorithm) {
     this.oaepHashingAlgorithm = oaepHashingAlgorithm;
@@ -119,7 +133,6 @@ public class EncryptedPayload {
 
 
   public EncryptedPayload iv(String iv) {
-    
     this.iv = iv;
     return this;
   }
@@ -129,12 +142,9 @@ public class EncryptedPayload {
    * @return iv
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "NA", value = "The initialization vector used when encrypting data using the one-time use AES key. Must be exactly 16 bytes (32 character hex string) to match the block size. If not present, an IV of zero is assumed. Length - 32. ")
-
   public String getIv() {
     return iv;
   }
-
 
   public void setIv(String iv) {
     this.iv = iv;
@@ -142,7 +152,6 @@ public class EncryptedPayload {
 
 
   public EncryptedPayload encryptedData(NotifyTokenEncryptedPayload encryptedData) {
-    
     this.encryptedData = encryptedData;
     return this;
   }
@@ -151,16 +160,15 @@ public class EncryptedPayload {
    * Get encryptedData
    * @return encryptedData
   **/
-  @ApiModelProperty(required = true, value = "")
-
+  @javax.annotation.Nonnull
   public NotifyTokenEncryptedPayload getEncryptedData() {
     return encryptedData;
   }
 
-
   public void setEncryptedData(NotifyTokenEncryptedPayload encryptedData) {
     this.encryptedData = encryptedData;
   }
+
 
 
   @Override
@@ -208,5 +216,117 @@ public class EncryptedPayload {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("publicKeyFingerprint");
+    openapiFields.add("encryptedKey");
+    openapiFields.add("oaepHashingAlgorithm");
+    openapiFields.add("iv");
+    openapiFields.add("encryptedData");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("publicKeyFingerprint");
+    openapiRequiredFields.add("encryptedKey");
+    openapiRequiredFields.add("encryptedData");
+  }
+
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to EncryptedPayload
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!EncryptedPayload.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in EncryptedPayload is not found in the empty JSON string", EncryptedPayload.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!EncryptedPayload.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `EncryptedPayload` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : EncryptedPayload.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (!jsonObj.get("publicKeyFingerprint").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `publicKeyFingerprint` to be a primitive type in the JSON string but got `%s`", jsonObj.get("publicKeyFingerprint").toString()));
+      }
+      if (!jsonObj.get("encryptedKey").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `encryptedKey` to be a primitive type in the JSON string but got `%s`", jsonObj.get("encryptedKey").toString()));
+      }
+      if ((jsonObj.get("oaepHashingAlgorithm") != null && !jsonObj.get("oaepHashingAlgorithm").isJsonNull()) && !jsonObj.get("oaepHashingAlgorithm").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `oaepHashingAlgorithm` to be a primitive type in the JSON string but got `%s`", jsonObj.get("oaepHashingAlgorithm").toString()));
+      }
+      if ((jsonObj.get("iv") != null && !jsonObj.get("iv").isJsonNull()) && !jsonObj.get("iv").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `iv` to be a primitive type in the JSON string but got `%s`", jsonObj.get("iv").toString()));
+      }
+      // validate the required field `encryptedData`
+      NotifyTokenEncryptedPayload.validateJsonElement(jsonObj.get("encryptedData"));
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!EncryptedPayload.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'EncryptedPayload' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<EncryptedPayload> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(EncryptedPayload.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<EncryptedPayload>() {
+           @Override
+           public void write(JsonWriter out, EncryptedPayload value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public EncryptedPayload read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of EncryptedPayload given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of EncryptedPayload
+  * @throws IOException if the JSON string is invalid with respect to EncryptedPayload
+  */
+  public static EncryptedPayload fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, EncryptedPayload.class);
+  }
+
+ /**
+  * Convert an instance of EncryptedPayload to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

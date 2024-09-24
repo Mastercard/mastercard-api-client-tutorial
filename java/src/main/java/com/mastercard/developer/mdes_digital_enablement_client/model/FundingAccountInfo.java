@@ -14,21 +14,43 @@
 package com.mastercard.developer.mdes_digital_enablement_client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.mastercard.developer.mdes_digital_enablement_client.model.FundingAccountInfoEncryptedPayload;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.mastercard.developer.mdes_digital_enablement_client.JSON;
 
 /**
  * FundingAccountInfo
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-24T13:37:45.612619+01:00[Europe/Dublin]", comments = "Generator version: 7.5.0")
 public class FundingAccountInfo {
   public static final String SERIALIZED_NAME_PAN_UNIQUE_REFERENCE = "panUniqueReference";
   @SerializedName(SERIALIZED_NAME_PAN_UNIQUE_REFERENCE)
@@ -42,9 +64,10 @@ public class FundingAccountInfo {
   @SerializedName(SERIALIZED_NAME_ENCRYPTED_PAYLOAD)
   private FundingAccountInfoEncryptedPayload encryptedPayload;
 
+  public FundingAccountInfo() {
+  }
 
   public FundingAccountInfo panUniqueReference(String panUniqueReference) {
-    
     this.panUniqueReference = panUniqueReference;
     return this;
   }
@@ -54,12 +77,9 @@ public class FundingAccountInfo {
    * @return panUniqueReference
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "**(CONDITIONAL)** For repeat digitizations, the unique reference allocated to the Primary Account Number. When supplied, the tokenUniqueReferenceForPanInfo, accountNumber, expiryMonth and expiryYear must be omitted from CardInfoData. Only allowed if Only allowed if tokenUniqueReference and pushAccountReceipt are not present and encrypted data does not contain the account information. ")
-
   public String getPanUniqueReference() {
     return panUniqueReference;
   }
-
 
   public void setPanUniqueReference(String panUniqueReference) {
     this.panUniqueReference = panUniqueReference;
@@ -67,7 +87,6 @@ public class FundingAccountInfo {
 
 
   public FundingAccountInfo tokenUniqueReference(String tokenUniqueReference) {
-    
     this.tokenUniqueReference = tokenUniqueReference;
     return this;
   }
@@ -77,12 +96,9 @@ public class FundingAccountInfo {
    * @return tokenUniqueReference
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "**(CONDITIONAL)** A unique reference assigned following the allocation of a token used to identify the token for the duration of its lifetime.  For repeat digitizations, the unique reference allocated to the token will be used to retrieve the financial account information. When supplied, the account information is omitted from FundingAccountData. Only allowed if panUniqueReference and pushAccountReceipt are not present and encrypted data does not contain the account information. ")
-
   public String getTokenUniqueReference() {
     return tokenUniqueReference;
   }
-
 
   public void setTokenUniqueReference(String tokenUniqueReference) {
     this.tokenUniqueReference = tokenUniqueReference;
@@ -90,7 +106,6 @@ public class FundingAccountInfo {
 
 
   public FundingAccountInfo encryptedPayload(FundingAccountInfoEncryptedPayload encryptedPayload) {
-    
     this.encryptedPayload = encryptedPayload;
     return this;
   }
@@ -100,16 +115,14 @@ public class FundingAccountInfo {
    * @return encryptedPayload
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public FundingAccountInfoEncryptedPayload getEncryptedPayload() {
     return encryptedPayload;
   }
 
-
   public void setEncryptedPayload(FundingAccountInfoEncryptedPayload encryptedPayload) {
     this.encryptedPayload = encryptedPayload;
   }
+
 
 
   @Override
@@ -153,5 +166,101 @@ public class FundingAccountInfo {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("panUniqueReference");
+    openapiFields.add("tokenUniqueReference");
+    openapiFields.add("encryptedPayload");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to FundingAccountInfo
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!FundingAccountInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in FundingAccountInfo is not found in the empty JSON string", FundingAccountInfo.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!FundingAccountInfo.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `FundingAccountInfo` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("panUniqueReference") != null && !jsonObj.get("panUniqueReference").isJsonNull()) && !jsonObj.get("panUniqueReference").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `panUniqueReference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("panUniqueReference").toString()));
+      }
+      if ((jsonObj.get("tokenUniqueReference") != null && !jsonObj.get("tokenUniqueReference").isJsonNull()) && !jsonObj.get("tokenUniqueReference").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tokenUniqueReference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tokenUniqueReference").toString()));
+      }
+      // validate the optional field `encryptedPayload`
+      if (jsonObj.get("encryptedPayload") != null && !jsonObj.get("encryptedPayload").isJsonNull()) {
+        FundingAccountInfoEncryptedPayload.validateJsonElement(jsonObj.get("encryptedPayload"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!FundingAccountInfo.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'FundingAccountInfo' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<FundingAccountInfo> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(FundingAccountInfo.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<FundingAccountInfo>() {
+           @Override
+           public void write(JsonWriter out, FundingAccountInfo value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public FundingAccountInfo read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of FundingAccountInfo given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of FundingAccountInfo
+  * @throws IOException if the JSON string is invalid with respect to FundingAccountInfo
+  */
+  public static FundingAccountInfo fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, FundingAccountInfo.class);
+  }
+
+ /**
+  * Convert an instance of FundingAccountInfo to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

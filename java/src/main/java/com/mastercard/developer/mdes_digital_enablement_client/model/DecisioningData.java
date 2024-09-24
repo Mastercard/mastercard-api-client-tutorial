@@ -14,22 +14,44 @@
 package com.mastercard.developer.mdes_digital_enablement_client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.mastercard.developer.mdes_digital_enablement_client.JSON;
 
 /**
  * DecisioningData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-24T13:37:45.612619+01:00[Europe/Dublin]", comments = "Generator version: 7.5.0")
 public class DecisioningData {
   public static final String SERIALIZED_NAME_RECOMMENDATION = "recommendation";
   @SerializedName(SERIALIZED_NAME_RECOMMENDATION)
@@ -49,7 +71,7 @@ public class DecisioningData {
 
   public static final String SERIALIZED_NAME_RECOMMENDATION_REASONS = "recommendationReasons";
   @SerializedName(SERIALIZED_NAME_RECOMMENDATION_REASONS)
-  private List<String> recommendationReasons = null;
+  private List<String> recommendationReasons = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DEVICE_CURRENT_LOCATION = "deviceCurrentLocation";
   @SerializedName(SERIALIZED_NAME_DEVICE_CURRENT_LOCATION)
@@ -67,9 +89,10 @@ public class DecisioningData {
   @SerializedName(SERIALIZED_NAME_ACCOUNT_ID_HASH)
   private String accountIdHash;
 
+  public DecisioningData() {
+  }
 
   public DecisioningData recommendation(String recommendation) {
-    
     this.recommendation = recommendation;
     return this;
   }
@@ -79,12 +102,9 @@ public class DecisioningData {
    * @return recommendation
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "APPROVED", value = "**(OPTIONAL)** Digitization decision recommended by the Token Requestor. Must be either APPROVED (Recommend a decision of Approved), DECLINED (Recommend a decision of Decline). ")
-
   public String getRecommendation() {
     return recommendation;
   }
-
 
   public void setRecommendation(String recommendation) {
     this.recommendation = recommendation;
@@ -92,7 +112,6 @@ public class DecisioningData {
 
 
   public DecisioningData recommendationAlgorithmVersion(String recommendationAlgorithmVersion) {
-    
     this.recommendationAlgorithmVersion = recommendationAlgorithmVersion;
     return this;
   }
@@ -102,12 +121,9 @@ public class DecisioningData {
    * @return recommendationAlgorithmVersion
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "01", value = "**(OPTIONAL)** Version of the algorithm used by the Token Requestor to determine its recommendation. Must be a value of \"01\". Other values may be supported in the future. ")
-
   public String getRecommendationAlgorithmVersion() {
     return recommendationAlgorithmVersion;
   }
-
 
   public void setRecommendationAlgorithmVersion(String recommendationAlgorithmVersion) {
     this.recommendationAlgorithmVersion = recommendationAlgorithmVersion;
@@ -115,7 +131,6 @@ public class DecisioningData {
 
 
   public DecisioningData deviceScore(String deviceScore) {
-    
     this.deviceScore = deviceScore;
     return this;
   }
@@ -125,12 +140,9 @@ public class DecisioningData {
    * @return deviceScore
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "1", value = "**(OPTIONAL)** Score assigned by the Token Requestor for the target device being provisioned. Must be a value from 1 to 5. ")
-
   public String getDeviceScore() {
     return deviceScore;
   }
-
 
   public void setDeviceScore(String deviceScore) {
     this.deviceScore = deviceScore;
@@ -138,7 +150,6 @@ public class DecisioningData {
 
 
   public DecisioningData accountScore(String accountScore) {
-    
     this.accountScore = accountScore;
     return this;
   }
@@ -148,12 +159,9 @@ public class DecisioningData {
    * @return accountScore
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "1", value = "**(OPTIONAL)** Score assigned by the Token Requestor for the consumer account or relationship. Must be a value from 1 to 5. ")
-
   public String getAccountScore() {
     return accountScore;
   }
-
 
   public void setAccountScore(String accountScore) {
     this.accountScore = accountScore;
@@ -161,14 +169,13 @@ public class DecisioningData {
 
 
   public DecisioningData recommendationReasons(List<String> recommendationReasons) {
-    
     this.recommendationReasons = recommendationReasons;
     return this;
   }
 
   public DecisioningData addRecommendationReasonsItem(String recommendationReasonsItem) {
     if (this.recommendationReasons == null) {
-      this.recommendationReasons = new ArrayList<String>();
+      this.recommendationReasons = new ArrayList<>();
     }
     this.recommendationReasons.add(recommendationReasonsItem);
     return this;
@@ -179,12 +186,9 @@ public class DecisioningData {
    * @return recommendationReasons
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "**(OPTIONAL)** Code indicating the reasons the Token Requestor is suggesting the digitization decision.  See table here - https://developer.mastercard.com/mdes-digital-enablement/documentation/code-and-formats/#recommendation-reason-codes ")
-
   public List<String> getRecommendationReasons() {
     return recommendationReasons;
   }
-
 
   public void setRecommendationReasons(List<String> recommendationReasons) {
     this.recommendationReasons = recommendationReasons;
@@ -192,7 +196,6 @@ public class DecisioningData {
 
 
   public DecisioningData deviceCurrentLocation(String deviceCurrentLocation) {
-    
     this.deviceCurrentLocation = deviceCurrentLocation;
     return this;
   }
@@ -202,12 +205,9 @@ public class DecisioningData {
    * @return deviceCurrentLocation
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "38.63,-90.25", value = "**(OPTIONAL)** Latitude and longitude in the format \"(sign) latitude, (sign) longitude\" with a precision of 2 decimal places.  Ex - \"38.63, -90.25\"  Latitude is between -90 and 90.  Longitude between -180 and 180. Relates to the target device being provisioned. If there is no target device, then this should be the current consumer location, if available. ")
-
   public String getDeviceCurrentLocation() {
     return deviceCurrentLocation;
   }
-
 
   public void setDeviceCurrentLocation(String deviceCurrentLocation) {
     this.deviceCurrentLocation = deviceCurrentLocation;
@@ -215,7 +215,6 @@ public class DecisioningData {
 
 
   public DecisioningData deviceIpAddress(String deviceIpAddress) {
-    
     this.deviceIpAddress = deviceIpAddress;
     return this;
   }
@@ -225,12 +224,9 @@ public class DecisioningData {
    * @return deviceIpAddress
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "127.0.0.1", value = "**(OPTIONAL)** The IP address of the device through which the device reaches the internet. This may be a temporary or permanent IP address assigned to a home router, or the IP address of a gateway through which the device connects to a network. IPv4 address format of 4 octets separated by \".\" Ex - 127.0.0.1 Relates to the target device being provisioned. If there is no target device, then this should be the current consumer IP address, if available. ")
-
   public String getDeviceIpAddress() {
     return deviceIpAddress;
   }
-
 
   public void setDeviceIpAddress(String deviceIpAddress) {
     this.deviceIpAddress = deviceIpAddress;
@@ -238,7 +234,6 @@ public class DecisioningData {
 
 
   public DecisioningData mobileNumberSuffix(String mobileNumberSuffix) {
-    
     this.mobileNumberSuffix = mobileNumberSuffix;
     return this;
   }
@@ -248,12 +243,9 @@ public class DecisioningData {
    * @return mobileNumberSuffix
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "3456", value = "**(OPTIONAL)** The last few digits (typically four) of the consumer's mobile phone number as available on file or on the consumer's current device, which may or may not be the mobile number of the target device being provisioned. ")
-
   public String getMobileNumberSuffix() {
     return mobileNumberSuffix;
   }
-
 
   public void setMobileNumberSuffix(String mobileNumberSuffix) {
     this.mobileNumberSuffix = mobileNumberSuffix;
@@ -261,7 +253,6 @@ public class DecisioningData {
 
 
   public DecisioningData accountIdHash(String accountIdHash) {
-    
     this.accountIdHash = accountIdHash;
     return this;
   }
@@ -271,16 +262,14 @@ public class DecisioningData {
    * @return accountIdHash
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "**(OPTIONAL)** SHA-256 hash of the Cardholder?s account ID with the Token Requestor. Typically expected to be an email address. ")
-
   public String getAccountIdHash() {
     return accountIdHash;
   }
 
-
   public void setAccountIdHash(String accountIdHash) {
     this.accountIdHash = accountIdHash;
   }
+
 
 
   @Override
@@ -336,5 +325,125 @@ public class DecisioningData {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("recommendation");
+    openapiFields.add("recommendationAlgorithmVersion");
+    openapiFields.add("deviceScore");
+    openapiFields.add("accountScore");
+    openapiFields.add("recommendationReasons");
+    openapiFields.add("deviceCurrentLocation");
+    openapiFields.add("deviceIpAddress");
+    openapiFields.add("mobileNumberSuffix");
+    openapiFields.add("accountIdHash");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to DecisioningData
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!DecisioningData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in DecisioningData is not found in the empty JSON string", DecisioningData.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!DecisioningData.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DecisioningData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("recommendation") != null && !jsonObj.get("recommendation").isJsonNull()) && !jsonObj.get("recommendation").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `recommendation` to be a primitive type in the JSON string but got `%s`", jsonObj.get("recommendation").toString()));
+      }
+      if ((jsonObj.get("recommendationAlgorithmVersion") != null && !jsonObj.get("recommendationAlgorithmVersion").isJsonNull()) && !jsonObj.get("recommendationAlgorithmVersion").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `recommendationAlgorithmVersion` to be a primitive type in the JSON string but got `%s`", jsonObj.get("recommendationAlgorithmVersion").toString()));
+      }
+      if ((jsonObj.get("deviceScore") != null && !jsonObj.get("deviceScore").isJsonNull()) && !jsonObj.get("deviceScore").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `deviceScore` to be a primitive type in the JSON string but got `%s`", jsonObj.get("deviceScore").toString()));
+      }
+      if ((jsonObj.get("accountScore") != null && !jsonObj.get("accountScore").isJsonNull()) && !jsonObj.get("accountScore").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `accountScore` to be a primitive type in the JSON string but got `%s`", jsonObj.get("accountScore").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("recommendationReasons") != null && !jsonObj.get("recommendationReasons").isJsonNull() && !jsonObj.get("recommendationReasons").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `recommendationReasons` to be an array in the JSON string but got `%s`", jsonObj.get("recommendationReasons").toString()));
+      }
+      if ((jsonObj.get("deviceCurrentLocation") != null && !jsonObj.get("deviceCurrentLocation").isJsonNull()) && !jsonObj.get("deviceCurrentLocation").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `deviceCurrentLocation` to be a primitive type in the JSON string but got `%s`", jsonObj.get("deviceCurrentLocation").toString()));
+      }
+      if ((jsonObj.get("deviceIpAddress") != null && !jsonObj.get("deviceIpAddress").isJsonNull()) && !jsonObj.get("deviceIpAddress").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `deviceIpAddress` to be a primitive type in the JSON string but got `%s`", jsonObj.get("deviceIpAddress").toString()));
+      }
+      if ((jsonObj.get("mobileNumberSuffix") != null && !jsonObj.get("mobileNumberSuffix").isJsonNull()) && !jsonObj.get("mobileNumberSuffix").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `mobileNumberSuffix` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mobileNumberSuffix").toString()));
+      }
+      if ((jsonObj.get("accountIdHash") != null && !jsonObj.get("accountIdHash").isJsonNull()) && !jsonObj.get("accountIdHash").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `accountIdHash` to be a primitive type in the JSON string but got `%s`", jsonObj.get("accountIdHash").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!DecisioningData.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'DecisioningData' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<DecisioningData> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(DecisioningData.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<DecisioningData>() {
+           @Override
+           public void write(JsonWriter out, DecisioningData value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public DecisioningData read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of DecisioningData given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of DecisioningData
+  * @throws IOException if the JSON string is invalid with respect to DecisioningData
+  */
+  public static DecisioningData fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, DecisioningData.class);
+  }
+
+ /**
+  * Convert an instance of DecisioningData to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

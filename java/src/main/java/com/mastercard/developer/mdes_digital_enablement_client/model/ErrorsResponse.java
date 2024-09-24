@@ -14,21 +14,43 @@
 package com.mastercard.developer.mdes_digital_enablement_client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.mastercard.developer.mdes_digital_enablement_client.model.Error;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.mastercard.developer.mdes_digital_enablement_client.JSON;
 
 /**
  * ErrorsResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-24T13:37:45.612619+01:00[Europe/Dublin]", comments = "Generator version: 7.5.0")
 public class ErrorsResponse {
   public static final String SERIALIZED_NAME_ERROR_CODE = "errorCode";
   @SerializedName(SERIALIZED_NAME_ERROR_CODE)
@@ -50,9 +72,10 @@ public class ErrorsResponse {
   @SerializedName(SERIALIZED_NAME_ERRORS)
   private Error errors;
 
+  public ErrorsResponse() {
+  }
 
   public ErrorsResponse errorCode(String errorCode) {
-    
     this.errorCode = errorCode;
     return this;
   }
@@ -62,12 +85,9 @@ public class ErrorsResponse {
    * @return errorCode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "**CONDITIONAL** Returned in the event of an error and contains the reason the operation failed. Only use if errors object is not present. ")
-
   public String getErrorCode() {
     return errorCode;
   }
-
 
   public void setErrorCode(String errorCode) {
     this.errorCode = errorCode;
@@ -75,7 +95,6 @@ public class ErrorsResponse {
 
 
   public ErrorsResponse errorDescription(String errorDescription) {
-    
     this.errorDescription = errorDescription;
     return this;
   }
@@ -85,12 +104,9 @@ public class ErrorsResponse {
    * @return errorDescription
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "**CONDITIONAL** Returned in the event of an error and contains a description of why the operation failed. Only use if errors object is not present. ")
-
   public String getErrorDescription() {
     return errorDescription;
   }
-
 
   public void setErrorDescription(String errorDescription) {
     this.errorDescription = errorDescription;
@@ -98,7 +114,6 @@ public class ErrorsResponse {
 
 
   public ErrorsResponse responseHost(String responseHost) {
-    
     this.responseHost = responseHost;
     return this;
   }
@@ -108,12 +123,9 @@ public class ErrorsResponse {
    * @return responseHost
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "site2.payment-app-provider.com", value = "The MasterCard host that originated the request. Future calls in the same conversation may be routed to this host. ")
-
   public String getResponseHost() {
     return responseHost;
   }
-
 
   public void setResponseHost(String responseHost) {
     this.responseHost = responseHost;
@@ -121,7 +133,6 @@ public class ErrorsResponse {
 
 
   public ErrorsResponse responseId(String responseId) {
-    
     this.responseId = responseId;
     return this;
   }
@@ -131,12 +142,9 @@ public class ErrorsResponse {
    * @return responseId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "123456", value = "Unique identifier for the response. ")
-
   public String getResponseId() {
     return responseId;
   }
-
 
   public void setResponseId(String responseId) {
     this.responseId = responseId;
@@ -144,7 +152,6 @@ public class ErrorsResponse {
 
 
   public ErrorsResponse errors(Error errors) {
-    
     this.errors = errors;
     return this;
   }
@@ -154,16 +161,14 @@ public class ErrorsResponse {
    * @return errors
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public Error getErrors() {
     return errors;
   }
 
-
   public void setErrors(Error errors) {
     this.errors = errors;
   }
+
 
 
   @Override
@@ -211,5 +216,109 @@ public class ErrorsResponse {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("errorCode");
+    openapiFields.add("errorDescription");
+    openapiFields.add("responseHost");
+    openapiFields.add("responseId");
+    openapiFields.add("Errors");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to ErrorsResponse
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!ErrorsResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ErrorsResponse is not found in the empty JSON string", ErrorsResponse.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!ErrorsResponse.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ErrorsResponse` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("errorCode") != null && !jsonObj.get("errorCode").isJsonNull()) && !jsonObj.get("errorCode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `errorCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("errorCode").toString()));
+      }
+      if ((jsonObj.get("errorDescription") != null && !jsonObj.get("errorDescription").isJsonNull()) && !jsonObj.get("errorDescription").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `errorDescription` to be a primitive type in the JSON string but got `%s`", jsonObj.get("errorDescription").toString()));
+      }
+      if ((jsonObj.get("responseHost") != null && !jsonObj.get("responseHost").isJsonNull()) && !jsonObj.get("responseHost").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `responseHost` to be a primitive type in the JSON string but got `%s`", jsonObj.get("responseHost").toString()));
+      }
+      if ((jsonObj.get("responseId") != null && !jsonObj.get("responseId").isJsonNull()) && !jsonObj.get("responseId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `responseId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("responseId").toString()));
+      }
+      // validate the optional field `Errors`
+      if (jsonObj.get("Errors") != null && !jsonObj.get("Errors").isJsonNull()) {
+        Error.validateJsonElement(jsonObj.get("Errors"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!ErrorsResponse.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ErrorsResponse' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<ErrorsResponse> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ErrorsResponse.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<ErrorsResponse>() {
+           @Override
+           public void write(JsonWriter out, ErrorsResponse value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public ErrorsResponse read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of ErrorsResponse given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of ErrorsResponse
+  * @throws IOException if the JSON string is invalid with respect to ErrorsResponse
+  */
+  public static ErrorsResponse fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ErrorsResponse.class);
+  }
+
+ /**
+  * Convert an instance of ErrorsResponse to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

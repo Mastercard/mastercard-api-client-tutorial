@@ -14,20 +14,42 @@
 package com.mastercard.developer.mdes_digital_enablement_client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.mastercard.developer.mdes_digital_enablement_client.JSON;
 
 /**
  * TransactRequestSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-24T13:37:45.612619+01:00[Europe/Dublin]", comments = "Generator version: 7.5.0")
 public class TransactRequestSchema {
   public static final String SERIALIZED_NAME_RESPONSE_HOST = "responseHost";
   @SerializedName(SERIALIZED_NAME_RESPONSE_HOST)
@@ -49,9 +71,10 @@ public class TransactRequestSchema {
   @SerializedName(SERIALIZED_NAME_UNPREDICTABLE_NUMBER)
   private String unpredictableNumber;
 
+  public TransactRequestSchema() {
+  }
 
   public TransactRequestSchema responseHost(String responseHost) {
-    
     this.responseHost = responseHost;
     return this;
   }
@@ -61,12 +84,9 @@ public class TransactRequestSchema {
    * @return responseHost
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "site2.payment-app-provider.com", value = "The host that originated the request. Future calls in the same conversation may be routed to this host. ")
-
   public String getResponseHost() {
     return responseHost;
   }
-
 
   public void setResponseHost(String responseHost) {
     this.responseHost = responseHost;
@@ -74,7 +94,6 @@ public class TransactRequestSchema {
 
 
   public TransactRequestSchema requestId(String requestId) {
-    
     this.requestId = requestId;
     return this;
   }
@@ -83,12 +102,10 @@ public class TransactRequestSchema {
    * Unique identifier for the request. 
    * @return requestId
   **/
-  @ApiModelProperty(example = "123456", required = true, value = "Unique identifier for the request. ")
-
+  @javax.annotation.Nonnull
   public String getRequestId() {
     return requestId;
   }
-
 
   public void setRequestId(String requestId) {
     this.requestId = requestId;
@@ -96,7 +113,6 @@ public class TransactRequestSchema {
 
 
   public TransactRequestSchema tokenUniqueReference(String tokenUniqueReference) {
-    
     this.tokenUniqueReference = tokenUniqueReference;
     return this;
   }
@@ -105,12 +121,10 @@ public class TransactRequestSchema {
    * Globally unique identifier for the Token, as assigned by MDES. 
    * @return tokenUniqueReference
   **/
-  @ApiModelProperty(example = "DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45", required = true, value = "Globally unique identifier for the Token, as assigned by MDES. ")
-
+  @javax.annotation.Nonnull
   public String getTokenUniqueReference() {
     return tokenUniqueReference;
   }
-
 
   public void setTokenUniqueReference(String tokenUniqueReference) {
     this.tokenUniqueReference = tokenUniqueReference;
@@ -118,7 +132,6 @@ public class TransactRequestSchema {
 
 
   public TransactRequestSchema dsrpType(String dsrpType) {
-    
     this.dsrpType = dsrpType;
     return this;
   }
@@ -127,12 +140,10 @@ public class TransactRequestSchema {
    * What type of DSRP cryptogram to create. Must be UCAF. 
    * @return dsrpType
   **/
-  @ApiModelProperty(example = "UCAF", required = true, value = "What type of DSRP cryptogram to create. Must be UCAF. ")
-
+  @javax.annotation.Nonnull
   public String getDsrpType() {
     return dsrpType;
   }
-
 
   public void setDsrpType(String dsrpType) {
     this.dsrpType = dsrpType;
@@ -140,7 +151,6 @@ public class TransactRequestSchema {
 
 
   public TransactRequestSchema unpredictableNumber(String unpredictableNumber) {
-    
     this.unpredictableNumber = unpredictableNumber;
     return this;
   }
@@ -150,16 +160,14 @@ public class TransactRequestSchema {
    * @return unpredictableNumber
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "23424563", value = "HEX Encoded data (case sensitive) provided by the merchant to provide variability and uniqueness to the generation of a cryptogram. ")
-
   public String getUnpredictableNumber() {
     return unpredictableNumber;
   }
 
-
   public void setUnpredictableNumber(String unpredictableNumber) {
     this.unpredictableNumber = unpredictableNumber;
   }
+
 
 
   @Override
@@ -207,5 +215,118 @@ public class TransactRequestSchema {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("responseHost");
+    openapiFields.add("requestId");
+    openapiFields.add("tokenUniqueReference");
+    openapiFields.add("dsrpType");
+    openapiFields.add("unpredictableNumber");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("requestId");
+    openapiRequiredFields.add("tokenUniqueReference");
+    openapiRequiredFields.add("dsrpType");
+  }
+
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to TransactRequestSchema
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!TransactRequestSchema.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in TransactRequestSchema is not found in the empty JSON string", TransactRequestSchema.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!TransactRequestSchema.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `TransactRequestSchema` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : TransactRequestSchema.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("responseHost") != null && !jsonObj.get("responseHost").isJsonNull()) && !jsonObj.get("responseHost").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `responseHost` to be a primitive type in the JSON string but got `%s`", jsonObj.get("responseHost").toString()));
+      }
+      if (!jsonObj.get("requestId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `requestId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("requestId").toString()));
+      }
+      if (!jsonObj.get("tokenUniqueReference").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tokenUniqueReference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tokenUniqueReference").toString()));
+      }
+      if (!jsonObj.get("dsrpType").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `dsrpType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("dsrpType").toString()));
+      }
+      if ((jsonObj.get("unpredictableNumber") != null && !jsonObj.get("unpredictableNumber").isJsonNull()) && !jsonObj.get("unpredictableNumber").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `unpredictableNumber` to be a primitive type in the JSON string but got `%s`", jsonObj.get("unpredictableNumber").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!TransactRequestSchema.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'TransactRequestSchema' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<TransactRequestSchema> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(TransactRequestSchema.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<TransactRequestSchema>() {
+           @Override
+           public void write(JsonWriter out, TransactRequestSchema value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public TransactRequestSchema read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of TransactRequestSchema given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of TransactRequestSchema
+  * @throws IOException if the JSON string is invalid with respect to TransactRequestSchema
+  */
+  public static TransactRequestSchema fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, TransactRequestSchema.class);
+  }
+
+ /**
+  * Convert an instance of TransactRequestSchema to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

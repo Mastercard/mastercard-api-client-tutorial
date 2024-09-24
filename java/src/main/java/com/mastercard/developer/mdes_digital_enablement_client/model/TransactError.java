@@ -14,21 +14,42 @@
 package com.mastercard.developer.mdes_digital_enablement_client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.mastercard.developer.mdes_digital_enablement_client.JSON;
 
 /**
  * Only returned in the event of an error condition for the Transact API
  */
-@ApiModel(description = "Only returned in the event of an error condition for the Transact API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-24T13:37:45.612619+01:00[Europe/Dublin]", comments = "Generator version: 7.5.0")
 public class TransactError {
   public static final String SERIALIZED_NAME_SOURCE = "source";
   @SerializedName(SERIALIZED_NAME_SOURCE)
@@ -50,9 +71,10 @@ public class TransactError {
   @SerializedName(SERIALIZED_NAME_ERROR_DESCRIPTION)
   private String errorDescription;
 
+  public TransactError() {
+  }
 
   public TransactError source(String source) {
-    
     this.source = source;
     return this;
   }
@@ -62,12 +84,9 @@ public class TransactError {
    * @return source
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "An element used to indicate the source of the issue causing this error. Must be one of  * 'MDES'  * 'INPUT' ")
-
   public String getSource() {
     return source;
   }
-
 
   public void setSource(String source) {
     this.source = source;
@@ -75,7 +94,6 @@ public class TransactError {
 
 
   public TransactError errorCode(String errorCode) {
-    
     this.errorCode = errorCode;
     return this;
   }
@@ -85,12 +103,9 @@ public class TransactError {
    * @return errorCode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A reason code or information pertaining to the error that has occurred. This will contain the error reported by the platform (e.g. authentication errors) or service (e.g. invalid TUR) ")
-
   public String getErrorCode() {
     return errorCode;
   }
-
 
   public void setErrorCode(String errorCode) {
     this.errorCode = errorCode;
@@ -98,7 +113,6 @@ public class TransactError {
 
 
   public TransactError description(String description) {
-    
     this.description = description;
     return this;
   }
@@ -108,12 +122,9 @@ public class TransactError {
    * @return description
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Description of the reason why the operation failed. ")
-
   public String getDescription() {
     return description;
   }
-
 
   public void setDescription(String description) {
     this.description = description;
@@ -121,7 +132,6 @@ public class TransactError {
 
 
   public TransactError reasonCode(String reasonCode) {
-    
     this.reasonCode = reasonCode;
     return this;
   }
@@ -131,12 +141,9 @@ public class TransactError {
    * @return reasonCode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "A reason code or information pertaining to the error that has occurred from the service (e.g. invalid TUR). See API Response Errors ")
-
   public String getReasonCode() {
     return reasonCode;
   }
-
 
   public void setReasonCode(String reasonCode) {
     this.reasonCode = reasonCode;
@@ -144,7 +151,6 @@ public class TransactError {
 
 
   public TransactError errorDescription(String errorDescription) {
-    
     this.errorDescription = errorDescription;
     return this;
   }
@@ -154,16 +160,14 @@ public class TransactError {
    * @return errorDescription
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "**DEPRECATED** Use description instead. ")
-
   public String getErrorDescription() {
     return errorDescription;
   }
 
-
   public void setErrorDescription(String errorDescription) {
     this.errorDescription = errorDescription;
   }
+
 
 
   @Override
@@ -211,5 +215,108 @@ public class TransactError {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("source");
+    openapiFields.add("errorCode");
+    openapiFields.add("description");
+    openapiFields.add("reasonCode");
+    openapiFields.add("errorDescription");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to TransactError
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!TransactError.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in TransactError is not found in the empty JSON string", TransactError.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!TransactError.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `TransactError` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("source") != null && !jsonObj.get("source").isJsonNull()) && !jsonObj.get("source").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `source` to be a primitive type in the JSON string but got `%s`", jsonObj.get("source").toString()));
+      }
+      if ((jsonObj.get("errorCode") != null && !jsonObj.get("errorCode").isJsonNull()) && !jsonObj.get("errorCode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `errorCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("errorCode").toString()));
+      }
+      if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull()) && !jsonObj.get("description").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
+      }
+      if ((jsonObj.get("reasonCode") != null && !jsonObj.get("reasonCode").isJsonNull()) && !jsonObj.get("reasonCode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `reasonCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("reasonCode").toString()));
+      }
+      if ((jsonObj.get("errorDescription") != null && !jsonObj.get("errorDescription").isJsonNull()) && !jsonObj.get("errorDescription").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `errorDescription` to be a primitive type in the JSON string but got `%s`", jsonObj.get("errorDescription").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!TransactError.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'TransactError' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<TransactError> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(TransactError.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<TransactError>() {
+           @Override
+           public void write(JsonWriter out, TransactError value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public TransactError read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of TransactError given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of TransactError
+  * @throws IOException if the JSON string is invalid with respect to TransactError
+  */
+  public static TransactError fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, TransactError.class);
+  }
+
+ /**
+  * Convert an instance of TransactError to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

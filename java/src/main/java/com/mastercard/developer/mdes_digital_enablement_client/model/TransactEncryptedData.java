@@ -14,20 +14,42 @@
 package com.mastercard.developer.mdes_digital_enablement_client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.mastercard.developer.mdes_digital_enablement_client.JSON;
 
 /**
  * TransactEncryptedData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-24T13:37:45.612619+01:00[Europe/Dublin]", comments = "Generator version: 7.5.0")
 public class TransactEncryptedData {
   public static final String SERIALIZED_NAME_ACCOUNT_NUMBER = "accountNumber";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_NUMBER)
@@ -49,9 +71,10 @@ public class TransactEncryptedData {
   @SerializedName(SERIALIZED_NAME_DE48SE43_DATA)
   private String de48se43Data;
 
+  public TransactEncryptedData() {
+  }
 
   public TransactEncryptedData accountNumber(String accountNumber) {
-    
     this.accountNumber = accountNumber;
     return this;
   }
@@ -61,12 +84,9 @@ public class TransactEncryptedData {
    * @return accountNumber
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "5480981500100002", value = "The Primary Account Number for the transaction ? this is the Token PAN. ")
-
   public String getAccountNumber() {
     return accountNumber;
   }
-
 
   public void setAccountNumber(String accountNumber) {
     this.accountNumber = accountNumber;
@@ -74,7 +94,6 @@ public class TransactEncryptedData {
 
 
   public TransactEncryptedData applicationExpiryDate(String applicationExpiryDate) {
-    
     this.applicationExpiryDate = applicationExpiryDate;
     return this;
   }
@@ -84,12 +103,9 @@ public class TransactEncryptedData {
    * @return applicationExpiryDate
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "210931", value = "Application expiry date for the Token. Expressed in YYMMDD format. ")
-
   public String getApplicationExpiryDate() {
     return applicationExpiryDate;
   }
-
 
   public void setApplicationExpiryDate(String applicationExpiryDate) {
     this.applicationExpiryDate = applicationExpiryDate;
@@ -97,7 +113,6 @@ public class TransactEncryptedData {
 
 
   public TransactEncryptedData panSequenceNumber(String panSequenceNumber) {
-    
     this.panSequenceNumber = panSequenceNumber;
     return this;
   }
@@ -107,12 +122,9 @@ public class TransactEncryptedData {
    * @return panSequenceNumber
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "01", value = "Application PAN sequence number for the Token ")
-
   public String getPanSequenceNumber() {
     return panSequenceNumber;
   }
-
 
   public void setPanSequenceNumber(String panSequenceNumber) {
     this.panSequenceNumber = panSequenceNumber;
@@ -120,7 +132,6 @@ public class TransactEncryptedData {
 
 
   public TransactEncryptedData track2Equivalent(String track2Equivalent) {
-    
     this.track2Equivalent = track2Equivalent;
     return this;
   }
@@ -130,12 +141,9 @@ public class TransactEncryptedData {
    * @return track2Equivalent
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "5480981500100002D18112011000000000000F", value = "Track 2 equivalent data for the Token. Expressed according to ISO/IEC 7813, excluding start sentinel, end sentinel, and Longitudinal Redundancy Check (LRC), using hex nibble 'D' as field separator, and padded to whole bytes using one hex nibble 'F' as needed. ")
-
   public String getTrack2Equivalent() {
     return track2Equivalent;
   }
-
 
   public void setTrack2Equivalent(String track2Equivalent) {
     this.track2Equivalent = track2Equivalent;
@@ -143,7 +151,6 @@ public class TransactEncryptedData {
 
 
   public TransactEncryptedData de48se43Data(String de48se43Data) {
-    
     this.de48se43Data = de48se43Data;
     return this;
   }
@@ -153,16 +160,14 @@ public class TransactEncryptedData {
    * @return de48se43Data
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "11223344556677889900112233445566778899", value = "Data for DE 48 Subelement 43 containing the cryptogram. DSRP cryptogram must be sent in DE104. Please refer to AN 3363 for details. ")
-
   public String getDe48se43Data() {
     return de48se43Data;
   }
 
-
   public void setDe48se43Data(String de48se43Data) {
     this.de48se43Data = de48se43Data;
   }
+
 
 
   @Override
@@ -210,5 +215,108 @@ public class TransactEncryptedData {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("accountNumber");
+    openapiFields.add("applicationExpiryDate");
+    openapiFields.add("panSequenceNumber");
+    openapiFields.add("track2Equivalent");
+    openapiFields.add("de48se43Data");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to TransactEncryptedData
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!TransactEncryptedData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in TransactEncryptedData is not found in the empty JSON string", TransactEncryptedData.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!TransactEncryptedData.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `TransactEncryptedData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("accountNumber") != null && !jsonObj.get("accountNumber").isJsonNull()) && !jsonObj.get("accountNumber").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `accountNumber` to be a primitive type in the JSON string but got `%s`", jsonObj.get("accountNumber").toString()));
+      }
+      if ((jsonObj.get("applicationExpiryDate") != null && !jsonObj.get("applicationExpiryDate").isJsonNull()) && !jsonObj.get("applicationExpiryDate").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `applicationExpiryDate` to be a primitive type in the JSON string but got `%s`", jsonObj.get("applicationExpiryDate").toString()));
+      }
+      if ((jsonObj.get("panSequenceNumber") != null && !jsonObj.get("panSequenceNumber").isJsonNull()) && !jsonObj.get("panSequenceNumber").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `panSequenceNumber` to be a primitive type in the JSON string but got `%s`", jsonObj.get("panSequenceNumber").toString()));
+      }
+      if ((jsonObj.get("track2Equivalent") != null && !jsonObj.get("track2Equivalent").isJsonNull()) && !jsonObj.get("track2Equivalent").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `track2Equivalent` to be a primitive type in the JSON string but got `%s`", jsonObj.get("track2Equivalent").toString()));
+      }
+      if ((jsonObj.get("de48se43Data") != null && !jsonObj.get("de48se43Data").isJsonNull()) && !jsonObj.get("de48se43Data").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `de48se43Data` to be a primitive type in the JSON string but got `%s`", jsonObj.get("de48se43Data").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!TransactEncryptedData.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'TransactEncryptedData' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<TransactEncryptedData> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(TransactEncryptedData.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<TransactEncryptedData>() {
+           @Override
+           public void write(JsonWriter out, TransactEncryptedData value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public TransactEncryptedData read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of TransactEncryptedData given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of TransactEncryptedData
+  * @throws IOException if the JSON string is invalid with respect to TransactEncryptedData
+  */
+  public static TransactEncryptedData fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, TransactEncryptedData.class);
+  }
+
+ /**
+  * Convert an instance of TransactEncryptedData to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

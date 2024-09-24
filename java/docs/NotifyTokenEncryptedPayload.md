@@ -5,9 +5,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**tokens** | [**List&lt;TokenForNTU&gt;**](TokenForNTU.md) |  |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**tokens** | [**List&lt;TokenForNTU&gt;**](TokenForNTU.md) |  |  [optional] |
 
 
 

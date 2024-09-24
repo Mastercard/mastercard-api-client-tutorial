@@ -1,3 +1,4 @@
+.github/workflows/maven.yml
 .gitignore
 .openapi-generator-ignore
 .travis.yml
@@ -105,6 +106,7 @@ src/main/java/com/mastercard/developer/mdes_digital_enablement_client/auth/ApiKe
 src/main/java/com/mastercard/developer/mdes_digital_enablement_client/auth/Authentication.java
 src/main/java/com/mastercard/developer/mdes_digital_enablement_client/auth/HttpBasicAuth.java
 src/main/java/com/mastercard/developer/mdes_digital_enablement_client/auth/HttpBearerAuth.java
+src/main/java/com/mastercard/developer/mdes_digital_enablement_client/model/AbstractOpenApiSchema.java
 src/main/java/com/mastercard/developer/mdes_digital_enablement_client/model/AccountHolderData.java
 src/main/java/com/mastercard/developer/mdes_digital_enablement_client/model/AccountHolderDataOutbound.java
 src/main/java/com/mastercard/developer/mdes_digital_enablement_client/model/AssetResponseSchema.java

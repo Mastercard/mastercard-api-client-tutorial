@@ -14,21 +14,42 @@
 package com.mastercard.developer.mdes_digital_enablement_client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.mastercard.developer.mdes_digital_enablement_client.JSON;
 
 /**
  * **(CONDITIONAL)** Required in Tokenize or Search Tokens unless a valid panUniqueReference, tokenUniqueReference or pushAccountReceipt is also given in FundingAccountInfo. 
  */
-@ApiModel(description = "**(CONDITIONAL)** Required in Tokenize or Search Tokens unless a valid panUniqueReference, tokenUniqueReference or pushAccountReceipt is also given in FundingAccountInfo. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-24T13:37:45.612619+01:00[Europe/Dublin]", comments = "Generator version: 7.5.0")
 public class CardAccountDataInbound {
   public static final String SERIALIZED_NAME_ACCOUNT_NUMBER = "accountNumber";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_NUMBER)
@@ -46,9 +67,10 @@ public class CardAccountDataInbound {
   @SerializedName(SERIALIZED_NAME_SECURITY_CODE)
   private String securityCode;
 
+  public CardAccountDataInbound() {
+  }
 
   public CardAccountDataInbound accountNumber(String accountNumber) {
-    
     this.accountNumber = accountNumber;
     return this;
   }
@@ -58,12 +80,9 @@ public class CardAccountDataInbound {
    * @return accountNumber
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "5123456789012345", value = "The account number of the credit or debit card. **(CONDITIONAL)** required in a Tokenize, or Get Digital Asset request, unless a valid panUniqueReference or tokenUniqueReference or pushAccountReceipt was given in FundingAccountInfo. **NOTE**:Only 6 digits can be supplied in SearchTokens if the TokenUniqueReference is provided in fundingAccountInfo. ")
-
   public String getAccountNumber() {
     return accountNumber;
   }
-
 
   public void setAccountNumber(String accountNumber) {
     this.accountNumber = accountNumber;
@@ -71,7 +90,6 @@ public class CardAccountDataInbound {
 
 
   public CardAccountDataInbound expiryMonth(String expiryMonth) {
-    
     this.expiryMonth = expiryMonth;
     return this;
   }
@@ -81,12 +99,9 @@ public class CardAccountDataInbound {
    * @return expiryMonth
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "09", value = "The expiry month for the account. Two numeric digits must be supplied. Only supplied in tokenization requests if panUniqueReference or tokenUniqueReferenceForPanInfo or pushAccountReceipt is not present. **Format: MM** ")
-
   public String getExpiryMonth() {
     return expiryMonth;
   }
-
 
   public void setExpiryMonth(String expiryMonth) {
     this.expiryMonth = expiryMonth;
@@ -94,7 +109,6 @@ public class CardAccountDataInbound {
 
 
   public CardAccountDataInbound expiryYear(String expiryYear) {
-    
     this.expiryYear = expiryYear;
     return this;
   }
@@ -104,12 +118,9 @@ public class CardAccountDataInbound {
    * @return expiryYear
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "21", value = "**(Required as minimum for Tokenization)** The expiry year for the account. Only supplied in tokenization requests if panUniqueReference or tokenUniqueReferenceForPanInfo or pushAccountReceipt is not present. **Format: YY** ")
-
   public String getExpiryYear() {
     return expiryYear;
   }
-
 
   public void setExpiryYear(String expiryYear) {
     this.expiryYear = expiryYear;
@@ -117,7 +128,6 @@ public class CardAccountDataInbound {
 
 
   public CardAccountDataInbound securityCode(String securityCode) {
-    
     this.securityCode = securityCode;
     return this;
   }
@@ -127,16 +137,14 @@ public class CardAccountDataInbound {
    * @return securityCode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "123", value = "**(OPTIONAL)** The security code for the account can optionally be provided for Tokenization. If provided, the validity will be checked. Optional in a Tokenize request, not present otherwise. ")
-
   public String getSecurityCode() {
     return securityCode;
   }
 
-
   public void setSecurityCode(String securityCode) {
     this.securityCode = securityCode;
   }
+
 
 
   @Override
@@ -182,5 +190,104 @@ public class CardAccountDataInbound {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("accountNumber");
+    openapiFields.add("expiryMonth");
+    openapiFields.add("expiryYear");
+    openapiFields.add("securityCode");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to CardAccountDataInbound
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!CardAccountDataInbound.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in CardAccountDataInbound is not found in the empty JSON string", CardAccountDataInbound.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!CardAccountDataInbound.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CardAccountDataInbound` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("accountNumber") != null && !jsonObj.get("accountNumber").isJsonNull()) && !jsonObj.get("accountNumber").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `accountNumber` to be a primitive type in the JSON string but got `%s`", jsonObj.get("accountNumber").toString()));
+      }
+      if ((jsonObj.get("expiryMonth") != null && !jsonObj.get("expiryMonth").isJsonNull()) && !jsonObj.get("expiryMonth").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `expiryMonth` to be a primitive type in the JSON string but got `%s`", jsonObj.get("expiryMonth").toString()));
+      }
+      if ((jsonObj.get("expiryYear") != null && !jsonObj.get("expiryYear").isJsonNull()) && !jsonObj.get("expiryYear").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `expiryYear` to be a primitive type in the JSON string but got `%s`", jsonObj.get("expiryYear").toString()));
+      }
+      if ((jsonObj.get("securityCode") != null && !jsonObj.get("securityCode").isJsonNull()) && !jsonObj.get("securityCode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `securityCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("securityCode").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!CardAccountDataInbound.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'CardAccountDataInbound' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<CardAccountDataInbound> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(CardAccountDataInbound.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<CardAccountDataInbound>() {
+           @Override
+           public void write(JsonWriter out, CardAccountDataInbound value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public CardAccountDataInbound read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of CardAccountDataInbound given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of CardAccountDataInbound
+  * @throws IOException if the JSON string is invalid with respect to CardAccountDataInbound
+  */
+  public static CardAccountDataInbound fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, CardAccountDataInbound.class);
+  }
+
+ /**
+  * Convert an instance of CardAccountDataInbound to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

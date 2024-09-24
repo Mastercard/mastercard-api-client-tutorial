@@ -14,7 +14,6 @@
 package com.mastercard.developer.mdes_digital_enablement_client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -22,14 +21,37 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.mastercard.developer.mdes_digital_enablement_client.model.DecisioningData;
 import com.mastercard.developer.mdes_digital_enablement_client.model.FundingAccountInfo;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.mastercard.developer.mdes_digital_enablement_client.JSON;
 
 /**
  * TokenizeRequestSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-24T13:37:45.612619+01:00[Europe/Dublin]", comments = "Generator version: 7.5.0")
 public class TokenizeRequestSchema {
   public static final String SERIALIZED_NAME_RESPONSE_HOST = "responseHost";
   @SerializedName(SERIALIZED_NAME_RESPONSE_HOST)
@@ -67,9 +89,10 @@ public class TokenizeRequestSchema {
   @SerializedName(SERIALIZED_NAME_DECISIONING_DATA)
   private DecisioningData decisioningData;
 
+  public TokenizeRequestSchema() {
+  }
 
   public TokenizeRequestSchema responseHost(String responseHost) {
-    
     this.responseHost = responseHost;
     return this;
   }
@@ -79,12 +102,9 @@ public class TokenizeRequestSchema {
    * @return responseHost
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "site1.your-server.com", value = "\"The host that originated the request. Future calls in the same conversation may be routed to this host. Must be provided as: host[:port][/contextRoot] Where port and contextRoot are optional. If contextRoot is not provided, the default (per the URL Scheme) is assumed and must be used.\" ")
-
   public String getResponseHost() {
     return responseHost;
   }
-
 
   public void setResponseHost(String responseHost) {
     this.responseHost = responseHost;
@@ -92,7 +112,6 @@ public class TokenizeRequestSchema {
 
 
   public TokenizeRequestSchema requestId(String requestId) {
-    
     this.requestId = requestId;
     return this;
   }
@@ -102,12 +121,9 @@ public class TokenizeRequestSchema {
    * @return requestId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "123456", value = "Unique identifier for the request. ")
-
   public String getRequestId() {
     return requestId;
   }
-
 
   public void setRequestId(String requestId) {
     this.requestId = requestId;
@@ -115,7 +131,6 @@ public class TokenizeRequestSchema {
 
 
   public TokenizeRequestSchema tokenType(String tokenType) {
-    
     this.tokenType = tokenType;
     return this;
   }
@@ -124,12 +139,10 @@ public class TokenizeRequestSchema {
    * The type of Token requested. Must be CLOUD 
    * @return tokenType
   **/
-  @ApiModelProperty(example = "CLOUD", required = true, value = "The type of Token requested. Must be CLOUD ")
-
+  @javax.annotation.Nonnull
   public String getTokenType() {
     return tokenType;
   }
-
 
   public void setTokenType(String tokenType) {
     this.tokenType = tokenType;
@@ -137,7 +150,6 @@ public class TokenizeRequestSchema {
 
 
   public TokenizeRequestSchema tokenRequestorId(String tokenRequestorId) {
-    
     this.tokenRequestorId = tokenRequestorId;
     return this;
   }
@@ -146,12 +158,10 @@ public class TokenizeRequestSchema {
    * 11-digit numeric ID provided by Mastercard that identifies the Token Requestor. 
    * @return tokenRequestorId
   **/
-  @ApiModelProperty(example = "98765432101", required = true, value = "11-digit numeric ID provided by Mastercard that identifies the Token Requestor. ")
-
+  @javax.annotation.Nonnull
   public String getTokenRequestorId() {
     return tokenRequestorId;
   }
-
 
   public void setTokenRequestorId(String tokenRequestorId) {
     this.tokenRequestorId = tokenRequestorId;
@@ -159,7 +169,6 @@ public class TokenizeRequestSchema {
 
 
   public TokenizeRequestSchema taskId(String taskId) {
-    
     this.taskId = taskId;
     return this;
   }
@@ -168,12 +177,10 @@ public class TokenizeRequestSchema {
    * Identifier for this task as assigned by the Token Requestor, unique across a given Token Requestor Identifier. May be used in the Get Task Status API to query the status of this task. 
    * @return taskId
   **/
-  @ApiModelProperty(example = "123456", required = true, value = "Identifier for this task as assigned by the Token Requestor, unique across a given Token Requestor Identifier. May be used in the Get Task Status API to query the status of this task. ")
-
+  @javax.annotation.Nonnull
   public String getTaskId() {
     return taskId;
   }
-
 
   public void setTaskId(String taskId) {
     this.taskId = taskId;
@@ -181,7 +188,6 @@ public class TokenizeRequestSchema {
 
 
   public TokenizeRequestSchema fundingAccountInfo(FundingAccountInfo fundingAccountInfo) {
-    
     this.fundingAccountInfo = fundingAccountInfo;
     return this;
   }
@@ -190,12 +196,10 @@ public class TokenizeRequestSchema {
    * Get fundingAccountInfo
    * @return fundingAccountInfo
   **/
-  @ApiModelProperty(required = true, value = "")
-
+  @javax.annotation.Nonnull
   public FundingAccountInfo getFundingAccountInfo() {
     return fundingAccountInfo;
   }
-
 
   public void setFundingAccountInfo(FundingAccountInfo fundingAccountInfo) {
     this.fundingAccountInfo = fundingAccountInfo;
@@ -203,7 +207,6 @@ public class TokenizeRequestSchema {
 
 
   public TokenizeRequestSchema consumerLanguage(String consumerLanguage) {
-    
     this.consumerLanguage = consumerLanguage;
     return this;
   }
@@ -213,12 +216,9 @@ public class TokenizeRequestSchema {
    * @return consumerLanguage
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "en", value = "Language preference selected by the consumer. Formatted as an ISO- 639-1 two-letter language code. ")
-
   public String getConsumerLanguage() {
     return consumerLanguage;
   }
-
 
   public void setConsumerLanguage(String consumerLanguage) {
     this.consumerLanguage = consumerLanguage;
@@ -226,7 +226,6 @@ public class TokenizeRequestSchema {
 
 
   public TokenizeRequestSchema tokenizationAuthenticationValue(String tokenizationAuthenticationValue) {
-    
     this.tokenizationAuthenticationValue = tokenizationAuthenticationValue;
     return this;
   }
@@ -236,12 +235,9 @@ public class TokenizeRequestSchema {
    * @return tokenizationAuthenticationValue
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "RHVtbXkgYmFzZSA2NCBkYXRhIC0gdGhpcyBpcyBub3QgYSByZWFsIFRBViBleGFtcGxl", value = "The Tokenization Authentication Value (TAV) as cryptographically signed by the Issuer to authorize this digitization request. ")
-
   public String getTokenizationAuthenticationValue() {
     return tokenizationAuthenticationValue;
   }
-
 
   public void setTokenizationAuthenticationValue(String tokenizationAuthenticationValue) {
     this.tokenizationAuthenticationValue = tokenizationAuthenticationValue;
@@ -249,7 +245,6 @@ public class TokenizeRequestSchema {
 
 
   public TokenizeRequestSchema decisioningData(DecisioningData decisioningData) {
-    
     this.decisioningData = decisioningData;
     return this;
   }
@@ -259,16 +254,14 @@ public class TokenizeRequestSchema {
    * @return decisioningData
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public DecisioningData getDecisioningData() {
     return decisioningData;
   }
 
-
   public void setDecisioningData(DecisioningData decisioningData) {
     this.decisioningData = decisioningData;
   }
+
 
 
   @Override
@@ -324,5 +317,135 @@ public class TokenizeRequestSchema {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("responseHost");
+    openapiFields.add("requestId");
+    openapiFields.add("tokenType");
+    openapiFields.add("tokenRequestorId");
+    openapiFields.add("taskId");
+    openapiFields.add("fundingAccountInfo");
+    openapiFields.add("consumerLanguage");
+    openapiFields.add("tokenizationAuthenticationValue");
+    openapiFields.add("decisioningData");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("tokenType");
+    openapiRequiredFields.add("tokenRequestorId");
+    openapiRequiredFields.add("taskId");
+    openapiRequiredFields.add("fundingAccountInfo");
+  }
+
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to TokenizeRequestSchema
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!TokenizeRequestSchema.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in TokenizeRequestSchema is not found in the empty JSON string", TokenizeRequestSchema.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!TokenizeRequestSchema.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `TokenizeRequestSchema` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : TokenizeRequestSchema.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("responseHost") != null && !jsonObj.get("responseHost").isJsonNull()) && !jsonObj.get("responseHost").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `responseHost` to be a primitive type in the JSON string but got `%s`", jsonObj.get("responseHost").toString()));
+      }
+      if ((jsonObj.get("requestId") != null && !jsonObj.get("requestId").isJsonNull()) && !jsonObj.get("requestId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `requestId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("requestId").toString()));
+      }
+      if (!jsonObj.get("tokenType").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tokenType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tokenType").toString()));
+      }
+      if (!jsonObj.get("tokenRequestorId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tokenRequestorId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tokenRequestorId").toString()));
+      }
+      if (!jsonObj.get("taskId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `taskId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("taskId").toString()));
+      }
+      // validate the required field `fundingAccountInfo`
+      FundingAccountInfo.validateJsonElement(jsonObj.get("fundingAccountInfo"));
+      if ((jsonObj.get("consumerLanguage") != null && !jsonObj.get("consumerLanguage").isJsonNull()) && !jsonObj.get("consumerLanguage").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `consumerLanguage` to be a primitive type in the JSON string but got `%s`", jsonObj.get("consumerLanguage").toString()));
+      }
+      if ((jsonObj.get("tokenizationAuthenticationValue") != null && !jsonObj.get("tokenizationAuthenticationValue").isJsonNull()) && !jsonObj.get("tokenizationAuthenticationValue").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tokenizationAuthenticationValue` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tokenizationAuthenticationValue").toString()));
+      }
+      // validate the optional field `decisioningData`
+      if (jsonObj.get("decisioningData") != null && !jsonObj.get("decisioningData").isJsonNull()) {
+        DecisioningData.validateJsonElement(jsonObj.get("decisioningData"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!TokenizeRequestSchema.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'TokenizeRequestSchema' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<TokenizeRequestSchema> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(TokenizeRequestSchema.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<TokenizeRequestSchema>() {
+           @Override
+           public void write(JsonWriter out, TokenizeRequestSchema value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public TokenizeRequestSchema read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of TokenizeRequestSchema given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of TokenizeRequestSchema
+  * @throws IOException if the JSON string is invalid with respect to TokenizeRequestSchema
+  */
+  public static TokenizeRequestSchema fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, TokenizeRequestSchema.class);
+  }
+
+ /**
+  * Convert an instance of TokenizeRequestSchema to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

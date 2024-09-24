@@ -14,21 +14,42 @@
 package com.mastercard.developer.mdes_digital_enablement_client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.mastercard.developer.mdes_digital_enablement_client.JSON;
 
 /**
  * \&quot;authenticationMethods not currently used for MDES for Merchants\&quot; 
  */
-@ApiModel(description = "\"authenticationMethods not currently used for MDES for Merchants\" ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-24T13:37:45.612619+01:00[Europe/Dublin]", comments = "Generator version: 7.5.0")
 public class AuthenticationMethods {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -42,9 +63,10 @@ public class AuthenticationMethods {
   @SerializedName(SERIALIZED_NAME_VALUE)
   private String value;
 
+  public AuthenticationMethods() {
+  }
 
   public AuthenticationMethods id(String id) {
-    
     this.id = id;
     return this;
   }
@@ -54,12 +76,9 @@ public class AuthenticationMethods {
    * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "334123523456213450000", value = "Unique identifier assigned to this Authentication Method. ")
-
   public String getId() {
     return id;
   }
-
 
   public void setId(String id) {
     this.id = id;
@@ -67,7 +86,6 @@ public class AuthenticationMethods {
 
 
   public AuthenticationMethods type(String type) {
-    
     this.type = type;
     return this;
   }
@@ -77,12 +95,9 @@ public class AuthenticationMethods {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "TEXT_TO_CARDHOLDER_NUMBER", value = "Specifies the authentication method type and provided in the tokenize response.  See table here - https://developer.mastercard.com/mdes-digital-enablement/documentation/code-and-formats/#authentication-method-codes ")
-
   public String getType() {
     return type;
   }
-
 
   public void setType(String type) {
     this.type = type;
@@ -90,7 +105,6 @@ public class AuthenticationMethods {
 
 
   public AuthenticationMethods value(String value) {
-    
     this.value = value;
     return this;
   }
@@ -100,16 +114,14 @@ public class AuthenticationMethods {
    * @return value
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "1", value = "Specifies the authentication method value (meaning varies depending on the authentication method type). ")
-
   public String getValue() {
     return value;
   }
 
-
   public void setValue(String value) {
     this.value = value;
   }
+
 
 
   @Override
@@ -153,5 +165,100 @@ public class AuthenticationMethods {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("id");
+    openapiFields.add("type");
+    openapiFields.add("value");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to AuthenticationMethods
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!AuthenticationMethods.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in AuthenticationMethods is not found in the empty JSON string", AuthenticationMethods.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!AuthenticationMethods.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AuthenticationMethods` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      }
+      if ((jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) && !jsonObj.get("type").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
+      }
+      if ((jsonObj.get("value") != null && !jsonObj.get("value").isJsonNull()) && !jsonObj.get("value").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `value` to be a primitive type in the JSON string but got `%s`", jsonObj.get("value").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!AuthenticationMethods.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'AuthenticationMethods' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<AuthenticationMethods> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(AuthenticationMethods.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<AuthenticationMethods>() {
+           @Override
+           public void write(JsonWriter out, AuthenticationMethods value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public AuthenticationMethods read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of AuthenticationMethods given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of AuthenticationMethods
+  * @throws IOException if the JSON string is invalid with respect to AuthenticationMethods
+  */
+  public static AuthenticationMethods fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, AuthenticationMethods.class);
+  }
+
+ /**
+  * Convert an instance of AuthenticationMethods to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

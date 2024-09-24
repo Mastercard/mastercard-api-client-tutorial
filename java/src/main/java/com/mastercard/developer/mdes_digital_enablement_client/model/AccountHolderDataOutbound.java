@@ -14,7 +14,6 @@
 package com.mastercard.developer.mdes_digital_enablement_client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -22,15 +21,37 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.mastercard.developer.mdes_digital_enablement_client.model.BillingAddress;
 import com.mastercard.developer.mdes_digital_enablement_client.model.PhoneNumber;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.mastercard.developer.mdes_digital_enablement_client.JSON;
 
 /**
  * **(CONDITIONAL)** Present in tokenize response if supported by the Merchant, if using a pushAccountReceipt and if there is account holder data associated with the pushAccountReceipt in case that the issuer decision is APPROVED. Refer to MDES Token Connect Token Requestor Implementation Guide and Specification  for more details. 
  */
-@ApiModel(description = "**(CONDITIONAL)** Present in tokenize response if supported by the Merchant, if using a pushAccountReceipt and if there is account holder data associated with the pushAccountReceipt in case that the issuer decision is APPROVED. Refer to MDES Token Connect Token Requestor Implementation Guide and Specification  for more details. ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-24T13:37:45.612619+01:00[Europe/Dublin]", comments = "Generator version: 7.5.0")
 public class AccountHolderDataOutbound {
   public static final String SERIALIZED_NAME_ACCOUNT_HOLDER_NAME = "accountHolderName";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_HOLDER_NAME)
@@ -48,9 +69,10 @@ public class AccountHolderDataOutbound {
   @SerializedName(SERIALIZED_NAME_ACCOUNT_HOLDER_MOBILE_PHONE_NUMBER)
   private PhoneNumber accountHolderMobilePhoneNumber;
 
+  public AccountHolderDataOutbound() {
+  }
 
   public AccountHolderDataOutbound accountHolderName(String accountHolderName) {
-    
     this.accountHolderName = accountHolderName;
     return this;
   }
@@ -60,12 +82,9 @@ public class AccountHolderDataOutbound {
    * @return accountHolderName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "**(OPTIONAL)** The name of the cardholder ")
-
   public String getAccountHolderName() {
     return accountHolderName;
   }
-
 
   public void setAccountHolderName(String accountHolderName) {
     this.accountHolderName = accountHolderName;
@@ -73,7 +92,6 @@ public class AccountHolderDataOutbound {
 
 
   public AccountHolderDataOutbound accountHolderAddress(BillingAddress accountHolderAddress) {
-    
     this.accountHolderAddress = accountHolderAddress;
     return this;
   }
@@ -83,12 +101,9 @@ public class AccountHolderDataOutbound {
    * @return accountHolderAddress
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public BillingAddress getAccountHolderAddress() {
     return accountHolderAddress;
   }
-
 
   public void setAccountHolderAddress(BillingAddress accountHolderAddress) {
     this.accountHolderAddress = accountHolderAddress;
@@ -96,7 +111,6 @@ public class AccountHolderDataOutbound {
 
 
   public AccountHolderDataOutbound accountHolderEmailAddress(String accountHolderEmailAddress) {
-    
     this.accountHolderEmailAddress = accountHolderEmailAddress;
     return this;
   }
@@ -106,12 +120,9 @@ public class AccountHolderDataOutbound {
    * @return accountHolderEmailAddress
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "**(OPTIONAL)** The e-mail address of the Account Holder ")
-
   public String getAccountHolderEmailAddress() {
     return accountHolderEmailAddress;
   }
-
 
   public void setAccountHolderEmailAddress(String accountHolderEmailAddress) {
     this.accountHolderEmailAddress = accountHolderEmailAddress;
@@ -119,7 +130,6 @@ public class AccountHolderDataOutbound {
 
 
   public AccountHolderDataOutbound accountHolderMobilePhoneNumber(PhoneNumber accountHolderMobilePhoneNumber) {
-    
     this.accountHolderMobilePhoneNumber = accountHolderMobilePhoneNumber;
     return this;
   }
@@ -129,16 +139,14 @@ public class AccountHolderDataOutbound {
    * @return accountHolderMobilePhoneNumber
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public PhoneNumber getAccountHolderMobilePhoneNumber() {
     return accountHolderMobilePhoneNumber;
   }
 
-
   public void setAccountHolderMobilePhoneNumber(PhoneNumber accountHolderMobilePhoneNumber) {
     this.accountHolderMobilePhoneNumber = accountHolderMobilePhoneNumber;
   }
+
 
 
   @Override
@@ -184,5 +192,106 @@ public class AccountHolderDataOutbound {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("accountHolderName");
+    openapiFields.add("accountHolderAddress");
+    openapiFields.add("accountHolderEmailAddress");
+    openapiFields.add("accountHolderMobilePhoneNumber");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to AccountHolderDataOutbound
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!AccountHolderDataOutbound.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in AccountHolderDataOutbound is not found in the empty JSON string", AccountHolderDataOutbound.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!AccountHolderDataOutbound.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AccountHolderDataOutbound` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("accountHolderName") != null && !jsonObj.get("accountHolderName").isJsonNull()) && !jsonObj.get("accountHolderName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `accountHolderName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("accountHolderName").toString()));
+      }
+      // validate the optional field `accountHolderAddress`
+      if (jsonObj.get("accountHolderAddress") != null && !jsonObj.get("accountHolderAddress").isJsonNull()) {
+        BillingAddress.validateJsonElement(jsonObj.get("accountHolderAddress"));
+      }
+      if ((jsonObj.get("accountHolderEmailAddress") != null && !jsonObj.get("accountHolderEmailAddress").isJsonNull()) && !jsonObj.get("accountHolderEmailAddress").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `accountHolderEmailAddress` to be a primitive type in the JSON string but got `%s`", jsonObj.get("accountHolderEmailAddress").toString()));
+      }
+      // validate the optional field `accountHolderMobilePhoneNumber`
+      if (jsonObj.get("accountHolderMobilePhoneNumber") != null && !jsonObj.get("accountHolderMobilePhoneNumber").isJsonNull()) {
+        PhoneNumber.validateJsonElement(jsonObj.get("accountHolderMobilePhoneNumber"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!AccountHolderDataOutbound.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'AccountHolderDataOutbound' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<AccountHolderDataOutbound> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(AccountHolderDataOutbound.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<AccountHolderDataOutbound>() {
+           @Override
+           public void write(JsonWriter out, AccountHolderDataOutbound value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public AccountHolderDataOutbound read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of AccountHolderDataOutbound given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of AccountHolderDataOutbound
+  * @throws IOException if the JSON string is invalid with respect to AccountHolderDataOutbound
+  */
+  public static AccountHolderDataOutbound fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, AccountHolderDataOutbound.class);
+  }
+
+ /**
+  * Convert an instance of AccountHolderDataOutbound to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

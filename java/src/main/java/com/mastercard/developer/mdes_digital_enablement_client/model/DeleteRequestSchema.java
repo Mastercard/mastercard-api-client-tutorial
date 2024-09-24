@@ -14,22 +14,44 @@
 package com.mastercard.developer.mdes_digital_enablement_client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.mastercard.developer.mdes_digital_enablement_client.JSON;
 
 /**
  * DeleteRequestSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-24T13:37:45.612619+01:00[Europe/Dublin]", comments = "Generator version: 7.5.0")
 public class DeleteRequestSchema {
   public static final String SERIALIZED_NAME_RESPONSE_HOST = "responseHost";
   @SerializedName(SERIALIZED_NAME_RESPONSE_HOST)
@@ -45,7 +67,7 @@ public class DeleteRequestSchema {
 
   public static final String SERIALIZED_NAME_TOKEN_UNIQUE_REFERENCES = "tokenUniqueReferences";
   @SerializedName(SERIALIZED_NAME_TOKEN_UNIQUE_REFERENCES)
-  private List<String> tokenUniqueReferences = new ArrayList<String>();
+  private List<String> tokenUniqueReferences = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_CAUSED_BY = "causedBy";
   @SerializedName(SERIALIZED_NAME_CAUSED_BY)
@@ -59,9 +81,10 @@ public class DeleteRequestSchema {
   @SerializedName(SERIALIZED_NAME_REASON_CODE)
   private String reasonCode;
 
+  public DeleteRequestSchema() {
+  }
 
   public DeleteRequestSchema responseHost(String responseHost) {
-    
     this.responseHost = responseHost;
     return this;
   }
@@ -71,12 +94,9 @@ public class DeleteRequestSchema {
    * @return responseHost
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "site2.payment-app-provider.com", value = "The host that originated the request. Future calls in the same conversation may be routed to this host. ")
-
   public String getResponseHost() {
     return responseHost;
   }
-
 
   public void setResponseHost(String responseHost) {
     this.responseHost = responseHost;
@@ -84,7 +104,6 @@ public class DeleteRequestSchema {
 
 
   public DeleteRequestSchema requestId(String requestId) {
-    
     this.requestId = requestId;
     return this;
   }
@@ -93,12 +112,10 @@ public class DeleteRequestSchema {
    * Unique identifier for the request. 
    * @return requestId
   **/
-  @ApiModelProperty(example = "123456", required = true, value = "Unique identifier for the request. ")
-
+  @javax.annotation.Nonnull
   public String getRequestId() {
     return requestId;
   }
-
 
   public void setRequestId(String requestId) {
     this.requestId = requestId;
@@ -106,7 +123,6 @@ public class DeleteRequestSchema {
 
 
   public DeleteRequestSchema paymentAppInstanceId(String paymentAppInstanceId) {
-    
     this.paymentAppInstanceId = paymentAppInstanceId;
     return this;
   }
@@ -116,12 +132,9 @@ public class DeleteRequestSchema {
    * @return paymentAppInstanceId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "123456789", value = "Identifier for the specific Mobile Payment App instance, unique across a given Wallet Identifier. This value cannot be changed after digitization. This field is alphanumeric and additionally web-safe base64 characters per RFC 4648 (minus \"-\", underscore \"_\") up to a maximum length of 48, = should not be URL encoded. Conditional - not applicable for server based tokens but required otherwise. ")
-
   public String getPaymentAppInstanceId() {
     return paymentAppInstanceId;
   }
-
 
   public void setPaymentAppInstanceId(String paymentAppInstanceId) {
     this.paymentAppInstanceId = paymentAppInstanceId;
@@ -129,12 +142,14 @@ public class DeleteRequestSchema {
 
 
   public DeleteRequestSchema tokenUniqueReferences(List<String> tokenUniqueReferences) {
-    
     this.tokenUniqueReferences = tokenUniqueReferences;
     return this;
   }
 
   public DeleteRequestSchema addTokenUniqueReferencesItem(String tokenUniqueReferencesItem) {
+    if (this.tokenUniqueReferences == null) {
+      this.tokenUniqueReferences = new ArrayList<>();
+    }
     this.tokenUniqueReferences.add(tokenUniqueReferencesItem);
     return this;
   }
@@ -143,12 +158,10 @@ public class DeleteRequestSchema {
    * The specific Token to be deleted. Array of more or more valid references as assigned by MDES 
    * @return tokenUniqueReferences
   **/
-  @ApiModelProperty(example = "DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45", required = true, value = "The specific Token to be deleted. Array of more or more valid references as assigned by MDES ")
-
+  @javax.annotation.Nonnull
   public List<String> getTokenUniqueReferences() {
     return tokenUniqueReferences;
   }
-
 
   public void setTokenUniqueReferences(List<String> tokenUniqueReferences) {
     this.tokenUniqueReferences = tokenUniqueReferences;
@@ -156,7 +169,6 @@ public class DeleteRequestSchema {
 
 
   public DeleteRequestSchema causedBy(String causedBy) {
-    
     this.causedBy = causedBy;
     return this;
   }
@@ -165,12 +177,10 @@ public class DeleteRequestSchema {
    * Who or what caused the Token to be deleted. Must be either the &#39;CARDHOLDER&#39; (operation requested by the Cardholder) or &#39;TOKEN_REQUESTOR&#39; (operation requested by the token requestor). 
    * @return causedBy
   **/
-  @ApiModelProperty(example = "CARDHOLDER", required = true, value = "Who or what caused the Token to be deleted. Must be either the 'CARDHOLDER' (operation requested by the Cardholder) or 'TOKEN_REQUESTOR' (operation requested by the token requestor). ")
-
+  @javax.annotation.Nonnull
   public String getCausedBy() {
     return causedBy;
   }
-
 
   public void setCausedBy(String causedBy) {
     this.causedBy = causedBy;
@@ -178,7 +188,6 @@ public class DeleteRequestSchema {
 
 
   public DeleteRequestSchema reason(String reason) {
-    
     this.reason = reason;
     return this;
   }
@@ -188,12 +197,9 @@ public class DeleteRequestSchema {
    * @return reason
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Lost/stolen device", value = "Free form reason why the Tokens are being suspended. ")
-
   public String getReason() {
     return reason;
   }
-
 
   public void setReason(String reason) {
     this.reason = reason;
@@ -201,7 +207,6 @@ public class DeleteRequestSchema {
 
 
   public DeleteRequestSchema reasonCode(String reasonCode) {
-    
     this.reasonCode = reasonCode;
     return this;
   }
@@ -210,16 +215,15 @@ public class DeleteRequestSchema {
    * The reason for the action to be deleted. Must be one of &#39;SUSPECTED_FRAUD&#39; (suspected fraudulent token transactions), &#39;OTHER&#39; (Other - default used if value not provided). 
    * @return reasonCode
   **/
-  @ApiModelProperty(example = "SUSPECTED_FRAUD", required = true, value = "The reason for the action to be deleted. Must be one of 'SUSPECTED_FRAUD' (suspected fraudulent token transactions), 'OTHER' (Other - default used if value not provided). ")
-
+  @javax.annotation.Nonnull
   public String getReasonCode() {
     return reasonCode;
   }
 
-
   public void setReasonCode(String reasonCode) {
     this.reasonCode = reasonCode;
   }
+
 
 
   @Override
@@ -271,5 +275,130 @@ public class DeleteRequestSchema {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("responseHost");
+    openapiFields.add("requestId");
+    openapiFields.add("paymentAppInstanceId");
+    openapiFields.add("tokenUniqueReferences");
+    openapiFields.add("causedBy");
+    openapiFields.add("reason");
+    openapiFields.add("reasonCode");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("requestId");
+    openapiRequiredFields.add("tokenUniqueReferences");
+    openapiRequiredFields.add("causedBy");
+    openapiRequiredFields.add("reasonCode");
+  }
+
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to DeleteRequestSchema
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!DeleteRequestSchema.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in DeleteRequestSchema is not found in the empty JSON string", DeleteRequestSchema.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!DeleteRequestSchema.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DeleteRequestSchema` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : DeleteRequestSchema.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("responseHost") != null && !jsonObj.get("responseHost").isJsonNull()) && !jsonObj.get("responseHost").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `responseHost` to be a primitive type in the JSON string but got `%s`", jsonObj.get("responseHost").toString()));
+      }
+      if (!jsonObj.get("requestId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `requestId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("requestId").toString()));
+      }
+      if ((jsonObj.get("paymentAppInstanceId") != null && !jsonObj.get("paymentAppInstanceId").isJsonNull()) && !jsonObj.get("paymentAppInstanceId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `paymentAppInstanceId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("paymentAppInstanceId").toString()));
+      }
+      // ensure the required json array is present
+      if (jsonObj.get("tokenUniqueReferences") == null) {
+        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
+      } else if (!jsonObj.get("tokenUniqueReferences").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tokenUniqueReferences` to be an array in the JSON string but got `%s`", jsonObj.get("tokenUniqueReferences").toString()));
+      }
+      if (!jsonObj.get("causedBy").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `causedBy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("causedBy").toString()));
+      }
+      if ((jsonObj.get("reason") != null && !jsonObj.get("reason").isJsonNull()) && !jsonObj.get("reason").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `reason` to be a primitive type in the JSON string but got `%s`", jsonObj.get("reason").toString()));
+      }
+      if (!jsonObj.get("reasonCode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `reasonCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("reasonCode").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!DeleteRequestSchema.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'DeleteRequestSchema' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<DeleteRequestSchema> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(DeleteRequestSchema.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<DeleteRequestSchema>() {
+           @Override
+           public void write(JsonWriter out, DeleteRequestSchema value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public DeleteRequestSchema read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of DeleteRequestSchema given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of DeleteRequestSchema
+  * @throws IOException if the JSON string is invalid with respect to DeleteRequestSchema
+  */
+  public static DeleteRequestSchema fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, DeleteRequestSchema.class);
+  }
+
+ /**
+  * Convert an instance of DeleteRequestSchema to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

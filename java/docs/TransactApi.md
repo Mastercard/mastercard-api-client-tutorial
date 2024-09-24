@@ -2,12 +2,12 @@
 
 All URIs are relative to *https://api.mastercard.com/mdes*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createTransact**](TransactApi.md#createTransact) | **POST** /remotetransaction/static/1/0/transact | Used by the Token Requestor to create a Digital Secure Remote Payment (\&quot;DSRP\&quot;) transaction cryptogram using the credentials stored within MDES in order to perform a DSRP transaction.
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**createTransact**](TransactApi.md#createTransact) | **POST** /remotetransaction/static/1/0/transact | Used by the Token Requestor to create a Digital Secure Remote Payment (\&quot;DSRP\&quot;) transaction cryptogram using the credentials stored within MDES in order to perform a DSRP transaction. |
 
 
-<a name="createTransact"></a>
+<a id="createTransact"></a>
 # **createTransact**
 > TransactResponseSchema createTransact(transactRequestSchema)
 
@@ -47,9 +47,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **transactRequestSchema** | [**TransactRequestSchema**](TransactRequestSchema.md)| Contains the details of the request message.  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **transactRequestSchema** | [**TransactRequestSchema**](TransactRequestSchema.md)| Contains the details of the request message.  | [optional] |
 
 ### Return type
 
@@ -67,7 +67,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Contains the details of the response message.  |  -  |
-**401** | Example gateway error response  |  -  |
-**500** | Example application error response  |  -  |
+| **200** | Contains the details of the response message.  |  -  |
+| **401** | Example gateway error response  |  -  |
+| **500** | Example application error response  |  -  |
 

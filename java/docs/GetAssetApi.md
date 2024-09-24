@@ -2,12 +2,12 @@
 
 All URIs are relative to *https://api.mastercard.com/mdes*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getAsset**](GetAssetApi.md#getAsset) | **GET** /assets/static/1/0/asset/{AssetId} | Used to retrieve static Assets from the MDES repository.
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**getAsset**](GetAssetApi.md#getAsset) | **GET** /assets/static/1/0/asset/{AssetId} | Used to retrieve static Assets from the MDES repository. |
 
 
-<a name="getAsset"></a>
+<a id="getAsset"></a>
 # **getAsset**
 > AssetResponseSchema getAsset(assetId)
 
@@ -47,9 +47,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assetId** | **String**| An Asset ID corresponds to an individual Digital Asset. Digital Assets are returned as part of the Product Configuration from the Tokenize Response. The Asset ID itself is supplied as a Get request in the form of https://{INSERT ENVIRONMENT URL HERE}/mdes/assets/static/1/0/asset/{AssetID} - See JSON examples for details.  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **assetId** | **String**| An Asset ID corresponds to an individual Digital Asset. Digital Assets are returned as part of the Product Configuration from the Tokenize Response. The Asset ID itself is supplied as a Get request in the form of https://{INSERT ENVIRONMENT URL HERE}/mdes/assets/static/1/0/asset/{AssetID} - See JSON examples for details.  | |
 
 ### Return type
 
@@ -67,6 +67,6 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Contains the details of the response message.  |  -  |
-**0** | unexpected error  |  -  |
+| **200** | Contains the details of the response message.  |  -  |
+| **0** | unexpected error  |  -  |
 

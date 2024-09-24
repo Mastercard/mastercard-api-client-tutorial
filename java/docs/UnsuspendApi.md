@@ -2,12 +2,12 @@
 
 All URIs are relative to *https://api.mastercard.com/mdes*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createUnsuspend**](UnsuspendApi.md#createUnsuspend) | **POST** /digitization/static/1/0/unsuspend | Used to unsuspend one or more previously suspended Tokens. The API is limited to 10 Tokens per request.
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**createUnsuspend**](UnsuspendApi.md#createUnsuspend) | **POST** /digitization/static/1/0/unsuspend | Used to unsuspend one or more previously suspended Tokens. The API is limited to 10 Tokens per request. |
 
 
-<a name="createUnsuspend"></a>
+<a id="createUnsuspend"></a>
 # **createUnsuspend**
 > UnSuspendResponseSchema createUnsuspend(unSuspendRequestSchema)
 
@@ -47,9 +47,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **unSuspendRequestSchema** | [**UnSuspendRequestSchema**](UnSuspendRequestSchema.md)| Contains the details of the request message.  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **unSuspendRequestSchema** | [**UnSuspendRequestSchema**](UnSuspendRequestSchema.md)| Contains the details of the request message.  | [optional] |
 
 ### Return type
 
@@ -67,7 +67,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Contains the details of the response message.  |  -  |
-**401** | Example gateway error response  |  -  |
-**500** | Example application error response  |  -  |
+| **200** | Contains the details of the response message.  |  -  |
+| **401** | Example gateway error response  |  -  |
+| **500** | Example application error response  |  -  |
 

@@ -14,7 +14,6 @@
 package com.mastercard.developer.mdes_digital_enablement_client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -24,16 +23,39 @@ import com.mastercard.developer.mdes_digital_enablement_client.model.Authenticat
 import com.mastercard.developer.mdes_digital_enablement_client.model.ProductConfig;
 import com.mastercard.developer.mdes_digital_enablement_client.model.TokenDetail;
 import com.mastercard.developer.mdes_digital_enablement_client.model.TokenInfo;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.mastercard.developer.mdes_digital_enablement_client.JSON;
 
 /**
  * TokenizeResponseSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-24T13:37:45.612619+01:00[Europe/Dublin]", comments = "Generator version: 7.5.0")
 public class TokenizeResponseSchema {
   public static final String SERIALIZED_NAME_RESPONSE_HOST = "responseHost";
   @SerializedName(SERIALIZED_NAME_RESPONSE_HOST)
@@ -49,7 +71,7 @@ public class TokenizeResponseSchema {
 
   public static final String SERIALIZED_NAME_AUTHENTICATION_METHODS = "authenticationMethods";
   @SerializedName(SERIALIZED_NAME_AUTHENTICATION_METHODS)
-  private List<AuthenticationMethods> authenticationMethods = null;
+  private List<AuthenticationMethods> authenticationMethods = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_TOKEN_UNIQUE_REFERENCE = "tokenUniqueReference";
   @SerializedName(SERIALIZED_NAME_TOKEN_UNIQUE_REFERENCE)
@@ -75,9 +97,10 @@ public class TokenizeResponseSchema {
   @SerializedName(SERIALIZED_NAME_SUPPORTS_AUTHENTICATION)
   private Boolean supportsAuthentication;
 
+  public TokenizeResponseSchema() {
+  }
 
   public TokenizeResponseSchema responseHost(String responseHost) {
-    
     this.responseHost = responseHost;
     return this;
   }
@@ -87,12 +110,9 @@ public class TokenizeResponseSchema {
    * @return responseHost
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "site2.payment-app-provider.com", value = "The MasterCard host that originated the request. Future calls in the same conversation may be routed to this host. ")
-
   public String getResponseHost() {
     return responseHost;
   }
-
 
   public void setResponseHost(String responseHost) {
     this.responseHost = responseHost;
@@ -100,7 +120,6 @@ public class TokenizeResponseSchema {
 
 
   public TokenizeResponseSchema responseId(String responseId) {
-    
     this.responseId = responseId;
     return this;
   }
@@ -110,12 +129,9 @@ public class TokenizeResponseSchema {
    * @return responseId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "123456", value = "Unique identifier for the response. ")
-
   public String getResponseId() {
     return responseId;
   }
-
 
   public void setResponseId(String responseId) {
     this.responseId = responseId;
@@ -123,7 +139,6 @@ public class TokenizeResponseSchema {
 
 
   public TokenizeResponseSchema decision(String decision) {
-    
     this.decision = decision;
     return this;
   }
@@ -133,12 +148,9 @@ public class TokenizeResponseSchema {
    * @return decision
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "APPROVED", value = "The tokenization decision for this digitization request. Must be either APPROVED (Digitization request was approved), DECLINED (Digitization request was declined) OR REQUIRE_ADDITIONAL_AUTHENTICATION Digitization request was approved but optionally requires additional authentication. One or more Authentication methods may be provided). ")
-
   public String getDecision() {
     return decision;
   }
-
 
   public void setDecision(String decision) {
     this.decision = decision;
@@ -146,14 +158,13 @@ public class TokenizeResponseSchema {
 
 
   public TokenizeResponseSchema authenticationMethods(List<AuthenticationMethods> authenticationMethods) {
-    
     this.authenticationMethods = authenticationMethods;
     return this;
   }
 
   public TokenizeResponseSchema addAuthenticationMethodsItem(AuthenticationMethods authenticationMethodsItem) {
     if (this.authenticationMethods == null) {
-      this.authenticationMethods = new ArrayList<AuthenticationMethods>();
+      this.authenticationMethods = new ArrayList<>();
     }
     this.authenticationMethods.add(authenticationMethodsItem);
     return this;
@@ -164,12 +175,9 @@ public class TokenizeResponseSchema {
    * @return authenticationMethods
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public List<AuthenticationMethods> getAuthenticationMethods() {
     return authenticationMethods;
   }
-
 
   public void setAuthenticationMethods(List<AuthenticationMethods> authenticationMethods) {
     this.authenticationMethods = authenticationMethods;
@@ -177,7 +185,6 @@ public class TokenizeResponseSchema {
 
 
   public TokenizeResponseSchema tokenUniqueReference(String tokenUniqueReference) {
-    
     this.tokenUniqueReference = tokenUniqueReference;
     return this;
   }
@@ -187,12 +194,9 @@ public class TokenizeResponseSchema {
    * @return tokenUniqueReference
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45", value = "The unique reference allocated to the new Token. Serves as a unique identifier for all subsequent queries or management functions relating to this Token. Provided if the decision was APPROVED or REQUIRE_ADDITIONAL_AUTHENTICATION. ")
-
   public String getTokenUniqueReference() {
     return tokenUniqueReference;
   }
-
 
   public void setTokenUniqueReference(String tokenUniqueReference) {
     this.tokenUniqueReference = tokenUniqueReference;
@@ -200,7 +204,6 @@ public class TokenizeResponseSchema {
 
 
   public TokenizeResponseSchema panUniqueReference(String panUniqueReference) {
-    
     this.panUniqueReference = panUniqueReference;
     return this;
   }
@@ -210,12 +213,9 @@ public class TokenizeResponseSchema {
    * @return panUniqueReference
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "FWSPMC000000000159f71f703d2141efaf04dd26803f922b", value = "The unique reference allocated to the Account Primary Account Number. Provided if the decision was APPROVED or REQUIRE_ADDITIONAL_AUTHENTICATION. ")
-
   public String getPanUniqueReference() {
     return panUniqueReference;
   }
-
 
   public void setPanUniqueReference(String panUniqueReference) {
     this.panUniqueReference = panUniqueReference;
@@ -223,7 +223,6 @@ public class TokenizeResponseSchema {
 
 
   public TokenizeResponseSchema productConfig(ProductConfig productConfig) {
-    
     this.productConfig = productConfig;
     return this;
   }
@@ -233,12 +232,9 @@ public class TokenizeResponseSchema {
    * @return productConfig
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public ProductConfig getProductConfig() {
     return productConfig;
   }
-
 
   public void setProductConfig(ProductConfig productConfig) {
     this.productConfig = productConfig;
@@ -246,7 +242,6 @@ public class TokenizeResponseSchema {
 
 
   public TokenizeResponseSchema tokenInfo(TokenInfo tokenInfo) {
-    
     this.tokenInfo = tokenInfo;
     return this;
   }
@@ -256,12 +251,9 @@ public class TokenizeResponseSchema {
    * @return tokenInfo
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public TokenInfo getTokenInfo() {
     return tokenInfo;
   }
-
 
   public void setTokenInfo(TokenInfo tokenInfo) {
     this.tokenInfo = tokenInfo;
@@ -269,7 +261,6 @@ public class TokenizeResponseSchema {
 
 
   public TokenizeResponseSchema tokenDetail(TokenDetail tokenDetail) {
-    
     this.tokenDetail = tokenDetail;
     return this;
   }
@@ -279,12 +270,9 @@ public class TokenizeResponseSchema {
    * @return tokenDetail
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public TokenDetail getTokenDetail() {
     return tokenDetail;
   }
-
 
   public void setTokenDetail(TokenDetail tokenDetail) {
     this.tokenDetail = tokenDetail;
@@ -292,7 +280,6 @@ public class TokenizeResponseSchema {
 
 
   public TokenizeResponseSchema supportsAuthentication(Boolean supportsAuthentication) {
-    
     this.supportsAuthentication = supportsAuthentication;
     return this;
   }
@@ -302,16 +289,14 @@ public class TokenizeResponseSchema {
    * @return supportsAuthentication
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "true", value = "(required)Flag to indicate if the issuer supports authentication of the cardholder on the token. Must be one of:   - TRUE   - FALSE ")
-
   public Boolean getSupportsAuthentication() {
     return supportsAuthentication;
   }
 
-
   public void setSupportsAuthentication(Boolean supportsAuthentication) {
     this.supportsAuthentication = supportsAuthentication;
   }
+
 
 
   @Override
@@ -369,5 +354,139 @@ public class TokenizeResponseSchema {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("responseHost");
+    openapiFields.add("responseId");
+    openapiFields.add("decision");
+    openapiFields.add("authenticationMethods");
+    openapiFields.add("tokenUniqueReference");
+    openapiFields.add("panUniqueReference");
+    openapiFields.add("productConfig");
+    openapiFields.add("tokenInfo");
+    openapiFields.add("tokenDetail");
+    openapiFields.add("supportsAuthentication");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to TokenizeResponseSchema
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!TokenizeResponseSchema.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in TokenizeResponseSchema is not found in the empty JSON string", TokenizeResponseSchema.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!TokenizeResponseSchema.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `TokenizeResponseSchema` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("responseHost") != null && !jsonObj.get("responseHost").isJsonNull()) && !jsonObj.get("responseHost").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `responseHost` to be a primitive type in the JSON string but got `%s`", jsonObj.get("responseHost").toString()));
+      }
+      if ((jsonObj.get("responseId") != null && !jsonObj.get("responseId").isJsonNull()) && !jsonObj.get("responseId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `responseId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("responseId").toString()));
+      }
+      if ((jsonObj.get("decision") != null && !jsonObj.get("decision").isJsonNull()) && !jsonObj.get("decision").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `decision` to be a primitive type in the JSON string but got `%s`", jsonObj.get("decision").toString()));
+      }
+      if (jsonObj.get("authenticationMethods") != null && !jsonObj.get("authenticationMethods").isJsonNull()) {
+        JsonArray jsonArrayauthenticationMethods = jsonObj.getAsJsonArray("authenticationMethods");
+        if (jsonArrayauthenticationMethods != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("authenticationMethods").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `authenticationMethods` to be an array in the JSON string but got `%s`", jsonObj.get("authenticationMethods").toString()));
+          }
+
+          // validate the optional field `authenticationMethods` (array)
+          for (int i = 0; i < jsonArrayauthenticationMethods.size(); i++) {
+            AuthenticationMethods.validateJsonElement(jsonArrayauthenticationMethods.get(i));
+          };
+        }
+      }
+      if ((jsonObj.get("tokenUniqueReference") != null && !jsonObj.get("tokenUniqueReference").isJsonNull()) && !jsonObj.get("tokenUniqueReference").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tokenUniqueReference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tokenUniqueReference").toString()));
+      }
+      if ((jsonObj.get("panUniqueReference") != null && !jsonObj.get("panUniqueReference").isJsonNull()) && !jsonObj.get("panUniqueReference").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `panUniqueReference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("panUniqueReference").toString()));
+      }
+      // validate the optional field `productConfig`
+      if (jsonObj.get("productConfig") != null && !jsonObj.get("productConfig").isJsonNull()) {
+        ProductConfig.validateJsonElement(jsonObj.get("productConfig"));
+      }
+      // validate the optional field `tokenInfo`
+      if (jsonObj.get("tokenInfo") != null && !jsonObj.get("tokenInfo").isJsonNull()) {
+        TokenInfo.validateJsonElement(jsonObj.get("tokenInfo"));
+      }
+      // validate the optional field `tokenDetail`
+      if (jsonObj.get("tokenDetail") != null && !jsonObj.get("tokenDetail").isJsonNull()) {
+        TokenDetail.validateJsonElement(jsonObj.get("tokenDetail"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!TokenizeResponseSchema.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'TokenizeResponseSchema' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<TokenizeResponseSchema> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(TokenizeResponseSchema.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<TokenizeResponseSchema>() {
+           @Override
+           public void write(JsonWriter out, TokenizeResponseSchema value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public TokenizeResponseSchema read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of TokenizeResponseSchema given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of TokenizeResponseSchema
+  * @throws IOException if the JSON string is invalid with respect to TokenizeResponseSchema
+  */
+  public static TokenizeResponseSchema fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, TokenizeResponseSchema.class);
+  }
+
+ /**
+  * Convert an instance of TokenizeResponseSchema to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

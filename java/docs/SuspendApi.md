@@ -2,12 +2,12 @@
 
 All URIs are relative to *https://api.mastercard.com/mdes*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createSuspend**](SuspendApi.md#createSuspend) | **POST** /digitization/static/1/0/suspend | Used to temporarily suspend one or more Tokens.
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**createSuspend**](SuspendApi.md#createSuspend) | **POST** /digitization/static/1/0/suspend | Used to temporarily suspend one or more Tokens. |
 
 
-<a name="createSuspend"></a>
+<a id="createSuspend"></a>
 # **createSuspend**
 > SuspendResponseSchema createSuspend(suspendRequestSchema)
 
@@ -47,9 +47,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **suspendRequestSchema** | [**SuspendRequestSchema**](SuspendRequestSchema.md)| Contains the details of the request message.  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **suspendRequestSchema** | [**SuspendRequestSchema**](SuspendRequestSchema.md)| Contains the details of the request message.  | [optional] |
 
 ### Return type
 
@@ -67,7 +67,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Contains the details of the response message.  |  -  |
-**401** | Example gateway error response  |  -  |
-**500** | Example application error response  |  -  |
+| **200** | Contains the details of the response message.  |  -  |
+| **401** | Example gateway error response  |  -  |
+| **500** | Example application error response  |  -  |
 

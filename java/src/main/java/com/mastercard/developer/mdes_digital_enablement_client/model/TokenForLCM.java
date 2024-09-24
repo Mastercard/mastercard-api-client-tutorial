@@ -14,22 +14,44 @@
 package com.mastercard.developer.mdes_digital_enablement_client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.mastercard.developer.mdes_digital_enablement_client.JSON;
 
 /**
  * TokenForLCM
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-24T13:37:45.612619+01:00[Europe/Dublin]", comments = "Generator version: 7.5.0")
 public class TokenForLCM {
   public static final String SERIALIZED_NAME_TOKEN_UNIQUE_REFERENCE = "tokenUniqueReference";
   @SerializedName(SERIALIZED_NAME_TOKEN_UNIQUE_REFERENCE)
@@ -41,15 +63,16 @@ public class TokenForLCM {
 
   public static final String SERIALIZED_NAME_SUSPENDED_BY = "suspendedBy";
   @SerializedName(SERIALIZED_NAME_SUSPENDED_BY)
-  private List<String> suspendedBy = null;
+  private List<String> suspendedBy = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_STATUS_TIMESTAMP = "statusTimestamp";
   @SerializedName(SERIALIZED_NAME_STATUS_TIMESTAMP)
   private String statusTimestamp;
 
+  public TokenForLCM() {
+  }
 
   public TokenForLCM tokenUniqueReference(String tokenUniqueReference) {
-    
     this.tokenUniqueReference = tokenUniqueReference;
     return this;
   }
@@ -59,12 +82,9 @@ public class TokenForLCM {
    * @return tokenUniqueReference
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45", value = "The unique reference allocated to the Token which is always present even if an error occurs. maxLength: 64 ")
-
   public String getTokenUniqueReference() {
     return tokenUniqueReference;
   }
-
 
   public void setTokenUniqueReference(String tokenUniqueReference) {
     this.tokenUniqueReference = tokenUniqueReference;
@@ -72,7 +92,6 @@ public class TokenForLCM {
 
 
   public TokenForLCM status(String status) {
-    
     this.status = status;
     return this;
   }
@@ -82,12 +101,9 @@ public class TokenForLCM {
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "SUSPENDED", value = "The current status of Token. Must be either:  * 'INACTIVE' (Token has not yet been activated)  * 'ACTIVE' (Token is active and ready to transact)  * 'SUSPENDED' (Token is suspended and unable to transact)  * 'DEACTIVATED' (Token has been permanently deactivated). maxLength: 32 ")
-
   public String getStatus() {
     return status;
   }
-
 
   public void setStatus(String status) {
     this.status = status;
@@ -95,14 +111,13 @@ public class TokenForLCM {
 
 
   public TokenForLCM suspendedBy(List<String> suspendedBy) {
-    
     this.suspendedBy = suspendedBy;
     return this;
   }
 
   public TokenForLCM addSuspendedByItem(String suspendedByItem) {
     if (this.suspendedBy == null) {
-      this.suspendedBy = new ArrayList<String>();
+      this.suspendedBy = new ArrayList<>();
     }
     this.suspendedBy.add(suspendedByItem);
     return this;
@@ -113,12 +128,9 @@ public class TokenForLCM {
    * @return suspendedBy
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "(CONDITIONAL only supplied if status is SUSPENDED) Who or what caused the Token to be suspended One or more values of:    * ISSUER - Suspended by the Issuer.    * TOKEN_REQUESTOR - Suspended by the Token Requestor    * MOBILE_PIN_LOCKED - Suspended due to the Mobile PIN being locked    * CARDHOLDER - Suspended by the Cardholder ")
-
   public List<String> getSuspendedBy() {
     return suspendedBy;
   }
-
 
   public void setSuspendedBy(List<String> suspendedBy) {
     this.suspendedBy = suspendedBy;
@@ -126,7 +138,6 @@ public class TokenForLCM {
 
 
   public TokenForLCM statusTimestamp(String statusTimestamp) {
-    
     this.statusTimestamp = statusTimestamp;
     return this;
   }
@@ -136,16 +147,14 @@ public class TokenForLCM {
    * @return statusTimestamp
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The date and time the token status was last updated. Expressed in ISO 8601 extended format as one of the following:    * YYYY-MM-DDThh:mm:ss[.sss]Z    * YYYY-MM-DDThh:mm:ss[.sss]±hh:mm    * Where [.sss] is optional and can be 1 to 3 digits. ")
-
   public String getStatusTimestamp() {
     return statusTimestamp;
   }
 
-
   public void setStatusTimestamp(String statusTimestamp) {
     this.statusTimestamp = statusTimestamp;
   }
+
 
 
   @Override
@@ -191,5 +200,105 @@ public class TokenForLCM {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("tokenUniqueReference");
+    openapiFields.add("status");
+    openapiFields.add("suspendedBy");
+    openapiFields.add("statusTimestamp");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to TokenForLCM
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!TokenForLCM.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in TokenForLCM is not found in the empty JSON string", TokenForLCM.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!TokenForLCM.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `TokenForLCM` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("tokenUniqueReference") != null && !jsonObj.get("tokenUniqueReference").isJsonNull()) && !jsonObj.get("tokenUniqueReference").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tokenUniqueReference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tokenUniqueReference").toString()));
+      }
+      if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) && !jsonObj.get("status").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("suspendedBy") != null && !jsonObj.get("suspendedBy").isJsonNull() && !jsonObj.get("suspendedBy").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `suspendedBy` to be an array in the JSON string but got `%s`", jsonObj.get("suspendedBy").toString()));
+      }
+      if ((jsonObj.get("statusTimestamp") != null && !jsonObj.get("statusTimestamp").isJsonNull()) && !jsonObj.get("statusTimestamp").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `statusTimestamp` to be a primitive type in the JSON string but got `%s`", jsonObj.get("statusTimestamp").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!TokenForLCM.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'TokenForLCM' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<TokenForLCM> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(TokenForLCM.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<TokenForLCM>() {
+           @Override
+           public void write(JsonWriter out, TokenForLCM value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public TokenForLCM read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of TokenForLCM given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of TokenForLCM
+  * @throws IOException if the JSON string is invalid with respect to TokenForLCM
+  */
+  public static TokenForLCM fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, TokenForLCM.class);
+  }
+
+ /**
+  * Convert an instance of TokenForLCM to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

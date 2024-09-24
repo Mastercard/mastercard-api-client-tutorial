@@ -14,20 +14,42 @@
 package com.mastercard.developer.mdes_digital_enablement_client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.mastercard.developer.mdes_digital_enablement_client.JSON;
 
 /**
  * ProductConfig
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-24T13:37:45.612619+01:00[Europe/Dublin]", comments = "Generator version: 7.5.0")
 public class ProductConfig {
   public static final String SERIALIZED_NAME_BRAND_LOGO_ASSET_ID = "brandLogoAssetId";
   @SerializedName(SERIALIZED_NAME_BRAND_LOGO_ASSET_ID)
@@ -109,9 +131,10 @@ public class ProductConfig {
   @SerializedName(SERIALIZED_NAME_ISSUER_PRODUCT_CONFIG_CODE)
   private String issuerProductConfigCode;
 
+  public ProductConfig() {
+  }
 
   public ProductConfig brandLogoAssetId(String brandLogoAssetId) {
-    
     this.brandLogoAssetId = brandLogoAssetId;
     return this;
   }
@@ -120,12 +143,10 @@ public class ProductConfig {
    * The MasterCard or Maestro brand logo associated with this card. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object 
    * @return brandLogoAssetId
   **/
-  @ApiModelProperty(example = "800200c9-629d-11e3-949a-0739d27e5a66", required = true, value = "The MasterCard or Maestro brand logo associated with this card. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object ")
-
+  @javax.annotation.Nonnull
   public String getBrandLogoAssetId() {
     return brandLogoAssetId;
   }
-
 
   public void setBrandLogoAssetId(String brandLogoAssetId) {
     this.brandLogoAssetId = brandLogoAssetId;
@@ -133,7 +154,6 @@ public class ProductConfig {
 
 
   public ProductConfig issuerLogoAssetId(String issuerLogoAssetId) {
-    
     this.issuerLogoAssetId = issuerLogoAssetId;
     return this;
   }
@@ -142,12 +162,10 @@ public class ProductConfig {
    * The logo of the issuing bank. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object 
    * @return issuerLogoAssetId
   **/
-  @ApiModelProperty(example = "dbc55444-986a-4896-b41c-5d5e2dd431e2", required = true, value = "The logo of the issuing bank. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object ")
-
+  @javax.annotation.Nonnull
   public String getIssuerLogoAssetId() {
     return issuerLogoAssetId;
   }
-
 
   public void setIssuerLogoAssetId(String issuerLogoAssetId) {
     this.issuerLogoAssetId = issuerLogoAssetId;
@@ -155,7 +173,6 @@ public class ProductConfig {
 
 
   public ProductConfig isCoBranded(Boolean isCoBranded) {
-    
     this.isCoBranded = isCoBranded;
     return this;
   }
@@ -164,12 +181,10 @@ public class ProductConfig {
    * Whether the product is co-branded. Must be either true (this is a co-branded product) or false (this is not a co-branded product). Always returned in Product Configuration object 
    * @return isCoBranded
   **/
-  @ApiModelProperty(example = "true", required = true, value = "Whether the product is co-branded. Must be either true (this is a co-branded product) or false (this is not a co-branded product). Always returned in Product Configuration object ")
-
+  @javax.annotation.Nonnull
   public Boolean getIsCoBranded() {
     return isCoBranded;
   }
-
 
   public void setIsCoBranded(Boolean isCoBranded) {
     this.isCoBranded = isCoBranded;
@@ -177,7 +192,6 @@ public class ProductConfig {
 
 
   public ProductConfig coBrandName(String coBrandName) {
-    
     this.coBrandName = coBrandName;
     return this;
   }
@@ -187,12 +201,9 @@ public class ProductConfig {
    * @return coBrandName
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Co brand partner", value = "Textual name of the co-brand partner. Required if CoBranded is true, not present otherwise. **Conditional: Conditionally required if isCoBranded = \"true\". Not present otherwise** ")
-
   public String getCoBrandName() {
     return coBrandName;
   }
-
 
   public void setCoBrandName(String coBrandName) {
     this.coBrandName = coBrandName;
@@ -200,7 +211,6 @@ public class ProductConfig {
 
 
   public ProductConfig coBrandLogoAssetId(String coBrandLogoAssetId) {
-    
     this.coBrandLogoAssetId = coBrandLogoAssetId;
     return this;
   }
@@ -210,12 +220,9 @@ public class ProductConfig {
    * @return coBrandLogoAssetId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "dbc55444-496a-4896-b41c-5d5e2dd431e2", value = "The co-brand logo (if any) for this product. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. ")
-
   public String getCoBrandLogoAssetId() {
     return coBrandLogoAssetId;
   }
-
 
   public void setCoBrandLogoAssetId(String coBrandLogoAssetId) {
     this.coBrandLogoAssetId = coBrandLogoAssetId;
@@ -223,7 +230,6 @@ public class ProductConfig {
 
 
   public ProductConfig cardBackgroundCombinedAssetId(String cardBackgroundCombinedAssetId) {
-    
     this.cardBackgroundCombinedAssetId = cardBackgroundCombinedAssetId;
     return this;
   }
@@ -233,12 +239,9 @@ public class ProductConfig {
    * @return cardBackgroundCombinedAssetId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "739d27e5-629d-11e3-949a-0800200c9a66", value = "The card image used to represent the digital card in the wallet. This ?combined? option contains the MasterCard, bank and any co- brand logos.  Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. **Conditional: either CardBackgroundCombined or CardBackground will be provided** ")
-
   public String getCardBackgroundCombinedAssetId() {
     return cardBackgroundCombinedAssetId;
   }
-
 
   public void setCardBackgroundCombinedAssetId(String cardBackgroundCombinedAssetId) {
     this.cardBackgroundCombinedAssetId = cardBackgroundCombinedAssetId;
@@ -246,7 +249,6 @@ public class ProductConfig {
 
 
   public ProductConfig cardBackgroundAssetId(String cardBackgroundAssetId) {
-    
     this.cardBackgroundAssetId = cardBackgroundAssetId;
     return this;
   }
@@ -256,12 +258,9 @@ public class ProductConfig {
    * @return cardBackgroundAssetId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "456d27e5-629d-11e3-949a-0800200c9a66", value = "The card image used to represent the digital card in the wallet. This ?non-combined? option does not contain the MasterCard, bank, or co-brand logos. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. **Conditional: either CardBackgroundCombined or CardBackground will be provided** ")
-
   public String getCardBackgroundAssetId() {
     return cardBackgroundAssetId;
   }
-
 
   public void setCardBackgroundAssetId(String cardBackgroundAssetId) {
     this.cardBackgroundAssetId = cardBackgroundAssetId;
@@ -269,7 +268,6 @@ public class ProductConfig {
 
 
   public ProductConfig iconAssetId(String iconAssetId) {
-    
     this.iconAssetId = iconAssetId;
     return this;
   }
@@ -278,12 +276,10 @@ public class ProductConfig {
    * The icon representing the primary brand(s) associated with this product. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object 
    * @return iconAssetId
   **/
-  @ApiModelProperty(example = "739d87e5-629d-11e3-949a-0800200c9a66", required = true, value = "The icon representing the primary brand(s) associated with this product. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object ")
-
+  @javax.annotation.Nonnull
   public String getIconAssetId() {
     return iconAssetId;
   }
-
 
   public void setIconAssetId(String iconAssetId) {
     this.iconAssetId = iconAssetId;
@@ -291,7 +287,6 @@ public class ProductConfig {
 
 
   public ProductConfig foregroundColor(String foregroundColor) {
-    
     this.foregroundColor = foregroundColor;
     return this;
   }
@@ -300,12 +295,10 @@ public class ProductConfig {
    * Foreground color, used to overlay text on top of the card image. Always returned in Product Configuration object 
    * @return foregroundColor
   **/
-  @ApiModelProperty(example = "0", required = true, value = "Foreground color, used to overlay text on top of the card image. Always returned in Product Configuration object ")
-
+  @javax.annotation.Nonnull
   public String getForegroundColor() {
     return foregroundColor;
   }
-
 
   public void setForegroundColor(String foregroundColor) {
     this.foregroundColor = foregroundColor;
@@ -313,7 +306,6 @@ public class ProductConfig {
 
 
   public ProductConfig issuerName(String issuerName) {
-    
     this.issuerName = issuerName;
     return this;
   }
@@ -322,12 +314,10 @@ public class ProductConfig {
    * Name of the issuing bank. Always returned in Product Configuration object 
    * @return issuerName
   **/
-  @ApiModelProperty(example = "Issuing Bank", required = true, value = "Name of the issuing bank. Always returned in Product Configuration object ")
-
+  @javax.annotation.Nonnull
   public String getIssuerName() {
     return issuerName;
   }
-
 
   public void setIssuerName(String issuerName) {
     this.issuerName = issuerName;
@@ -335,7 +325,6 @@ public class ProductConfig {
 
 
   public ProductConfig shortDescription(String shortDescription) {
-    
     this.shortDescription = shortDescription;
     return this;
   }
@@ -344,12 +333,10 @@ public class ProductConfig {
    * A short description for this product. Always returned in Product Configuration object 
    * @return shortDescription
   **/
-  @ApiModelProperty(example = "Bank Rewards MasterCard", required = true, value = "A short description for this product. Always returned in Product Configuration object ")
-
+  @javax.annotation.Nonnull
   public String getShortDescription() {
     return shortDescription;
   }
-
 
   public void setShortDescription(String shortDescription) {
     this.shortDescription = shortDescription;
@@ -357,7 +344,6 @@ public class ProductConfig {
 
 
   public ProductConfig longDescription(String longDescription) {
-    
     this.longDescription = longDescription;
     return this;
   }
@@ -367,12 +353,9 @@ public class ProductConfig {
    * @return longDescription
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Bank Rewards MasterCard with the super duper rewards program", value = "A long description for this product. ")
-
   public String getLongDescription() {
     return longDescription;
   }
-
 
   public void setLongDescription(String longDescription) {
     this.longDescription = longDescription;
@@ -380,7 +363,6 @@ public class ProductConfig {
 
 
   public ProductConfig customerServiceUrl(String customerServiceUrl) {
-    
     this.customerServiceUrl = customerServiceUrl;
     return this;
   }
@@ -390,12 +372,9 @@ public class ProductConfig {
    * @return customerServiceUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "https://bank.com/customerservice", value = "Customer service website of the issuing bank. ")
-
   public String getCustomerServiceUrl() {
     return customerServiceUrl;
   }
-
 
   public void setCustomerServiceUrl(String customerServiceUrl) {
     this.customerServiceUrl = customerServiceUrl;
@@ -403,7 +382,6 @@ public class ProductConfig {
 
 
   public ProductConfig customerServiceEmail(String customerServiceEmail) {
-    
     this.customerServiceEmail = customerServiceEmail;
     return this;
   }
@@ -413,12 +391,9 @@ public class ProductConfig {
    * @return customerServiceEmail
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "customerservice@bank.com", value = "Customer service email address of the issuing bank. ")
-
   public String getCustomerServiceEmail() {
     return customerServiceEmail;
   }
-
 
   public void setCustomerServiceEmail(String customerServiceEmail) {
     this.customerServiceEmail = customerServiceEmail;
@@ -426,7 +401,6 @@ public class ProductConfig {
 
 
   public ProductConfig customerServicePhoneNumber(String customerServicePhoneNumber) {
-    
     this.customerServicePhoneNumber = customerServicePhoneNumber;
     return this;
   }
@@ -436,12 +410,9 @@ public class ProductConfig {
    * @return customerServicePhoneNumber
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "1234567891", value = "Customer service phone number of the issuing bank. ")
-
   public String getCustomerServicePhoneNumber() {
     return customerServicePhoneNumber;
   }
-
 
   public void setCustomerServicePhoneNumber(String customerServicePhoneNumber) {
     this.customerServicePhoneNumber = customerServicePhoneNumber;
@@ -449,7 +420,6 @@ public class ProductConfig {
 
 
   public ProductConfig issuerMobileApp(Object issuerMobileApp) {
-    
     this.issuerMobileApp = issuerMobileApp;
     return this;
   }
@@ -459,12 +429,9 @@ public class ProductConfig {
    * @return issuerMobileApp
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Contains one or more mobile app details that may be used to deep link from the Mobile Payment App to the issuer mobile app. ")
-
   public Object getIssuerMobileApp() {
     return issuerMobileApp;
   }
-
 
   public void setIssuerMobileApp(Object issuerMobileApp) {
     this.issuerMobileApp = issuerMobileApp;
@@ -472,7 +439,6 @@ public class ProductConfig {
 
 
   public ProductConfig onlineBankingLoginUrl(String onlineBankingLoginUrl) {
-    
     this.onlineBankingLoginUrl = onlineBankingLoginUrl;
     return this;
   }
@@ -482,12 +448,9 @@ public class ProductConfig {
    * @return onlineBankingLoginUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "bank.com", value = "Logon URL for the issuing bank?s online banking website. ")
-
   public String getOnlineBankingLoginUrl() {
     return onlineBankingLoginUrl;
   }
-
 
   public void setOnlineBankingLoginUrl(String onlineBankingLoginUrl) {
     this.onlineBankingLoginUrl = onlineBankingLoginUrl;
@@ -495,7 +458,6 @@ public class ProductConfig {
 
 
   public ProductConfig termsAndConditionsUrl(String termsAndConditionsUrl) {
-    
     this.termsAndConditionsUrl = termsAndConditionsUrl;
     return this;
   }
@@ -505,12 +467,9 @@ public class ProductConfig {
    * @return termsAndConditionsUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "https://bank.com/termsAndConditions", value = "URL linking to the issuing bank?s terms and conditions for this product. ")
-
   public String getTermsAndConditionsUrl() {
     return termsAndConditionsUrl;
   }
-
 
   public void setTermsAndConditionsUrl(String termsAndConditionsUrl) {
     this.termsAndConditionsUrl = termsAndConditionsUrl;
@@ -518,7 +477,6 @@ public class ProductConfig {
 
 
   public ProductConfig privacyPolicyUrl(String privacyPolicyUrl) {
-    
     this.privacyPolicyUrl = privacyPolicyUrl;
     return this;
   }
@@ -528,12 +486,9 @@ public class ProductConfig {
    * @return privacyPolicyUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "https://bank.com/privacy", value = "URL linking to the issuing bank?s privacy policy for this product. ")
-
   public String getPrivacyPolicyUrl() {
     return privacyPolicyUrl;
   }
-
 
   public void setPrivacyPolicyUrl(String privacyPolicyUrl) {
     this.privacyPolicyUrl = privacyPolicyUrl;
@@ -541,7 +496,6 @@ public class ProductConfig {
 
 
   public ProductConfig issuerProductConfigCode(String issuerProductConfigCode) {
-    
     this.issuerProductConfigCode = issuerProductConfigCode;
     return this;
   }
@@ -551,16 +505,14 @@ public class ProductConfig {
    * @return issuerProductConfigCode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "123456", value = "Freeform identifier for this product configuration as assigned by the issuer. ")
-
   public String getIssuerProductConfigCode() {
     return issuerProductConfigCode;
   }
 
-
   public void setIssuerProductConfigCode(String issuerProductConfigCode) {
     this.issuerProductConfigCode = issuerProductConfigCode;
   }
+
 
 
   @Override
@@ -638,5 +590,176 @@ public class ProductConfig {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("brandLogoAssetId");
+    openapiFields.add("issuerLogoAssetId");
+    openapiFields.add("isCoBranded");
+    openapiFields.add("coBrandName");
+    openapiFields.add("coBrandLogoAssetId");
+    openapiFields.add("cardBackgroundCombinedAssetId");
+    openapiFields.add("cardBackgroundAssetId");
+    openapiFields.add("iconAssetId");
+    openapiFields.add("foregroundColor");
+    openapiFields.add("issuerName");
+    openapiFields.add("shortDescription");
+    openapiFields.add("longDescription");
+    openapiFields.add("customerServiceUrl");
+    openapiFields.add("customerServiceEmail");
+    openapiFields.add("customerServicePhoneNumber");
+    openapiFields.add("issuerMobileApp");
+    openapiFields.add("onlineBankingLoginUrl");
+    openapiFields.add("termsAndConditionsUrl");
+    openapiFields.add("privacyPolicyUrl");
+    openapiFields.add("issuerProductConfigCode");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("brandLogoAssetId");
+    openapiRequiredFields.add("issuerLogoAssetId");
+    openapiRequiredFields.add("isCoBranded");
+    openapiRequiredFields.add("iconAssetId");
+    openapiRequiredFields.add("foregroundColor");
+    openapiRequiredFields.add("issuerName");
+    openapiRequiredFields.add("shortDescription");
+  }
+
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to ProductConfig
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!ProductConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ProductConfig is not found in the empty JSON string", ProductConfig.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!ProductConfig.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ProductConfig` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : ProductConfig.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (!jsonObj.get("brandLogoAssetId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `brandLogoAssetId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("brandLogoAssetId").toString()));
+      }
+      if (!jsonObj.get("issuerLogoAssetId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `issuerLogoAssetId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("issuerLogoAssetId").toString()));
+      }
+      if ((jsonObj.get("coBrandName") != null && !jsonObj.get("coBrandName").isJsonNull()) && !jsonObj.get("coBrandName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `coBrandName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("coBrandName").toString()));
+      }
+      if ((jsonObj.get("coBrandLogoAssetId") != null && !jsonObj.get("coBrandLogoAssetId").isJsonNull()) && !jsonObj.get("coBrandLogoAssetId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `coBrandLogoAssetId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("coBrandLogoAssetId").toString()));
+      }
+      if ((jsonObj.get("cardBackgroundCombinedAssetId") != null && !jsonObj.get("cardBackgroundCombinedAssetId").isJsonNull()) && !jsonObj.get("cardBackgroundCombinedAssetId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `cardBackgroundCombinedAssetId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cardBackgroundCombinedAssetId").toString()));
+      }
+      if ((jsonObj.get("cardBackgroundAssetId") != null && !jsonObj.get("cardBackgroundAssetId").isJsonNull()) && !jsonObj.get("cardBackgroundAssetId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `cardBackgroundAssetId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cardBackgroundAssetId").toString()));
+      }
+      if (!jsonObj.get("iconAssetId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `iconAssetId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("iconAssetId").toString()));
+      }
+      if (!jsonObj.get("foregroundColor").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `foregroundColor` to be a primitive type in the JSON string but got `%s`", jsonObj.get("foregroundColor").toString()));
+      }
+      if (!jsonObj.get("issuerName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `issuerName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("issuerName").toString()));
+      }
+      if (!jsonObj.get("shortDescription").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `shortDescription` to be a primitive type in the JSON string but got `%s`", jsonObj.get("shortDescription").toString()));
+      }
+      if ((jsonObj.get("longDescription") != null && !jsonObj.get("longDescription").isJsonNull()) && !jsonObj.get("longDescription").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `longDescription` to be a primitive type in the JSON string but got `%s`", jsonObj.get("longDescription").toString()));
+      }
+      if ((jsonObj.get("customerServiceUrl") != null && !jsonObj.get("customerServiceUrl").isJsonNull()) && !jsonObj.get("customerServiceUrl").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `customerServiceUrl` to be a primitive type in the JSON string but got `%s`", jsonObj.get("customerServiceUrl").toString()));
+      }
+      if ((jsonObj.get("customerServiceEmail") != null && !jsonObj.get("customerServiceEmail").isJsonNull()) && !jsonObj.get("customerServiceEmail").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `customerServiceEmail` to be a primitive type in the JSON string but got `%s`", jsonObj.get("customerServiceEmail").toString()));
+      }
+      if ((jsonObj.get("customerServicePhoneNumber") != null && !jsonObj.get("customerServicePhoneNumber").isJsonNull()) && !jsonObj.get("customerServicePhoneNumber").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `customerServicePhoneNumber` to be a primitive type in the JSON string but got `%s`", jsonObj.get("customerServicePhoneNumber").toString()));
+      }
+      if ((jsonObj.get("onlineBankingLoginUrl") != null && !jsonObj.get("onlineBankingLoginUrl").isJsonNull()) && !jsonObj.get("onlineBankingLoginUrl").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `onlineBankingLoginUrl` to be a primitive type in the JSON string but got `%s`", jsonObj.get("onlineBankingLoginUrl").toString()));
+      }
+      if ((jsonObj.get("termsAndConditionsUrl") != null && !jsonObj.get("termsAndConditionsUrl").isJsonNull()) && !jsonObj.get("termsAndConditionsUrl").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `termsAndConditionsUrl` to be a primitive type in the JSON string but got `%s`", jsonObj.get("termsAndConditionsUrl").toString()));
+      }
+      if ((jsonObj.get("privacyPolicyUrl") != null && !jsonObj.get("privacyPolicyUrl").isJsonNull()) && !jsonObj.get("privacyPolicyUrl").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `privacyPolicyUrl` to be a primitive type in the JSON string but got `%s`", jsonObj.get("privacyPolicyUrl").toString()));
+      }
+      if ((jsonObj.get("issuerProductConfigCode") != null && !jsonObj.get("issuerProductConfigCode").isJsonNull()) && !jsonObj.get("issuerProductConfigCode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `issuerProductConfigCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("issuerProductConfigCode").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!ProductConfig.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ProductConfig' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<ProductConfig> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ProductConfig.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<ProductConfig>() {
+           @Override
+           public void write(JsonWriter out, ProductConfig value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public ProductConfig read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of ProductConfig given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of ProductConfig
+  * @throws IOException if the JSON string is invalid with respect to ProductConfig
+  */
+  public static ProductConfig fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ProductConfig.class);
+  }
+
+ /**
+  * Convert an instance of ProductConfig to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

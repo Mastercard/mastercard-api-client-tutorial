@@ -14,20 +14,42 @@
 package com.mastercard.developer.mdes_digital_enablement_client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.mastercard.developer.mdes_digital_enablement_client.JSON;
 
 /**
  * TokenInfoForNTUAndGetToken
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-24T13:37:45.612619+01:00[Europe/Dublin]", comments = "Generator version: 7.5.0")
 public class TokenInfoForNTUAndGetToken {
   public static final String SERIALIZED_NAME_TOKEN_PAN_SUFFIX = "tokenPanSuffix";
   @SerializedName(SERIALIZED_NAME_TOKEN_PAN_SUFFIX)
@@ -61,9 +83,10 @@ public class TokenInfoForNTUAndGetToken {
   @SerializedName(SERIALIZED_NAME_PRODUCT_CATEGORY)
   private String productCategory;
 
+  public TokenInfoForNTUAndGetToken() {
+  }
 
   public TokenInfoForNTUAndGetToken tokenPanSuffix(String tokenPanSuffix) {
-    
     this.tokenPanSuffix = tokenPanSuffix;
     return this;
   }
@@ -72,12 +95,10 @@ public class TokenInfoForNTUAndGetToken {
    * The last few digits (typically four) of the Token PAN. 
    * @return tokenPanSuffix
   **/
-  @ApiModelProperty(example = "0001", required = true, value = "The last few digits (typically four) of the Token PAN. ")
-
+  @javax.annotation.Nonnull
   public String getTokenPanSuffix() {
     return tokenPanSuffix;
   }
-
 
   public void setTokenPanSuffix(String tokenPanSuffix) {
     this.tokenPanSuffix = tokenPanSuffix;
@@ -85,7 +106,6 @@ public class TokenInfoForNTUAndGetToken {
 
 
   public TokenInfoForNTUAndGetToken accountPanPrefix(String accountPanPrefix) {
-    
     this.accountPanPrefix = accountPanPrefix;
     return this;
   }
@@ -94,12 +114,10 @@ public class TokenInfoForNTUAndGetToken {
    * The first few digits (typically six) of the Account PAN. 
    * @return accountPanPrefix
   **/
-  @ApiModelProperty(example = "500000", required = true, value = "The first few digits (typically six) of the Account PAN. ")
-
+  @javax.annotation.Nonnull
   public String getAccountPanPrefix() {
     return accountPanPrefix;
   }
-
 
   public void setAccountPanPrefix(String accountPanPrefix) {
     this.accountPanPrefix = accountPanPrefix;
@@ -107,7 +125,6 @@ public class TokenInfoForNTUAndGetToken {
 
 
   public TokenInfoForNTUAndGetToken accountPanSuffix(String accountPanSuffix) {
-    
     this.accountPanSuffix = accountPanSuffix;
     return this;
   }
@@ -116,12 +133,10 @@ public class TokenInfoForNTUAndGetToken {
    * The last few digits (typically four) of the Account PAN. 
    * @return accountPanSuffix
   **/
-  @ApiModelProperty(example = "0011", required = true, value = "The last few digits (typically four) of the Account PAN. ")
-
+  @javax.annotation.Nonnull
   public String getAccountPanSuffix() {
     return accountPanSuffix;
   }
-
 
   public void setAccountPanSuffix(String accountPanSuffix) {
     this.accountPanSuffix = accountPanSuffix;
@@ -129,7 +144,6 @@ public class TokenInfoForNTUAndGetToken {
 
 
   public TokenInfoForNTUAndGetToken tokenExpiry(String tokenExpiry) {
-    
     this.tokenExpiry = tokenExpiry;
     return this;
   }
@@ -138,12 +152,10 @@ public class TokenInfoForNTUAndGetToken {
    * The expiry of the Token PAN, given in MMYY format. 
    * @return tokenExpiry
   **/
-  @ApiModelProperty(example = "921", required = true, value = "The expiry of the Token PAN, given in MMYY format. ")
-
+  @javax.annotation.Nonnull
   public String getTokenExpiry() {
     return tokenExpiry;
   }
-
 
   public void setTokenExpiry(String tokenExpiry) {
     this.tokenExpiry = tokenExpiry;
@@ -151,7 +163,6 @@ public class TokenInfoForNTUAndGetToken {
 
 
   public TokenInfoForNTUAndGetToken accountPanExpiry(String accountPanExpiry) {
-    
     this.accountPanExpiry = accountPanExpiry;
     return this;
   }
@@ -161,12 +172,9 @@ public class TokenInfoForNTUAndGetToken {
    * @return accountPanExpiry
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "921", value = "The expiry of the Account PAN, given in MMYY format. ")
-
   public String getAccountPanExpiry() {
     return accountPanExpiry;
   }
-
 
   public void setAccountPanExpiry(String accountPanExpiry) {
     this.accountPanExpiry = accountPanExpiry;
@@ -174,7 +182,6 @@ public class TokenInfoForNTUAndGetToken {
 
 
   public TokenInfoForNTUAndGetToken dsrpCapable(String dsrpCapable) {
-    
     this.dsrpCapable = dsrpCapable;
     return this;
   }
@@ -183,12 +190,10 @@ public class TokenInfoForNTUAndGetToken {
    * Whether DSRP transactions are supported by this Token. Must be either &#39;true&#39; (DSRP capable) or &#39;false&#39; (Not DSRP capable). 
    * @return dsrpCapable
   **/
-  @ApiModelProperty(example = "true", required = true, value = "Whether DSRP transactions are supported by this Token. Must be either 'true' (DSRP capable) or 'false' (Not DSRP capable). ")
-
+  @javax.annotation.Nonnull
   public String getDsrpCapable() {
     return dsrpCapable;
   }
-
 
   public void setDsrpCapable(String dsrpCapable) {
     this.dsrpCapable = dsrpCapable;
@@ -196,7 +201,6 @@ public class TokenInfoForNTUAndGetToken {
 
 
   public TokenInfoForNTUAndGetToken tokenAssuranceLevel(Integer tokenAssuranceLevel) {
-    
     this.tokenAssuranceLevel = tokenAssuranceLevel;
     return this;
   }
@@ -206,12 +210,9 @@ public class TokenInfoForNTUAndGetToken {
    * @return tokenAssuranceLevel
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "3", value = "A value indicating the confidence level of the token to Account PAN binding. ")
-
   public Integer getTokenAssuranceLevel() {
     return tokenAssuranceLevel;
   }
-
 
   public void setTokenAssuranceLevel(Integer tokenAssuranceLevel) {
     this.tokenAssuranceLevel = tokenAssuranceLevel;
@@ -219,7 +220,6 @@ public class TokenInfoForNTUAndGetToken {
 
 
   public TokenInfoForNTUAndGetToken productCategory(String productCategory) {
-    
     this.productCategory = productCategory;
     return this;
   }
@@ -229,16 +229,14 @@ public class TokenInfoForNTUAndGetToken {
    * @return productCategory
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "CREDIT", value = "The product category of the Account PAN. When supplied will be one of the following values:    * CREDIT   * DEBIT   * PREPAID   * UNKNOWN ")
-
   public String getProductCategory() {
     return productCategory;
   }
 
-
   public void setProductCategory(String productCategory) {
     this.productCategory = productCategory;
   }
+
 
 
   @Override
@@ -292,5 +290,129 @@ public class TokenInfoForNTUAndGetToken {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("tokenPanSuffix");
+    openapiFields.add("accountPanPrefix");
+    openapiFields.add("accountPanSuffix");
+    openapiFields.add("tokenExpiry");
+    openapiFields.add("accountPanExpiry");
+    openapiFields.add("dsrpCapable");
+    openapiFields.add("tokenAssuranceLevel");
+    openapiFields.add("productCategory");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("tokenPanSuffix");
+    openapiRequiredFields.add("accountPanPrefix");
+    openapiRequiredFields.add("accountPanSuffix");
+    openapiRequiredFields.add("tokenExpiry");
+    openapiRequiredFields.add("dsrpCapable");
+  }
+
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to TokenInfoForNTUAndGetToken
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!TokenInfoForNTUAndGetToken.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in TokenInfoForNTUAndGetToken is not found in the empty JSON string", TokenInfoForNTUAndGetToken.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!TokenInfoForNTUAndGetToken.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `TokenInfoForNTUAndGetToken` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : TokenInfoForNTUAndGetToken.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (!jsonObj.get("tokenPanSuffix").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tokenPanSuffix` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tokenPanSuffix").toString()));
+      }
+      if (!jsonObj.get("accountPanPrefix").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `accountPanPrefix` to be a primitive type in the JSON string but got `%s`", jsonObj.get("accountPanPrefix").toString()));
+      }
+      if (!jsonObj.get("accountPanSuffix").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `accountPanSuffix` to be a primitive type in the JSON string but got `%s`", jsonObj.get("accountPanSuffix").toString()));
+      }
+      if (!jsonObj.get("tokenExpiry").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tokenExpiry` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tokenExpiry").toString()));
+      }
+      if ((jsonObj.get("accountPanExpiry") != null && !jsonObj.get("accountPanExpiry").isJsonNull()) && !jsonObj.get("accountPanExpiry").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `accountPanExpiry` to be a primitive type in the JSON string but got `%s`", jsonObj.get("accountPanExpiry").toString()));
+      }
+      if (!jsonObj.get("dsrpCapable").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `dsrpCapable` to be a primitive type in the JSON string but got `%s`", jsonObj.get("dsrpCapable").toString()));
+      }
+      if ((jsonObj.get("productCategory") != null && !jsonObj.get("productCategory").isJsonNull()) && !jsonObj.get("productCategory").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `productCategory` to be a primitive type in the JSON string but got `%s`", jsonObj.get("productCategory").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!TokenInfoForNTUAndGetToken.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'TokenInfoForNTUAndGetToken' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<TokenInfoForNTUAndGetToken> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(TokenInfoForNTUAndGetToken.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<TokenInfoForNTUAndGetToken>() {
+           @Override
+           public void write(JsonWriter out, TokenInfoForNTUAndGetToken value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public TokenInfoForNTUAndGetToken read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of TokenInfoForNTUAndGetToken given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of TokenInfoForNTUAndGetToken
+  * @throws IOException if the JSON string is invalid with respect to TokenInfoForNTUAndGetToken
+  */
+  public static TokenInfoForNTUAndGetToken fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, TokenInfoForNTUAndGetToken.class);
+  }
+
+ /**
+  * Convert an instance of TokenInfoForNTUAndGetToken to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

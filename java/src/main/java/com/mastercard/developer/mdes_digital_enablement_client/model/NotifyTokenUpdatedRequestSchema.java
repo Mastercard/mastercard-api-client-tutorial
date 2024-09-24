@@ -14,21 +14,43 @@
 package com.mastercard.developer.mdes_digital_enablement_client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.mastercard.developer.mdes_digital_enablement_client.model.EncryptedPayload;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.mastercard.developer.mdes_digital_enablement_client.JSON;
 
 /**
  * NotifyTokenUpdatedRequestSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-24T13:37:45.612619+01:00[Europe/Dublin]", comments = "Generator version: 7.5.0")
 public class NotifyTokenUpdatedRequestSchema {
   public static final String SERIALIZED_NAME_RESPONSE_HOST = "responseHost";
   @SerializedName(SERIALIZED_NAME_RESPONSE_HOST)
@@ -42,9 +64,10 @@ public class NotifyTokenUpdatedRequestSchema {
   @SerializedName(SERIALIZED_NAME_ENCRYPTED_PAYLOAD)
   private EncryptedPayload encryptedPayload;
 
+  public NotifyTokenUpdatedRequestSchema() {
+  }
 
   public NotifyTokenUpdatedRequestSchema responseHost(String responseHost) {
-    
     this.responseHost = responseHost;
     return this;
   }
@@ -53,12 +76,10 @@ public class NotifyTokenUpdatedRequestSchema {
    * The host that originated the request. Future calls in the same conversation should be routed to this host. 
    * @return responseHost
   **/
-  @ApiModelProperty(example = "site2.payment-app-provider.com", required = true, value = "The host that originated the request. Future calls in the same conversation should be routed to this host. ")
-
+  @javax.annotation.Nonnull
   public String getResponseHost() {
     return responseHost;
   }
-
 
   public void setResponseHost(String responseHost) {
     this.responseHost = responseHost;
@@ -66,7 +87,6 @@ public class NotifyTokenUpdatedRequestSchema {
 
 
   public NotifyTokenUpdatedRequestSchema requestId(String requestId) {
-    
     this.requestId = requestId;
     return this;
   }
@@ -75,12 +95,10 @@ public class NotifyTokenUpdatedRequestSchema {
    * Unique identifier for the request. 
    * @return requestId
   **/
-  @ApiModelProperty(example = "123456", required = true, value = "Unique identifier for the request. ")
-
+  @javax.annotation.Nonnull
   public String getRequestId() {
     return requestId;
   }
-
 
   public void setRequestId(String requestId) {
     this.requestId = requestId;
@@ -88,7 +106,6 @@ public class NotifyTokenUpdatedRequestSchema {
 
 
   public NotifyTokenUpdatedRequestSchema encryptedPayload(EncryptedPayload encryptedPayload) {
-    
     this.encryptedPayload = encryptedPayload;
     return this;
   }
@@ -97,16 +114,15 @@ public class NotifyTokenUpdatedRequestSchema {
    * Get encryptedPayload
    * @return encryptedPayload
   **/
-  @ApiModelProperty(required = true, value = "")
-
+  @javax.annotation.Nonnull
   public EncryptedPayload getEncryptedPayload() {
     return encryptedPayload;
   }
 
-
   public void setEncryptedPayload(EncryptedPayload encryptedPayload) {
     this.encryptedPayload = encryptedPayload;
   }
+
 
 
   @Override
@@ -150,5 +166,109 @@ public class NotifyTokenUpdatedRequestSchema {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("responseHost");
+    openapiFields.add("requestId");
+    openapiFields.add("encryptedPayload");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("responseHost");
+    openapiRequiredFields.add("requestId");
+    openapiRequiredFields.add("encryptedPayload");
+  }
+
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to NotifyTokenUpdatedRequestSchema
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!NotifyTokenUpdatedRequestSchema.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in NotifyTokenUpdatedRequestSchema is not found in the empty JSON string", NotifyTokenUpdatedRequestSchema.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!NotifyTokenUpdatedRequestSchema.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `NotifyTokenUpdatedRequestSchema` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : NotifyTokenUpdatedRequestSchema.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (!jsonObj.get("responseHost").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `responseHost` to be a primitive type in the JSON string but got `%s`", jsonObj.get("responseHost").toString()));
+      }
+      if (!jsonObj.get("requestId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `requestId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("requestId").toString()));
+      }
+      // validate the required field `encryptedPayload`
+      EncryptedPayload.validateJsonElement(jsonObj.get("encryptedPayload"));
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!NotifyTokenUpdatedRequestSchema.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'NotifyTokenUpdatedRequestSchema' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<NotifyTokenUpdatedRequestSchema> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(NotifyTokenUpdatedRequestSchema.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<NotifyTokenUpdatedRequestSchema>() {
+           @Override
+           public void write(JsonWriter out, NotifyTokenUpdatedRequestSchema value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public NotifyTokenUpdatedRequestSchema read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of NotifyTokenUpdatedRequestSchema given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of NotifyTokenUpdatedRequestSchema
+  * @throws IOException if the JSON string is invalid with respect to NotifyTokenUpdatedRequestSchema
+  */
+  public static NotifyTokenUpdatedRequestSchema fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, NotifyTokenUpdatedRequestSchema.class);
+  }
+
+ /**
+  * Convert an instance of NotifyTokenUpdatedRequestSchema to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

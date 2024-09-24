@@ -13,21 +13,16 @@
 
 package com.mastercard.developer.mdes_digital_enablement_client;
 
+import com.fasterxml.jackson.databind.util.StdDateFormat;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapter;
-import com.google.gson.internal.bind.util.ISO8601Utils;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.google.gson.JsonElement;
 import io.gsonfire.GsonFireBuilder;
-import io.gsonfire.TypeSelector;
-import org.threeten.bp.LocalDate;
-import org.threeten.bp.OffsetDateTime;
-import org.threeten.bp.format.DateTimeFormatter;
 
-import com.mastercard.developer.mdes_digital_enablement_client.model.*;
 import okio.ByteString;
 
 import java.io.IOException;
@@ -35,20 +30,34 @@ import java.io.StringReader;
 import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.ParsePosition;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.Locale;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.TimeZone;
 
+/*
+ * A JSON utility class
+ *
+ * NOTE: in the future, this class may be converted to static, which may break
+ *       backward-compatibility
+ */
 public class JSON {
-    private Gson gson;
-    private boolean isLenientOnJson = false;
-    private DateTypeAdapter dateTypeAdapter = new DateTypeAdapter();
-    private SqlDateTypeAdapter sqlDateTypeAdapter = new SqlDateTypeAdapter();
-    private OffsetDateTimeTypeAdapter offsetDateTimeTypeAdapter = new OffsetDateTimeTypeAdapter();
-    private LocalDateTypeAdapter localDateTypeAdapter = new LocalDateTypeAdapter();
-    private ByteArrayAdapter byteArrayAdapter = new ByteArrayAdapter();
+    private static Gson gson;
+    private static boolean isLenientOnJson = false;
+    private static DateTypeAdapter dateTypeAdapter = new DateTypeAdapter();
+    private static SqlDateTypeAdapter sqlDateTypeAdapter = new SqlDateTypeAdapter();
+    private static OffsetDateTimeTypeAdapter offsetDateTimeTypeAdapter = new OffsetDateTimeTypeAdapter();
+    private static LocalDateTypeAdapter localDateTypeAdapter = new LocalDateTypeAdapter();
+    private static ByteArrayAdapter byteArrayAdapter = new ByteArrayAdapter();
+
+    private static final StdDateFormat sdf = new StdDateFormat()
+        .withTimeZone(TimeZone.getTimeZone(ZoneId.systemDefault()))
+        .withColonInTimeZone(true);
+    private static final DateTimeFormatter dtf = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
 
     @SuppressWarnings("unchecked")
     public static GsonBuilder createGson() {
@@ -81,14 +90,68 @@ public class JSON {
         return clazz;
     }
 
-    public JSON() {
-        gson = createGson()
-            .registerTypeAdapter(Date.class, dateTypeAdapter)
-            .registerTypeAdapter(java.sql.Date.class, sqlDateTypeAdapter)
-            .registerTypeAdapter(OffsetDateTime.class, offsetDateTimeTypeAdapter)
-            .registerTypeAdapter(LocalDate.class, localDateTypeAdapter)
-            .registerTypeAdapter(byte[].class, byteArrayAdapter)
-            .create();
+    static {
+        GsonBuilder gsonBuilder = createGson();
+        gsonBuilder.registerTypeAdapter(Date.class, dateTypeAdapter);
+        gsonBuilder.registerTypeAdapter(java.sql.Date.class, sqlDateTypeAdapter);
+        gsonBuilder.registerTypeAdapter(OffsetDateTime.class, offsetDateTimeTypeAdapter);
+        gsonBuilder.registerTypeAdapter(LocalDate.class, localDateTypeAdapter);
+        gsonBuilder.registerTypeAdapter(byte[].class, byteArrayAdapter);
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.AccountHolderData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.AccountHolderDataOutbound.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.AssetResponseSchema.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.AuthenticationMethods.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.BillingAddress.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.CardAccountDataInbound.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.CardAccountDataOutbound.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.DecisioningData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.DeleteRequestSchema.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.DeleteResponseSchema.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.EncryptedPayload.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.EncryptedPayloadTransact.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.Error.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.ErrorsResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.FundingAccountData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.FundingAccountInfo.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.FundingAccountInfoEncryptedPayload.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.GatewayError.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.GatewayErrorsResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.GatewayErrorsSchema.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.GetTaskStatusRequestSchema.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.GetTaskStatusResponseSchema.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.GetTokenRequestSchema.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.GetTokenResponseSchema.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.MediaContent.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.NotifyTokenEncryptedPayload.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.NotifyTokenUpdatedRequestSchema.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.NotifyTokenUpdatedResponseSchema.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.PhoneNumber.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.ProductConfig.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.SearchTokensRequestSchema.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.SearchTokensResponseSchema.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.SuspendRequestSchema.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.SuspendResponseSchema.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.Token.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.TokenDetail.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.TokenDetailData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.TokenDetailDataGetTokenOnly.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.TokenDetailDataPAROnly.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.TokenDetailGetTokenOnly.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.TokenDetailPAROnly.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.TokenForGetToken.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.TokenForLCM.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.TokenForNTU.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.TokenInfo.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.TokenInfoForNTUAndGetToken.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.TokenizeRequestSchema.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.TokenizeResponseSchema.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.TransactEncryptedData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.TransactError.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.TransactRequestSchema.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.TransactResponseSchema.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.UnSuspendRequestSchema.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.mastercard.developer.mdes_digital_enablement_client.model.UnSuspendResponseSchema.CustomTypeAdapterFactory());
+        gson = gsonBuilder.create();
     }
 
     /**
@@ -96,7 +159,7 @@ public class JSON {
      *
      * @return Gson
      */
-    public Gson getGson() {
+    public static Gson getGson() {
         return gson;
     }
 
@@ -104,16 +167,13 @@ public class JSON {
      * Set Gson.
      *
      * @param gson Gson
-     * @return JSON
      */
-    public JSON setGson(Gson gson) {
-        this.gson = gson;
-        return this;
+    public static void setGson(Gson gson) {
+        JSON.gson = gson;
     }
 
-    public JSON setLenientOnJson(boolean lenientOnJson) {
+    public static void setLenientOnJson(boolean lenientOnJson) {
         isLenientOnJson = lenientOnJson;
-        return this;
     }
 
     /**
@@ -122,7 +182,7 @@ public class JSON {
      * @param obj Object
      * @return String representation of the JSON
      */
-    public String serialize(Object obj) {
+    public static String serialize(Object obj) {
         return gson.toJson(obj);
     }
 
@@ -135,7 +195,7 @@ public class JSON {
      * @return The deserialized Java object
      */
     @SuppressWarnings("unchecked")
-    public <T> T deserialize(String body, Type returnType) {
+    public static <T> T deserialize(String body, Type returnType) {
         try {
             if (isLenientOnJson) {
                 JsonReader jsonReader = new JsonReader(new StringReader(body));
@@ -159,7 +219,7 @@ public class JSON {
     /**
      * Gson TypeAdapter for Byte Array type
      */
-    public class ByteArrayAdapter extends TypeAdapter<byte[]> {
+    public static class ByteArrayAdapter extends TypeAdapter<byte[]> {
 
         @Override
         public void write(JsonWriter out, byte[] value) throws IOException {
@@ -231,7 +291,7 @@ public class JSON {
     /**
      * Gson TypeAdapter for JSR310 LocalDate type
      */
-    public class LocalDateTypeAdapter extends TypeAdapter<LocalDate> {
+    public static class LocalDateTypeAdapter extends TypeAdapter<LocalDate> {
 
         private DateTimeFormatter formatter;
 
@@ -269,14 +329,12 @@ public class JSON {
         }
     }
 
-    public JSON setOffsetDateTimeFormat(DateTimeFormatter dateFormat) {
+    public static void setOffsetDateTimeFormat(DateTimeFormatter dateFormat) {
         offsetDateTimeTypeAdapter.setFormat(dateFormat);
-        return this;
     }
 
-    public JSON setLocalDateFormat(DateTimeFormatter dateFormat) {
+    public static void setLocalDateFormat(DateTimeFormatter dateFormat) {
         localDateTypeAdapter.setFormat(dateFormat);
-        return this;
     }
 
     /**
@@ -325,7 +383,7 @@ public class JSON {
                         if (dateFormat != null) {
                             return new java.sql.Date(dateFormat.parse(date).getTime());
                         }
-                        return new java.sql.Date(ISO8601Utils.parse(date, new ParsePosition(0)).getTime());
+                        return new java.sql.Date(sdf.parse(date).getTime());
                     } catch (ParseException e) {
                         throw new JsonParseException(e);
                     }
@@ -335,7 +393,7 @@ public class JSON {
 
     /**
      * Gson TypeAdapter for java.util.Date type
-     * If the dateFormat is null, ISO8601Utils will be used.
+     * If the dateFormat is null, DateTimeFormatter will be used.
      */
     public static class DateTypeAdapter extends TypeAdapter<Date> {
 
@@ -360,7 +418,7 @@ public class JSON {
                 if (dateFormat != null) {
                     value = dateFormat.format(date);
                 } else {
-                    value = ISO8601Utils.format(date, true);
+                    value = date.toInstant().atOffset(ZoneOffset.UTC).format(dtf);
                 }
                 out.value(value);
             }
@@ -379,7 +437,7 @@ public class JSON {
                             if (dateFormat != null) {
                                 return dateFormat.parse(date);
                             }
-                            return ISO8601Utils.parse(date, new ParsePosition(0));
+                            return sdf.parse(date);
                         } catch (ParseException e) {
                             throw new JsonParseException(e);
                         }
@@ -390,14 +448,11 @@ public class JSON {
         }
     }
 
-    public JSON setDateFormat(DateFormat dateFormat) {
+    public static void setDateFormat(DateFormat dateFormat) {
         dateTypeAdapter.setFormat(dateFormat);
-        return this;
     }
 
-    public JSON setSqlDateFormat(DateFormat dateFormat) {
+    public static void setSqlDateFormat(DateFormat dateFormat) {
         sqlDateTypeAdapter.setFormat(dateFormat);
-        return this;
     }
-
 }

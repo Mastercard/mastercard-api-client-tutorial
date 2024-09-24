@@ -14,20 +14,42 @@
 package com.mastercard.developer.mdes_digital_enablement_client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.mastercard.developer.mdes_digital_enablement_client.JSON;
 
 /**
  * TokenDetailDataGetTokenOnly
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-24T13:37:45.612619+01:00[Europe/Dublin]", comments = "Generator version: 7.5.0")
 public class TokenDetailDataGetTokenOnly {
   public static final String SERIALIZED_NAME_TOKEN_NUMBER = "tokenNumber";
   @SerializedName(SERIALIZED_NAME_TOKEN_NUMBER)
@@ -45,9 +67,10 @@ public class TokenDetailDataGetTokenOnly {
   @SerializedName(SERIALIZED_NAME_PAYMENT_ACCOUNT_REFERENCE)
   private String paymentAccountReference;
 
+  public TokenDetailDataGetTokenOnly() {
+  }
 
   public TokenDetailDataGetTokenOnly tokenNumber(String tokenNumber) {
-    
     this.tokenNumber = tokenNumber;
     return this;
   }
@@ -57,12 +80,9 @@ public class TokenDetailDataGetTokenOnly {
    * @return tokenNumber
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The Token Primary Account Number of the Card. ")
-
   public String getTokenNumber() {
     return tokenNumber;
   }
-
 
   public void setTokenNumber(String tokenNumber) {
     this.tokenNumber = tokenNumber;
@@ -70,7 +90,6 @@ public class TokenDetailDataGetTokenOnly {
 
 
   public TokenDetailDataGetTokenOnly expiryMonth(String expiryMonth) {
-    
     this.expiryMonth = expiryMonth;
     return this;
   }
@@ -80,12 +99,9 @@ public class TokenDetailDataGetTokenOnly {
    * @return expiryMonth
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The month of the token expiration date. ")
-
   public String getExpiryMonth() {
     return expiryMonth;
   }
-
 
   public void setExpiryMonth(String expiryMonth) {
     this.expiryMonth = expiryMonth;
@@ -93,7 +109,6 @@ public class TokenDetailDataGetTokenOnly {
 
 
   public TokenDetailDataGetTokenOnly expiryYear(String expiryYear) {
-    
     this.expiryYear = expiryYear;
     return this;
   }
@@ -103,12 +118,9 @@ public class TokenDetailDataGetTokenOnly {
    * @return expiryYear
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The year of the token expiration date. ")
-
   public String getExpiryYear() {
     return expiryYear;
   }
-
 
   public void setExpiryYear(String expiryYear) {
     this.expiryYear = expiryYear;
@@ -116,7 +128,6 @@ public class TokenDetailDataGetTokenOnly {
 
 
   public TokenDetailDataGetTokenOnly paymentAccountReference(String paymentAccountReference) {
-    
     this.paymentAccountReference = paymentAccountReference;
     return this;
   }
@@ -126,16 +137,14 @@ public class TokenDetailDataGetTokenOnly {
    * @return paymentAccountReference
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "5001a9f027e5629d11e3949a0800a", value = "The unique account reference assigned to the PAN. Conditionally returned if the Token Requestor has opted to receive PAR and providing PAR is assigned by Mastercard or the Issuer provides PAR in the authorization message response. ")
-
   public String getPaymentAccountReference() {
     return paymentAccountReference;
   }
 
-
   public void setPaymentAccountReference(String paymentAccountReference) {
     this.paymentAccountReference = paymentAccountReference;
   }
+
 
 
   @Override
@@ -181,5 +190,104 @@ public class TokenDetailDataGetTokenOnly {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("tokenNumber");
+    openapiFields.add("expiryMonth");
+    openapiFields.add("expiryYear");
+    openapiFields.add("paymentAccountReference");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to TokenDetailDataGetTokenOnly
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!TokenDetailDataGetTokenOnly.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in TokenDetailDataGetTokenOnly is not found in the empty JSON string", TokenDetailDataGetTokenOnly.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!TokenDetailDataGetTokenOnly.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `TokenDetailDataGetTokenOnly` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("tokenNumber") != null && !jsonObj.get("tokenNumber").isJsonNull()) && !jsonObj.get("tokenNumber").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tokenNumber` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tokenNumber").toString()));
+      }
+      if ((jsonObj.get("expiryMonth") != null && !jsonObj.get("expiryMonth").isJsonNull()) && !jsonObj.get("expiryMonth").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `expiryMonth` to be a primitive type in the JSON string but got `%s`", jsonObj.get("expiryMonth").toString()));
+      }
+      if ((jsonObj.get("expiryYear") != null && !jsonObj.get("expiryYear").isJsonNull()) && !jsonObj.get("expiryYear").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `expiryYear` to be a primitive type in the JSON string but got `%s`", jsonObj.get("expiryYear").toString()));
+      }
+      if ((jsonObj.get("paymentAccountReference") != null && !jsonObj.get("paymentAccountReference").isJsonNull()) && !jsonObj.get("paymentAccountReference").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `paymentAccountReference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("paymentAccountReference").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!TokenDetailDataGetTokenOnly.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'TokenDetailDataGetTokenOnly' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<TokenDetailDataGetTokenOnly> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(TokenDetailDataGetTokenOnly.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<TokenDetailDataGetTokenOnly>() {
+           @Override
+           public void write(JsonWriter out, TokenDetailDataGetTokenOnly value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public TokenDetailDataGetTokenOnly read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of TokenDetailDataGetTokenOnly given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of TokenDetailDataGetTokenOnly
+  * @throws IOException if the JSON string is invalid with respect to TokenDetailDataGetTokenOnly
+  */
+  public static TokenDetailDataGetTokenOnly fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, TokenDetailDataGetTokenOnly.class);
+  }
+
+ /**
+  * Convert an instance of TokenDetailDataGetTokenOnly to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

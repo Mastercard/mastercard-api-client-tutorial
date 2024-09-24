@@ -14,20 +14,42 @@
 package com.mastercard.developer.mdes_digital_enablement_client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.mastercard.developer.mdes_digital_enablement_client.JSON;
 
 /**
  * BillingAddress
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-24T13:37:45.612619+01:00[Europe/Dublin]", comments = "Generator version: 7.5.0")
 public class BillingAddress {
   public static final String SERIALIZED_NAME_LINE1 = "line1";
   @SerializedName(SERIALIZED_NAME_LINE1)
@@ -53,9 +75,10 @@ public class BillingAddress {
   @SerializedName(SERIALIZED_NAME_COUNTRY)
   private String country;
 
+  public BillingAddress() {
+  }
 
   public BillingAddress line1(String line1) {
-    
     this.line1 = line1;
     return this;
   }
@@ -65,12 +88,9 @@ public class BillingAddress {
    * @return line1
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "100 1st Street", value = "**(OPTIONAL)** The first line of the street address for the billing address. ")
-
   public String getLine1() {
     return line1;
   }
-
 
   public void setLine1(String line1) {
     this.line1 = line1;
@@ -78,7 +98,6 @@ public class BillingAddress {
 
 
   public BillingAddress line2(String line2) {
-    
     this.line2 = line2;
     return this;
   }
@@ -88,12 +107,9 @@ public class BillingAddress {
    * @return line2
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "Apt. 4B", value = "**(OPTIONAL)** The second line of the street address for the billing address. ")
-
   public String getLine2() {
     return line2;
   }
-
 
   public void setLine2(String line2) {
     this.line2 = line2;
@@ -101,7 +117,6 @@ public class BillingAddress {
 
 
   public BillingAddress city(String city) {
-    
     this.city = city;
     return this;
   }
@@ -111,12 +126,9 @@ public class BillingAddress {
    * @return city
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "St. Louis", value = "**(OPTIONAL)** The city of the billing address. ")
-
   public String getCity() {
     return city;
   }
-
 
   public void setCity(String city) {
     this.city = city;
@@ -124,7 +136,6 @@ public class BillingAddress {
 
 
   public BillingAddress countrySubdivision(String countrySubdivision) {
-    
     this.countrySubdivision = countrySubdivision;
     return this;
   }
@@ -134,12 +145,9 @@ public class BillingAddress {
    * @return countrySubdivision
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "MO", value = "**(OPTIONAL)** The state or country subdivision of the billing address. ")
-
   public String getCountrySubdivision() {
     return countrySubdivision;
   }
-
 
   public void setCountrySubdivision(String countrySubdivision) {
     this.countrySubdivision = countrySubdivision;
@@ -147,7 +155,6 @@ public class BillingAddress {
 
 
   public BillingAddress postalCode(String postalCode) {
-    
     this.postalCode = postalCode;
     return this;
   }
@@ -157,12 +164,9 @@ public class BillingAddress {
    * @return postalCode
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "61000", value = "**(OPTIONAL)** The postal of code of the billing address. ")
-
   public String getPostalCode() {
     return postalCode;
   }
-
 
   public void setPostalCode(String postalCode) {
     this.postalCode = postalCode;
@@ -170,7 +174,6 @@ public class BillingAddress {
 
 
   public BillingAddress country(String country) {
-    
     this.country = country;
     return this;
   }
@@ -180,16 +183,14 @@ public class BillingAddress {
    * @return country
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "USA", value = "**(OPTIONAL)** The country of the billing address. ")
-
   public String getCountry() {
     return country;
   }
 
-
   public void setCountry(String country) {
     this.country = country;
   }
+
 
 
   @Override
@@ -239,5 +240,112 @@ public class BillingAddress {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("line1");
+    openapiFields.add("line2");
+    openapiFields.add("city");
+    openapiFields.add("countrySubdivision");
+    openapiFields.add("postalCode");
+    openapiFields.add("country");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to BillingAddress
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!BillingAddress.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in BillingAddress is not found in the empty JSON string", BillingAddress.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!BillingAddress.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `BillingAddress` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("line1") != null && !jsonObj.get("line1").isJsonNull()) && !jsonObj.get("line1").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `line1` to be a primitive type in the JSON string but got `%s`", jsonObj.get("line1").toString()));
+      }
+      if ((jsonObj.get("line2") != null && !jsonObj.get("line2").isJsonNull()) && !jsonObj.get("line2").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `line2` to be a primitive type in the JSON string but got `%s`", jsonObj.get("line2").toString()));
+      }
+      if ((jsonObj.get("city") != null && !jsonObj.get("city").isJsonNull()) && !jsonObj.get("city").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `city` to be a primitive type in the JSON string but got `%s`", jsonObj.get("city").toString()));
+      }
+      if ((jsonObj.get("countrySubdivision") != null && !jsonObj.get("countrySubdivision").isJsonNull()) && !jsonObj.get("countrySubdivision").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `countrySubdivision` to be a primitive type in the JSON string but got `%s`", jsonObj.get("countrySubdivision").toString()));
+      }
+      if ((jsonObj.get("postalCode") != null && !jsonObj.get("postalCode").isJsonNull()) && !jsonObj.get("postalCode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `postalCode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("postalCode").toString()));
+      }
+      if ((jsonObj.get("country") != null && !jsonObj.get("country").isJsonNull()) && !jsonObj.get("country").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `country` to be a primitive type in the JSON string but got `%s`", jsonObj.get("country").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!BillingAddress.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'BillingAddress' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<BillingAddress> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(BillingAddress.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<BillingAddress>() {
+           @Override
+           public void write(JsonWriter out, BillingAddress value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public BillingAddress read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of BillingAddress given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of BillingAddress
+  * @throws IOException if the JSON string is invalid with respect to BillingAddress
+  */
+  public static BillingAddress fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, BillingAddress.class);
+  }
+
+ /**
+  * Convert an instance of BillingAddress to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

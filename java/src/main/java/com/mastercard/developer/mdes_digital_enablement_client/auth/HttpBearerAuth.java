@@ -13,15 +13,19 @@
 
 package com.mastercard.developer.mdes_digital_enablement_client.auth;
 
+import com.mastercard.developer.mdes_digital_enablement_client.ApiException;
 import com.mastercard.developer.mdes_digital_enablement_client.Pair;
 
-import java.util.Map;
+import java.net.URI;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Supplier;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-24T13:37:45.612619+01:00[Europe/Dublin]", comments = "Generator version: 7.5.0")
 public class HttpBearerAuth implements Authentication {
   private final String scheme;
-  private String bearerToken;
+  private Supplier<String> tokenSupplier;
 
   public HttpBearerAuth(String scheme) {
     this.scheme = scheme;
@@ -33,7 +37,7 @@ public class HttpBearerAuth implements Authentication {
    * @return The bearer token
    */
   public String getBearerToken() {
-    return bearerToken;
+    return tokenSupplier.get();
   }
 
   /**
@@ -42,12 +46,23 @@ public class HttpBearerAuth implements Authentication {
    * @param bearerToken The bearer token to send in the Authorization header
    */
   public void setBearerToken(String bearerToken) {
-    this.bearerToken = bearerToken;
+    this.tokenSupplier = () -> bearerToken;
+  }
+
+  /**
+   * Sets the supplier of tokens, which together with the scheme, will be sent as the value of the Authorization header.
+   *
+   * @param tokenSupplier The supplier of bearer tokens to send in the Authorization header
+   */
+  public void setBearerToken(Supplier<String> tokenSupplier) {
+    this.tokenSupplier = tokenSupplier;
   }
 
   @Override
-  public void applyToParams(List<Pair> queryParams, Map<String, String> headerParams, Map<String, String> cookieParams) {
-    if(bearerToken == null) {
+  public void applyToParams(List<Pair> queryParams, Map<String, String> headerParams, Map<String, String> cookieParams,
+                            String payload, String method, URI uri) throws ApiException {
+    String bearerToken = Optional.ofNullable(tokenSupplier).map(Supplier::get).orElse(null);
+    if (bearerToken == null) {
       return;
     }
 

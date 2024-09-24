@@ -14,21 +14,43 @@
 package com.mastercard.developer.mdes_digital_enablement_client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.mastercard.developer.mdes_digital_enablement_client.model.EncryptedPayloadTransact;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.mastercard.developer.mdes_digital_enablement_client.JSON;
 
 /**
  * TransactResponseSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-24T13:37:45.612619+01:00[Europe/Dublin]", comments = "Generator version: 7.5.0")
 public class TransactResponseSchema {
   public static final String SERIALIZED_NAME_RESPONSE_ID = "responseId";
   @SerializedName(SERIALIZED_NAME_RESPONSE_ID)
@@ -42,9 +64,10 @@ public class TransactResponseSchema {
   @SerializedName(SERIALIZED_NAME_ENCRYPTED_PAYLOAD)
   private EncryptedPayloadTransact encryptedPayload;
 
+  public TransactResponseSchema() {
+  }
 
   public TransactResponseSchema responseId(String responseId) {
-    
     this.responseId = responseId;
     return this;
   }
@@ -54,12 +77,9 @@ public class TransactResponseSchema {
    * @return responseId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Unique identifier for the response. ")
-
   public String getResponseId() {
     return responseId;
   }
-
 
   public void setResponseId(String responseId) {
     this.responseId = responseId;
@@ -67,7 +87,6 @@ public class TransactResponseSchema {
 
 
   public TransactResponseSchema responseHost(String responseHost) {
-    
     this.responseHost = responseHost;
     return this;
   }
@@ -77,12 +96,9 @@ public class TransactResponseSchema {
    * @return responseHost
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "site2.payment-app-provider.com", value = "The host that originated the request. Future calls in the same conversation may be routed to this host. ")
-
   public String getResponseHost() {
     return responseHost;
   }
-
 
   public void setResponseHost(String responseHost) {
     this.responseHost = responseHost;
@@ -90,7 +106,6 @@ public class TransactResponseSchema {
 
 
   public TransactResponseSchema encryptedPayload(EncryptedPayloadTransact encryptedPayload) {
-    
     this.encryptedPayload = encryptedPayload;
     return this;
   }
@@ -100,16 +115,14 @@ public class TransactResponseSchema {
    * @return encryptedPayload
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public EncryptedPayloadTransact getEncryptedPayload() {
     return encryptedPayload;
   }
 
-
   public void setEncryptedPayload(EncryptedPayloadTransact encryptedPayload) {
     this.encryptedPayload = encryptedPayload;
   }
+
 
 
   @Override
@@ -153,5 +166,101 @@ public class TransactResponseSchema {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("responseId");
+    openapiFields.add("responseHost");
+    openapiFields.add("encryptedPayload");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to TransactResponseSchema
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!TransactResponseSchema.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in TransactResponseSchema is not found in the empty JSON string", TransactResponseSchema.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!TransactResponseSchema.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `TransactResponseSchema` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("responseId") != null && !jsonObj.get("responseId").isJsonNull()) && !jsonObj.get("responseId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `responseId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("responseId").toString()));
+      }
+      if ((jsonObj.get("responseHost") != null && !jsonObj.get("responseHost").isJsonNull()) && !jsonObj.get("responseHost").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `responseHost` to be a primitive type in the JSON string but got `%s`", jsonObj.get("responseHost").toString()));
+      }
+      // validate the optional field `encryptedPayload`
+      if (jsonObj.get("encryptedPayload") != null && !jsonObj.get("encryptedPayload").isJsonNull()) {
+        EncryptedPayloadTransact.validateJsonElement(jsonObj.get("encryptedPayload"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!TransactResponseSchema.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'TransactResponseSchema' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<TransactResponseSchema> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(TransactResponseSchema.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<TransactResponseSchema>() {
+           @Override
+           public void write(JsonWriter out, TransactResponseSchema value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public TransactResponseSchema read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of TransactResponseSchema given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of TransactResponseSchema
+  * @throws IOException if the JSON string is invalid with respect to TransactResponseSchema
+  */
+  public static TransactResponseSchema fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, TransactResponseSchema.class);
+  }
+
+ /**
+  * Convert an instance of TransactResponseSchema to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

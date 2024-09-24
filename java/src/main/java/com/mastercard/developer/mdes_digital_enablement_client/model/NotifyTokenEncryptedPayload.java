@@ -14,38 +14,61 @@
 package com.mastercard.developer.mdes_digital_enablement_client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.mastercard.developer.mdes_digital_enablement_client.model.TokenForNTU;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.mastercard.developer.mdes_digital_enablement_client.JSON;
 
 /**
  * NotifyTokenEncryptedPayload
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-03T18:13:45.340+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-09-24T13:37:45.612619+01:00[Europe/Dublin]", comments = "Generator version: 7.5.0")
 public class NotifyTokenEncryptedPayload {
   public static final String SERIALIZED_NAME_TOKENS = "tokens";
   @SerializedName(SERIALIZED_NAME_TOKENS)
-  private List<TokenForNTU> tokens = null;
+  private List<TokenForNTU> tokens = new ArrayList<>();
 
+  public NotifyTokenEncryptedPayload() {
+  }
 
   public NotifyTokenEncryptedPayload tokens(List<TokenForNTU> tokens) {
-    
     this.tokens = tokens;
     return this;
   }
 
   public NotifyTokenEncryptedPayload addTokensItem(TokenForNTU tokensItem) {
     if (this.tokens == null) {
-      this.tokens = new ArrayList<TokenForNTU>();
+      this.tokens = new ArrayList<>();
     }
     this.tokens.add(tokensItem);
     return this;
@@ -56,16 +79,14 @@ public class NotifyTokenEncryptedPayload {
    * @return tokens
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
   public List<TokenForNTU> getTokens() {
     return tokens;
   }
 
-
   public void setTokens(List<TokenForNTU> tokens) {
     this.tokens = tokens;
   }
+
 
 
   @Override
@@ -105,5 +126,103 @@ public class NotifyTokenEncryptedPayload {
     return o.toString().replace("\n", "\n    ");
   }
 
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("tokens");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+ /**
+  * Validates the JSON Element and throws an exception if issues found
+  *
+  * @param jsonElement JSON Element
+  * @throws IOException if the JSON Element is invalid with respect to NotifyTokenEncryptedPayload
+  */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!NotifyTokenEncryptedPayload.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in NotifyTokenEncryptedPayload is not found in the empty JSON string", NotifyTokenEncryptedPayload.openapiRequiredFields.toString()));
+        }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!NotifyTokenEncryptedPayload.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `NotifyTokenEncryptedPayload` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (jsonObj.get("tokens") != null && !jsonObj.get("tokens").isJsonNull()) {
+        JsonArray jsonArraytokens = jsonObj.getAsJsonArray("tokens");
+        if (jsonArraytokens != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("tokens").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `tokens` to be an array in the JSON string but got `%s`", jsonObj.get("tokens").toString()));
+          }
+
+          // validate the optional field `tokens` (array)
+          for (int i = 0; i < jsonArraytokens.size(); i++) {
+            TokenForNTU.validateJsonElement(jsonArraytokens.get(i));
+          };
+        }
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!NotifyTokenEncryptedPayload.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'NotifyTokenEncryptedPayload' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<NotifyTokenEncryptedPayload> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(NotifyTokenEncryptedPayload.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<NotifyTokenEncryptedPayload>() {
+           @Override
+           public void write(JsonWriter out, NotifyTokenEncryptedPayload value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public NotifyTokenEncryptedPayload read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
+    }
+  }
+
+ /**
+  * Create an instance of NotifyTokenEncryptedPayload given an JSON string
+  *
+  * @param jsonString JSON string
+  * @return An instance of NotifyTokenEncryptedPayload
+  * @throws IOException if the JSON string is invalid with respect to NotifyTokenEncryptedPayload
+  */
+  public static NotifyTokenEncryptedPayload fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, NotifyTokenEncryptedPayload.class);
+  }
+
+ /**
+  * Convert an instance of NotifyTokenEncryptedPayload to an JSON string
+  *
+  * @return JSON string
+  */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

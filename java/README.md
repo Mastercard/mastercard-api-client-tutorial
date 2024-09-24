@@ -2,7 +2,8 @@
 
 MDES Digital Enablement API
 - API version: 1.3.0
-  - Build date: 2021-08-03T18:13:45.340+01:00[Europe/London]
+  - Build date: 2024-09-24T13:37:45.612619+01:00[Europe/Dublin]
+  - Generator version: 7.5.0
 
 These APIs are designed as RPC style stateless web services where each API endpoint represents an operation to be performed.  All request and response payloads are sent in the JSON (JavaScript Object Notation) data-interchange format. Each endpoint in the API specifies the HTTP Method used to access it. All strings in request and response objects are to be UTF-8 encoded.  Each API URI includes the major and minor version of API that it conforms to.  This will allow multiple concurrent versions of the API to be deployed simultaneously.
 <br><br>
@@ -34,8 +35,8 @@ Java Client Encryption Library available on [GitHub](https://github.com/Masterca
 ## Requirements
 
 Building the API client library requires:
-1. Java 1.7+
-2. Maven/Gradle
+1. Java 1.8+
+2. Maven (3.8.3+)/Gradle (7.2+)
 
 ## Installation
 
@@ -71,7 +72,14 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.mastercard.developer:mdes-digital-enablement-client:1.0.0"
+  repositories {
+    mavenCentral()     // Needed if the 'mdes-digital-enablement-client' jar has been published to maven central.
+    mavenLocal()       // Needed if the 'mdes-digital-enablement-client' jar has been published to the local maven repo.
+  }
+
+  dependencies {
+     implementation "com.mastercard.developer:mdes-digital-enablement-client:1.0.0"
+  }
 ```
 
 ### Others
@@ -198,10 +206,11 @@ Class | Method | HTTP request | Description
  - [UnSuspendResponseSchema](docs/UnSuspendResponseSchema.md)
 
 
+<a id="documentation-for-authorization"></a>
 ## Documentation for Authorization
 
-All endpoints do not require authorization.
-Authentication schemes defined for the API:
+Endpoints do not require authorization.
+
 
 ## Recommendation
 
