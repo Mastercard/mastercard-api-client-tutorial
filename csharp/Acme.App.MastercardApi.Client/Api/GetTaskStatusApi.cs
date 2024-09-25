@@ -69,7 +69,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetTaskStatusResponseSchema</returns>
-        System.Threading.Tasks.Task<GetTaskStatusResponseSchema> GetTaskStatusAsync(GetTaskStatusRequestSchema getTaskStatusRequestSchema = default(GetTaskStatusRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<GetTaskStatusResponseSchema> GetTaskStatusAsync(GetTaskStatusRequestSchema getTaskStatusRequestSchema = default(GetTaskStatusRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Used to check the status of any asynchronous task that was previously requested.
@@ -82,7 +82,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetTaskStatusResponseSchema)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetTaskStatusResponseSchema>> GetTaskStatusWithHttpInfoAsync(GetTaskStatusRequestSchema getTaskStatusRequestSchema = default(GetTaskStatusRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<GetTaskStatusResponseSchema>> GetTaskStatusWithHttpInfoAsync(GetTaskStatusRequestSchema getTaskStatusRequestSchema = default(GetTaskStatusRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -276,7 +276,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetTaskStatusResponseSchema</returns>
-        public async System.Threading.Tasks.Task<GetTaskStatusResponseSchema> GetTaskStatusAsync(GetTaskStatusRequestSchema getTaskStatusRequestSchema = default(GetTaskStatusRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<GetTaskStatusResponseSchema> GetTaskStatusAsync(GetTaskStatusRequestSchema getTaskStatusRequestSchema = default(GetTaskStatusRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             Acme.App.MastercardApi.Client.Client.ApiResponse<GetTaskStatusResponseSchema> localVarResponse = await GetTaskStatusWithHttpInfoAsync(getTaskStatusRequestSchema, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -290,7 +290,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetTaskStatusResponseSchema)</returns>
-        public async System.Threading.Tasks.Task<Acme.App.MastercardApi.Client.Client.ApiResponse<GetTaskStatusResponseSchema>> GetTaskStatusWithHttpInfoAsync(GetTaskStatusRequestSchema getTaskStatusRequestSchema = default(GetTaskStatusRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Acme.App.MastercardApi.Client.Client.ApiResponse<GetTaskStatusResponseSchema>> GetTaskStatusWithHttpInfoAsync(GetTaskStatusRequestSchema getTaskStatusRequestSchema = default(GetTaskStatusRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Acme.App.MastercardApi.Client.Client.RequestOptions localVarRequestOptions = new Acme.App.MastercardApi.Client.Client.RequestOptions();

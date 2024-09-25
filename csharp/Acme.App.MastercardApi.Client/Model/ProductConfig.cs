@@ -283,114 +283,114 @@ namespace Acme.App.MastercardApi.Client.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // BrandLogoAssetId (string) maxLength
             if (this.BrandLogoAssetId != null && this.BrandLogoAssetId.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for BrandLogoAssetId, length must be less than 64.", new [] { "BrandLogoAssetId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for BrandLogoAssetId, length must be less than 64.", new [] { "BrandLogoAssetId" });
             }
 
             // IssuerLogoAssetId (string) maxLength
             if (this.IssuerLogoAssetId != null && this.IssuerLogoAssetId.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for IssuerLogoAssetId, length must be less than 64.", new [] { "IssuerLogoAssetId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IssuerLogoAssetId, length must be less than 64.", new [] { "IssuerLogoAssetId" });
             }
 
             // CoBrandName (string) maxLength
             if (this.CoBrandName != null && this.CoBrandName.Length > 128)
             {
-                yield return new ValidationResult("Invalid value for CoBrandName, length must be less than 128.", new [] { "CoBrandName" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CoBrandName, length must be less than 128.", new [] { "CoBrandName" });
             }
 
             // CoBrandLogoAssetId (string) maxLength
             if (this.CoBrandLogoAssetId != null && this.CoBrandLogoAssetId.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for CoBrandLogoAssetId, length must be less than 64.", new [] { "CoBrandLogoAssetId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CoBrandLogoAssetId, length must be less than 64.", new [] { "CoBrandLogoAssetId" });
             }
 
             // CardBackgroundCombinedAssetId (string) maxLength
             if (this.CardBackgroundCombinedAssetId != null && this.CardBackgroundCombinedAssetId.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for CardBackgroundCombinedAssetId, length must be less than 64.", new [] { "CardBackgroundCombinedAssetId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CardBackgroundCombinedAssetId, length must be less than 64.", new [] { "CardBackgroundCombinedAssetId" });
             }
 
             // CardBackgroundAssetId (string) maxLength
             if (this.CardBackgroundAssetId != null && this.CardBackgroundAssetId.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for CardBackgroundAssetId, length must be less than 64.", new [] { "CardBackgroundAssetId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CardBackgroundAssetId, length must be less than 64.", new [] { "CardBackgroundAssetId" });
             }
 
             // IconAssetId (string) maxLength
             if (this.IconAssetId != null && this.IconAssetId.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for IconAssetId, length must be less than 64.", new [] { "IconAssetId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IconAssetId, length must be less than 64.", new [] { "IconAssetId" });
             }
 
             // ForegroundColor (string) maxLength
             if (this.ForegroundColor != null && this.ForegroundColor.Length > 6)
             {
-                yield return new ValidationResult("Invalid value for ForegroundColor, length must be less than 6.", new [] { "ForegroundColor" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ForegroundColor, length must be less than 6.", new [] { "ForegroundColor" });
             }
 
             // IssuerName (string) maxLength
             if (this.IssuerName != null && this.IssuerName.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for IssuerName, length must be less than 64.", new [] { "IssuerName" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IssuerName, length must be less than 64.", new [] { "IssuerName" });
             }
 
             // ShortDescription (string) maxLength
             if (this.ShortDescription != null && this.ShortDescription.Length > 128)
             {
-                yield return new ValidationResult("Invalid value for ShortDescription, length must be less than 128.", new [] { "ShortDescription" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ShortDescription, length must be less than 128.", new [] { "ShortDescription" });
             }
 
             // LongDescription (string) maxLength
             if (this.LongDescription != null && this.LongDescription.Length > 256)
             {
-                yield return new ValidationResult("Invalid value for LongDescription, length must be less than 256.", new [] { "LongDescription" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for LongDescription, length must be less than 256.", new [] { "LongDescription" });
             }
 
             // CustomerServiceUrl (string) maxLength
             if (this.CustomerServiceUrl != null && this.CustomerServiceUrl.Length > 128)
             {
-                yield return new ValidationResult("Invalid value for CustomerServiceUrl, length must be less than 128.", new [] { "CustomerServiceUrl" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CustomerServiceUrl, length must be less than 128.", new [] { "CustomerServiceUrl" });
             }
 
             // CustomerServiceEmail (string) maxLength
             if (this.CustomerServiceEmail != null && this.CustomerServiceEmail.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for CustomerServiceEmail, length must be less than 64.", new [] { "CustomerServiceEmail" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CustomerServiceEmail, length must be less than 64.", new [] { "CustomerServiceEmail" });
             }
 
             // CustomerServicePhoneNumber (string) maxLength
             if (this.CustomerServicePhoneNumber != null && this.CustomerServicePhoneNumber.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for CustomerServicePhoneNumber, length must be less than 64.", new [] { "CustomerServicePhoneNumber" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CustomerServicePhoneNumber, length must be less than 64.", new [] { "CustomerServicePhoneNumber" });
             }
 
             // OnlineBankingLoginUrl (string) maxLength
             if (this.OnlineBankingLoginUrl != null && this.OnlineBankingLoginUrl.Length > 128)
             {
-                yield return new ValidationResult("Invalid value for OnlineBankingLoginUrl, length must be less than 128.", new [] { "OnlineBankingLoginUrl" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for OnlineBankingLoginUrl, length must be less than 128.", new [] { "OnlineBankingLoginUrl" });
             }
 
             // TermsAndConditionsUrl (string) maxLength
             if (this.TermsAndConditionsUrl != null && this.TermsAndConditionsUrl.Length > 128)
             {
-                yield return new ValidationResult("Invalid value for TermsAndConditionsUrl, length must be less than 128.", new [] { "TermsAndConditionsUrl" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TermsAndConditionsUrl, length must be less than 128.", new [] { "TermsAndConditionsUrl" });
             }
 
             // PrivacyPolicyUrl (string) maxLength
             if (this.PrivacyPolicyUrl != null && this.PrivacyPolicyUrl.Length > 128)
             {
-                yield return new ValidationResult("Invalid value for PrivacyPolicyUrl, length must be less than 128.", new [] { "PrivacyPolicyUrl" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PrivacyPolicyUrl, length must be less than 128.", new [] { "PrivacyPolicyUrl" });
             }
 
             // IssuerProductConfigCode (string) maxLength
             if (this.IssuerProductConfigCode != null && this.IssuerProductConfigCode.Length > 128)
             {
-                yield return new ValidationResult("Invalid value for IssuerProductConfigCode, length must be less than 128.", new [] { "IssuerProductConfigCode" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IssuerProductConfigCode, length must be less than 128.", new [] { "IssuerProductConfigCode" });
             }
 
             yield break;

@@ -114,36 +114,36 @@ namespace Acme.App.MastercardApi.Client.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Source (string) maxLength
             if (this.Source != null && this.Source.Length > 32)
             {
-                yield return new ValidationResult("Invalid value for Source, length must be less than 32.", new [] { "Source" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Source, length must be less than 32.", new [] { "Source" });
             }
 
             // ErrorCode (string) maxLength
             if (this.ErrorCode != null && this.ErrorCode.Length > 100)
             {
-                yield return new ValidationResult("Invalid value for ErrorCode, length must be less than 100.", new [] { "ErrorCode" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ErrorCode, length must be less than 100.", new [] { "ErrorCode" });
             }
 
             // Description (string) maxLength
             if (this.Description != null && this.Description.Length > 256)
             {
-                yield return new ValidationResult("Invalid value for Description, length must be less than 256.", new [] { "Description" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, length must be less than 256.", new [] { "Description" });
             }
 
             // ReasonCode (string) maxLength
             if (this.ReasonCode != null && this.ReasonCode.Length > 100)
             {
-                yield return new ValidationResult("Invalid value for ReasonCode, length must be less than 100.", new [] { "ReasonCode" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ReasonCode, length must be less than 100.", new [] { "ReasonCode" });
             }
 
             // ErrorDescription (string) maxLength
             if (this.ErrorDescription != null && this.ErrorDescription.Length > 100)
             {
-                yield return new ValidationResult("Invalid value for ErrorDescription, length must be less than 100.", new [] { "ErrorDescription" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ErrorDescription, length must be less than 100.", new [] { "ErrorDescription" });
             }
 
             yield break;

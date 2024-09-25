@@ -69,7 +69,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactResponseSchema</returns>
-        System.Threading.Tasks.Task<TransactResponseSchema> CreateTransactAsync(TransactRequestSchema transactRequestSchema = default(TransactRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<TransactResponseSchema> CreateTransactAsync(TransactRequestSchema transactRequestSchema = default(TransactRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Used by the Token Requestor to create a Digital Secure Remote Payment (\&quot;DSRP\&quot;) transaction cryptogram using the credentials stored within MDES in order to perform a DSRP transaction.
@@ -82,7 +82,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactResponseSchema)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TransactResponseSchema>> CreateTransactWithHttpInfoAsync(TransactRequestSchema transactRequestSchema = default(TransactRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<TransactResponseSchema>> CreateTransactWithHttpInfoAsync(TransactRequestSchema transactRequestSchema = default(TransactRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -276,7 +276,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactResponseSchema</returns>
-        public async System.Threading.Tasks.Task<TransactResponseSchema> CreateTransactAsync(TransactRequestSchema transactRequestSchema = default(TransactRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<TransactResponseSchema> CreateTransactAsync(TransactRequestSchema transactRequestSchema = default(TransactRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             Acme.App.MastercardApi.Client.Client.ApiResponse<TransactResponseSchema> localVarResponse = await CreateTransactWithHttpInfoAsync(transactRequestSchema, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -290,7 +290,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactResponseSchema)</returns>
-        public async System.Threading.Tasks.Task<Acme.App.MastercardApi.Client.Client.ApiResponse<TransactResponseSchema>> CreateTransactWithHttpInfoAsync(TransactRequestSchema transactRequestSchema = default(TransactRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Acme.App.MastercardApi.Client.Client.ApiResponse<TransactResponseSchema>> CreateTransactWithHttpInfoAsync(TransactRequestSchema transactRequestSchema = default(TransactRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Acme.App.MastercardApi.Client.Client.RequestOptions localVarRequestOptions = new Acme.App.MastercardApi.Client.Client.RequestOptions();

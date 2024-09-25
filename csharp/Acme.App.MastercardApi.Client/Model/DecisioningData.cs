@@ -161,42 +161,42 @@ namespace Acme.App.MastercardApi.Client.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Recommendation (string) maxLength
             if (this.Recommendation != null && this.Recommendation.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for Recommendation, length must be less than 64.", new [] { "Recommendation" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Recommendation, length must be less than 64.", new [] { "Recommendation" });
             }
 
             // RecommendationAlgorithmVersion (string) maxLength
             if (this.RecommendationAlgorithmVersion != null && this.RecommendationAlgorithmVersion.Length > 16)
             {
-                yield return new ValidationResult("Invalid value for RecommendationAlgorithmVersion, length must be less than 16.", new [] { "RecommendationAlgorithmVersion" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RecommendationAlgorithmVersion, length must be less than 16.", new [] { "RecommendationAlgorithmVersion" });
             }
 
             // DeviceCurrentLocation (string) maxLength
             if (this.DeviceCurrentLocation != null && this.DeviceCurrentLocation.Length > 14)
             {
-                yield return new ValidationResult("Invalid value for DeviceCurrentLocation, length must be less than 14.", new [] { "DeviceCurrentLocation" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DeviceCurrentLocation, length must be less than 14.", new [] { "DeviceCurrentLocation" });
             }
 
             // DeviceIpAddress (string) maxLength
             if (this.DeviceIpAddress != null && this.DeviceIpAddress.Length > 15)
             {
-                yield return new ValidationResult("Invalid value for DeviceIpAddress, length must be less than 15.", new [] { "DeviceIpAddress" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DeviceIpAddress, length must be less than 15.", new [] { "DeviceIpAddress" });
             }
 
             // MobileNumberSuffix (string) maxLength
             if (this.MobileNumberSuffix != null && this.MobileNumberSuffix.Length > 32)
             {
-                yield return new ValidationResult("Invalid value for MobileNumberSuffix, length must be less than 32.", new [] { "MobileNumberSuffix" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for MobileNumberSuffix, length must be less than 32.", new [] { "MobileNumberSuffix" });
             }
 
             // AccountIdHash (string) maxLength
             if (this.AccountIdHash != null && this.AccountIdHash.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for AccountIdHash, length must be less than 64.", new [] { "AccountIdHash" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountIdHash, length must be less than 64.", new [] { "AccountIdHash" });
             }
 
             yield break;

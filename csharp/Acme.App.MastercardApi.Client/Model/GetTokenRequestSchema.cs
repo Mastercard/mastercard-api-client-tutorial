@@ -134,24 +134,24 @@ namespace Acme.App.MastercardApi.Client.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // PaymentAppInstanceId (string) maxLength
             if (this.PaymentAppInstanceId != null && this.PaymentAppInstanceId.Length > 48)
             {
-                yield return new ValidationResult("Invalid value for PaymentAppInstanceId, length must be less than 48.", new [] { "PaymentAppInstanceId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PaymentAppInstanceId, length must be less than 48.", new [] { "PaymentAppInstanceId" });
             }
 
             // TokenUniqueReference (string) maxLength
             if (this.TokenUniqueReference != null && this.TokenUniqueReference.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for TokenUniqueReference, length must be less than 64.", new [] { "TokenUniqueReference" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TokenUniqueReference, length must be less than 64.", new [] { "TokenUniqueReference" });
             }
 
             // IncludeTokenDetail (string) maxLength
             if (this.IncludeTokenDetail != null && this.IncludeTokenDetail.Length > 5)
             {
-                yield return new ValidationResult("Invalid value for IncludeTokenDetail, length must be less than 5.", new [] { "IncludeTokenDetail" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IncludeTokenDetail, length must be less than 5.", new [] { "IncludeTokenDetail" });
             }
 
             yield break;

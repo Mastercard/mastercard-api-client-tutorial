@@ -93,18 +93,18 @@ namespace Acme.App.MastercardApi.Client.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // PanUniqueReference (string) maxLength
             if (this.PanUniqueReference != null && this.PanUniqueReference.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for PanUniqueReference, length must be less than 64.", new [] { "PanUniqueReference" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PanUniqueReference, length must be less than 64.", new [] { "PanUniqueReference" });
             }
 
             // TokenUniqueReference (string) maxLength
             if (this.TokenUniqueReference != null && this.TokenUniqueReference.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for TokenUniqueReference, length must be less than 64.", new [] { "TokenUniqueReference" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TokenUniqueReference, length must be less than 64.", new [] { "TokenUniqueReference" });
             }
 
             yield break;

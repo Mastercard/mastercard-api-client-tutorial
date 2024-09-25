@@ -69,7 +69,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SearchTokensResponseSchema</returns>
-        System.Threading.Tasks.Task<SearchTokensResponseSchema> SearchTokensAsync(SearchTokensRequestSchema searchTokensRequestSchema = default(SearchTokensRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<SearchTokensResponseSchema> SearchTokensAsync(SearchTokensRequestSchema searchTokensRequestSchema = default(SearchTokensRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Used to get basic token information for all tokens on a specified device, or all tokens mapped to the given Account PAN.
@@ -82,7 +82,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SearchTokensResponseSchema)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SearchTokensResponseSchema>> SearchTokensWithHttpInfoAsync(SearchTokensRequestSchema searchTokensRequestSchema = default(SearchTokensRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<SearchTokensResponseSchema>> SearchTokensWithHttpInfoAsync(SearchTokensRequestSchema searchTokensRequestSchema = default(SearchTokensRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -276,7 +276,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SearchTokensResponseSchema</returns>
-        public async System.Threading.Tasks.Task<SearchTokensResponseSchema> SearchTokensAsync(SearchTokensRequestSchema searchTokensRequestSchema = default(SearchTokensRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<SearchTokensResponseSchema> SearchTokensAsync(SearchTokensRequestSchema searchTokensRequestSchema = default(SearchTokensRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             Acme.App.MastercardApi.Client.Client.ApiResponse<SearchTokensResponseSchema> localVarResponse = await SearchTokensWithHttpInfoAsync(searchTokensRequestSchema, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -290,7 +290,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SearchTokensResponseSchema)</returns>
-        public async System.Threading.Tasks.Task<Acme.App.MastercardApi.Client.Client.ApiResponse<SearchTokensResponseSchema>> SearchTokensWithHttpInfoAsync(SearchTokensRequestSchema searchTokensRequestSchema = default(SearchTokensRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Acme.App.MastercardApi.Client.Client.ApiResponse<SearchTokensResponseSchema>> SearchTokensWithHttpInfoAsync(SearchTokensRequestSchema searchTokensRequestSchema = default(SearchTokensRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Acme.App.MastercardApi.Client.Client.RequestOptions localVarRequestOptions = new Acme.App.MastercardApi.Client.Client.RequestOptions();

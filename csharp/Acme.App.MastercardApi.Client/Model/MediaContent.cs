@@ -123,24 +123,24 @@ namespace Acme.App.MastercardApi.Client.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Type (string) maxLength
             if (this.Type != null && this.Type.Length > 32)
             {
-                yield return new ValidationResult("Invalid value for Type, length must be less than 32.", new [] { "Type" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Type, length must be less than 32.", new [] { "Type" });
             }
 
             // Height (string) maxLength
             if (this.Height != null && this.Height.Length > 6)
             {
-                yield return new ValidationResult("Invalid value for Height, length must be less than 6.", new [] { "Height" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Height, length must be less than 6.", new [] { "Height" });
             }
 
             // Width (string) maxLength
             if (this.Width != null && this.Width.Length > 6)
             {
-                yield return new ValidationResult("Invalid value for Width, length must be less than 6.", new [] { "Width" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Width, length must be less than 6.", new [] { "Width" });
             }
 
             yield break;

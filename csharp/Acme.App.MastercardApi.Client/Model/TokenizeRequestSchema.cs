@@ -184,36 +184,36 @@ namespace Acme.App.MastercardApi.Client.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // TokenType (string) maxLength
             if (this.TokenType != null && this.TokenType.Length > 32)
             {
-                yield return new ValidationResult("Invalid value for TokenType, length must be less than 32.", new [] { "TokenType" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TokenType, length must be less than 32.", new [] { "TokenType" });
             }
 
             // TokenRequestorId (string) maxLength
             if (this.TokenRequestorId != null && this.TokenRequestorId.Length > 11)
             {
-                yield return new ValidationResult("Invalid value for TokenRequestorId, length must be less than 11.", new [] { "TokenRequestorId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TokenRequestorId, length must be less than 11.", new [] { "TokenRequestorId" });
             }
 
             // TaskId (string) maxLength
             if (this.TaskId != null && this.TaskId.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for TaskId, length must be less than 64.", new [] { "TaskId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TaskId, length must be less than 64.", new [] { "TaskId" });
             }
 
             // ConsumerLanguage (string) maxLength
             if (this.ConsumerLanguage != null && this.ConsumerLanguage.Length > 2)
             {
-                yield return new ValidationResult("Invalid value for ConsumerLanguage, length must be less than 2.", new [] { "ConsumerLanguage" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ConsumerLanguage, length must be less than 2.", new [] { "ConsumerLanguage" });
             }
 
             // TokenizationAuthenticationValue (string) maxLength
             if (this.TokenizationAuthenticationValue != null && this.TokenizationAuthenticationValue.Length > 2048)
             {
-                yield return new ValidationResult("Invalid value for TokenizationAuthenticationValue, length must be less than 2048.", new [] { "TokenizationAuthenticationValue" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TokenizationAuthenticationValue, length must be less than 2048.", new [] { "TokenizationAuthenticationValue" });
             }
 
             yield break;

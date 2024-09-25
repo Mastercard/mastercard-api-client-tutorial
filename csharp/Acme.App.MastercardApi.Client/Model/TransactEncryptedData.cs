@@ -119,54 +119,54 @@ namespace Acme.App.MastercardApi.Client.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // AccountNumber (string) maxLength
             if (this.AccountNumber != null && this.AccountNumber.Length > 19)
             {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be less than 19.", new [] { "AccountNumber" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be less than 19.", new [] { "AccountNumber" });
             }
 
             // AccountNumber (string) minLength
             if (this.AccountNumber != null && this.AccountNumber.Length < 9)
             {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be greater than 9.", new [] { "AccountNumber" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be greater than 9.", new [] { "AccountNumber" });
             }
 
             // ApplicationExpiryDate (string) maxLength
             if (this.ApplicationExpiryDate != null && this.ApplicationExpiryDate.Length > 6)
             {
-                yield return new ValidationResult("Invalid value for ApplicationExpiryDate, length must be less than 6.", new [] { "ApplicationExpiryDate" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ApplicationExpiryDate, length must be less than 6.", new [] { "ApplicationExpiryDate" });
             }
 
             // ApplicationExpiryDate (string) minLength
             if (this.ApplicationExpiryDate != null && this.ApplicationExpiryDate.Length < 6)
             {
-                yield return new ValidationResult("Invalid value for ApplicationExpiryDate, length must be greater than 6.", new [] { "ApplicationExpiryDate" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ApplicationExpiryDate, length must be greater than 6.", new [] { "ApplicationExpiryDate" });
             }
 
             // PanSequenceNumber (string) maxLength
             if (this.PanSequenceNumber != null && this.PanSequenceNumber.Length > 2)
             {
-                yield return new ValidationResult("Invalid value for PanSequenceNumber, length must be less than 2.", new [] { "PanSequenceNumber" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PanSequenceNumber, length must be less than 2.", new [] { "PanSequenceNumber" });
             }
 
             // PanSequenceNumber (string) minLength
             if (this.PanSequenceNumber != null && this.PanSequenceNumber.Length < 2)
             {
-                yield return new ValidationResult("Invalid value for PanSequenceNumber, length must be greater than 2.", new [] { "PanSequenceNumber" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PanSequenceNumber, length must be greater than 2.", new [] { "PanSequenceNumber" });
             }
 
             // Track2Equivalent (string) maxLength
             if (this.Track2Equivalent != null && this.Track2Equivalent.Length > 38)
             {
-                yield return new ValidationResult("Invalid value for Track2Equivalent, length must be less than 38.", new [] { "Track2Equivalent" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Track2Equivalent, length must be less than 38.", new [] { "Track2Equivalent" });
             }
 
             // De48se43Data (string) maxLength
             if (this.De48se43Data != null && this.De48se43Data.Length > 32)
             {
-                yield return new ValidationResult("Invalid value for De48se43Data, length must be less than 32.", new [] { "De48se43Data" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for De48se43Data, length must be less than 32.", new [] { "De48se43Data" });
             }
 
             yield break;

@@ -182,42 +182,42 @@ namespace Acme.App.MastercardApi.Client.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // TokenPanSuffix (string) maxLength
             if (this.TokenPanSuffix != null && this.TokenPanSuffix.Length > 8)
             {
-                yield return new ValidationResult("Invalid value for TokenPanSuffix, length must be less than 8.", new [] { "TokenPanSuffix" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TokenPanSuffix, length must be less than 8.", new [] { "TokenPanSuffix" });
             }
 
             // AccountPanSuffix (string) maxLength
             if (this.AccountPanSuffix != null && this.AccountPanSuffix.Length > 8)
             {
-                yield return new ValidationResult("Invalid value for AccountPanSuffix, length must be less than 8.", new [] { "AccountPanSuffix" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountPanSuffix, length must be less than 8.", new [] { "AccountPanSuffix" });
             }
 
             // TokenExpiry (string) maxLength
             if (this.TokenExpiry != null && this.TokenExpiry.Length > 4)
             {
-                yield return new ValidationResult("Invalid value for TokenExpiry, length must be less than 4.", new [] { "TokenExpiry" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TokenExpiry, length must be less than 4.", new [] { "TokenExpiry" });
             }
 
             // AccountPanExpiry (string) maxLength
             if (this.AccountPanExpiry != null && this.AccountPanExpiry.Length > 4)
             {
-                yield return new ValidationResult("Invalid value for AccountPanExpiry, length must be less than 4.", new [] { "AccountPanExpiry" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountPanExpiry, length must be less than 4.", new [] { "AccountPanExpiry" });
             }
 
             // DsrpCapable (string) maxLength
             if (this.DsrpCapable != null && this.DsrpCapable.Length > 5)
             {
-                yield return new ValidationResult("Invalid value for DsrpCapable, length must be less than 5.", new [] { "DsrpCapable" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DsrpCapable, length must be less than 5.", new [] { "DsrpCapable" });
             }
 
             // ProductCategory (string) maxLength
             if (this.ProductCategory != null && this.ProductCategory.Length > 32)
             {
-                yield return new ValidationResult("Invalid value for ProductCategory, length must be less than 32.", new [] { "ProductCategory" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ProductCategory, length must be less than 32.", new [] { "ProductCategory" });
             }
 
             yield break;

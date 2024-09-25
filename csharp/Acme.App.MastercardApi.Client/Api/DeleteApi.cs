@@ -69,7 +69,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DeleteResponseSchema</returns>
-        System.Threading.Tasks.Task<DeleteResponseSchema> DeleteDigitizationAsync(DeleteRequestSchema deleteRequestSchema = default(DeleteRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<DeleteResponseSchema> DeleteDigitizationAsync(DeleteRequestSchema deleteRequestSchema = default(DeleteRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Used to delete one or more Tokens. The API is limited to 10 Tokens per request.
@@ -82,7 +82,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DeleteResponseSchema)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeleteResponseSchema>> DeleteDigitizationWithHttpInfoAsync(DeleteRequestSchema deleteRequestSchema = default(DeleteRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<DeleteResponseSchema>> DeleteDigitizationWithHttpInfoAsync(DeleteRequestSchema deleteRequestSchema = default(DeleteRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -276,7 +276,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DeleteResponseSchema</returns>
-        public async System.Threading.Tasks.Task<DeleteResponseSchema> DeleteDigitizationAsync(DeleteRequestSchema deleteRequestSchema = default(DeleteRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<DeleteResponseSchema> DeleteDigitizationAsync(DeleteRequestSchema deleteRequestSchema = default(DeleteRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             Acme.App.MastercardApi.Client.Client.ApiResponse<DeleteResponseSchema> localVarResponse = await DeleteDigitizationWithHttpInfoAsync(deleteRequestSchema, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -290,7 +290,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DeleteResponseSchema)</returns>
-        public async System.Threading.Tasks.Task<Acme.App.MastercardApi.Client.Client.ApiResponse<DeleteResponseSchema>> DeleteDigitizationWithHttpInfoAsync(DeleteRequestSchema deleteRequestSchema = default(DeleteRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Acme.App.MastercardApi.Client.Client.ApiResponse<DeleteResponseSchema>> DeleteDigitizationWithHttpInfoAsync(DeleteRequestSchema deleteRequestSchema = default(DeleteRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Acme.App.MastercardApi.Client.Client.RequestOptions localVarRequestOptions = new Acme.App.MastercardApi.Client.Client.RequestOptions();

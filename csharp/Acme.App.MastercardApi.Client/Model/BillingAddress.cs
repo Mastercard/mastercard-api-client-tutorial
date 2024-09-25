@@ -130,42 +130,42 @@ namespace Acme.App.MastercardApi.Client.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Line1 (string) maxLength
             if (this.Line1 != null && this.Line1.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for Line1, length must be less than 64.", new [] { "Line1" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Line1, length must be less than 64.", new [] { "Line1" });
             }
 
             // Line2 (string) maxLength
             if (this.Line2 != null && this.Line2.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for Line2, length must be less than 64.", new [] { "Line2" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Line2, length must be less than 64.", new [] { "Line2" });
             }
 
             // City (string) maxLength
             if (this.City != null && this.City.Length > 32)
             {
-                yield return new ValidationResult("Invalid value for City, length must be less than 32.", new [] { "City" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for City, length must be less than 32.", new [] { "City" });
             }
 
             // CountrySubdivision (string) maxLength
             if (this.CountrySubdivision != null && this.CountrySubdivision.Length > 12)
             {
-                yield return new ValidationResult("Invalid value for CountrySubdivision, length must be less than 12.", new [] { "CountrySubdivision" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CountrySubdivision, length must be less than 12.", new [] { "CountrySubdivision" });
             }
 
             // PostalCode (string) maxLength
             if (this.PostalCode != null && this.PostalCode.Length > 16)
             {
-                yield return new ValidationResult("Invalid value for PostalCode, length must be less than 16.", new [] { "PostalCode" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PostalCode, length must be less than 16.", new [] { "PostalCode" });
             }
 
             // Country (string) maxLength
             if (this.Country != null && this.Country.Length > 3)
             {
-                yield return new ValidationResult("Invalid value for Country, length must be less than 3.", new [] { "Country" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Country, length must be less than 3.", new [] { "Country" });
             }
 
             yield break;

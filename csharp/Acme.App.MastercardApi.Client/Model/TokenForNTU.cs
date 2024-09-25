@@ -146,12 +146,12 @@ namespace Acme.App.MastercardApi.Client.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // StatusTimestamp (string) maxLength
             if (this.StatusTimestamp != null && this.StatusTimestamp.Length > 29)
             {
-                yield return new ValidationResult("Invalid value for StatusTimestamp, length must be less than 29.", new [] { "StatusTimestamp" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StatusTimestamp, length must be less than 29.", new [] { "StatusTimestamp" });
             }
 
             yield break;

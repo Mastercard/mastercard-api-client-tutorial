@@ -75,12 +75,12 @@ namespace Acme.App.MastercardApi.Client.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // PaymentAccountReference (string) maxLength
             if (this.PaymentAccountReference != null && this.PaymentAccountReference.Length > 29)
             {
-                yield return new ValidationResult("Invalid value for PaymentAccountReference, length must be less than 29.", new [] { "PaymentAccountReference" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PaymentAccountReference, length must be less than 29.", new [] { "PaymentAccountReference" });
             }
 
             yield break;

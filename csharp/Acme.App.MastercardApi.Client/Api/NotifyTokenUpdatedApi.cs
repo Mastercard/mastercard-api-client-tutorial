@@ -69,7 +69,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of NotifyTokenUpdatedResponseSchema</returns>
-        System.Threading.Tasks.Task<NotifyTokenUpdatedResponseSchema> NotifyTokenUpdateForTokenStateChangeAsync(NotifyTokenUpdatedRequestSchema notifyTokenUpdatedRequestSchema = default(NotifyTokenUpdatedRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<NotifyTokenUpdatedResponseSchema> NotifyTokenUpdateForTokenStateChangeAsync(NotifyTokenUpdatedRequestSchema notifyTokenUpdatedRequestSchema = default(NotifyTokenUpdatedRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Outbound API used by MDES to notify the Token Requestor of significant Token updates, such as when the Token is activated, suspended, unsuspended or deleted; or when information about the Token or its product configuration has changed.
@@ -82,7 +82,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (NotifyTokenUpdatedResponseSchema)</returns>
-        System.Threading.Tasks.Task<ApiResponse<NotifyTokenUpdatedResponseSchema>> NotifyTokenUpdateForTokenStateChangeWithHttpInfoAsync(NotifyTokenUpdatedRequestSchema notifyTokenUpdatedRequestSchema = default(NotifyTokenUpdatedRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<NotifyTokenUpdatedResponseSchema>> NotifyTokenUpdateForTokenStateChangeWithHttpInfoAsync(NotifyTokenUpdatedRequestSchema notifyTokenUpdatedRequestSchema = default(NotifyTokenUpdatedRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -276,7 +276,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of NotifyTokenUpdatedResponseSchema</returns>
-        public async System.Threading.Tasks.Task<NotifyTokenUpdatedResponseSchema> NotifyTokenUpdateForTokenStateChangeAsync(NotifyTokenUpdatedRequestSchema notifyTokenUpdatedRequestSchema = default(NotifyTokenUpdatedRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NotifyTokenUpdatedResponseSchema> NotifyTokenUpdateForTokenStateChangeAsync(NotifyTokenUpdatedRequestSchema notifyTokenUpdatedRequestSchema = default(NotifyTokenUpdatedRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             Acme.App.MastercardApi.Client.Client.ApiResponse<NotifyTokenUpdatedResponseSchema> localVarResponse = await NotifyTokenUpdateForTokenStateChangeWithHttpInfoAsync(notifyTokenUpdatedRequestSchema, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -290,7 +290,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (NotifyTokenUpdatedResponseSchema)</returns>
-        public async System.Threading.Tasks.Task<Acme.App.MastercardApi.Client.Client.ApiResponse<NotifyTokenUpdatedResponseSchema>> NotifyTokenUpdateForTokenStateChangeWithHttpInfoAsync(NotifyTokenUpdatedRequestSchema notifyTokenUpdatedRequestSchema = default(NotifyTokenUpdatedRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Acme.App.MastercardApi.Client.Client.ApiResponse<NotifyTokenUpdatedResponseSchema>> NotifyTokenUpdateForTokenStateChangeWithHttpInfoAsync(NotifyTokenUpdatedRequestSchema notifyTokenUpdatedRequestSchema = default(NotifyTokenUpdatedRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Acme.App.MastercardApi.Client.Client.RequestOptions localVarRequestOptions = new Acme.App.MastercardApi.Client.Client.RequestOptions();

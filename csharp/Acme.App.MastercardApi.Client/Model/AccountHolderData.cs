@@ -112,24 +112,24 @@ namespace Acme.App.MastercardApi.Client.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // AccountHolderName (string) maxLength
             if (this.AccountHolderName != null && this.AccountHolderName.Length > 27)
             {
-                yield return new ValidationResult("Invalid value for AccountHolderName, length must be less than 27.", new [] { "AccountHolderName" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountHolderName, length must be less than 27.", new [] { "AccountHolderName" });
             }
 
             // ConsumerIdentifier (string) maxLength
             if (this.ConsumerIdentifier != null && this.ConsumerIdentifier.Length > 88)
             {
-                yield return new ValidationResult("Invalid value for ConsumerIdentifier, length must be less than 88.", new [] { "ConsumerIdentifier" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ConsumerIdentifier, length must be less than 88.", new [] { "ConsumerIdentifier" });
             }
 
             // AccountHolderEmailAddress (string) maxLength
             if (this.AccountHolderEmailAddress != null && this.AccountHolderEmailAddress.Length > 320)
             {
-                yield return new ValidationResult("Invalid value for AccountHolderEmailAddress, length must be less than 320.", new [] { "AccountHolderEmailAddress" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountHolderEmailAddress, length must be less than 320.", new [] { "AccountHolderEmailAddress" });
             }
 
             yield break;

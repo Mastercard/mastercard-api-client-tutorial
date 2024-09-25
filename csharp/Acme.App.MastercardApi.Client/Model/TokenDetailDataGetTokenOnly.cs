@@ -105,36 +105,36 @@ namespace Acme.App.MastercardApi.Client.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // TokenNumber (string) maxLength
             if (this.TokenNumber != null && this.TokenNumber.Length > 19)
             {
-                yield return new ValidationResult("Invalid value for TokenNumber, length must be less than 19.", new [] { "TokenNumber" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TokenNumber, length must be less than 19.", new [] { "TokenNumber" });
             }
 
             // TokenNumber (string) minLength
             if (this.TokenNumber != null && this.TokenNumber.Length < 9)
             {
-                yield return new ValidationResult("Invalid value for TokenNumber, length must be greater than 9.", new [] { "TokenNumber" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TokenNumber, length must be greater than 9.", new [] { "TokenNumber" });
             }
 
             // ExpiryMonth (string) maxLength
             if (this.ExpiryMonth != null && this.ExpiryMonth.Length > 2)
             {
-                yield return new ValidationResult("Invalid value for ExpiryMonth, length must be less than 2.", new [] { "ExpiryMonth" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExpiryMonth, length must be less than 2.", new [] { "ExpiryMonth" });
             }
 
             // ExpiryYear (string) maxLength
             if (this.ExpiryYear != null && this.ExpiryYear.Length > 2)
             {
-                yield return new ValidationResult("Invalid value for ExpiryYear, length must be less than 2.", new [] { "ExpiryYear" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExpiryYear, length must be less than 2.", new [] { "ExpiryYear" });
             }
 
             // PaymentAccountReference (string) maxLength
             if (this.PaymentAccountReference != null && this.PaymentAccountReference.Length > 29)
             {
-                yield return new ValidationResult("Invalid value for PaymentAccountReference, length must be less than 29.", new [] { "PaymentAccountReference" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PaymentAccountReference, length must be less than 29.", new [] { "PaymentAccountReference" });
             }
 
             yield break;

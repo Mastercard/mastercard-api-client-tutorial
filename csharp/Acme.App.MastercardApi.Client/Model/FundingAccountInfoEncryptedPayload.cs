@@ -117,30 +117,30 @@ namespace Acme.App.MastercardApi.Client.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // PublicKeyFingerprint (string) maxLength
             if (this.PublicKeyFingerprint != null && this.PublicKeyFingerprint.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for PublicKeyFingerprint, length must be less than 64.", new [] { "PublicKeyFingerprint" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PublicKeyFingerprint, length must be less than 64.", new [] { "PublicKeyFingerprint" });
             }
 
             // EncryptedKey (string) maxLength
             if (this.EncryptedKey != null && this.EncryptedKey.Length > 512)
             {
-                yield return new ValidationResult("Invalid value for EncryptedKey, length must be less than 512.", new [] { "EncryptedKey" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EncryptedKey, length must be less than 512.", new [] { "EncryptedKey" });
             }
 
             // Iv (string) maxLength
             if (this.Iv != null && this.Iv.Length > 32)
             {
-                yield return new ValidationResult("Invalid value for Iv, length must be less than 32.", new [] { "Iv" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Iv, length must be less than 32.", new [] { "Iv" });
             }
 
             // Iv (string) minLength
             if (this.Iv != null && this.Iv.Length < 32)
             {
-                yield return new ValidationResult("Invalid value for Iv, length must be greater than 32.", new [] { "Iv" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Iv, length must be greater than 32.", new [] { "Iv" });
             }
 
             yield break;

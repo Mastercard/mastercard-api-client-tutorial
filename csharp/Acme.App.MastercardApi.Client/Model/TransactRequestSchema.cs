@@ -139,30 +139,30 @@ namespace Acme.App.MastercardApi.Client.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // TokenUniqueReference (string) maxLength
             if (this.TokenUniqueReference != null && this.TokenUniqueReference.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for TokenUniqueReference, length must be less than 64.", new [] { "TokenUniqueReference" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TokenUniqueReference, length must be less than 64.", new [] { "TokenUniqueReference" });
             }
 
             // DsrpType (string) maxLength
             if (this.DsrpType != null && this.DsrpType.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for DsrpType, length must be less than 64.", new [] { "DsrpType" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DsrpType, length must be less than 64.", new [] { "DsrpType" });
             }
 
             // UnpredictableNumber (string) maxLength
             if (this.UnpredictableNumber != null && this.UnpredictableNumber.Length > 8)
             {
-                yield return new ValidationResult("Invalid value for UnpredictableNumber, length must be less than 8.", new [] { "UnpredictableNumber" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UnpredictableNumber, length must be less than 8.", new [] { "UnpredictableNumber" });
             }
 
             // UnpredictableNumber (string) minLength
             if (this.UnpredictableNumber != null && this.UnpredictableNumber.Length < 8)
             {
-                yield return new ValidationResult("Invalid value for UnpredictableNumber, length must be greater than 8.", new [] { "UnpredictableNumber" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UnpredictableNumber, length must be greater than 8.", new [] { "UnpredictableNumber" });
             }
 
             yield break;

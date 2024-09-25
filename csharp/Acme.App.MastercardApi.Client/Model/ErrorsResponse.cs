@@ -115,18 +115,18 @@ namespace Acme.App.MastercardApi.Client.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // ErrorCode (string) maxLength
             if (this.ErrorCode != null && this.ErrorCode.Length > 32)
             {
-                yield return new ValidationResult("Invalid value for ErrorCode, length must be less than 32.", new [] { "ErrorCode" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ErrorCode, length must be less than 32.", new [] { "ErrorCode" });
             }
 
             // ErrorDescription (string) maxLength
             if (this.ErrorDescription != null && this.ErrorDescription.Length > 32)
             {
-                yield return new ValidationResult("Invalid value for ErrorDescription, length must be less than 32.", new [] { "ErrorDescription" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ErrorDescription, length must be less than 32.", new [] { "ErrorDescription" });
             }
 
             yield break;

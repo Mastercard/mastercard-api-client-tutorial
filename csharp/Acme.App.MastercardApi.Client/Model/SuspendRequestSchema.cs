@@ -166,30 +166,30 @@ namespace Acme.App.MastercardApi.Client.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // PaymentAppInstanceId (string) maxLength
             if (this.PaymentAppInstanceId != null && this.PaymentAppInstanceId.Length > 48)
             {
-                yield return new ValidationResult("Invalid value for PaymentAppInstanceId, length must be less than 48.", new [] { "PaymentAppInstanceId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PaymentAppInstanceId, length must be less than 48.", new [] { "PaymentAppInstanceId" });
             }
 
             // CausedBy (string) maxLength
             if (this.CausedBy != null && this.CausedBy.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for CausedBy, length must be less than 64.", new [] { "CausedBy" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CausedBy, length must be less than 64.", new [] { "CausedBy" });
             }
 
             // Reason (string) maxLength
             if (this.Reason != null && this.Reason.Length > 256)
             {
-                yield return new ValidationResult("Invalid value for Reason, length must be less than 256.", new [] { "Reason" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Reason, length must be less than 256.", new [] { "Reason" });
             }
 
             // ReasonCode (string) maxLength
             if (this.ReasonCode != null && this.ReasonCode.Length > 64)
             {
-                yield return new ValidationResult("Invalid value for ReasonCode, length must be less than 64.", new [] { "ReasonCode" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ReasonCode, length must be less than 64.", new [] { "ReasonCode" });
             }
 
             yield break;
