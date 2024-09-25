@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// NotifyTokenUpdatedResponseSchema
     /// </summary>
     [DataContract(Name = "NotifyTokenUpdatedResponseSchema")]
-    public partial class NotifyTokenUpdatedResponseSchema : IEquatable<NotifyTokenUpdatedResponseSchema>, IValidatableObject
+    public partial class NotifyTokenUpdatedResponseSchema : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="NotifyTokenUpdatedResponseSchema" /> class.
@@ -46,6 +46,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The host that originated the request. Future calls in the same conversation may be routed to this host. 
         /// </summary>
         /// <value>The host that originated the request. Future calls in the same conversation may be routed to this host. </value>
+        /// <example>site1.mastercard.com</example>
         [DataMember(Name = "responseHost", EmitDefaultValue = false)]
         public string ResponseHost { get; set; }
 
@@ -53,6 +54,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Unique identifier for the response. 
         /// </summary>
         /// <value>Unique identifier for the response. </value>
+        /// <example>123456</example>
         [DataMember(Name = "responseId", EmitDefaultValue = false)]
         public string ResponseId { get; set; }
 
@@ -62,7 +64,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class NotifyTokenUpdatedResponseSchema {\n");
             sb.Append("  ResponseHost: ").Append(ResponseHost).Append("\n");
             sb.Append("  ResponseId: ").Append(ResponseId).Append("\n");
@@ -77,56 +79,6 @@ namespace Acme.App.MastercardApi.Client.Model
         public virtual string ToJson()
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
-        }
-
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as NotifyTokenUpdatedResponseSchema);
-        }
-
-        /// <summary>
-        /// Returns true if NotifyTokenUpdatedResponseSchema instances are equal
-        /// </summary>
-        /// <param name="input">Instance of NotifyTokenUpdatedResponseSchema to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(NotifyTokenUpdatedResponseSchema input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.ResponseHost == input.ResponseHost ||
-                    (this.ResponseHost != null &&
-                    this.ResponseHost.Equals(input.ResponseHost))
-                ) && 
-                (
-                    this.ResponseId == input.ResponseId ||
-                    (this.ResponseId != null &&
-                    this.ResponseId.Equals(input.ResponseId))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.ResponseHost != null)
-                    hashCode = hashCode * 59 + this.ResponseHost.GetHashCode();
-                if (this.ResponseId != null)
-                    hashCode = hashCode * 59 + this.ResponseId.GetHashCode();
-                return hashCode;
-            }
         }
 
         /// <summary>

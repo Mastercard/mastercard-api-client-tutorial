@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// GetTokenRequestSchema
     /// </summary>
     [DataContract(Name = "GetTokenRequestSchema")]
-    public partial class GetTokenRequestSchema : IEquatable<GetTokenRequestSchema>, IValidatableObject
+    public partial class GetTokenRequestSchema : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GetTokenRequestSchema" /> class.
@@ -47,9 +47,17 @@ namespace Acme.App.MastercardApi.Client.Model
         public GetTokenRequestSchema(string responseHost = default(string), string requestId = default(string), string paymentAppInstanceId = default(string), string tokenUniqueReference = default(string), string includeTokenDetail = default(string))
         {
             // to ensure "requestId" is required (not null)
-            this.RequestId = requestId ?? throw new ArgumentNullException("requestId is a required property for GetTokenRequestSchema and cannot be null");
+            if (requestId == null)
+            {
+                throw new ArgumentNullException("requestId is a required property for GetTokenRequestSchema and cannot be null");
+            }
+            this.RequestId = requestId;
             // to ensure "tokenUniqueReference" is required (not null)
-            this.TokenUniqueReference = tokenUniqueReference ?? throw new ArgumentNullException("tokenUniqueReference is a required property for GetTokenRequestSchema and cannot be null");
+            if (tokenUniqueReference == null)
+            {
+                throw new ArgumentNullException("tokenUniqueReference is a required property for GetTokenRequestSchema and cannot be null");
+            }
+            this.TokenUniqueReference = tokenUniqueReference;
             this.ResponseHost = responseHost;
             this.PaymentAppInstanceId = paymentAppInstanceId;
             this.IncludeTokenDetail = includeTokenDetail;
@@ -59,6 +67,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The host that originated the request. Future calls in the same conversation may be routed to this host. 
         /// </summary>
         /// <value>The host that originated the request. Future calls in the same conversation may be routed to this host. </value>
+        /// <example>site2.payment-app-provider.com</example>
         [DataMember(Name = "responseHost", EmitDefaultValue = false)]
         public string ResponseHost { get; set; }
 
@@ -66,13 +75,15 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Unique identifier for the request. 
         /// </summary>
         /// <value>Unique identifier for the request. </value>
-        [DataMember(Name = "requestId", IsRequired = true, EmitDefaultValue = false)]
+        /// <example>123456</example>
+        [DataMember(Name = "requestId", IsRequired = true, EmitDefaultValue = true)]
         public string RequestId { get; set; }
 
         /// <summary>
         /// Identifier for the specific Mobile Payment App instance, unique across a given Wallet Identifier. This value cannot be changed after digitization. This field is alphanumeric and additionally web-safe base64 characters per RFC 4648 (minus \&quot;-\&quot;, underscore \&quot;_\&quot;) up to a maximum length of 48, &#x3D; should not be URL encoded. Conditional - not applicable for server-based tokens but required otherwise. 
         /// </summary>
         /// <value>Identifier for the specific Mobile Payment App instance, unique across a given Wallet Identifier. This value cannot be changed after digitization. This field is alphanumeric and additionally web-safe base64 characters per RFC 4648 (minus \&quot;-\&quot;, underscore \&quot;_\&quot;) up to a maximum length of 48, &#x3D; should not be URL encoded. Conditional - not applicable for server-based tokens but required otherwise. </value>
+        /// <example>123456789</example>
         [DataMember(Name = "paymentAppInstanceId", EmitDefaultValue = false)]
         public string PaymentAppInstanceId { get; set; }
 
@@ -80,13 +91,15 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The specific Token to be queried. 
         /// </summary>
         /// <value>The specific Token to be queried. </value>
-        [DataMember(Name = "tokenUniqueReference", IsRequired = true, EmitDefaultValue = false)]
+        /// <example>DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45</example>
+        [DataMember(Name = "tokenUniqueReference", IsRequired = true, EmitDefaultValue = true)]
         public string TokenUniqueReference { get; set; }
 
         /// <summary>
         /// Flag to indicate if the encrypted token should be returned. 
         /// </summary>
         /// <value>Flag to indicate if the encrypted token should be returned. </value>
+        /// <example>true</example>
         [DataMember(Name = "includeTokenDetail", EmitDefaultValue = false)]
         public string IncludeTokenDetail { get; set; }
 
@@ -96,7 +109,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class GetTokenRequestSchema {\n");
             sb.Append("  ResponseHost: ").Append(ResponseHost).Append("\n");
             sb.Append("  RequestId: ").Append(RequestId).Append("\n");
@@ -117,77 +130,6 @@ namespace Acme.App.MastercardApi.Client.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as GetTokenRequestSchema);
-        }
-
-        /// <summary>
-        /// Returns true if GetTokenRequestSchema instances are equal
-        /// </summary>
-        /// <param name="input">Instance of GetTokenRequestSchema to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(GetTokenRequestSchema input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.ResponseHost == input.ResponseHost ||
-                    (this.ResponseHost != null &&
-                    this.ResponseHost.Equals(input.ResponseHost))
-                ) && 
-                (
-                    this.RequestId == input.RequestId ||
-                    (this.RequestId != null &&
-                    this.RequestId.Equals(input.RequestId))
-                ) && 
-                (
-                    this.PaymentAppInstanceId == input.PaymentAppInstanceId ||
-                    (this.PaymentAppInstanceId != null &&
-                    this.PaymentAppInstanceId.Equals(input.PaymentAppInstanceId))
-                ) && 
-                (
-                    this.TokenUniqueReference == input.TokenUniqueReference ||
-                    (this.TokenUniqueReference != null &&
-                    this.TokenUniqueReference.Equals(input.TokenUniqueReference))
-                ) && 
-                (
-                    this.IncludeTokenDetail == input.IncludeTokenDetail ||
-                    (this.IncludeTokenDetail != null &&
-                    this.IncludeTokenDetail.Equals(input.IncludeTokenDetail))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.ResponseHost != null)
-                    hashCode = hashCode * 59 + this.ResponseHost.GetHashCode();
-                if (this.RequestId != null)
-                    hashCode = hashCode * 59 + this.RequestId.GetHashCode();
-                if (this.PaymentAppInstanceId != null)
-                    hashCode = hashCode * 59 + this.PaymentAppInstanceId.GetHashCode();
-                if (this.TokenUniqueReference != null)
-                    hashCode = hashCode * 59 + this.TokenUniqueReference.GetHashCode();
-                if (this.IncludeTokenDetail != null)
-                    hashCode = hashCode * 59 + this.IncludeTokenDetail.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
@@ -195,19 +137,19 @@ namespace Acme.App.MastercardApi.Client.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // PaymentAppInstanceId (string) maxLength
-            if(this.PaymentAppInstanceId != null && this.PaymentAppInstanceId.Length > 48)
+            if (this.PaymentAppInstanceId != null && this.PaymentAppInstanceId.Length > 48)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PaymentAppInstanceId, length must be less than 48.", new [] { "PaymentAppInstanceId" });
             }
 
             // TokenUniqueReference (string) maxLength
-            if(this.TokenUniqueReference != null && this.TokenUniqueReference.Length > 64)
+            if (this.TokenUniqueReference != null && this.TokenUniqueReference.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TokenUniqueReference, length must be less than 64.", new [] { "TokenUniqueReference" });
             }
 
             // IncludeTokenDetail (string) maxLength
-            if(this.IncludeTokenDetail != null && this.IncludeTokenDetail.Length > 5)
+            if (this.IncludeTokenDetail != null && this.IncludeTokenDetail.Length > 5)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IncludeTokenDetail, length must be less than 5.", new [] { "IncludeTokenDetail" });
             }

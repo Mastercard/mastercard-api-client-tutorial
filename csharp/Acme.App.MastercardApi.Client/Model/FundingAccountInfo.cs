@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// FundingAccountInfo
     /// </summary>
     [DataContract(Name = "fundingAccountInfo")]
-    public partial class FundingAccountInfo : IEquatable<FundingAccountInfo>, IValidatableObject
+    public partial class FundingAccountInfo : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FundingAccountInfo" /> class.
@@ -70,7 +70,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class FundingAccountInfo {\n");
             sb.Append("  PanUniqueReference: ").Append(PanUniqueReference).Append("\n");
             sb.Append("  TokenUniqueReference: ").Append(TokenUniqueReference).Append("\n");
@@ -89,63 +89,6 @@ namespace Acme.App.MastercardApi.Client.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as FundingAccountInfo);
-        }
-
-        /// <summary>
-        /// Returns true if FundingAccountInfo instances are equal
-        /// </summary>
-        /// <param name="input">Instance of FundingAccountInfo to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(FundingAccountInfo input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.PanUniqueReference == input.PanUniqueReference ||
-                    (this.PanUniqueReference != null &&
-                    this.PanUniqueReference.Equals(input.PanUniqueReference))
-                ) && 
-                (
-                    this.TokenUniqueReference == input.TokenUniqueReference ||
-                    (this.TokenUniqueReference != null &&
-                    this.TokenUniqueReference.Equals(input.TokenUniqueReference))
-                ) && 
-                (
-                    this.EncryptedPayload == input.EncryptedPayload ||
-                    (this.EncryptedPayload != null &&
-                    this.EncryptedPayload.Equals(input.EncryptedPayload))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.PanUniqueReference != null)
-                    hashCode = hashCode * 59 + this.PanUniqueReference.GetHashCode();
-                if (this.TokenUniqueReference != null)
-                    hashCode = hashCode * 59 + this.TokenUniqueReference.GetHashCode();
-                if (this.EncryptedPayload != null)
-                    hashCode = hashCode * 59 + this.EncryptedPayload.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
@@ -153,13 +96,13 @@ namespace Acme.App.MastercardApi.Client.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // PanUniqueReference (string) maxLength
-            if(this.PanUniqueReference != null && this.PanUniqueReference.Length > 64)
+            if (this.PanUniqueReference != null && this.PanUniqueReference.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PanUniqueReference, length must be less than 64.", new [] { "PanUniqueReference" });
             }
 
             // TokenUniqueReference (string) maxLength
-            if(this.TokenUniqueReference != null && this.TokenUniqueReference.Length > 64)
+            if (this.TokenUniqueReference != null && this.TokenUniqueReference.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TokenUniqueReference, length must be less than 64.", new [] { "TokenUniqueReference" });
             }

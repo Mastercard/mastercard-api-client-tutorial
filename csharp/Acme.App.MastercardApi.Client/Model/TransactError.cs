@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// Only returned in the event of an error condition for the Transact API
     /// </summary>
     [DataContract(Name = "TransactError")]
-    public partial class TransactError : IEquatable<TransactError>, IValidatableObject
+    public partial class TransactError : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactError" /> class.
@@ -89,7 +89,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class TransactError {\n");
             sb.Append("  Source: ").Append(Source).Append("\n");
             sb.Append("  ErrorCode: ").Append(ErrorCode).Append("\n");
@@ -110,77 +110,6 @@ namespace Acme.App.MastercardApi.Client.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as TransactError);
-        }
-
-        /// <summary>
-        /// Returns true if TransactError instances are equal
-        /// </summary>
-        /// <param name="input">Instance of TransactError to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(TransactError input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.Source == input.Source ||
-                    (this.Source != null &&
-                    this.Source.Equals(input.Source))
-                ) && 
-                (
-                    this.ErrorCode == input.ErrorCode ||
-                    (this.ErrorCode != null &&
-                    this.ErrorCode.Equals(input.ErrorCode))
-                ) && 
-                (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
-                ) && 
-                (
-                    this.ReasonCode == input.ReasonCode ||
-                    (this.ReasonCode != null &&
-                    this.ReasonCode.Equals(input.ReasonCode))
-                ) && 
-                (
-                    this.ErrorDescription == input.ErrorDescription ||
-                    (this.ErrorDescription != null &&
-                    this.ErrorDescription.Equals(input.ErrorDescription))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Source != null)
-                    hashCode = hashCode * 59 + this.Source.GetHashCode();
-                if (this.ErrorCode != null)
-                    hashCode = hashCode * 59 + this.ErrorCode.GetHashCode();
-                if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
-                if (this.ReasonCode != null)
-                    hashCode = hashCode * 59 + this.ReasonCode.GetHashCode();
-                if (this.ErrorDescription != null)
-                    hashCode = hashCode * 59 + this.ErrorDescription.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
@@ -188,31 +117,31 @@ namespace Acme.App.MastercardApi.Client.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Source (string) maxLength
-            if(this.Source != null && this.Source.Length > 32)
+            if (this.Source != null && this.Source.Length > 32)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Source, length must be less than 32.", new [] { "Source" });
             }
 
             // ErrorCode (string) maxLength
-            if(this.ErrorCode != null && this.ErrorCode.Length > 100)
+            if (this.ErrorCode != null && this.ErrorCode.Length > 100)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ErrorCode, length must be less than 100.", new [] { "ErrorCode" });
             }
 
             // Description (string) maxLength
-            if(this.Description != null && this.Description.Length > 256)
+            if (this.Description != null && this.Description.Length > 256)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, length must be less than 256.", new [] { "Description" });
             }
 
             // ReasonCode (string) maxLength
-            if(this.ReasonCode != null && this.ReasonCode.Length > 100)
+            if (this.ReasonCode != null && this.ReasonCode.Length > 100)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ReasonCode, length must be less than 100.", new [] { "ReasonCode" });
             }
 
             // ErrorDescription (string) maxLength
-            if(this.ErrorDescription != null && this.ErrorDescription.Length > 100)
+            if (this.ErrorDescription != null && this.ErrorDescription.Length > 100)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ErrorDescription, length must be less than 100.", new [] { "ErrorDescription" });
             }

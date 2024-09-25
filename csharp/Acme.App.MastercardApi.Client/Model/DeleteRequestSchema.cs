@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// DeleteRequestSchema
     /// </summary>
     [DataContract(Name = "DeleteRequestSchema")]
-    public partial class DeleteRequestSchema : IEquatable<DeleteRequestSchema>, IValidatableObject
+    public partial class DeleteRequestSchema : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DeleteRequestSchema" /> class.
@@ -49,13 +49,29 @@ namespace Acme.App.MastercardApi.Client.Model
         public DeleteRequestSchema(string responseHost = default(string), string requestId = default(string), string paymentAppInstanceId = default(string), List<string> tokenUniqueReferences = default(List<string>), string causedBy = default(string), string reason = default(string), string reasonCode = default(string))
         {
             // to ensure "requestId" is required (not null)
-            this.RequestId = requestId ?? throw new ArgumentNullException("requestId is a required property for DeleteRequestSchema and cannot be null");
+            if (requestId == null)
+            {
+                throw new ArgumentNullException("requestId is a required property for DeleteRequestSchema and cannot be null");
+            }
+            this.RequestId = requestId;
             // to ensure "tokenUniqueReferences" is required (not null)
-            this.TokenUniqueReferences = tokenUniqueReferences ?? throw new ArgumentNullException("tokenUniqueReferences is a required property for DeleteRequestSchema and cannot be null");
+            if (tokenUniqueReferences == null)
+            {
+                throw new ArgumentNullException("tokenUniqueReferences is a required property for DeleteRequestSchema and cannot be null");
+            }
+            this.TokenUniqueReferences = tokenUniqueReferences;
             // to ensure "causedBy" is required (not null)
-            this.CausedBy = causedBy ?? throw new ArgumentNullException("causedBy is a required property for DeleteRequestSchema and cannot be null");
+            if (causedBy == null)
+            {
+                throw new ArgumentNullException("causedBy is a required property for DeleteRequestSchema and cannot be null");
+            }
+            this.CausedBy = causedBy;
             // to ensure "reasonCode" is required (not null)
-            this.ReasonCode = reasonCode ?? throw new ArgumentNullException("reasonCode is a required property for DeleteRequestSchema and cannot be null");
+            if (reasonCode == null)
+            {
+                throw new ArgumentNullException("reasonCode is a required property for DeleteRequestSchema and cannot be null");
+            }
+            this.ReasonCode = reasonCode;
             this.ResponseHost = responseHost;
             this.PaymentAppInstanceId = paymentAppInstanceId;
             this.Reason = reason;
@@ -65,6 +81,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The host that originated the request. Future calls in the same conversation may be routed to this host. 
         /// </summary>
         /// <value>The host that originated the request. Future calls in the same conversation may be routed to this host. </value>
+        /// <example>site2.payment-app-provider.com</example>
         [DataMember(Name = "responseHost", EmitDefaultValue = false)]
         public string ResponseHost { get; set; }
 
@@ -72,13 +89,15 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Unique identifier for the request. 
         /// </summary>
         /// <value>Unique identifier for the request. </value>
-        [DataMember(Name = "requestId", IsRequired = true, EmitDefaultValue = false)]
+        /// <example>123456</example>
+        [DataMember(Name = "requestId", IsRequired = true, EmitDefaultValue = true)]
         public string RequestId { get; set; }
 
         /// <summary>
         /// Identifier for the specific Mobile Payment App instance, unique across a given Wallet Identifier. This value cannot be changed after digitization. This field is alphanumeric and additionally web-safe base64 characters per RFC 4648 (minus \&quot;-\&quot;, underscore \&quot;_\&quot;) up to a maximum length of 48, &#x3D; should not be URL encoded. Conditional - not applicable for server based tokens but required otherwise. 
         /// </summary>
         /// <value>Identifier for the specific Mobile Payment App instance, unique across a given Wallet Identifier. This value cannot be changed after digitization. This field is alphanumeric and additionally web-safe base64 characters per RFC 4648 (minus \&quot;-\&quot;, underscore \&quot;_\&quot;) up to a maximum length of 48, &#x3D; should not be URL encoded. Conditional - not applicable for server based tokens but required otherwise. </value>
+        /// <example>123456789</example>
         [DataMember(Name = "paymentAppInstanceId", EmitDefaultValue = false)]
         public string PaymentAppInstanceId { get; set; }
 
@@ -86,20 +105,23 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The specific Token to be deleted. Array of more or more valid references as assigned by MDES 
         /// </summary>
         /// <value>The specific Token to be deleted. Array of more or more valid references as assigned by MDES </value>
-        [DataMember(Name = "tokenUniqueReferences", IsRequired = true, EmitDefaultValue = false)]
+        /// <example>DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45</example>
+        [DataMember(Name = "tokenUniqueReferences", IsRequired = true, EmitDefaultValue = true)]
         public List<string> TokenUniqueReferences { get; set; }
 
         /// <summary>
         /// Who or what caused the Token to be deleted. Must be either the &#39;CARDHOLDER&#39; (operation requested by the Cardholder) or &#39;TOKEN_REQUESTOR&#39; (operation requested by the token requestor). 
         /// </summary>
         /// <value>Who or what caused the Token to be deleted. Must be either the &#39;CARDHOLDER&#39; (operation requested by the Cardholder) or &#39;TOKEN_REQUESTOR&#39; (operation requested by the token requestor). </value>
-        [DataMember(Name = "causedBy", IsRequired = true, EmitDefaultValue = false)]
+        /// <example>CARDHOLDER</example>
+        [DataMember(Name = "causedBy", IsRequired = true, EmitDefaultValue = true)]
         public string CausedBy { get; set; }
 
         /// <summary>
         /// Free form reason why the Tokens are being suspended. 
         /// </summary>
         /// <value>Free form reason why the Tokens are being suspended. </value>
+        /// <example>Lost/stolen device</example>
         [DataMember(Name = "reason", EmitDefaultValue = false)]
         public string Reason { get; set; }
 
@@ -107,7 +129,8 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The reason for the action to be deleted. Must be one of &#39;SUSPECTED_FRAUD&#39; (suspected fraudulent token transactions), &#39;OTHER&#39; (Other - default used if value not provided). 
         /// </summary>
         /// <value>The reason for the action to be deleted. Must be one of &#39;SUSPECTED_FRAUD&#39; (suspected fraudulent token transactions), &#39;OTHER&#39; (Other - default used if value not provided). </value>
-        [DataMember(Name = "reasonCode", IsRequired = true, EmitDefaultValue = false)]
+        /// <example>SUSPECTED_FRAUD</example>
+        [DataMember(Name = "reasonCode", IsRequired = true, EmitDefaultValue = true)]
         public string ReasonCode { get; set; }
 
         /// <summary>
@@ -116,7 +139,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class DeleteRequestSchema {\n");
             sb.Append("  ResponseHost: ").Append(ResponseHost).Append("\n");
             sb.Append("  RequestId: ").Append(RequestId).Append("\n");
@@ -139,92 +162,6 @@ namespace Acme.App.MastercardApi.Client.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as DeleteRequestSchema);
-        }
-
-        /// <summary>
-        /// Returns true if DeleteRequestSchema instances are equal
-        /// </summary>
-        /// <param name="input">Instance of DeleteRequestSchema to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(DeleteRequestSchema input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.ResponseHost == input.ResponseHost ||
-                    (this.ResponseHost != null &&
-                    this.ResponseHost.Equals(input.ResponseHost))
-                ) && 
-                (
-                    this.RequestId == input.RequestId ||
-                    (this.RequestId != null &&
-                    this.RequestId.Equals(input.RequestId))
-                ) && 
-                (
-                    this.PaymentAppInstanceId == input.PaymentAppInstanceId ||
-                    (this.PaymentAppInstanceId != null &&
-                    this.PaymentAppInstanceId.Equals(input.PaymentAppInstanceId))
-                ) && 
-                (
-                    this.TokenUniqueReferences == input.TokenUniqueReferences ||
-                    this.TokenUniqueReferences != null &&
-                    input.TokenUniqueReferences != null &&
-                    this.TokenUniqueReferences.SequenceEqual(input.TokenUniqueReferences)
-                ) && 
-                (
-                    this.CausedBy == input.CausedBy ||
-                    (this.CausedBy != null &&
-                    this.CausedBy.Equals(input.CausedBy))
-                ) && 
-                (
-                    this.Reason == input.Reason ||
-                    (this.Reason != null &&
-                    this.Reason.Equals(input.Reason))
-                ) && 
-                (
-                    this.ReasonCode == input.ReasonCode ||
-                    (this.ReasonCode != null &&
-                    this.ReasonCode.Equals(input.ReasonCode))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.ResponseHost != null)
-                    hashCode = hashCode * 59 + this.ResponseHost.GetHashCode();
-                if (this.RequestId != null)
-                    hashCode = hashCode * 59 + this.RequestId.GetHashCode();
-                if (this.PaymentAppInstanceId != null)
-                    hashCode = hashCode * 59 + this.PaymentAppInstanceId.GetHashCode();
-                if (this.TokenUniqueReferences != null)
-                    hashCode = hashCode * 59 + this.TokenUniqueReferences.GetHashCode();
-                if (this.CausedBy != null)
-                    hashCode = hashCode * 59 + this.CausedBy.GetHashCode();
-                if (this.Reason != null)
-                    hashCode = hashCode * 59 + this.Reason.GetHashCode();
-                if (this.ReasonCode != null)
-                    hashCode = hashCode * 59 + this.ReasonCode.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
@@ -232,25 +169,25 @@ namespace Acme.App.MastercardApi.Client.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // PaymentAppInstanceId (string) maxLength
-            if(this.PaymentAppInstanceId != null && this.PaymentAppInstanceId.Length > 48)
+            if (this.PaymentAppInstanceId != null && this.PaymentAppInstanceId.Length > 48)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PaymentAppInstanceId, length must be less than 48.", new [] { "PaymentAppInstanceId" });
             }
 
             // CausedBy (string) maxLength
-            if(this.CausedBy != null && this.CausedBy.Length > 64)
+            if (this.CausedBy != null && this.CausedBy.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CausedBy, length must be less than 64.", new [] { "CausedBy" });
             }
 
             // Reason (string) maxLength
-            if(this.Reason != null && this.Reason.Length > 256)
+            if (this.Reason != null && this.Reason.Length > 256)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Reason, length must be less than 256.", new [] { "Reason" });
             }
 
             // ReasonCode (string) maxLength
-            if(this.ReasonCode != null && this.ReasonCode.Length > 64)
+            if (this.ReasonCode != null && this.ReasonCode.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ReasonCode, length must be less than 64.", new [] { "ReasonCode" });
             }

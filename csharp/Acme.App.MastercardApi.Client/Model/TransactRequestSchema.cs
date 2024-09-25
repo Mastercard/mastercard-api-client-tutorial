@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// TransactRequestSchema
     /// </summary>
     [DataContract(Name = "TransactRequestSchema")]
-    public partial class TransactRequestSchema : IEquatable<TransactRequestSchema>, IValidatableObject
+    public partial class TransactRequestSchema : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactRequestSchema" /> class.
@@ -47,11 +47,23 @@ namespace Acme.App.MastercardApi.Client.Model
         public TransactRequestSchema(string responseHost = default(string), string requestId = default(string), string tokenUniqueReference = default(string), string dsrpType = default(string), string unpredictableNumber = default(string))
         {
             // to ensure "requestId" is required (not null)
-            this.RequestId = requestId ?? throw new ArgumentNullException("requestId is a required property for TransactRequestSchema and cannot be null");
+            if (requestId == null)
+            {
+                throw new ArgumentNullException("requestId is a required property for TransactRequestSchema and cannot be null");
+            }
+            this.RequestId = requestId;
             // to ensure "tokenUniqueReference" is required (not null)
-            this.TokenUniqueReference = tokenUniqueReference ?? throw new ArgumentNullException("tokenUniqueReference is a required property for TransactRequestSchema and cannot be null");
+            if (tokenUniqueReference == null)
+            {
+                throw new ArgumentNullException("tokenUniqueReference is a required property for TransactRequestSchema and cannot be null");
+            }
+            this.TokenUniqueReference = tokenUniqueReference;
             // to ensure "dsrpType" is required (not null)
-            this.DsrpType = dsrpType ?? throw new ArgumentNullException("dsrpType is a required property for TransactRequestSchema and cannot be null");
+            if (dsrpType == null)
+            {
+                throw new ArgumentNullException("dsrpType is a required property for TransactRequestSchema and cannot be null");
+            }
+            this.DsrpType = dsrpType;
             this.ResponseHost = responseHost;
             this.UnpredictableNumber = unpredictableNumber;
         }
@@ -60,6 +72,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The host that originated the request. Future calls in the same conversation may be routed to this host. 
         /// </summary>
         /// <value>The host that originated the request. Future calls in the same conversation may be routed to this host. </value>
+        /// <example>site2.payment-app-provider.com</example>
         [DataMember(Name = "responseHost", EmitDefaultValue = false)]
         public string ResponseHost { get; set; }
 
@@ -67,27 +80,31 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Unique identifier for the request. 
         /// </summary>
         /// <value>Unique identifier for the request. </value>
-        [DataMember(Name = "requestId", IsRequired = true, EmitDefaultValue = false)]
+        /// <example>123456</example>
+        [DataMember(Name = "requestId", IsRequired = true, EmitDefaultValue = true)]
         public string RequestId { get; set; }
 
         /// <summary>
         /// Globally unique identifier for the Token, as assigned by MDES. 
         /// </summary>
         /// <value>Globally unique identifier for the Token, as assigned by MDES. </value>
-        [DataMember(Name = "tokenUniqueReference", IsRequired = true, EmitDefaultValue = false)]
+        /// <example>DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45</example>
+        [DataMember(Name = "tokenUniqueReference", IsRequired = true, EmitDefaultValue = true)]
         public string TokenUniqueReference { get; set; }
 
         /// <summary>
         /// What type of DSRP cryptogram to create. Must be UCAF. 
         /// </summary>
         /// <value>What type of DSRP cryptogram to create. Must be UCAF. </value>
-        [DataMember(Name = "dsrpType", IsRequired = true, EmitDefaultValue = false)]
+        /// <example>UCAF</example>
+        [DataMember(Name = "dsrpType", IsRequired = true, EmitDefaultValue = true)]
         public string DsrpType { get; set; }
 
         /// <summary>
         /// HEX Encoded data (case sensitive) provided by the merchant to provide variability and uniqueness to the generation of a cryptogram. 
         /// </summary>
         /// <value>HEX Encoded data (case sensitive) provided by the merchant to provide variability and uniqueness to the generation of a cryptogram. </value>
+        /// <example>23424563</example>
         [DataMember(Name = "unpredictableNumber", EmitDefaultValue = false)]
         public string UnpredictableNumber { get; set; }
 
@@ -97,7 +114,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class TransactRequestSchema {\n");
             sb.Append("  ResponseHost: ").Append(ResponseHost).Append("\n");
             sb.Append("  RequestId: ").Append(RequestId).Append("\n");
@@ -118,77 +135,6 @@ namespace Acme.App.MastercardApi.Client.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as TransactRequestSchema);
-        }
-
-        /// <summary>
-        /// Returns true if TransactRequestSchema instances are equal
-        /// </summary>
-        /// <param name="input">Instance of TransactRequestSchema to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(TransactRequestSchema input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.ResponseHost == input.ResponseHost ||
-                    (this.ResponseHost != null &&
-                    this.ResponseHost.Equals(input.ResponseHost))
-                ) && 
-                (
-                    this.RequestId == input.RequestId ||
-                    (this.RequestId != null &&
-                    this.RequestId.Equals(input.RequestId))
-                ) && 
-                (
-                    this.TokenUniqueReference == input.TokenUniqueReference ||
-                    (this.TokenUniqueReference != null &&
-                    this.TokenUniqueReference.Equals(input.TokenUniqueReference))
-                ) && 
-                (
-                    this.DsrpType == input.DsrpType ||
-                    (this.DsrpType != null &&
-                    this.DsrpType.Equals(input.DsrpType))
-                ) && 
-                (
-                    this.UnpredictableNumber == input.UnpredictableNumber ||
-                    (this.UnpredictableNumber != null &&
-                    this.UnpredictableNumber.Equals(input.UnpredictableNumber))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.ResponseHost != null)
-                    hashCode = hashCode * 59 + this.ResponseHost.GetHashCode();
-                if (this.RequestId != null)
-                    hashCode = hashCode * 59 + this.RequestId.GetHashCode();
-                if (this.TokenUniqueReference != null)
-                    hashCode = hashCode * 59 + this.TokenUniqueReference.GetHashCode();
-                if (this.DsrpType != null)
-                    hashCode = hashCode * 59 + this.DsrpType.GetHashCode();
-                if (this.UnpredictableNumber != null)
-                    hashCode = hashCode * 59 + this.UnpredictableNumber.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
@@ -196,25 +142,25 @@ namespace Acme.App.MastercardApi.Client.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // TokenUniqueReference (string) maxLength
-            if(this.TokenUniqueReference != null && this.TokenUniqueReference.Length > 64)
+            if (this.TokenUniqueReference != null && this.TokenUniqueReference.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TokenUniqueReference, length must be less than 64.", new [] { "TokenUniqueReference" });
             }
 
             // DsrpType (string) maxLength
-            if(this.DsrpType != null && this.DsrpType.Length > 64)
+            if (this.DsrpType != null && this.DsrpType.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DsrpType, length must be less than 64.", new [] { "DsrpType" });
             }
 
             // UnpredictableNumber (string) maxLength
-            if(this.UnpredictableNumber != null && this.UnpredictableNumber.Length > 8)
+            if (this.UnpredictableNumber != null && this.UnpredictableNumber.Length > 8)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UnpredictableNumber, length must be less than 8.", new [] { "UnpredictableNumber" });
             }
 
             // UnpredictableNumber (string) minLength
-            if(this.UnpredictableNumber != null && this.UnpredictableNumber.Length < 8)
+            if (this.UnpredictableNumber != null && this.UnpredictableNumber.Length < 8)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for UnpredictableNumber, length must be greater than 8.", new [] { "UnpredictableNumber" });
             }

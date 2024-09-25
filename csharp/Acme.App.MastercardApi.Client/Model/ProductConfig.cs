@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// ProductConfig
     /// </summary>
     [DataContract(Name = "productConfig")]
-    public partial class ProductConfig : IEquatable<ProductConfig>, IValidatableObject
+    public partial class ProductConfig : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ProductConfig" /> class.
@@ -82,6 +82,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The MasterCard or Maestro brand logo associated with this card. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object 
         /// </summary>
         /// <value>The MasterCard or Maestro brand logo associated with this card. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object </value>
+        /// <example>800200c9-629d-11e3-949a-0739d27e5a66</example>
         [DataMember(Name = "brandLogoAssetId", EmitDefaultValue = false)]
         public string BrandLogoAssetId { get; set; }
 
@@ -89,6 +90,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The logo of the issuing bank. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object 
         /// </summary>
         /// <value>The logo of the issuing bank. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object </value>
+        /// <example>dbc55444-986a-4896-b41c-5d5e2dd431e2</example>
         [DataMember(Name = "issuerLogoAssetId", EmitDefaultValue = false)]
         public string IssuerLogoAssetId { get; set; }
 
@@ -96,6 +98,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Whether the product is co-branded. Must be either true (this is a co-branded product) or false (this is not a co-branded product). Always returned in Product Configuration object 
         /// </summary>
         /// <value>Whether the product is co-branded. Must be either true (this is a co-branded product) or false (this is not a co-branded product). Always returned in Product Configuration object </value>
+        /// <example>true</example>
         [DataMember(Name = "isCoBranded", EmitDefaultValue = true)]
         public bool IsCoBranded { get; set; }
 
@@ -103,6 +106,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Textual name of the co-brand partner. Required if CoBranded is true, not present otherwise. **Conditional: Conditionally required if isCoBranded &#x3D; \&quot;true\&quot;. Not present otherwise** 
         /// </summary>
         /// <value>Textual name of the co-brand partner. Required if CoBranded is true, not present otherwise. **Conditional: Conditionally required if isCoBranded &#x3D; \&quot;true\&quot;. Not present otherwise** </value>
+        /// <example>Co brand partner</example>
         [DataMember(Name = "coBrandName", EmitDefaultValue = false)]
         public string CoBrandName { get; set; }
 
@@ -110,6 +114,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The co-brand logo (if any) for this product. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. 
         /// </summary>
         /// <value>The co-brand logo (if any) for this product. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. </value>
+        /// <example>dbc55444-496a-4896-b41c-5d5e2dd431e2</example>
         [DataMember(Name = "coBrandLogoAssetId", EmitDefaultValue = false)]
         public string CoBrandLogoAssetId { get; set; }
 
@@ -117,6 +122,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The card image used to represent the digital card in the wallet. This ?combined? option contains the MasterCard, bank and any co- brand logos.  Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. **Conditional: either CardBackgroundCombined or CardBackground will be provided** 
         /// </summary>
         /// <value>The card image used to represent the digital card in the wallet. This ?combined? option contains the MasterCard, bank and any co- brand logos.  Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. **Conditional: either CardBackgroundCombined or CardBackground will be provided** </value>
+        /// <example>739d27e5-629d-11e3-949a-0800200c9a66</example>
         [DataMember(Name = "cardBackgroundCombinedAssetId", EmitDefaultValue = false)]
         public string CardBackgroundCombinedAssetId { get; set; }
 
@@ -124,6 +130,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The card image used to represent the digital card in the wallet. This ?non-combined? option does not contain the MasterCard, bank, or co-brand logos. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. **Conditional: either CardBackgroundCombined or CardBackground will be provided** 
         /// </summary>
         /// <value>The card image used to represent the digital card in the wallet. This ?non-combined? option does not contain the MasterCard, bank, or co-brand logos. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. **Conditional: either CardBackgroundCombined or CardBackground will be provided** </value>
+        /// <example>456d27e5-629d-11e3-949a-0800200c9a66</example>
         [DataMember(Name = "cardBackgroundAssetId", EmitDefaultValue = false)]
         public string CardBackgroundAssetId { get; set; }
 
@@ -131,6 +138,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The icon representing the primary brand(s) associated with this product. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object 
         /// </summary>
         /// <value>The icon representing the primary brand(s) associated with this product. Provided as an Asset ID ? use the Get Asset API to retrieve the actual asset. Always returned in Product Configuration object </value>
+        /// <example>739d87e5-629d-11e3-949a-0800200c9a66</example>
         [DataMember(Name = "iconAssetId", EmitDefaultValue = false)]
         public string IconAssetId { get; set; }
 
@@ -138,6 +146,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Foreground color, used to overlay text on top of the card image. Always returned in Product Configuration object 
         /// </summary>
         /// <value>Foreground color, used to overlay text on top of the card image. Always returned in Product Configuration object </value>
+        /// <example>0</example>
         [DataMember(Name = "foregroundColor", EmitDefaultValue = false)]
         public string ForegroundColor { get; set; }
 
@@ -145,6 +154,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Name of the issuing bank. Always returned in Product Configuration object 
         /// </summary>
         /// <value>Name of the issuing bank. Always returned in Product Configuration object </value>
+        /// <example>Issuing Bank</example>
         [DataMember(Name = "issuerName", EmitDefaultValue = false)]
         public string IssuerName { get; set; }
 
@@ -152,6 +162,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// A short description for this product. Always returned in Product Configuration object 
         /// </summary>
         /// <value>A short description for this product. Always returned in Product Configuration object </value>
+        /// <example>Bank Rewards MasterCard</example>
         [DataMember(Name = "shortDescription", EmitDefaultValue = false)]
         public string ShortDescription { get; set; }
 
@@ -159,6 +170,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// A long description for this product. 
         /// </summary>
         /// <value>A long description for this product. </value>
+        /// <example>Bank Rewards MasterCard with the super duper rewards program</example>
         [DataMember(Name = "longDescription", EmitDefaultValue = false)]
         public string LongDescription { get; set; }
 
@@ -166,6 +178,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Customer service website of the issuing bank. 
         /// </summary>
         /// <value>Customer service website of the issuing bank. </value>
+        /// <example>https://bank.com/customerservice</example>
         [DataMember(Name = "customerServiceUrl", EmitDefaultValue = false)]
         public string CustomerServiceUrl { get; set; }
 
@@ -173,6 +186,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Customer service email address of the issuing bank. 
         /// </summary>
         /// <value>Customer service email address of the issuing bank. </value>
+        /// <example>customerservice@bank.com</example>
         [DataMember(Name = "customerServiceEmail", EmitDefaultValue = false)]
         public string CustomerServiceEmail { get; set; }
 
@@ -180,6 +194,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Customer service phone number of the issuing bank. 
         /// </summary>
         /// <value>Customer service phone number of the issuing bank. </value>
+        /// <example>1234567891</example>
         [DataMember(Name = "customerServicePhoneNumber", EmitDefaultValue = false)]
         public string CustomerServicePhoneNumber { get; set; }
 
@@ -194,6 +209,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Logon URL for the issuing bank?s online banking website. 
         /// </summary>
         /// <value>Logon URL for the issuing bank?s online banking website. </value>
+        /// <example>bank.com</example>
         [DataMember(Name = "onlineBankingLoginUrl", EmitDefaultValue = false)]
         public string OnlineBankingLoginUrl { get; set; }
 
@@ -201,6 +217,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// URL linking to the issuing bank?s terms and conditions for this product. 
         /// </summary>
         /// <value>URL linking to the issuing bank?s terms and conditions for this product. </value>
+        /// <example>https://bank.com/termsAndConditions</example>
         [DataMember(Name = "termsAndConditionsUrl", EmitDefaultValue = false)]
         public string TermsAndConditionsUrl { get; set; }
 
@@ -208,6 +225,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// URL linking to the issuing bank?s privacy policy for this product. 
         /// </summary>
         /// <value>URL linking to the issuing bank?s privacy policy for this product. </value>
+        /// <example>https://bank.com/privacy</example>
         [DataMember(Name = "privacyPolicyUrl", EmitDefaultValue = false)]
         public string PrivacyPolicyUrl { get; set; }
 
@@ -215,6 +233,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Freeform identifier for this product configuration as assigned by the issuer. 
         /// </summary>
         /// <value>Freeform identifier for this product configuration as assigned by the issuer. </value>
+        /// <example>123456</example>
         [DataMember(Name = "issuerProductConfigCode", EmitDefaultValue = false)]
         public string IssuerProductConfigCode { get; set; }
 
@@ -224,7 +243,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ProductConfig {\n");
             sb.Append("  BrandLogoAssetId: ").Append(BrandLogoAssetId).Append("\n");
             sb.Append("  IssuerLogoAssetId: ").Append(IssuerLogoAssetId).Append("\n");
@@ -260,180 +279,6 @@ namespace Acme.App.MastercardApi.Client.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as ProductConfig);
-        }
-
-        /// <summary>
-        /// Returns true if ProductConfig instances are equal
-        /// </summary>
-        /// <param name="input">Instance of ProductConfig to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(ProductConfig input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.BrandLogoAssetId == input.BrandLogoAssetId ||
-                    (this.BrandLogoAssetId != null &&
-                    this.BrandLogoAssetId.Equals(input.BrandLogoAssetId))
-                ) && 
-                (
-                    this.IssuerLogoAssetId == input.IssuerLogoAssetId ||
-                    (this.IssuerLogoAssetId != null &&
-                    this.IssuerLogoAssetId.Equals(input.IssuerLogoAssetId))
-                ) && 
-                (
-                    this.IsCoBranded == input.IsCoBranded ||
-                    this.IsCoBranded.Equals(input.IsCoBranded)
-                ) && 
-                (
-                    this.CoBrandName == input.CoBrandName ||
-                    (this.CoBrandName != null &&
-                    this.CoBrandName.Equals(input.CoBrandName))
-                ) && 
-                (
-                    this.CoBrandLogoAssetId == input.CoBrandLogoAssetId ||
-                    (this.CoBrandLogoAssetId != null &&
-                    this.CoBrandLogoAssetId.Equals(input.CoBrandLogoAssetId))
-                ) && 
-                (
-                    this.CardBackgroundCombinedAssetId == input.CardBackgroundCombinedAssetId ||
-                    (this.CardBackgroundCombinedAssetId != null &&
-                    this.CardBackgroundCombinedAssetId.Equals(input.CardBackgroundCombinedAssetId))
-                ) && 
-                (
-                    this.CardBackgroundAssetId == input.CardBackgroundAssetId ||
-                    (this.CardBackgroundAssetId != null &&
-                    this.CardBackgroundAssetId.Equals(input.CardBackgroundAssetId))
-                ) && 
-                (
-                    this.IconAssetId == input.IconAssetId ||
-                    (this.IconAssetId != null &&
-                    this.IconAssetId.Equals(input.IconAssetId))
-                ) && 
-                (
-                    this.ForegroundColor == input.ForegroundColor ||
-                    (this.ForegroundColor != null &&
-                    this.ForegroundColor.Equals(input.ForegroundColor))
-                ) && 
-                (
-                    this.IssuerName == input.IssuerName ||
-                    (this.IssuerName != null &&
-                    this.IssuerName.Equals(input.IssuerName))
-                ) && 
-                (
-                    this.ShortDescription == input.ShortDescription ||
-                    (this.ShortDescription != null &&
-                    this.ShortDescription.Equals(input.ShortDescription))
-                ) && 
-                (
-                    this.LongDescription == input.LongDescription ||
-                    (this.LongDescription != null &&
-                    this.LongDescription.Equals(input.LongDescription))
-                ) && 
-                (
-                    this.CustomerServiceUrl == input.CustomerServiceUrl ||
-                    (this.CustomerServiceUrl != null &&
-                    this.CustomerServiceUrl.Equals(input.CustomerServiceUrl))
-                ) && 
-                (
-                    this.CustomerServiceEmail == input.CustomerServiceEmail ||
-                    (this.CustomerServiceEmail != null &&
-                    this.CustomerServiceEmail.Equals(input.CustomerServiceEmail))
-                ) && 
-                (
-                    this.CustomerServicePhoneNumber == input.CustomerServicePhoneNumber ||
-                    (this.CustomerServicePhoneNumber != null &&
-                    this.CustomerServicePhoneNumber.Equals(input.CustomerServicePhoneNumber))
-                ) && 
-                (
-                    this.IssuerMobileApp == input.IssuerMobileApp ||
-                    (this.IssuerMobileApp != null &&
-                    this.IssuerMobileApp.Equals(input.IssuerMobileApp))
-                ) && 
-                (
-                    this.OnlineBankingLoginUrl == input.OnlineBankingLoginUrl ||
-                    (this.OnlineBankingLoginUrl != null &&
-                    this.OnlineBankingLoginUrl.Equals(input.OnlineBankingLoginUrl))
-                ) && 
-                (
-                    this.TermsAndConditionsUrl == input.TermsAndConditionsUrl ||
-                    (this.TermsAndConditionsUrl != null &&
-                    this.TermsAndConditionsUrl.Equals(input.TermsAndConditionsUrl))
-                ) && 
-                (
-                    this.PrivacyPolicyUrl == input.PrivacyPolicyUrl ||
-                    (this.PrivacyPolicyUrl != null &&
-                    this.PrivacyPolicyUrl.Equals(input.PrivacyPolicyUrl))
-                ) && 
-                (
-                    this.IssuerProductConfigCode == input.IssuerProductConfigCode ||
-                    (this.IssuerProductConfigCode != null &&
-                    this.IssuerProductConfigCode.Equals(input.IssuerProductConfigCode))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.BrandLogoAssetId != null)
-                    hashCode = hashCode * 59 + this.BrandLogoAssetId.GetHashCode();
-                if (this.IssuerLogoAssetId != null)
-                    hashCode = hashCode * 59 + this.IssuerLogoAssetId.GetHashCode();
-                hashCode = hashCode * 59 + this.IsCoBranded.GetHashCode();
-                if (this.CoBrandName != null)
-                    hashCode = hashCode * 59 + this.CoBrandName.GetHashCode();
-                if (this.CoBrandLogoAssetId != null)
-                    hashCode = hashCode * 59 + this.CoBrandLogoAssetId.GetHashCode();
-                if (this.CardBackgroundCombinedAssetId != null)
-                    hashCode = hashCode * 59 + this.CardBackgroundCombinedAssetId.GetHashCode();
-                if (this.CardBackgroundAssetId != null)
-                    hashCode = hashCode * 59 + this.CardBackgroundAssetId.GetHashCode();
-                if (this.IconAssetId != null)
-                    hashCode = hashCode * 59 + this.IconAssetId.GetHashCode();
-                if (this.ForegroundColor != null)
-                    hashCode = hashCode * 59 + this.ForegroundColor.GetHashCode();
-                if (this.IssuerName != null)
-                    hashCode = hashCode * 59 + this.IssuerName.GetHashCode();
-                if (this.ShortDescription != null)
-                    hashCode = hashCode * 59 + this.ShortDescription.GetHashCode();
-                if (this.LongDescription != null)
-                    hashCode = hashCode * 59 + this.LongDescription.GetHashCode();
-                if (this.CustomerServiceUrl != null)
-                    hashCode = hashCode * 59 + this.CustomerServiceUrl.GetHashCode();
-                if (this.CustomerServiceEmail != null)
-                    hashCode = hashCode * 59 + this.CustomerServiceEmail.GetHashCode();
-                if (this.CustomerServicePhoneNumber != null)
-                    hashCode = hashCode * 59 + this.CustomerServicePhoneNumber.GetHashCode();
-                if (this.IssuerMobileApp != null)
-                    hashCode = hashCode * 59 + this.IssuerMobileApp.GetHashCode();
-                if (this.OnlineBankingLoginUrl != null)
-                    hashCode = hashCode * 59 + this.OnlineBankingLoginUrl.GetHashCode();
-                if (this.TermsAndConditionsUrl != null)
-                    hashCode = hashCode * 59 + this.TermsAndConditionsUrl.GetHashCode();
-                if (this.PrivacyPolicyUrl != null)
-                    hashCode = hashCode * 59 + this.PrivacyPolicyUrl.GetHashCode();
-                if (this.IssuerProductConfigCode != null)
-                    hashCode = hashCode * 59 + this.IssuerProductConfigCode.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
@@ -441,109 +286,109 @@ namespace Acme.App.MastercardApi.Client.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // BrandLogoAssetId (string) maxLength
-            if(this.BrandLogoAssetId != null && this.BrandLogoAssetId.Length > 64)
+            if (this.BrandLogoAssetId != null && this.BrandLogoAssetId.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for BrandLogoAssetId, length must be less than 64.", new [] { "BrandLogoAssetId" });
             }
 
             // IssuerLogoAssetId (string) maxLength
-            if(this.IssuerLogoAssetId != null && this.IssuerLogoAssetId.Length > 64)
+            if (this.IssuerLogoAssetId != null && this.IssuerLogoAssetId.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IssuerLogoAssetId, length must be less than 64.", new [] { "IssuerLogoAssetId" });
             }
 
             // CoBrandName (string) maxLength
-            if(this.CoBrandName != null && this.CoBrandName.Length > 128)
+            if (this.CoBrandName != null && this.CoBrandName.Length > 128)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CoBrandName, length must be less than 128.", new [] { "CoBrandName" });
             }
 
             // CoBrandLogoAssetId (string) maxLength
-            if(this.CoBrandLogoAssetId != null && this.CoBrandLogoAssetId.Length > 64)
+            if (this.CoBrandLogoAssetId != null && this.CoBrandLogoAssetId.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CoBrandLogoAssetId, length must be less than 64.", new [] { "CoBrandLogoAssetId" });
             }
 
             // CardBackgroundCombinedAssetId (string) maxLength
-            if(this.CardBackgroundCombinedAssetId != null && this.CardBackgroundCombinedAssetId.Length > 64)
+            if (this.CardBackgroundCombinedAssetId != null && this.CardBackgroundCombinedAssetId.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CardBackgroundCombinedAssetId, length must be less than 64.", new [] { "CardBackgroundCombinedAssetId" });
             }
 
             // CardBackgroundAssetId (string) maxLength
-            if(this.CardBackgroundAssetId != null && this.CardBackgroundAssetId.Length > 64)
+            if (this.CardBackgroundAssetId != null && this.CardBackgroundAssetId.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CardBackgroundAssetId, length must be less than 64.", new [] { "CardBackgroundAssetId" });
             }
 
             // IconAssetId (string) maxLength
-            if(this.IconAssetId != null && this.IconAssetId.Length > 64)
+            if (this.IconAssetId != null && this.IconAssetId.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IconAssetId, length must be less than 64.", new [] { "IconAssetId" });
             }
 
             // ForegroundColor (string) maxLength
-            if(this.ForegroundColor != null && this.ForegroundColor.Length > 6)
+            if (this.ForegroundColor != null && this.ForegroundColor.Length > 6)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ForegroundColor, length must be less than 6.", new [] { "ForegroundColor" });
             }
 
             // IssuerName (string) maxLength
-            if(this.IssuerName != null && this.IssuerName.Length > 64)
+            if (this.IssuerName != null && this.IssuerName.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IssuerName, length must be less than 64.", new [] { "IssuerName" });
             }
 
             // ShortDescription (string) maxLength
-            if(this.ShortDescription != null && this.ShortDescription.Length > 128)
+            if (this.ShortDescription != null && this.ShortDescription.Length > 128)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ShortDescription, length must be less than 128.", new [] { "ShortDescription" });
             }
 
             // LongDescription (string) maxLength
-            if(this.LongDescription != null && this.LongDescription.Length > 256)
+            if (this.LongDescription != null && this.LongDescription.Length > 256)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for LongDescription, length must be less than 256.", new [] { "LongDescription" });
             }
 
             // CustomerServiceUrl (string) maxLength
-            if(this.CustomerServiceUrl != null && this.CustomerServiceUrl.Length > 128)
+            if (this.CustomerServiceUrl != null && this.CustomerServiceUrl.Length > 128)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CustomerServiceUrl, length must be less than 128.", new [] { "CustomerServiceUrl" });
             }
 
             // CustomerServiceEmail (string) maxLength
-            if(this.CustomerServiceEmail != null && this.CustomerServiceEmail.Length > 64)
+            if (this.CustomerServiceEmail != null && this.CustomerServiceEmail.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CustomerServiceEmail, length must be less than 64.", new [] { "CustomerServiceEmail" });
             }
 
             // CustomerServicePhoneNumber (string) maxLength
-            if(this.CustomerServicePhoneNumber != null && this.CustomerServicePhoneNumber.Length > 64)
+            if (this.CustomerServicePhoneNumber != null && this.CustomerServicePhoneNumber.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CustomerServicePhoneNumber, length must be less than 64.", new [] { "CustomerServicePhoneNumber" });
             }
 
             // OnlineBankingLoginUrl (string) maxLength
-            if(this.OnlineBankingLoginUrl != null && this.OnlineBankingLoginUrl.Length > 128)
+            if (this.OnlineBankingLoginUrl != null && this.OnlineBankingLoginUrl.Length > 128)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for OnlineBankingLoginUrl, length must be less than 128.", new [] { "OnlineBankingLoginUrl" });
             }
 
             // TermsAndConditionsUrl (string) maxLength
-            if(this.TermsAndConditionsUrl != null && this.TermsAndConditionsUrl.Length > 128)
+            if (this.TermsAndConditionsUrl != null && this.TermsAndConditionsUrl.Length > 128)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TermsAndConditionsUrl, length must be less than 128.", new [] { "TermsAndConditionsUrl" });
             }
 
             // PrivacyPolicyUrl (string) maxLength
-            if(this.PrivacyPolicyUrl != null && this.PrivacyPolicyUrl.Length > 128)
+            if (this.PrivacyPolicyUrl != null && this.PrivacyPolicyUrl.Length > 128)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PrivacyPolicyUrl, length must be less than 128.", new [] { "PrivacyPolicyUrl" });
             }
 
             // IssuerProductConfigCode (string) maxLength
-            if(this.IssuerProductConfigCode != null && this.IssuerProductConfigCode.Length > 128)
+            if (this.IssuerProductConfigCode != null && this.IssuerProductConfigCode.Length > 128)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IssuerProductConfigCode, length must be less than 128.", new [] { "IssuerProductConfigCode" });
             }

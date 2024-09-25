@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// \&quot;authenticationMethods not currently used for MDES for Merchants\&quot; 
     /// </summary>
     [DataContract(Name = "authenticationMethods")]
-    public partial class AuthenticationMethods : IEquatable<AuthenticationMethods>, IValidatableObject
+    public partial class AuthenticationMethods : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthenticationMethods" /> class.
@@ -55,6 +55,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Specifies the authentication method type and provided in the tokenize response.  See table here - https://developer.mastercard.com/mdes-digital-enablement/documentation/code-and-formats/#authentication-method-codes 
         /// </summary>
         /// <value>Specifies the authentication method type and provided in the tokenize response.  See table here - https://developer.mastercard.com/mdes-digital-enablement/documentation/code-and-formats/#authentication-method-codes </value>
+        /// <example>TEXT_TO_CARDHOLDER_NUMBER</example>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; }
 
@@ -62,6 +63,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Specifies the authentication method value (meaning varies depending on the authentication method type). 
         /// </summary>
         /// <value>Specifies the authentication method value (meaning varies depending on the authentication method type). </value>
+        /// <example>1</example>
         [DataMember(Name = "value", EmitDefaultValue = false)]
         public string Value { get; set; }
 
@@ -71,7 +73,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AuthenticationMethods {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
@@ -87,61 +89,6 @@ namespace Acme.App.MastercardApi.Client.Model
         public virtual string ToJson()
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
-        }
-
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as AuthenticationMethods);
-        }
-
-        /// <summary>
-        /// Returns true if AuthenticationMethods instances are equal
-        /// </summary>
-        /// <param name="input">Instance of AuthenticationMethods to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(AuthenticationMethods input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.Id == input.Id ||
-                    this.Id.Equals(input.Id)
-                ) && 
-                (
-                    this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
-                ) && 
-                (
-                    this.Value == input.Value ||
-                    (this.Value != null &&
-                    this.Value.Equals(input.Value))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                hashCode = hashCode * 59 + this.Id.GetHashCode();
-                if (this.Type != null)
-                    hashCode = hashCode * 59 + this.Type.GetHashCode();
-                if (this.Value != null)
-                    hashCode = hashCode * 59 + this.Value.GetHashCode();
-                return hashCode;
-            }
         }
 
         /// <summary>

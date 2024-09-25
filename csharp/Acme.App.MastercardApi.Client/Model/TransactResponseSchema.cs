@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// TransactResponseSchema
     /// </summary>
     [DataContract(Name = "TransactResponseSchema")]
-    public partial class TransactResponseSchema : IEquatable<TransactResponseSchema>, IValidatableObject
+    public partial class TransactResponseSchema : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactResponseSchema" /> class.
@@ -55,6 +55,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The host that originated the request. Future calls in the same conversation may be routed to this host. 
         /// </summary>
         /// <value>The host that originated the request. Future calls in the same conversation may be routed to this host. </value>
+        /// <example>site2.payment-app-provider.com</example>
         [DataMember(Name = "responseHost", EmitDefaultValue = false)]
         public string ResponseHost { get; set; }
 
@@ -70,7 +71,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class TransactResponseSchema {\n");
             sb.Append("  ResponseId: ").Append(ResponseId).Append("\n");
             sb.Append("  ResponseHost: ").Append(ResponseHost).Append("\n");
@@ -86,63 +87,6 @@ namespace Acme.App.MastercardApi.Client.Model
         public virtual string ToJson()
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
-        }
-
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as TransactResponseSchema);
-        }
-
-        /// <summary>
-        /// Returns true if TransactResponseSchema instances are equal
-        /// </summary>
-        /// <param name="input">Instance of TransactResponseSchema to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(TransactResponseSchema input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.ResponseId == input.ResponseId ||
-                    (this.ResponseId != null &&
-                    this.ResponseId.Equals(input.ResponseId))
-                ) && 
-                (
-                    this.ResponseHost == input.ResponseHost ||
-                    (this.ResponseHost != null &&
-                    this.ResponseHost.Equals(input.ResponseHost))
-                ) && 
-                (
-                    this.EncryptedPayload == input.EncryptedPayload ||
-                    (this.EncryptedPayload != null &&
-                    this.EncryptedPayload.Equals(input.EncryptedPayload))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.ResponseId != null)
-                    hashCode = hashCode * 59 + this.ResponseId.GetHashCode();
-                if (this.ResponseHost != null)
-                    hashCode = hashCode * 59 + this.ResponseHost.GetHashCode();
-                if (this.EncryptedPayload != null)
-                    hashCode = hashCode * 59 + this.EncryptedPayload.GetHashCode();
-                return hashCode;
-            }
         }
 
         /// <summary>

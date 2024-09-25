@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// SearchTokensRequestSchema
     /// </summary>
     [DataContract(Name = "SearchTokensRequestSchema")]
-    public partial class SearchTokensRequestSchema : IEquatable<SearchTokensRequestSchema>, IValidatableObject
+    public partial class SearchTokensRequestSchema : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SearchTokensRequestSchema" /> class.
@@ -46,7 +46,11 @@ namespace Acme.App.MastercardApi.Client.Model
         public SearchTokensRequestSchema(string requestId = default(string), string responseHost = default(string), FundingAccountInfo fundingAccountInfo = default(FundingAccountInfo), string tokenRequestorId = default(string))
         {
             // to ensure "requestId" is required (not null)
-            this.RequestId = requestId ?? throw new ArgumentNullException("requestId is a required property for SearchTokensRequestSchema and cannot be null");
+            if (requestId == null)
+            {
+                throw new ArgumentNullException("requestId is a required property for SearchTokensRequestSchema and cannot be null");
+            }
+            this.RequestId = requestId;
             this.ResponseHost = responseHost;
             this.FundingAccountInfo = fundingAccountInfo;
             this.TokenRequestorId = tokenRequestorId;
@@ -56,13 +60,15 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Unique identifier for the request. 
         /// </summary>
         /// <value>Unique identifier for the request. </value>
-        [DataMember(Name = "requestId", IsRequired = true, EmitDefaultValue = false)]
+        /// <example>123456</example>
+        [DataMember(Name = "requestId", IsRequired = true, EmitDefaultValue = true)]
         public string RequestId { get; set; }
 
         /// <summary>
         /// The host that originated the request. Future calls in the same conversation may be routed to this host. 
         /// </summary>
         /// <value>The host that originated the request. Future calls in the same conversation may be routed to this host. </value>
+        /// <example>site2.payment-app-provider.com</example>
         [DataMember(Name = "responseHost", EmitDefaultValue = false)]
         public string ResponseHost { get; set; }
 
@@ -76,6 +82,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Identifies the Token Requestor. Only tokens associated with the token requestor will be returned. Length - 11. 
         /// </summary>
         /// <value>Identifies the Token Requestor. Only tokens associated with the token requestor will be returned. Length - 11. </value>
+        /// <example>98765432101</example>
         [DataMember(Name = "tokenRequestorId", EmitDefaultValue = false)]
         public string TokenRequestorId { get; set; }
 
@@ -85,7 +92,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class SearchTokensRequestSchema {\n");
             sb.Append("  RequestId: ").Append(RequestId).Append("\n");
             sb.Append("  ResponseHost: ").Append(ResponseHost).Append("\n");
@@ -102,70 +109,6 @@ namespace Acme.App.MastercardApi.Client.Model
         public virtual string ToJson()
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
-        }
-
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as SearchTokensRequestSchema);
-        }
-
-        /// <summary>
-        /// Returns true if SearchTokensRequestSchema instances are equal
-        /// </summary>
-        /// <param name="input">Instance of SearchTokensRequestSchema to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(SearchTokensRequestSchema input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.RequestId == input.RequestId ||
-                    (this.RequestId != null &&
-                    this.RequestId.Equals(input.RequestId))
-                ) && 
-                (
-                    this.ResponseHost == input.ResponseHost ||
-                    (this.ResponseHost != null &&
-                    this.ResponseHost.Equals(input.ResponseHost))
-                ) && 
-                (
-                    this.FundingAccountInfo == input.FundingAccountInfo ||
-                    (this.FundingAccountInfo != null &&
-                    this.FundingAccountInfo.Equals(input.FundingAccountInfo))
-                ) && 
-                (
-                    this.TokenRequestorId == input.TokenRequestorId ||
-                    (this.TokenRequestorId != null &&
-                    this.TokenRequestorId.Equals(input.TokenRequestorId))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.RequestId != null)
-                    hashCode = hashCode * 59 + this.RequestId.GetHashCode();
-                if (this.ResponseHost != null)
-                    hashCode = hashCode * 59 + this.ResponseHost.GetHashCode();
-                if (this.FundingAccountInfo != null)
-                    hashCode = hashCode * 59 + this.FundingAccountInfo.GetHashCode();
-                if (this.TokenRequestorId != null)
-                    hashCode = hashCode * 59 + this.TokenRequestorId.GetHashCode();
-                return hashCode;
-            }
         }
 
         /// <summary>

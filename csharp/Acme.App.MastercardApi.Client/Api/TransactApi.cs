@@ -34,8 +34,9 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </remarks>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="transactRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>TransactResponseSchema</returns>
-        TransactResponseSchema CreateTransact(TransactRequestSchema transactRequestSchema = default(TransactRequestSchema));
+        TransactResponseSchema CreateTransact(TransactRequestSchema transactRequestSchema = default(TransactRequestSchema), int operationIndex = 0);
 
         /// <summary>
         /// Used by the Token Requestor to create a Digital Secure Remote Payment (\&quot;DSRP\&quot;) transaction cryptogram using the credentials stored within MDES in order to perform a DSRP transaction.
@@ -45,8 +46,9 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </remarks>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="transactRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of TransactResponseSchema</returns>
-        ApiResponse<TransactResponseSchema> CreateTransactWithHttpInfo(TransactRequestSchema transactRequestSchema = default(TransactRequestSchema));
+        ApiResponse<TransactResponseSchema> CreateTransactWithHttpInfo(TransactRequestSchema transactRequestSchema = default(TransactRequestSchema), int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
@@ -64,9 +66,10 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </remarks>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="transactRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactResponseSchema</returns>
-        System.Threading.Tasks.Task<TransactResponseSchema> CreateTransactAsync(TransactRequestSchema transactRequestSchema = default(TransactRequestSchema), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<TransactResponseSchema> CreateTransactAsync(TransactRequestSchema transactRequestSchema = default(TransactRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Used by the Token Requestor to create a Digital Secure Remote Payment (\&quot;DSRP\&quot;) transaction cryptogram using the credentials stored within MDES in order to perform a DSRP transaction.
@@ -76,9 +79,10 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </remarks>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="transactRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactResponseSchema)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TransactResponseSchema>> CreateTransactWithHttpInfoAsync(TransactRequestSchema transactRequestSchema = default(TransactRequestSchema), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<TransactResponseSchema>> CreateTransactWithHttpInfoAsync(TransactRequestSchema transactRequestSchema = default(TransactRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -109,7 +113,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// Initializes a new instance of the <see cref="TransactApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public TransactApi(String basePath)
+        public TransactApi(string basePath)
         {
             this.Configuration = Acme.App.MastercardApi.Client.Client.Configuration.MergeConfigurations(
                 Acme.App.MastercardApi.Client.Client.GlobalConfiguration.Instance,
@@ -172,7 +176,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// Gets the base path of the API client.
         /// </summary>
         /// <value>The base path</value>
-        public String GetBasePath()
+        public string GetBasePath()
         {
             return this.Configuration.BasePath;
         }
@@ -204,8 +208,9 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </summary>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="transactRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>TransactResponseSchema</returns>
-        public TransactResponseSchema CreateTransact(TransactRequestSchema transactRequestSchema = default(TransactRequestSchema))
+        public TransactResponseSchema CreateTransact(TransactRequestSchema transactRequestSchema = default(TransactRequestSchema), int operationIndex = 0)
         {
             Acme.App.MastercardApi.Client.Client.ApiResponse<TransactResponseSchema> localVarResponse = CreateTransactWithHttpInfo(transactRequestSchema);
             return localVarResponse.Data;
@@ -216,36 +221,48 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </summary>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="transactRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of TransactResponseSchema</returns>
-        public Acme.App.MastercardApi.Client.Client.ApiResponse<TransactResponseSchema> CreateTransactWithHttpInfo(TransactRequestSchema transactRequestSchema = default(TransactRequestSchema))
+        public Acme.App.MastercardApi.Client.Client.ApiResponse<TransactResponseSchema> CreateTransactWithHttpInfo(TransactRequestSchema transactRequestSchema = default(TransactRequestSchema), int operationIndex = 0)
         {
             Acme.App.MastercardApi.Client.Client.RequestOptions localVarRequestOptions = new Acme.App.MastercardApi.Client.Client.RequestOptions();
 
-            String[] _contentTypes = new String[] {
+            string[] _contentTypes = new string[] {
                 "application/json"
             };
 
             // to determine the Accept header
-            String[] _accepts = new String[] {
+            string[] _accepts = new string[] {
                 "application/json"
             };
 
             var localVarContentType = Acme.App.MastercardApi.Client.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Acme.App.MastercardApi.Client.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.Data = transactRequestSchema;
+
+            localVarRequestOptions.Operation = "TransactApi.CreateTransact";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<TransactResponseSchema>("/remotetransaction/static/1/0/transact", localVarRequestOptions, this.Configuration);
-
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CreateTransact", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -256,11 +273,12 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </summary>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="transactRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TransactResponseSchema</returns>
-        public async System.Threading.Tasks.Task<TransactResponseSchema> CreateTransactAsync(TransactRequestSchema transactRequestSchema = default(TransactRequestSchema), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<TransactResponseSchema> CreateTransactAsync(TransactRequestSchema transactRequestSchema = default(TransactRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Acme.App.MastercardApi.Client.Client.ApiResponse<TransactResponseSchema> localVarResponse = await CreateTransactWithHttpInfoAsync(transactRequestSchema, cancellationToken).ConfigureAwait(false);
+            Acme.App.MastercardApi.Client.Client.ApiResponse<TransactResponseSchema> localVarResponse = await CreateTransactWithHttpInfoAsync(transactRequestSchema, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -269,40 +287,51 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </summary>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="transactRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TransactResponseSchema)</returns>
-        public async System.Threading.Tasks.Task<Acme.App.MastercardApi.Client.Client.ApiResponse<TransactResponseSchema>> CreateTransactWithHttpInfoAsync(TransactRequestSchema transactRequestSchema = default(TransactRequestSchema), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Acme.App.MastercardApi.Client.Client.ApiResponse<TransactResponseSchema>> CreateTransactWithHttpInfoAsync(TransactRequestSchema transactRequestSchema = default(TransactRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Acme.App.MastercardApi.Client.Client.RequestOptions localVarRequestOptions = new Acme.App.MastercardApi.Client.Client.RequestOptions();
 
-            String[] _contentTypes = new String[] {
+            string[] _contentTypes = new string[] {
                 "application/json"
             };
 
             // to determine the Accept header
-            String[] _accepts = new String[] {
+            string[] _accepts = new string[] {
                 "application/json"
             };
 
-
             var localVarContentType = Acme.App.MastercardApi.Client.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Acme.App.MastercardApi.Client.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.Data = transactRequestSchema;
 
+            localVarRequestOptions.Operation = "TransactApi.CreateTransact";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
 
             // make the HTTP request
-
             var localVarResponse = await this.AsynchronousClient.PostAsync<TransactResponseSchema>("/remotetransaction/static/1/0/transact", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CreateTransact", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;

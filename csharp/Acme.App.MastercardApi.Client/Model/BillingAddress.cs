@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// BillingAddress
     /// </summary>
     [DataContract(Name = "billingAddress")]
-    public partial class BillingAddress : IEquatable<BillingAddress>, IValidatableObject
+    public partial class BillingAddress : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BillingAddress" /> class.
@@ -54,6 +54,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// **(OPTIONAL)** The first line of the street address for the billing address. 
         /// </summary>
         /// <value>**(OPTIONAL)** The first line of the street address for the billing address. </value>
+        /// <example>100 1st Street</example>
         [DataMember(Name = "line1", EmitDefaultValue = false)]
         public string Line1 { get; set; }
 
@@ -61,6 +62,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// **(OPTIONAL)** The second line of the street address for the billing address. 
         /// </summary>
         /// <value>**(OPTIONAL)** The second line of the street address for the billing address. </value>
+        /// <example>Apt. 4B</example>
         [DataMember(Name = "line2", EmitDefaultValue = false)]
         public string Line2 { get; set; }
 
@@ -68,6 +70,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// **(OPTIONAL)** The city of the billing address. 
         /// </summary>
         /// <value>**(OPTIONAL)** The city of the billing address. </value>
+        /// <example>St. Louis</example>
         [DataMember(Name = "city", EmitDefaultValue = false)]
         public string City { get; set; }
 
@@ -75,6 +78,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// **(OPTIONAL)** The state or country subdivision of the billing address. 
         /// </summary>
         /// <value>**(OPTIONAL)** The state or country subdivision of the billing address. </value>
+        /// <example>MO</example>
         [DataMember(Name = "countrySubdivision", EmitDefaultValue = false)]
         public string CountrySubdivision { get; set; }
 
@@ -82,6 +86,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// **(OPTIONAL)** The postal of code of the billing address. 
         /// </summary>
         /// <value>**(OPTIONAL)** The postal of code of the billing address. </value>
+        /// <example>61000</example>
         [DataMember(Name = "postalCode", EmitDefaultValue = false)]
         public string PostalCode { get; set; }
 
@@ -89,6 +94,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// **(OPTIONAL)** The country of the billing address. 
         /// </summary>
         /// <value>**(OPTIONAL)** The country of the billing address. </value>
+        /// <example>USA</example>
         [DataMember(Name = "country", EmitDefaultValue = false)]
         public string Country { get; set; }
 
@@ -98,7 +104,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class BillingAddress {\n");
             sb.Append("  Line1: ").Append(Line1).Append("\n");
             sb.Append("  Line2: ").Append(Line2).Append("\n");
@@ -120,84 +126,6 @@ namespace Acme.App.MastercardApi.Client.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as BillingAddress);
-        }
-
-        /// <summary>
-        /// Returns true if BillingAddress instances are equal
-        /// </summary>
-        /// <param name="input">Instance of BillingAddress to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(BillingAddress input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.Line1 == input.Line1 ||
-                    (this.Line1 != null &&
-                    this.Line1.Equals(input.Line1))
-                ) && 
-                (
-                    this.Line2 == input.Line2 ||
-                    (this.Line2 != null &&
-                    this.Line2.Equals(input.Line2))
-                ) && 
-                (
-                    this.City == input.City ||
-                    (this.City != null &&
-                    this.City.Equals(input.City))
-                ) && 
-                (
-                    this.CountrySubdivision == input.CountrySubdivision ||
-                    (this.CountrySubdivision != null &&
-                    this.CountrySubdivision.Equals(input.CountrySubdivision))
-                ) && 
-                (
-                    this.PostalCode == input.PostalCode ||
-                    (this.PostalCode != null &&
-                    this.PostalCode.Equals(input.PostalCode))
-                ) && 
-                (
-                    this.Country == input.Country ||
-                    (this.Country != null &&
-                    this.Country.Equals(input.Country))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Line1 != null)
-                    hashCode = hashCode * 59 + this.Line1.GetHashCode();
-                if (this.Line2 != null)
-                    hashCode = hashCode * 59 + this.Line2.GetHashCode();
-                if (this.City != null)
-                    hashCode = hashCode * 59 + this.City.GetHashCode();
-                if (this.CountrySubdivision != null)
-                    hashCode = hashCode * 59 + this.CountrySubdivision.GetHashCode();
-                if (this.PostalCode != null)
-                    hashCode = hashCode * 59 + this.PostalCode.GetHashCode();
-                if (this.Country != null)
-                    hashCode = hashCode * 59 + this.Country.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
@@ -205,37 +133,37 @@ namespace Acme.App.MastercardApi.Client.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Line1 (string) maxLength
-            if(this.Line1 != null && this.Line1.Length > 64)
+            if (this.Line1 != null && this.Line1.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Line1, length must be less than 64.", new [] { "Line1" });
             }
 
             // Line2 (string) maxLength
-            if(this.Line2 != null && this.Line2.Length > 64)
+            if (this.Line2 != null && this.Line2.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Line2, length must be less than 64.", new [] { "Line2" });
             }
 
             // City (string) maxLength
-            if(this.City != null && this.City.Length > 32)
+            if (this.City != null && this.City.Length > 32)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for City, length must be less than 32.", new [] { "City" });
             }
 
             // CountrySubdivision (string) maxLength
-            if(this.CountrySubdivision != null && this.CountrySubdivision.Length > 12)
+            if (this.CountrySubdivision != null && this.CountrySubdivision.Length > 12)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CountrySubdivision, length must be less than 12.", new [] { "CountrySubdivision" });
             }
 
             // PostalCode (string) maxLength
-            if(this.PostalCode != null && this.PostalCode.Length > 16)
+            if (this.PostalCode != null && this.PostalCode.Length > 16)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PostalCode, length must be less than 16.", new [] { "PostalCode" });
             }
 
             // Country (string) maxLength
-            if(this.Country != null && this.Country.Length > 3)
+            if (this.Country != null && this.Country.Length > 3)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Country, length must be less than 3.", new [] { "Country" });
             }

@@ -2,12 +2,11 @@
 
 All URIs are relative to *https://api.mastercard.com/mdes*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**SearchTokens**](SearchTokensApi.md#searchtokens) | **POST** /digitization/static/1/0/searchTokens | Used to get basic token information for all tokens on a specified device, or all tokens mapped to the given Account PAN.
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**SearchTokens**](SearchTokensApi.md#searchtokens) | **POST** /digitization/static/1/0/searchTokens | Used to get basic token information for all tokens on a specified device, or all tokens mapped to the given Account PAN. |
 
-
-<a name="searchtokens"></a>
+<a id="searchtokens"></a>
 # **SearchTokens**
 > SearchTokensResponseSchema SearchTokens (SearchTokensRequestSchema searchTokensRequestSchema = null)
 
@@ -42,8 +41,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling SearchTokensApi.SearchTokens: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling SearchTokensApi.SearchTokens: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -51,11 +50,31 @@ namespace Example
 }
 ```
 
+#### Using the SearchTokensWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Used to get basic token information for all tokens on a specified device, or all tokens mapped to the given Account PAN.
+    ApiResponse<SearchTokensResponseSchema> response = apiInstance.SearchTokensWithHttpInfo(searchTokensRequestSchema);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SearchTokensApi.SearchTokensWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **searchTokensRequestSchema** | [**SearchTokensRequestSchema**](SearchTokensRequestSchema.md)| Contains the details of the request message.  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **searchTokensRequestSchema** | [**SearchTokensRequestSchema**](SearchTokensRequestSchema.md) | Contains the details of the request message.  | [optional]  |
 
 ### Return type
 

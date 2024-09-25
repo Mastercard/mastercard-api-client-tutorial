@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// TokenDetailDataGetTokenOnly
     /// </summary>
     [DataContract(Name = "tokenDetailData_getToken_Only")]
-    public partial class TokenDetailDataGetTokenOnly : IEquatable<TokenDetailDataGetTokenOnly>, IValidatableObject
+    public partial class TokenDetailDataGetTokenOnly : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TokenDetailDataGetTokenOnly" /> class.
@@ -71,6 +71,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The unique account reference assigned to the PAN. Conditionally returned if the Token Requestor has opted to receive PAR and providing PAR is assigned by Mastercard or the Issuer provides PAR in the authorization message response. 
         /// </summary>
         /// <value>The unique account reference assigned to the PAN. Conditionally returned if the Token Requestor has opted to receive PAR and providing PAR is assigned by Mastercard or the Issuer provides PAR in the authorization message response. </value>
+        /// <example>5001a9f027e5629d11e3949a0800a</example>
         [DataMember(Name = "paymentAccountReference", EmitDefaultValue = false)]
         public string PaymentAccountReference { get; set; }
 
@@ -80,7 +81,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class TokenDetailDataGetTokenOnly {\n");
             sb.Append("  TokenNumber: ").Append(TokenNumber).Append("\n");
             sb.Append("  ExpiryMonth: ").Append(ExpiryMonth).Append("\n");
@@ -100,70 +101,6 @@ namespace Acme.App.MastercardApi.Client.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as TokenDetailDataGetTokenOnly);
-        }
-
-        /// <summary>
-        /// Returns true if TokenDetailDataGetTokenOnly instances are equal
-        /// </summary>
-        /// <param name="input">Instance of TokenDetailDataGetTokenOnly to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(TokenDetailDataGetTokenOnly input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.TokenNumber == input.TokenNumber ||
-                    (this.TokenNumber != null &&
-                    this.TokenNumber.Equals(input.TokenNumber))
-                ) && 
-                (
-                    this.ExpiryMonth == input.ExpiryMonth ||
-                    (this.ExpiryMonth != null &&
-                    this.ExpiryMonth.Equals(input.ExpiryMonth))
-                ) && 
-                (
-                    this.ExpiryYear == input.ExpiryYear ||
-                    (this.ExpiryYear != null &&
-                    this.ExpiryYear.Equals(input.ExpiryYear))
-                ) && 
-                (
-                    this.PaymentAccountReference == input.PaymentAccountReference ||
-                    (this.PaymentAccountReference != null &&
-                    this.PaymentAccountReference.Equals(input.PaymentAccountReference))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.TokenNumber != null)
-                    hashCode = hashCode * 59 + this.TokenNumber.GetHashCode();
-                if (this.ExpiryMonth != null)
-                    hashCode = hashCode * 59 + this.ExpiryMonth.GetHashCode();
-                if (this.ExpiryYear != null)
-                    hashCode = hashCode * 59 + this.ExpiryYear.GetHashCode();
-                if (this.PaymentAccountReference != null)
-                    hashCode = hashCode * 59 + this.PaymentAccountReference.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
@@ -171,31 +108,31 @@ namespace Acme.App.MastercardApi.Client.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // TokenNumber (string) maxLength
-            if(this.TokenNumber != null && this.TokenNumber.Length > 19)
+            if (this.TokenNumber != null && this.TokenNumber.Length > 19)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TokenNumber, length must be less than 19.", new [] { "TokenNumber" });
             }
 
             // TokenNumber (string) minLength
-            if(this.TokenNumber != null && this.TokenNumber.Length < 9)
+            if (this.TokenNumber != null && this.TokenNumber.Length < 9)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TokenNumber, length must be greater than 9.", new [] { "TokenNumber" });
             }
 
             // ExpiryMonth (string) maxLength
-            if(this.ExpiryMonth != null && this.ExpiryMonth.Length > 2)
+            if (this.ExpiryMonth != null && this.ExpiryMonth.Length > 2)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExpiryMonth, length must be less than 2.", new [] { "ExpiryMonth" });
             }
 
             // ExpiryYear (string) maxLength
-            if(this.ExpiryYear != null && this.ExpiryYear.Length > 2)
+            if (this.ExpiryYear != null && this.ExpiryYear.Length > 2)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExpiryYear, length must be less than 2.", new [] { "ExpiryYear" });
             }
 
             // PaymentAccountReference (string) maxLength
-            if(this.PaymentAccountReference != null && this.PaymentAccountReference.Length > 29)
+            if (this.PaymentAccountReference != null && this.PaymentAccountReference.Length > 29)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PaymentAccountReference, length must be less than 29.", new [] { "PaymentAccountReference" });
             }

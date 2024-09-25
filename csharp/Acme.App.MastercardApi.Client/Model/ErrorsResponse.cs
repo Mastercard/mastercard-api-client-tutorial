@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// ErrorsResponse
     /// </summary>
     [DataContract(Name = "ErrorsResponse")]
-    public partial class ErrorsResponse : IEquatable<ErrorsResponse>, IValidatableObject
+    public partial class ErrorsResponse : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ErrorsResponse" /> class.
@@ -66,6 +66,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The MasterCard host that originated the request. Future calls in the same conversation may be routed to this host. 
         /// </summary>
         /// <value>The MasterCard host that originated the request. Future calls in the same conversation may be routed to this host. </value>
+        /// <example>site2.payment-app-provider.com</example>
         [DataMember(Name = "responseHost", EmitDefaultValue = false)]
         public string ResponseHost { get; set; }
 
@@ -73,6 +74,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Unique identifier for the response. 
         /// </summary>
         /// <value>Unique identifier for the response. </value>
+        /// <example>123456</example>
         [DataMember(Name = "responseId", EmitDefaultValue = false)]
         public string ResponseId { get; set; }
 
@@ -88,7 +90,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ErrorsResponse {\n");
             sb.Append("  ErrorCode: ").Append(ErrorCode).Append("\n");
             sb.Append("  ErrorDescription: ").Append(ErrorDescription).Append("\n");
@@ -109,77 +111,6 @@ namespace Acme.App.MastercardApi.Client.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as ErrorsResponse);
-        }
-
-        /// <summary>
-        /// Returns true if ErrorsResponse instances are equal
-        /// </summary>
-        /// <param name="input">Instance of ErrorsResponse to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(ErrorsResponse input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.ErrorCode == input.ErrorCode ||
-                    (this.ErrorCode != null &&
-                    this.ErrorCode.Equals(input.ErrorCode))
-                ) && 
-                (
-                    this.ErrorDescription == input.ErrorDescription ||
-                    (this.ErrorDescription != null &&
-                    this.ErrorDescription.Equals(input.ErrorDescription))
-                ) && 
-                (
-                    this.ResponseHost == input.ResponseHost ||
-                    (this.ResponseHost != null &&
-                    this.ResponseHost.Equals(input.ResponseHost))
-                ) && 
-                (
-                    this.ResponseId == input.ResponseId ||
-                    (this.ResponseId != null &&
-                    this.ResponseId.Equals(input.ResponseId))
-                ) && 
-                (
-                    this.Errors == input.Errors ||
-                    (this.Errors != null &&
-                    this.Errors.Equals(input.Errors))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.ErrorCode != null)
-                    hashCode = hashCode * 59 + this.ErrorCode.GetHashCode();
-                if (this.ErrorDescription != null)
-                    hashCode = hashCode * 59 + this.ErrorDescription.GetHashCode();
-                if (this.ResponseHost != null)
-                    hashCode = hashCode * 59 + this.ResponseHost.GetHashCode();
-                if (this.ResponseId != null)
-                    hashCode = hashCode * 59 + this.ResponseId.GetHashCode();
-                if (this.Errors != null)
-                    hashCode = hashCode * 59 + this.Errors.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
@@ -187,13 +118,13 @@ namespace Acme.App.MastercardApi.Client.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // ErrorCode (string) maxLength
-            if(this.ErrorCode != null && this.ErrorCode.Length > 32)
+            if (this.ErrorCode != null && this.ErrorCode.Length > 32)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ErrorCode, length must be less than 32.", new [] { "ErrorCode" });
             }
 
             // ErrorDescription (string) maxLength
-            if(this.ErrorDescription != null && this.ErrorDescription.Length > 32)
+            if (this.ErrorDescription != null && this.ErrorDescription.Length > 32)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ErrorDescription, length must be less than 32.", new [] { "ErrorDescription" });
             }

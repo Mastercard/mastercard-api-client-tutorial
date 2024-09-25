@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// **(CONDITIONAL)** The credit or debit card information for the account that is being tokenized.  Present in tokenize response if supported by the Token Requestor, if using a pushAccountReceipt and if there is a card account associated with the pushAccountReceipt in case that the issuer decision is not DECLINED. 
     /// </summary>
     [DataContract(Name = "CardAccountData_outbound")]
-    public partial class CardAccountDataOutbound : IEquatable<CardAccountDataOutbound>, IValidatableObject
+    public partial class CardAccountDataOutbound : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CardAccountDataOutbound" /> class.
@@ -48,6 +48,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The account number of the credit or debit card. 
         /// </summary>
         /// <value>The account number of the credit or debit card. </value>
+        /// <example>5123456789012345</example>
         [DataMember(Name = "accountNumber", EmitDefaultValue = false)]
         public string AccountNumber { get; set; }
 
@@ -55,6 +56,7 @@ namespace Acme.App.MastercardApi.Client.Model
         ///  The expiry month for the account. Two numeric digits must be supplied. **Format: MM** 
         /// </summary>
         /// <value> The expiry month for the account. Two numeric digits must be supplied. **Format: MM** </value>
+        /// <example>09</example>
         [DataMember(Name = "expiryMonth", EmitDefaultValue = false)]
         public string ExpiryMonth { get; set; }
 
@@ -62,6 +64,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// **(Required as minimum for Tokenization)** The expiry year for the account. **Format: YY** 
         /// </summary>
         /// <value>**(Required as minimum for Tokenization)** The expiry year for the account. **Format: YY** </value>
+        /// <example>21</example>
         [DataMember(Name = "expiryYear", EmitDefaultValue = false)]
         public string ExpiryYear { get; set; }
 
@@ -71,7 +74,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class CardAccountDataOutbound {\n");
             sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
             sb.Append("  ExpiryMonth: ").Append(ExpiryMonth).Append("\n");
@@ -90,63 +93,6 @@ namespace Acme.App.MastercardApi.Client.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as CardAccountDataOutbound);
-        }
-
-        /// <summary>
-        /// Returns true if CardAccountDataOutbound instances are equal
-        /// </summary>
-        /// <param name="input">Instance of CardAccountDataOutbound to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(CardAccountDataOutbound input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.AccountNumber == input.AccountNumber ||
-                    (this.AccountNumber != null &&
-                    this.AccountNumber.Equals(input.AccountNumber))
-                ) && 
-                (
-                    this.ExpiryMonth == input.ExpiryMonth ||
-                    (this.ExpiryMonth != null &&
-                    this.ExpiryMonth.Equals(input.ExpiryMonth))
-                ) && 
-                (
-                    this.ExpiryYear == input.ExpiryYear ||
-                    (this.ExpiryYear != null &&
-                    this.ExpiryYear.Equals(input.ExpiryYear))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.AccountNumber != null)
-                    hashCode = hashCode * 59 + this.AccountNumber.GetHashCode();
-                if (this.ExpiryMonth != null)
-                    hashCode = hashCode * 59 + this.ExpiryMonth.GetHashCode();
-                if (this.ExpiryYear != null)
-                    hashCode = hashCode * 59 + this.ExpiryYear.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
@@ -154,37 +100,37 @@ namespace Acme.App.MastercardApi.Client.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // AccountNumber (string) maxLength
-            if(this.AccountNumber != null && this.AccountNumber.Length > 19)
+            if (this.AccountNumber != null && this.AccountNumber.Length > 19)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be less than 19.", new [] { "AccountNumber" });
             }
 
             // AccountNumber (string) minLength
-            if(this.AccountNumber != null && this.AccountNumber.Length < 9)
+            if (this.AccountNumber != null && this.AccountNumber.Length < 9)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be greater than 9.", new [] { "AccountNumber" });
             }
 
             // ExpiryMonth (string) maxLength
-            if(this.ExpiryMonth != null && this.ExpiryMonth.Length > 2)
+            if (this.ExpiryMonth != null && this.ExpiryMonth.Length > 2)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExpiryMonth, length must be less than 2.", new [] { "ExpiryMonth" });
             }
 
             // ExpiryMonth (string) minLength
-            if(this.ExpiryMonth != null && this.ExpiryMonth.Length < 2)
+            if (this.ExpiryMonth != null && this.ExpiryMonth.Length < 2)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExpiryMonth, length must be greater than 2.", new [] { "ExpiryMonth" });
             }
 
             // ExpiryYear (string) maxLength
-            if(this.ExpiryYear != null && this.ExpiryYear.Length > 2)
+            if (this.ExpiryYear != null && this.ExpiryYear.Length > 2)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExpiryYear, length must be less than 2.", new [] { "ExpiryYear" });
             }
 
             // ExpiryYear (string) minLength
-            if(this.ExpiryYear != null && this.ExpiryYear.Length < 2)
+            if (this.ExpiryYear != null && this.ExpiryYear.Length < 2)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExpiryYear, length must be greater than 2.", new [] { "ExpiryYear" });
             }

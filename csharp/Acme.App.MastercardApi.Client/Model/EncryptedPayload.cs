@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// EncryptedPayload
     /// </summary>
     [DataContract(Name = "encryptedPayload")]
-    public partial class EncryptedPayload : IEquatable<EncryptedPayload>, IValidatableObject
+    public partial class EncryptedPayload : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EncryptedPayload" /> class.
@@ -47,11 +47,23 @@ namespace Acme.App.MastercardApi.Client.Model
         public EncryptedPayload(string publicKeyFingerprint = default(string), string encryptedKey = default(string), string oaepHashingAlgorithm = default(string), string iv = default(string), NotifyTokenEncryptedPayload encryptedData = default(NotifyTokenEncryptedPayload))
         {
             // to ensure "publicKeyFingerprint" is required (not null)
-            this.PublicKeyFingerprint = publicKeyFingerprint ?? throw new ArgumentNullException("publicKeyFingerprint is a required property for EncryptedPayload and cannot be null");
+            if (publicKeyFingerprint == null)
+            {
+                throw new ArgumentNullException("publicKeyFingerprint is a required property for EncryptedPayload and cannot be null");
+            }
+            this.PublicKeyFingerprint = publicKeyFingerprint;
             // to ensure "encryptedKey" is required (not null)
-            this.EncryptedKey = encryptedKey ?? throw new ArgumentNullException("encryptedKey is a required property for EncryptedPayload and cannot be null");
+            if (encryptedKey == null)
+            {
+                throw new ArgumentNullException("encryptedKey is a required property for EncryptedPayload and cannot be null");
+            }
+            this.EncryptedKey = encryptedKey;
             // to ensure "encryptedData" is required (not null)
-            this.EncryptedData = encryptedData ?? throw new ArgumentNullException("encryptedData is a required property for EncryptedPayload and cannot be null");
+            if (encryptedData == null)
+            {
+                throw new ArgumentNullException("encryptedData is a required property for EncryptedPayload and cannot be null");
+            }
+            this.EncryptedData = encryptedData;
             this.OaepHashingAlgorithm = oaepHashingAlgorithm;
             this.Iv = iv;
         }
@@ -60,20 +72,23 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The fingerprint of the public key used to encrypt the ephemeral AES key. 
         /// </summary>
         /// <value>The fingerprint of the public key used to encrypt the ephemeral AES key. </value>
-        [DataMember(Name = "publicKeyFingerprint", IsRequired = true, EmitDefaultValue = false)]
+        /// <example>4c4ead5927f0df8117f178eea9308daa58e27c2b</example>
+        [DataMember(Name = "publicKeyFingerprint", IsRequired = true, EmitDefaultValue = true)]
         public string PublicKeyFingerprint { get; set; }
 
         /// <summary>
         /// One-time use AES key encrypted by the MasterCard public key (as identified by publicKeyFingerprint) using the OAEP or PKCS#1 v1.5 scheme (depending on the value of oaepHashingAlgorithm. 
         /// </summary>
         /// <value>One-time use AES key encrypted by the MasterCard public key (as identified by publicKeyFingerprint) using the OAEP or PKCS#1 v1.5 scheme (depending on the value of oaepHashingAlgorithm. </value>
-        [DataMember(Name = "encryptedKey", IsRequired = true, EmitDefaultValue = false)]
+        /// <example>A1B2C3D4E5F6112233445566</example>
+        [DataMember(Name = "encryptedKey", IsRequired = true, EmitDefaultValue = true)]
         public string EncryptedKey { get; set; }
 
         /// <summary>
         /// Hashing algorithm used with the OAEP scheme. Must be either SHA256 or SHA512. 
         /// </summary>
         /// <value>Hashing algorithm used with the OAEP scheme. Must be either SHA256 or SHA512. </value>
+        /// <example>SHA512</example>
         [DataMember(Name = "oaepHashingAlgorithm", EmitDefaultValue = false)]
         public string OaepHashingAlgorithm { get; set; }
 
@@ -81,13 +96,14 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The initialization vector used when encrypting data using the one-time use AES key. Must be exactly 16 bytes (32 character hex string) to match the block size. If not present, an IV of zero is assumed. Length - 32. 
         /// </summary>
         /// <value>The initialization vector used when encrypting data using the one-time use AES key. Must be exactly 16 bytes (32 character hex string) to match the block size. If not present, an IV of zero is assumed. Length - 32. </value>
+        /// <example>NA</example>
         [DataMember(Name = "iv", EmitDefaultValue = false)]
         public string Iv { get; set; }
 
         /// <summary>
         /// Gets or Sets EncryptedData
         /// </summary>
-        [DataMember(Name = "encryptedData", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "encryptedData", IsRequired = true, EmitDefaultValue = true)]
         public NotifyTokenEncryptedPayload EncryptedData { get; set; }
 
         /// <summary>
@@ -96,7 +112,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class EncryptedPayload {\n");
             sb.Append("  PublicKeyFingerprint: ").Append(PublicKeyFingerprint).Append("\n");
             sb.Append("  EncryptedKey: ").Append(EncryptedKey).Append("\n");
@@ -117,77 +133,6 @@ namespace Acme.App.MastercardApi.Client.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as EncryptedPayload);
-        }
-
-        /// <summary>
-        /// Returns true if EncryptedPayload instances are equal
-        /// </summary>
-        /// <param name="input">Instance of EncryptedPayload to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(EncryptedPayload input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.PublicKeyFingerprint == input.PublicKeyFingerprint ||
-                    (this.PublicKeyFingerprint != null &&
-                    this.PublicKeyFingerprint.Equals(input.PublicKeyFingerprint))
-                ) && 
-                (
-                    this.EncryptedKey == input.EncryptedKey ||
-                    (this.EncryptedKey != null &&
-                    this.EncryptedKey.Equals(input.EncryptedKey))
-                ) && 
-                (
-                    this.OaepHashingAlgorithm == input.OaepHashingAlgorithm ||
-                    (this.OaepHashingAlgorithm != null &&
-                    this.OaepHashingAlgorithm.Equals(input.OaepHashingAlgorithm))
-                ) && 
-                (
-                    this.Iv == input.Iv ||
-                    (this.Iv != null &&
-                    this.Iv.Equals(input.Iv))
-                ) && 
-                (
-                    this.EncryptedData == input.EncryptedData ||
-                    (this.EncryptedData != null &&
-                    this.EncryptedData.Equals(input.EncryptedData))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.PublicKeyFingerprint != null)
-                    hashCode = hashCode * 59 + this.PublicKeyFingerprint.GetHashCode();
-                if (this.EncryptedKey != null)
-                    hashCode = hashCode * 59 + this.EncryptedKey.GetHashCode();
-                if (this.OaepHashingAlgorithm != null)
-                    hashCode = hashCode * 59 + this.OaepHashingAlgorithm.GetHashCode();
-                if (this.Iv != null)
-                    hashCode = hashCode * 59 + this.Iv.GetHashCode();
-                if (this.EncryptedData != null)
-                    hashCode = hashCode * 59 + this.EncryptedData.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
@@ -195,13 +140,13 @@ namespace Acme.App.MastercardApi.Client.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // PublicKeyFingerprint (string) maxLength
-            if(this.PublicKeyFingerprint != null && this.PublicKeyFingerprint.Length > 64)
+            if (this.PublicKeyFingerprint != null && this.PublicKeyFingerprint.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PublicKeyFingerprint, length must be less than 64.", new [] { "PublicKeyFingerprint" });
             }
 
             // EncryptedKey (string) maxLength
-            if(this.EncryptedKey != null && this.EncryptedKey.Length > 512)
+            if (this.EncryptedKey != null && this.EncryptedKey.Length > 512)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EncryptedKey, length must be less than 512.", new [] { "EncryptedKey" });
             }

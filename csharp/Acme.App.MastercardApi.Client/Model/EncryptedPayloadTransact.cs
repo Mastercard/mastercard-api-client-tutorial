@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// EncryptedPayloadTransact
     /// </summary>
     [DataContract(Name = "encryptedPayloadTransact")]
-    public partial class EncryptedPayloadTransact : IEquatable<EncryptedPayloadTransact>, IValidatableObject
+    public partial class EncryptedPayloadTransact : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EncryptedPayloadTransact" /> class.
@@ -52,6 +52,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The fingerprint of the public key used to encrypt the ephemeral AES key. 
         /// </summary>
         /// <value>The fingerprint of the public key used to encrypt the ephemeral AES key. </value>
+        /// <example>4c4ead5927f0df8117f178eea9308daa58e27c2b</example>
         [DataMember(Name = "publicKeyFingerprint", EmitDefaultValue = false)]
         public string PublicKeyFingerprint { get; set; }
 
@@ -59,6 +60,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// One-time use AES key encrypted by the MasterCard public key (as identified by publicKeyFingerprint) using the OAEP or PKCS#1 v1.5 scheme (depending on the value of oaepHashingAlgorithm. 
         /// </summary>
         /// <value>One-time use AES key encrypted by the MasterCard public key (as identified by publicKeyFingerprint) using the OAEP or PKCS#1 v1.5 scheme (depending on the value of oaepHashingAlgorithm. </value>
+        /// <example>A1B2C3D4E5F6112233445566</example>
         [DataMember(Name = "encryptedKey", EmitDefaultValue = false)]
         public string EncryptedKey { get; set; }
 
@@ -66,6 +68,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Hashing algorithm used with the OAEP scheme. Must be either SHA256 or SHA512. 
         /// </summary>
         /// <value>Hashing algorithm used with the OAEP scheme. Must be either SHA256 or SHA512. </value>
+        /// <example>SHA512</example>
         [DataMember(Name = "oaepHashingAlgorithm", EmitDefaultValue = false)]
         public string OaepHashingAlgorithm { get; set; }
 
@@ -73,6 +76,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The initialization vector used when encrypting data using the one-time use AES key. Must be exactly 16 bytes (32 character hex string) to match the block size. If not present, an IV of zero is assumed. 
         /// </summary>
         /// <value>The initialization vector used when encrypting data using the one-time use AES key. Must be exactly 16 bytes (32 character hex string) to match the block size. If not present, an IV of zero is assumed. </value>
+        /// <example>NA</example>
         [DataMember(Name = "iv", EmitDefaultValue = false)]
         public string Iv { get; set; }
 
@@ -88,7 +92,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class EncryptedPayloadTransact {\n");
             sb.Append("  PublicKeyFingerprint: ").Append(PublicKeyFingerprint).Append("\n");
             sb.Append("  EncryptedKey: ").Append(EncryptedKey).Append("\n");
@@ -109,77 +113,6 @@ namespace Acme.App.MastercardApi.Client.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as EncryptedPayloadTransact);
-        }
-
-        /// <summary>
-        /// Returns true if EncryptedPayloadTransact instances are equal
-        /// </summary>
-        /// <param name="input">Instance of EncryptedPayloadTransact to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(EncryptedPayloadTransact input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.PublicKeyFingerprint == input.PublicKeyFingerprint ||
-                    (this.PublicKeyFingerprint != null &&
-                    this.PublicKeyFingerprint.Equals(input.PublicKeyFingerprint))
-                ) && 
-                (
-                    this.EncryptedKey == input.EncryptedKey ||
-                    (this.EncryptedKey != null &&
-                    this.EncryptedKey.Equals(input.EncryptedKey))
-                ) && 
-                (
-                    this.OaepHashingAlgorithm == input.OaepHashingAlgorithm ||
-                    (this.OaepHashingAlgorithm != null &&
-                    this.OaepHashingAlgorithm.Equals(input.OaepHashingAlgorithm))
-                ) && 
-                (
-                    this.Iv == input.Iv ||
-                    (this.Iv != null &&
-                    this.Iv.Equals(input.Iv))
-                ) && 
-                (
-                    this.EncryptedData == input.EncryptedData ||
-                    (this.EncryptedData != null &&
-                    this.EncryptedData.Equals(input.EncryptedData))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.PublicKeyFingerprint != null)
-                    hashCode = hashCode * 59 + this.PublicKeyFingerprint.GetHashCode();
-                if (this.EncryptedKey != null)
-                    hashCode = hashCode * 59 + this.EncryptedKey.GetHashCode();
-                if (this.OaepHashingAlgorithm != null)
-                    hashCode = hashCode * 59 + this.OaepHashingAlgorithm.GetHashCode();
-                if (this.Iv != null)
-                    hashCode = hashCode * 59 + this.Iv.GetHashCode();
-                if (this.EncryptedData != null)
-                    hashCode = hashCode * 59 + this.EncryptedData.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
@@ -187,25 +120,25 @@ namespace Acme.App.MastercardApi.Client.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // PublicKeyFingerprint (string) maxLength
-            if(this.PublicKeyFingerprint != null && this.PublicKeyFingerprint.Length > 64)
+            if (this.PublicKeyFingerprint != null && this.PublicKeyFingerprint.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PublicKeyFingerprint, length must be less than 64.", new [] { "PublicKeyFingerprint" });
             }
 
             // EncryptedKey (string) maxLength
-            if(this.EncryptedKey != null && this.EncryptedKey.Length > 512)
+            if (this.EncryptedKey != null && this.EncryptedKey.Length > 512)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EncryptedKey, length must be less than 512.", new [] { "EncryptedKey" });
             }
 
             // Iv (string) maxLength
-            if(this.Iv != null && this.Iv.Length > 32)
+            if (this.Iv != null && this.Iv.Length > 32)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Iv, length must be less than 32.", new [] { "Iv" });
             }
 
             // Iv (string) minLength
-            if(this.Iv != null && this.Iv.Length < 32)
+            if (this.Iv != null && this.Iv.Length < 32)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Iv, length must be greater than 32.", new [] { "Iv" });
             }

@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// MediaContent
     /// </summary>
     [DataContract(Name = "mediaContent")]
-    public partial class MediaContent : IEquatable<MediaContent>, IValidatableObject
+    public partial class MediaContent : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MediaContent" /> class.
@@ -46,9 +46,17 @@ namespace Acme.App.MastercardApi.Client.Model
         public MediaContent(string type = default(string), string data = default(string), string height = default(string), string width = default(string))
         {
             // to ensure "type" is required (not null)
-            this.Type = type ?? throw new ArgumentNullException("type is a required property for MediaContent and cannot be null");
+            if (type == null)
+            {
+                throw new ArgumentNullException("type is a required property for MediaContent and cannot be null");
+            }
+            this.Type = type;
             // to ensure "data" is required (not null)
-            this.Data = data ?? throw new ArgumentNullException("data is a required property for MediaContent and cannot be null");
+            if (data == null)
+            {
+                throw new ArgumentNullException("data is a required property for MediaContent and cannot be null");
+            }
+            this.Data = data;
             this.Height = height;
             this.Width = width;
         }
@@ -57,20 +65,23 @@ namespace Acme.App.MastercardApi.Client.Model
         /// What type of media this is. Specified as a MIME type, which will be one of the following supported types  * applicatoin/pdf (for images must be a vector PDF image) * image/png (includes alpha channel) * text/plain * text/html 
         /// </summary>
         /// <value>What type of media this is. Specified as a MIME type, which will be one of the following supported types  * applicatoin/pdf (for images must be a vector PDF image) * image/png (includes alpha channel) * text/plain * text/html </value>
-        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = false)]
+        /// <example>image/png</example>
+        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
         public string Type { get; set; }
 
         /// <summary>
         /// The data for this item of media. Base64-encoded data, given in the format as specified in ?type?. 
         /// </summary>
         /// <value>The data for this item of media. Base64-encoded data, given in the format as specified in ?type?. </value>
-        [DataMember(Name = "data", IsRequired = true, EmitDefaultValue = false)]
+        /// <example>iVBORw0KGgoAAAANSUhEUgAAAXcAAAF3CAIAAADRopypAAAABGdBTUEAANbY1E9YMgAAAAlwSFlzAAAASAAAAEgARslrPgAAGtNJREFUeNrt3W9oW</example>
+        [DataMember(Name = "data", IsRequired = true, EmitDefaultValue = true)]
         public string Data { get; set; }
 
         /// <summary>
         /// For image assets, the height of this image. Specified in pixels. 
         /// </summary>
         /// <value>For image assets, the height of this image. Specified in pixels. </value>
+        /// <example>375</example>
         [DataMember(Name = "height", EmitDefaultValue = false)]
         public string Height { get; set; }
 
@@ -78,6 +89,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// For image assets, the width of this image. Specified in pixels. 
         /// </summary>
         /// <value>For image assets, the width of this image. Specified in pixels. </value>
+        /// <example>375</example>
         [DataMember(Name = "width", EmitDefaultValue = false)]
         public string Width { get; set; }
 
@@ -87,7 +99,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class MediaContent {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
@@ -107,70 +119,6 @@ namespace Acme.App.MastercardApi.Client.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as MediaContent);
-        }
-
-        /// <summary>
-        /// Returns true if MediaContent instances are equal
-        /// </summary>
-        /// <param name="input">Instance of MediaContent to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(MediaContent input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
-                ) && 
-                (
-                    this.Data == input.Data ||
-                    (this.Data != null &&
-                    this.Data.Equals(input.Data))
-                ) && 
-                (
-                    this.Height == input.Height ||
-                    (this.Height != null &&
-                    this.Height.Equals(input.Height))
-                ) && 
-                (
-                    this.Width == input.Width ||
-                    (this.Width != null &&
-                    this.Width.Equals(input.Width))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Type != null)
-                    hashCode = hashCode * 59 + this.Type.GetHashCode();
-                if (this.Data != null)
-                    hashCode = hashCode * 59 + this.Data.GetHashCode();
-                if (this.Height != null)
-                    hashCode = hashCode * 59 + this.Height.GetHashCode();
-                if (this.Width != null)
-                    hashCode = hashCode * 59 + this.Width.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
@@ -178,19 +126,19 @@ namespace Acme.App.MastercardApi.Client.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Type (string) maxLength
-            if(this.Type != null && this.Type.Length > 32)
+            if (this.Type != null && this.Type.Length > 32)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Type, length must be less than 32.", new [] { "Type" });
             }
 
             // Height (string) maxLength
-            if(this.Height != null && this.Height.Length > 6)
+            if (this.Height != null && this.Height.Length > 6)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Height, length must be less than 6.", new [] { "Height" });
             }
 
             // Width (string) maxLength
-            if(this.Width != null && this.Width.Length > 6)
+            if (this.Width != null && this.Width.Length > 6)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Width, length must be less than 6.", new [] { "Width" });
             }

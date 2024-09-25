@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// TransactEncryptedData
     /// </summary>
     [DataContract(Name = "transactEncryptedData")]
-    public partial class TransactEncryptedData : IEquatable<TransactEncryptedData>, IValidatableObject
+    public partial class TransactEncryptedData : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactEncryptedData" /> class.
@@ -52,6 +52,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The Primary Account Number for the transaction ? this is the Token PAN. 
         /// </summary>
         /// <value>The Primary Account Number for the transaction ? this is the Token PAN. </value>
+        /// <example>5480981500100002</example>
         [DataMember(Name = "accountNumber", EmitDefaultValue = false)]
         public string AccountNumber { get; set; }
 
@@ -59,6 +60,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Application expiry date for the Token. Expressed in YYMMDD format. 
         /// </summary>
         /// <value>Application expiry date for the Token. Expressed in YYMMDD format. </value>
+        /// <example>210931</example>
         [DataMember(Name = "applicationExpiryDate", EmitDefaultValue = false)]
         public string ApplicationExpiryDate { get; set; }
 
@@ -66,6 +68,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Application PAN sequence number for the Token 
         /// </summary>
         /// <value>Application PAN sequence number for the Token </value>
+        /// <example>01</example>
         [DataMember(Name = "panSequenceNumber", EmitDefaultValue = false)]
         public string PanSequenceNumber { get; set; }
 
@@ -73,6 +76,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Track 2 equivalent data for the Token. Expressed according to ISO/IEC 7813, excluding start sentinel, end sentinel, and Longitudinal Redundancy Check (LRC), using hex nibble &#39;D&#39; as field separator, and padded to whole bytes using one hex nibble &#39;F&#39; as needed. 
         /// </summary>
         /// <value>Track 2 equivalent data for the Token. Expressed according to ISO/IEC 7813, excluding start sentinel, end sentinel, and Longitudinal Redundancy Check (LRC), using hex nibble &#39;D&#39; as field separator, and padded to whole bytes using one hex nibble &#39;F&#39; as needed. </value>
+        /// <example>5480981500100002D18112011000000000000F</example>
         [DataMember(Name = "track2Equivalent", EmitDefaultValue = false)]
         public string Track2Equivalent { get; set; }
 
@@ -80,6 +84,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Data for DE 48 Subelement 43 containing the cryptogram. DSRP cryptogram must be sent in DE104. Please refer to AN 3363 for details. 
         /// </summary>
         /// <value>Data for DE 48 Subelement 43 containing the cryptogram. DSRP cryptogram must be sent in DE104. Please refer to AN 3363 for details. </value>
+        /// <example>11223344556677889900112233445566778899</example>
         [DataMember(Name = "de48se43Data", EmitDefaultValue = false)]
         public string De48se43Data { get; set; }
 
@@ -89,7 +94,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class TransactEncryptedData {\n");
             sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
             sb.Append("  ApplicationExpiryDate: ").Append(ApplicationExpiryDate).Append("\n");
@@ -110,77 +115,6 @@ namespace Acme.App.MastercardApi.Client.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as TransactEncryptedData);
-        }
-
-        /// <summary>
-        /// Returns true if TransactEncryptedData instances are equal
-        /// </summary>
-        /// <param name="input">Instance of TransactEncryptedData to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(TransactEncryptedData input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.AccountNumber == input.AccountNumber ||
-                    (this.AccountNumber != null &&
-                    this.AccountNumber.Equals(input.AccountNumber))
-                ) && 
-                (
-                    this.ApplicationExpiryDate == input.ApplicationExpiryDate ||
-                    (this.ApplicationExpiryDate != null &&
-                    this.ApplicationExpiryDate.Equals(input.ApplicationExpiryDate))
-                ) && 
-                (
-                    this.PanSequenceNumber == input.PanSequenceNumber ||
-                    (this.PanSequenceNumber != null &&
-                    this.PanSequenceNumber.Equals(input.PanSequenceNumber))
-                ) && 
-                (
-                    this.Track2Equivalent == input.Track2Equivalent ||
-                    (this.Track2Equivalent != null &&
-                    this.Track2Equivalent.Equals(input.Track2Equivalent))
-                ) && 
-                (
-                    this.De48se43Data == input.De48se43Data ||
-                    (this.De48se43Data != null &&
-                    this.De48se43Data.Equals(input.De48se43Data))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.AccountNumber != null)
-                    hashCode = hashCode * 59 + this.AccountNumber.GetHashCode();
-                if (this.ApplicationExpiryDate != null)
-                    hashCode = hashCode * 59 + this.ApplicationExpiryDate.GetHashCode();
-                if (this.PanSequenceNumber != null)
-                    hashCode = hashCode * 59 + this.PanSequenceNumber.GetHashCode();
-                if (this.Track2Equivalent != null)
-                    hashCode = hashCode * 59 + this.Track2Equivalent.GetHashCode();
-                if (this.De48se43Data != null)
-                    hashCode = hashCode * 59 + this.De48se43Data.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
@@ -188,49 +122,49 @@ namespace Acme.App.MastercardApi.Client.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // AccountNumber (string) maxLength
-            if(this.AccountNumber != null && this.AccountNumber.Length > 19)
+            if (this.AccountNumber != null && this.AccountNumber.Length > 19)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be less than 19.", new [] { "AccountNumber" });
             }
 
             // AccountNumber (string) minLength
-            if(this.AccountNumber != null && this.AccountNumber.Length < 9)
+            if (this.AccountNumber != null && this.AccountNumber.Length < 9)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be greater than 9.", new [] { "AccountNumber" });
             }
 
             // ApplicationExpiryDate (string) maxLength
-            if(this.ApplicationExpiryDate != null && this.ApplicationExpiryDate.Length > 6)
+            if (this.ApplicationExpiryDate != null && this.ApplicationExpiryDate.Length > 6)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ApplicationExpiryDate, length must be less than 6.", new [] { "ApplicationExpiryDate" });
             }
 
             // ApplicationExpiryDate (string) minLength
-            if(this.ApplicationExpiryDate != null && this.ApplicationExpiryDate.Length < 6)
+            if (this.ApplicationExpiryDate != null && this.ApplicationExpiryDate.Length < 6)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ApplicationExpiryDate, length must be greater than 6.", new [] { "ApplicationExpiryDate" });
             }
 
             // PanSequenceNumber (string) maxLength
-            if(this.PanSequenceNumber != null && this.PanSequenceNumber.Length > 2)
+            if (this.PanSequenceNumber != null && this.PanSequenceNumber.Length > 2)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PanSequenceNumber, length must be less than 2.", new [] { "PanSequenceNumber" });
             }
 
             // PanSequenceNumber (string) minLength
-            if(this.PanSequenceNumber != null && this.PanSequenceNumber.Length < 2)
+            if (this.PanSequenceNumber != null && this.PanSequenceNumber.Length < 2)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PanSequenceNumber, length must be greater than 2.", new [] { "PanSequenceNumber" });
             }
 
             // Track2Equivalent (string) maxLength
-            if(this.Track2Equivalent != null && this.Track2Equivalent.Length > 38)
+            if (this.Track2Equivalent != null && this.Track2Equivalent.Length > 38)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Track2Equivalent, length must be less than 38.", new [] { "Track2Equivalent" });
             }
 
             // De48se43Data (string) maxLength
-            if(this.De48se43Data != null && this.De48se43Data.Length > 32)
+            if (this.De48se43Data != null && this.De48se43Data.Length > 32)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for De48se43Data, length must be less than 32.", new [] { "De48se43Data" });
             }

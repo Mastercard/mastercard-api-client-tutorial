@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// FundingAccountData
     /// </summary>
     [DataContract(Name = "FundingAccountData")]
-    public partial class FundingAccountData : IEquatable<FundingAccountData>, IValidatableObject
+    public partial class FundingAccountData : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FundingAccountData" /> class.
@@ -60,6 +60,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// (**Required as minimum for Tokenization**) The source of the account. Must be one of   * ACCOUNT_ON_FILE   * ACCOUNT_ADDED_MANUALLY   * ACCOUNT_ADDED_VIA_APPLICATION 
         /// </summary>
         /// <value>(**Required as minimum for Tokenization**) The source of the account. Must be one of   * ACCOUNT_ON_FILE   * ACCOUNT_ADDED_MANUALLY   * ACCOUNT_ADDED_VIA_APPLICATION </value>
+        /// <example>ACCOUNT_ON_FILE</example>
         [DataMember(Name = "source", EmitDefaultValue = false)]
         public string Source { get; set; }
 
@@ -69,7 +70,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class FundingAccountData {\n");
             sb.Append("  CardAccountData: ").Append(CardAccountData).Append("\n");
             sb.Append("  AccountHolderData: ").Append(AccountHolderData).Append("\n");
@@ -88,63 +89,6 @@ namespace Acme.App.MastercardApi.Client.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as FundingAccountData);
-        }
-
-        /// <summary>
-        /// Returns true if FundingAccountData instances are equal
-        /// </summary>
-        /// <param name="input">Instance of FundingAccountData to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(FundingAccountData input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.CardAccountData == input.CardAccountData ||
-                    (this.CardAccountData != null &&
-                    this.CardAccountData.Equals(input.CardAccountData))
-                ) && 
-                (
-                    this.AccountHolderData == input.AccountHolderData ||
-                    (this.AccountHolderData != null &&
-                    this.AccountHolderData.Equals(input.AccountHolderData))
-                ) && 
-                (
-                    this.Source == input.Source ||
-                    (this.Source != null &&
-                    this.Source.Equals(input.Source))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.CardAccountData != null)
-                    hashCode = hashCode * 59 + this.CardAccountData.GetHashCode();
-                if (this.AccountHolderData != null)
-                    hashCode = hashCode * 59 + this.AccountHolderData.GetHashCode();
-                if (this.Source != null)
-                    hashCode = hashCode * 59 + this.Source.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
@@ -152,7 +96,7 @@ namespace Acme.App.MastercardApi.Client.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Source (string) maxLength
-            if(this.Source != null && this.Source.Length > 32)
+            if (this.Source != null && this.Source.Length > 32)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Source, length must be less than 32.", new [] { "Source" });
             }

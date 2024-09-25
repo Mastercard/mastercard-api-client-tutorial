@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// TokenDetailDataPAROnly
     /// </summary>
     [DataContract(Name = "tokenDetailData_PAR_Only")]
-    public partial class TokenDetailDataPAROnly : IEquatable<TokenDetailDataPAROnly>, IValidatableObject
+    public partial class TokenDetailDataPAROnly : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TokenDetailDataPAROnly" /> class.
@@ -44,6 +44,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The unique account reference assigned to the PAN. Conditionally returned if the Token Requestor has opted to receive PAR and providing PAR is assigned by Mastercard or the Issuer provides PAR in the authorization message response. 
         /// </summary>
         /// <value>The unique account reference assigned to the PAN. Conditionally returned if the Token Requestor has opted to receive PAR and providing PAR is assigned by Mastercard or the Issuer provides PAR in the authorization message response. </value>
+        /// <example>5001a9f027e5629d11e3949a0800a</example>
         [DataMember(Name = "paymentAccountReference", EmitDefaultValue = false)]
         public string PaymentAccountReference { get; set; }
 
@@ -53,7 +54,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class TokenDetailDataPAROnly {\n");
             sb.Append("  PaymentAccountReference: ").Append(PaymentAccountReference).Append("\n");
             sb.Append("}\n");
@@ -70,49 +71,6 @@ namespace Acme.App.MastercardApi.Client.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as TokenDetailDataPAROnly);
-        }
-
-        /// <summary>
-        /// Returns true if TokenDetailDataPAROnly instances are equal
-        /// </summary>
-        /// <param name="input">Instance of TokenDetailDataPAROnly to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(TokenDetailDataPAROnly input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.PaymentAccountReference == input.PaymentAccountReference ||
-                    (this.PaymentAccountReference != null &&
-                    this.PaymentAccountReference.Equals(input.PaymentAccountReference))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.PaymentAccountReference != null)
-                    hashCode = hashCode * 59 + this.PaymentAccountReference.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
@@ -120,7 +78,7 @@ namespace Acme.App.MastercardApi.Client.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // PaymentAccountReference (string) maxLength
-            if(this.PaymentAccountReference != null && this.PaymentAccountReference.Length > 29)
+            if (this.PaymentAccountReference != null && this.PaymentAccountReference.Length > 29)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PaymentAccountReference, length must be less than 29.", new [] { "PaymentAccountReference" });
             }

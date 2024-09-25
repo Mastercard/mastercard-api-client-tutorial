@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// TokenDetail
     /// </summary>
     [DataContract(Name = "tokenDetail")]
-    public partial class TokenDetail : IEquatable<TokenDetail>, IValidatableObject
+    public partial class TokenDetail : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TokenDetail" /> class.
@@ -54,6 +54,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Globally unique identifier for the Token, as assigned by MDES. 
         /// </summary>
         /// <value>Globally unique identifier for the Token, as assigned by MDES. </value>
+        /// <example>DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45</example>
         [DataMember(Name = "tokenUniqueReference", EmitDefaultValue = false)]
         public string TokenUniqueReference { get; set; }
 
@@ -61,6 +62,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The certificate fingerprint identifying the public key used to encrypt the ephemeral AES key. 
         /// </summary>
         /// <value>The certificate fingerprint identifying the public key used to encrypt the ephemeral AES key. </value>
+        /// <example>4c4ead5927f0df8117f178eea9308daa58e27c2b</example>
         [DataMember(Name = "publicKeyFingerprint", EmitDefaultValue = false)]
         public string PublicKeyFingerprint { get; set; }
 
@@ -68,6 +70,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// One-time use AES key encrypted by the MasterCard public key (as identified by &#39;publicKeyFingerprint&#39;) using the OAEP or RSA Encryption Standard PKCS #1 v1.5 scheme (depending on the value of &#39;oaepHashingAlgorithm&#39;. Requirement is for a 128-bit key (with 256-bit key supported as an option). 
         /// </summary>
         /// <value>One-time use AES key encrypted by the MasterCard public key (as identified by &#39;publicKeyFingerprint&#39;) using the OAEP or RSA Encryption Standard PKCS #1 v1.5 scheme (depending on the value of &#39;oaepHashingAlgorithm&#39;. Requirement is for a 128-bit key (with 256-bit key supported as an option). </value>
+        /// <example>A1B2C3D4E5F6112233445566</example>
         [DataMember(Name = "encryptedKey", EmitDefaultValue = false)]
         public string EncryptedKey { get; set; }
 
@@ -75,6 +78,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Hashing algorithm used with the OAEP scheme. If omitted, then the RSA Encryption Standard PKCS #1 v1.5 will be used. Must be either &#39;SHA256&#39; (Use the SHA-256 algorithm) or &#39;SHA512&#39; (Use the SHA-512 algorithm). 
         /// </summary>
         /// <value>Hashing algorithm used with the OAEP scheme. If omitted, then the RSA Encryption Standard PKCS #1 v1.5 will be used. Must be either &#39;SHA256&#39; (Use the SHA-256 algorithm) or &#39;SHA512&#39; (Use the SHA-512 algorithm). </value>
+        /// <example>SHA512</example>
         [DataMember(Name = "oaepHashingAlgorithm", EmitDefaultValue = false)]
         public string OaepHashingAlgorithm { get; set; }
 
@@ -82,6 +86,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// It is recommended to supply a random initialization vector when encrypting the data using the one-time use AES key. Must be exactly 16 bytes (32 character hex string) to match the block size. Hex-encoded data (case-insensitive). 
         /// </summary>
         /// <value>It is recommended to supply a random initialization vector when encrypting the data using the one-time use AES key. Must be exactly 16 bytes (32 character hex string) to match the block size. Hex-encoded data (case-insensitive). </value>
+        /// <example>NA</example>
         [DataMember(Name = "iv", EmitDefaultValue = false)]
         public string Iv { get; set; }
 
@@ -97,7 +102,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class TokenDetail {\n");
             sb.Append("  TokenUniqueReference: ").Append(TokenUniqueReference).Append("\n");
             sb.Append("  PublicKeyFingerprint: ").Append(PublicKeyFingerprint).Append("\n");
@@ -119,84 +124,6 @@ namespace Acme.App.MastercardApi.Client.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as TokenDetail);
-        }
-
-        /// <summary>
-        /// Returns true if TokenDetail instances are equal
-        /// </summary>
-        /// <param name="input">Instance of TokenDetail to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(TokenDetail input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.TokenUniqueReference == input.TokenUniqueReference ||
-                    (this.TokenUniqueReference != null &&
-                    this.TokenUniqueReference.Equals(input.TokenUniqueReference))
-                ) && 
-                (
-                    this.PublicKeyFingerprint == input.PublicKeyFingerprint ||
-                    (this.PublicKeyFingerprint != null &&
-                    this.PublicKeyFingerprint.Equals(input.PublicKeyFingerprint))
-                ) && 
-                (
-                    this.EncryptedKey == input.EncryptedKey ||
-                    (this.EncryptedKey != null &&
-                    this.EncryptedKey.Equals(input.EncryptedKey))
-                ) && 
-                (
-                    this.OaepHashingAlgorithm == input.OaepHashingAlgorithm ||
-                    (this.OaepHashingAlgorithm != null &&
-                    this.OaepHashingAlgorithm.Equals(input.OaepHashingAlgorithm))
-                ) && 
-                (
-                    this.Iv == input.Iv ||
-                    (this.Iv != null &&
-                    this.Iv.Equals(input.Iv))
-                ) && 
-                (
-                    this.EncryptedData == input.EncryptedData ||
-                    (this.EncryptedData != null &&
-                    this.EncryptedData.Equals(input.EncryptedData))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.TokenUniqueReference != null)
-                    hashCode = hashCode * 59 + this.TokenUniqueReference.GetHashCode();
-                if (this.PublicKeyFingerprint != null)
-                    hashCode = hashCode * 59 + this.PublicKeyFingerprint.GetHashCode();
-                if (this.EncryptedKey != null)
-                    hashCode = hashCode * 59 + this.EncryptedKey.GetHashCode();
-                if (this.OaepHashingAlgorithm != null)
-                    hashCode = hashCode * 59 + this.OaepHashingAlgorithm.GetHashCode();
-                if (this.Iv != null)
-                    hashCode = hashCode * 59 + this.Iv.GetHashCode();
-                if (this.EncryptedData != null)
-                    hashCode = hashCode * 59 + this.EncryptedData.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
@@ -204,31 +131,31 @@ namespace Acme.App.MastercardApi.Client.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // TokenUniqueReference (string) maxLength
-            if(this.TokenUniqueReference != null && this.TokenUniqueReference.Length > 64)
+            if (this.TokenUniqueReference != null && this.TokenUniqueReference.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TokenUniqueReference, length must be less than 64.", new [] { "TokenUniqueReference" });
             }
 
             // PublicKeyFingerprint (string) maxLength
-            if(this.PublicKeyFingerprint != null && this.PublicKeyFingerprint.Length > 64)
+            if (this.PublicKeyFingerprint != null && this.PublicKeyFingerprint.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PublicKeyFingerprint, length must be less than 64.", new [] { "PublicKeyFingerprint" });
             }
 
             // EncryptedKey (string) maxLength
-            if(this.EncryptedKey != null && this.EncryptedKey.Length > 512)
+            if (this.EncryptedKey != null && this.EncryptedKey.Length > 512)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EncryptedKey, length must be less than 512.", new [] { "EncryptedKey" });
             }
 
             // OaepHashingAlgorithm (string) maxLength
-            if(this.OaepHashingAlgorithm != null && this.OaepHashingAlgorithm.Length > 6)
+            if (this.OaepHashingAlgorithm != null && this.OaepHashingAlgorithm.Length > 6)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for OaepHashingAlgorithm, length must be less than 6.", new [] { "OaepHashingAlgorithm" });
             }
 
             // Iv (string) maxLength
-            if(this.Iv != null && this.Iv.Length > 32)
+            if (this.Iv != null && this.Iv.Length > 32)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Iv, length must be less than 32.", new [] { "Iv" });
             }

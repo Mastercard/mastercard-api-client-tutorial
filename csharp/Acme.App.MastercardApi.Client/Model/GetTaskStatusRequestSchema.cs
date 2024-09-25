@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// GetTaskStatusRequestSchema
     /// </summary>
     [DataContract(Name = "GetTaskStatusRequestSchema")]
-    public partial class GetTaskStatusRequestSchema : IEquatable<GetTaskStatusRequestSchema>, IValidatableObject
+    public partial class GetTaskStatusRequestSchema : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GetTaskStatusRequestSchema" /> class.
@@ -46,11 +46,23 @@ namespace Acme.App.MastercardApi.Client.Model
         public GetTaskStatusRequestSchema(string responseHost = default(string), string requestId = default(string), string tokenRequestorId = default(string), string taskId = default(string))
         {
             // to ensure "requestId" is required (not null)
-            this.RequestId = requestId ?? throw new ArgumentNullException("requestId is a required property for GetTaskStatusRequestSchema and cannot be null");
+            if (requestId == null)
+            {
+                throw new ArgumentNullException("requestId is a required property for GetTaskStatusRequestSchema and cannot be null");
+            }
+            this.RequestId = requestId;
             // to ensure "tokenRequestorId" is required (not null)
-            this.TokenRequestorId = tokenRequestorId ?? throw new ArgumentNullException("tokenRequestorId is a required property for GetTaskStatusRequestSchema and cannot be null");
+            if (tokenRequestorId == null)
+            {
+                throw new ArgumentNullException("tokenRequestorId is a required property for GetTaskStatusRequestSchema and cannot be null");
+            }
+            this.TokenRequestorId = tokenRequestorId;
             // to ensure "taskId" is required (not null)
-            this.TaskId = taskId ?? throw new ArgumentNullException("taskId is a required property for GetTaskStatusRequestSchema and cannot be null");
+            if (taskId == null)
+            {
+                throw new ArgumentNullException("taskId is a required property for GetTaskStatusRequestSchema and cannot be null");
+            }
+            this.TaskId = taskId;
             this.ResponseHost = responseHost;
         }
 
@@ -58,6 +70,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The host that originated the request. Future calls in the same conversation may be routed to this host. 
         /// </summary>
         /// <value>The host that originated the request. Future calls in the same conversation may be routed to this host. </value>
+        /// <example>site2.payment-app-provider.com</example>
         [DataMember(Name = "responseHost", EmitDefaultValue = false)]
         public string ResponseHost { get; set; }
 
@@ -65,21 +78,24 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Unique identifier for the request. 
         /// </summary>
         /// <value>Unique identifier for the request. </value>
-        [DataMember(Name = "requestId", IsRequired = true, EmitDefaultValue = false)]
+        /// <example>123456</example>
+        [DataMember(Name = "requestId", IsRequired = true, EmitDefaultValue = true)]
         public string RequestId { get; set; }
 
         /// <summary>
         /// 11-digit numeric ID provided by Mastercard that identifies the Token Requestor. 
         /// </summary>
         /// <value>11-digit numeric ID provided by Mastercard that identifies the Token Requestor. </value>
-        [DataMember(Name = "tokenRequestorId", IsRequired = true, EmitDefaultValue = false)]
+        /// <example>98765432101</example>
+        [DataMember(Name = "tokenRequestorId", IsRequired = true, EmitDefaultValue = true)]
         public string TokenRequestorId { get; set; }
 
         /// <summary>
         /// Unique identifier for this task. Must be an identifier previously used when requesting a task. 
         /// </summary>
         /// <value>Unique identifier for this task. Must be an identifier previously used when requesting a task. </value>
-        [DataMember(Name = "taskId", IsRequired = true, EmitDefaultValue = false)]
+        /// <example>123456</example>
+        [DataMember(Name = "taskId", IsRequired = true, EmitDefaultValue = true)]
         public string TaskId { get; set; }
 
         /// <summary>
@@ -88,7 +104,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class GetTaskStatusRequestSchema {\n");
             sb.Append("  ResponseHost: ").Append(ResponseHost).Append("\n");
             sb.Append("  RequestId: ").Append(RequestId).Append("\n");
@@ -108,70 +124,6 @@ namespace Acme.App.MastercardApi.Client.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as GetTaskStatusRequestSchema);
-        }
-
-        /// <summary>
-        /// Returns true if GetTaskStatusRequestSchema instances are equal
-        /// </summary>
-        /// <param name="input">Instance of GetTaskStatusRequestSchema to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(GetTaskStatusRequestSchema input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.ResponseHost == input.ResponseHost ||
-                    (this.ResponseHost != null &&
-                    this.ResponseHost.Equals(input.ResponseHost))
-                ) && 
-                (
-                    this.RequestId == input.RequestId ||
-                    (this.RequestId != null &&
-                    this.RequestId.Equals(input.RequestId))
-                ) && 
-                (
-                    this.TokenRequestorId == input.TokenRequestorId ||
-                    (this.TokenRequestorId != null &&
-                    this.TokenRequestorId.Equals(input.TokenRequestorId))
-                ) && 
-                (
-                    this.TaskId == input.TaskId ||
-                    (this.TaskId != null &&
-                    this.TaskId.Equals(input.TaskId))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.ResponseHost != null)
-                    hashCode = hashCode * 59 + this.ResponseHost.GetHashCode();
-                if (this.RequestId != null)
-                    hashCode = hashCode * 59 + this.RequestId.GetHashCode();
-                if (this.TokenRequestorId != null)
-                    hashCode = hashCode * 59 + this.TokenRequestorId.GetHashCode();
-                if (this.TaskId != null)
-                    hashCode = hashCode * 59 + this.TaskId.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
@@ -179,19 +131,19 @@ namespace Acme.App.MastercardApi.Client.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // TokenRequestorId (string) maxLength
-            if(this.TokenRequestorId != null && this.TokenRequestorId.Length > 11)
+            if (this.TokenRequestorId != null && this.TokenRequestorId.Length > 11)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TokenRequestorId, length must be less than 11.", new [] { "TokenRequestorId" });
             }
 
             // TokenRequestorId (string) minLength
-            if(this.TokenRequestorId != null && this.TokenRequestorId.Length < 11)
+            if (this.TokenRequestorId != null && this.TokenRequestorId.Length < 11)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TokenRequestorId, length must be greater than 11.", new [] { "TokenRequestorId" });
             }
 
             // TaskId (string) maxLength
-            if(this.TaskId != null && this.TaskId.Length > 64)
+            if (this.TaskId != null && this.TaskId.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TaskId, length must be less than 64.", new [] { "TaskId" });
             }

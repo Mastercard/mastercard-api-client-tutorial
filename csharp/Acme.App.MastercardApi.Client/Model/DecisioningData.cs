@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// DecisioningData
     /// </summary>
     [DataContract(Name = "DecisioningData")]
-    public partial class DecisioningData : IEquatable<DecisioningData>, IValidatableObject
+    public partial class DecisioningData : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DecisioningData" /> class.
@@ -60,6 +60,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// **(OPTIONAL)** Digitization decision recommended by the Token Requestor. Must be either APPROVED (Recommend a decision of Approved), DECLINED (Recommend a decision of Decline). 
         /// </summary>
         /// <value>**(OPTIONAL)** Digitization decision recommended by the Token Requestor. Must be either APPROVED (Recommend a decision of Approved), DECLINED (Recommend a decision of Decline). </value>
+        /// <example>APPROVED</example>
         [DataMember(Name = "recommendation", EmitDefaultValue = false)]
         public string Recommendation { get; set; }
 
@@ -67,6 +68,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// **(OPTIONAL)** Version of the algorithm used by the Token Requestor to determine its recommendation. Must be a value of \&quot;01\&quot;. Other values may be supported in the future. 
         /// </summary>
         /// <value>**(OPTIONAL)** Version of the algorithm used by the Token Requestor to determine its recommendation. Must be a value of \&quot;01\&quot;. Other values may be supported in the future. </value>
+        /// <example>01</example>
         [DataMember(Name = "recommendationAlgorithmVersion", EmitDefaultValue = false)]
         public string RecommendationAlgorithmVersion { get; set; }
 
@@ -74,6 +76,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// **(OPTIONAL)** Score assigned by the Token Requestor for the target device being provisioned. Must be a value from 1 to 5. 
         /// </summary>
         /// <value>**(OPTIONAL)** Score assigned by the Token Requestor for the target device being provisioned. Must be a value from 1 to 5. </value>
+        /// <example>1</example>
         [DataMember(Name = "deviceScore", EmitDefaultValue = false)]
         public string DeviceScore { get; set; }
 
@@ -81,6 +84,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// **(OPTIONAL)** Score assigned by the Token Requestor for the consumer account or relationship. Must be a value from 1 to 5. 
         /// </summary>
         /// <value>**(OPTIONAL)** Score assigned by the Token Requestor for the consumer account or relationship. Must be a value from 1 to 5. </value>
+        /// <example>1</example>
         [DataMember(Name = "accountScore", EmitDefaultValue = false)]
         public string AccountScore { get; set; }
 
@@ -95,6 +99,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// **(OPTIONAL)** Latitude and longitude in the format \&quot;(sign) latitude, (sign) longitude\&quot; with a precision of 2 decimal places.  Ex - \&quot;38.63, -90.25\&quot;  Latitude is between -90 and 90.  Longitude between -180 and 180. Relates to the target device being provisioned. If there is no target device, then this should be the current consumer location, if available. 
         /// </summary>
         /// <value>**(OPTIONAL)** Latitude and longitude in the format \&quot;(sign) latitude, (sign) longitude\&quot; with a precision of 2 decimal places.  Ex - \&quot;38.63, -90.25\&quot;  Latitude is between -90 and 90.  Longitude between -180 and 180. Relates to the target device being provisioned. If there is no target device, then this should be the current consumer location, if available. </value>
+        /// <example>38.63,-90.25</example>
         [DataMember(Name = "deviceCurrentLocation", EmitDefaultValue = false)]
         public string DeviceCurrentLocation { get; set; }
 
@@ -102,6 +107,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// **(OPTIONAL)** The IP address of the device through which the device reaches the internet. This may be a temporary or permanent IP address assigned to a home router, or the IP address of a gateway through which the device connects to a network. IPv4 address format of 4 octets separated by \&quot;.\&quot; Ex - 127.0.0.1 Relates to the target device being provisioned. If there is no target device, then this should be the current consumer IP address, if available. 
         /// </summary>
         /// <value>**(OPTIONAL)** The IP address of the device through which the device reaches the internet. This may be a temporary or permanent IP address assigned to a home router, or the IP address of a gateway through which the device connects to a network. IPv4 address format of 4 octets separated by \&quot;.\&quot; Ex - 127.0.0.1 Relates to the target device being provisioned. If there is no target device, then this should be the current consumer IP address, if available. </value>
+        /// <example>127.0.0.1</example>
         [DataMember(Name = "deviceIpAddress", EmitDefaultValue = false)]
         public string DeviceIpAddress { get; set; }
 
@@ -109,6 +115,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// **(OPTIONAL)** The last few digits (typically four) of the consumer&#39;s mobile phone number as available on file or on the consumer&#39;s current device, which may or may not be the mobile number of the target device being provisioned. 
         /// </summary>
         /// <value>**(OPTIONAL)** The last few digits (typically four) of the consumer&#39;s mobile phone number as available on file or on the consumer&#39;s current device, which may or may not be the mobile number of the target device being provisioned. </value>
+        /// <example>3456</example>
         [DataMember(Name = "mobileNumberSuffix", EmitDefaultValue = false)]
         public string MobileNumberSuffix { get; set; }
 
@@ -125,7 +132,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class DecisioningData {\n");
             sb.Append("  Recommendation: ").Append(Recommendation).Append("\n");
             sb.Append("  RecommendationAlgorithmVersion: ").Append(RecommendationAlgorithmVersion).Append("\n");
@@ -150,106 +157,6 @@ namespace Acme.App.MastercardApi.Client.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as DecisioningData);
-        }
-
-        /// <summary>
-        /// Returns true if DecisioningData instances are equal
-        /// </summary>
-        /// <param name="input">Instance of DecisioningData to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(DecisioningData input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.Recommendation == input.Recommendation ||
-                    (this.Recommendation != null &&
-                    this.Recommendation.Equals(input.Recommendation))
-                ) && 
-                (
-                    this.RecommendationAlgorithmVersion == input.RecommendationAlgorithmVersion ||
-                    (this.RecommendationAlgorithmVersion != null &&
-                    this.RecommendationAlgorithmVersion.Equals(input.RecommendationAlgorithmVersion))
-                ) && 
-                (
-                    this.DeviceScore == input.DeviceScore ||
-                    (this.DeviceScore != null &&
-                    this.DeviceScore.Equals(input.DeviceScore))
-                ) && 
-                (
-                    this.AccountScore == input.AccountScore ||
-                    (this.AccountScore != null &&
-                    this.AccountScore.Equals(input.AccountScore))
-                ) && 
-                (
-                    this.RecommendationReasons == input.RecommendationReasons ||
-                    this.RecommendationReasons != null &&
-                    input.RecommendationReasons != null &&
-                    this.RecommendationReasons.SequenceEqual(input.RecommendationReasons)
-                ) && 
-                (
-                    this.DeviceCurrentLocation == input.DeviceCurrentLocation ||
-                    (this.DeviceCurrentLocation != null &&
-                    this.DeviceCurrentLocation.Equals(input.DeviceCurrentLocation))
-                ) && 
-                (
-                    this.DeviceIpAddress == input.DeviceIpAddress ||
-                    (this.DeviceIpAddress != null &&
-                    this.DeviceIpAddress.Equals(input.DeviceIpAddress))
-                ) && 
-                (
-                    this.MobileNumberSuffix == input.MobileNumberSuffix ||
-                    (this.MobileNumberSuffix != null &&
-                    this.MobileNumberSuffix.Equals(input.MobileNumberSuffix))
-                ) && 
-                (
-                    this.AccountIdHash == input.AccountIdHash ||
-                    (this.AccountIdHash != null &&
-                    this.AccountIdHash.Equals(input.AccountIdHash))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Recommendation != null)
-                    hashCode = hashCode * 59 + this.Recommendation.GetHashCode();
-                if (this.RecommendationAlgorithmVersion != null)
-                    hashCode = hashCode * 59 + this.RecommendationAlgorithmVersion.GetHashCode();
-                if (this.DeviceScore != null)
-                    hashCode = hashCode * 59 + this.DeviceScore.GetHashCode();
-                if (this.AccountScore != null)
-                    hashCode = hashCode * 59 + this.AccountScore.GetHashCode();
-                if (this.RecommendationReasons != null)
-                    hashCode = hashCode * 59 + this.RecommendationReasons.GetHashCode();
-                if (this.DeviceCurrentLocation != null)
-                    hashCode = hashCode * 59 + this.DeviceCurrentLocation.GetHashCode();
-                if (this.DeviceIpAddress != null)
-                    hashCode = hashCode * 59 + this.DeviceIpAddress.GetHashCode();
-                if (this.MobileNumberSuffix != null)
-                    hashCode = hashCode * 59 + this.MobileNumberSuffix.GetHashCode();
-                if (this.AccountIdHash != null)
-                    hashCode = hashCode * 59 + this.AccountIdHash.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
@@ -257,37 +164,37 @@ namespace Acme.App.MastercardApi.Client.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Recommendation (string) maxLength
-            if(this.Recommendation != null && this.Recommendation.Length > 64)
+            if (this.Recommendation != null && this.Recommendation.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Recommendation, length must be less than 64.", new [] { "Recommendation" });
             }
 
             // RecommendationAlgorithmVersion (string) maxLength
-            if(this.RecommendationAlgorithmVersion != null && this.RecommendationAlgorithmVersion.Length > 16)
+            if (this.RecommendationAlgorithmVersion != null && this.RecommendationAlgorithmVersion.Length > 16)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RecommendationAlgorithmVersion, length must be less than 16.", new [] { "RecommendationAlgorithmVersion" });
             }
 
             // DeviceCurrentLocation (string) maxLength
-            if(this.DeviceCurrentLocation != null && this.DeviceCurrentLocation.Length > 14)
+            if (this.DeviceCurrentLocation != null && this.DeviceCurrentLocation.Length > 14)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DeviceCurrentLocation, length must be less than 14.", new [] { "DeviceCurrentLocation" });
             }
 
             // DeviceIpAddress (string) maxLength
-            if(this.DeviceIpAddress != null && this.DeviceIpAddress.Length > 15)
+            if (this.DeviceIpAddress != null && this.DeviceIpAddress.Length > 15)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DeviceIpAddress, length must be less than 15.", new [] { "DeviceIpAddress" });
             }
 
             // MobileNumberSuffix (string) maxLength
-            if(this.MobileNumberSuffix != null && this.MobileNumberSuffix.Length > 32)
+            if (this.MobileNumberSuffix != null && this.MobileNumberSuffix.Length > 32)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for MobileNumberSuffix, length must be less than 32.", new [] { "MobileNumberSuffix" });
             }
 
             // AccountIdHash (string) maxLength
-            if(this.AccountIdHash != null && this.AccountIdHash.Length > 64)
+            if (this.AccountIdHash != null && this.AccountIdHash.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountIdHash, length must be less than 64.", new [] { "AccountIdHash" });
             }

@@ -2,12 +2,11 @@
 
 All URIs are relative to *https://api.mastercard.com/mdes*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**CreateTransact**](TransactApi.md#createtransact) | **POST** /remotetransaction/static/1/0/transact | Used by the Token Requestor to create a Digital Secure Remote Payment (\&quot;DSRP\&quot;) transaction cryptogram using the credentials stored within MDES in order to perform a DSRP transaction.
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**CreateTransact**](TransactApi.md#createtransact) | **POST** /remotetransaction/static/1/0/transact | Used by the Token Requestor to create a Digital Secure Remote Payment (\&quot;DSRP\&quot;) transaction cryptogram using the credentials stored within MDES in order to perform a DSRP transaction. |
 
-
-<a name="createtransact"></a>
+<a id="createtransact"></a>
 # **CreateTransact**
 > TransactResponseSchema CreateTransact (TransactRequestSchema transactRequestSchema = null)
 
@@ -42,8 +41,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling TransactApi.CreateTransact: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling TransactApi.CreateTransact: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -51,11 +50,31 @@ namespace Example
 }
 ```
 
+#### Using the CreateTransactWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Used by the Token Requestor to create a Digital Secure Remote Payment (\"DSRP\") transaction cryptogram using the credentials stored within MDES in order to perform a DSRP transaction.
+    ApiResponse<TransactResponseSchema> response = apiInstance.CreateTransactWithHttpInfo(transactRequestSchema);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TransactApi.CreateTransactWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **transactRequestSchema** | [**TransactRequestSchema**](TransactRequestSchema.md)| Contains the details of the request message.  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **transactRequestSchema** | [**TransactRequestSchema**](TransactRequestSchema.md) | Contains the details of the request message.  | [optional]  |
 
 ### Return type
 

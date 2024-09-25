@@ -34,8 +34,9 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </remarks>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="getTaskStatusRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>GetTaskStatusResponseSchema</returns>
-        GetTaskStatusResponseSchema GetTaskStatus(GetTaskStatusRequestSchema getTaskStatusRequestSchema = default(GetTaskStatusRequestSchema));
+        GetTaskStatusResponseSchema GetTaskStatus(GetTaskStatusRequestSchema getTaskStatusRequestSchema = default(GetTaskStatusRequestSchema), int operationIndex = 0);
 
         /// <summary>
         /// Used to check the status of any asynchronous task that was previously requested.
@@ -45,8 +46,9 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </remarks>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="getTaskStatusRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of GetTaskStatusResponseSchema</returns>
-        ApiResponse<GetTaskStatusResponseSchema> GetTaskStatusWithHttpInfo(GetTaskStatusRequestSchema getTaskStatusRequestSchema = default(GetTaskStatusRequestSchema));
+        ApiResponse<GetTaskStatusResponseSchema> GetTaskStatusWithHttpInfo(GetTaskStatusRequestSchema getTaskStatusRequestSchema = default(GetTaskStatusRequestSchema), int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
@@ -64,9 +66,10 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </remarks>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="getTaskStatusRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetTaskStatusResponseSchema</returns>
-        System.Threading.Tasks.Task<GetTaskStatusResponseSchema> GetTaskStatusAsync(GetTaskStatusRequestSchema getTaskStatusRequestSchema = default(GetTaskStatusRequestSchema), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<GetTaskStatusResponseSchema> GetTaskStatusAsync(GetTaskStatusRequestSchema getTaskStatusRequestSchema = default(GetTaskStatusRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Used to check the status of any asynchronous task that was previously requested.
@@ -76,9 +79,10 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </remarks>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="getTaskStatusRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetTaskStatusResponseSchema)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetTaskStatusResponseSchema>> GetTaskStatusWithHttpInfoAsync(GetTaskStatusRequestSchema getTaskStatusRequestSchema = default(GetTaskStatusRequestSchema), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<GetTaskStatusResponseSchema>> GetTaskStatusWithHttpInfoAsync(GetTaskStatusRequestSchema getTaskStatusRequestSchema = default(GetTaskStatusRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -109,7 +113,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// Initializes a new instance of the <see cref="GetTaskStatusApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public GetTaskStatusApi(String basePath)
+        public GetTaskStatusApi(string basePath)
         {
             this.Configuration = Acme.App.MastercardApi.Client.Client.Configuration.MergeConfigurations(
                 Acme.App.MastercardApi.Client.Client.GlobalConfiguration.Instance,
@@ -172,7 +176,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// Gets the base path of the API client.
         /// </summary>
         /// <value>The base path</value>
-        public String GetBasePath()
+        public string GetBasePath()
         {
             return this.Configuration.BasePath;
         }
@@ -204,8 +208,9 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </summary>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="getTaskStatusRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>GetTaskStatusResponseSchema</returns>
-        public GetTaskStatusResponseSchema GetTaskStatus(GetTaskStatusRequestSchema getTaskStatusRequestSchema = default(GetTaskStatusRequestSchema))
+        public GetTaskStatusResponseSchema GetTaskStatus(GetTaskStatusRequestSchema getTaskStatusRequestSchema = default(GetTaskStatusRequestSchema), int operationIndex = 0)
         {
             Acme.App.MastercardApi.Client.Client.ApiResponse<GetTaskStatusResponseSchema> localVarResponse = GetTaskStatusWithHttpInfo(getTaskStatusRequestSchema);
             return localVarResponse.Data;
@@ -216,36 +221,48 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </summary>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="getTaskStatusRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of GetTaskStatusResponseSchema</returns>
-        public Acme.App.MastercardApi.Client.Client.ApiResponse<GetTaskStatusResponseSchema> GetTaskStatusWithHttpInfo(GetTaskStatusRequestSchema getTaskStatusRequestSchema = default(GetTaskStatusRequestSchema))
+        public Acme.App.MastercardApi.Client.Client.ApiResponse<GetTaskStatusResponseSchema> GetTaskStatusWithHttpInfo(GetTaskStatusRequestSchema getTaskStatusRequestSchema = default(GetTaskStatusRequestSchema), int operationIndex = 0)
         {
             Acme.App.MastercardApi.Client.Client.RequestOptions localVarRequestOptions = new Acme.App.MastercardApi.Client.Client.RequestOptions();
 
-            String[] _contentTypes = new String[] {
+            string[] _contentTypes = new string[] {
                 "application/json"
             };
 
             // to determine the Accept header
-            String[] _accepts = new String[] {
+            string[] _accepts = new string[] {
                 "application/json"
             };
 
             var localVarContentType = Acme.App.MastercardApi.Client.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Acme.App.MastercardApi.Client.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.Data = getTaskStatusRequestSchema;
+
+            localVarRequestOptions.Operation = "GetTaskStatusApi.GetTaskStatus";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<GetTaskStatusResponseSchema>("/digitization/static/1/0/getTaskStatus", localVarRequestOptions, this.Configuration);
-
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetTaskStatus", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -256,11 +273,12 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </summary>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="getTaskStatusRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetTaskStatusResponseSchema</returns>
-        public async System.Threading.Tasks.Task<GetTaskStatusResponseSchema> GetTaskStatusAsync(GetTaskStatusRequestSchema getTaskStatusRequestSchema = default(GetTaskStatusRequestSchema), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<GetTaskStatusResponseSchema> GetTaskStatusAsync(GetTaskStatusRequestSchema getTaskStatusRequestSchema = default(GetTaskStatusRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Acme.App.MastercardApi.Client.Client.ApiResponse<GetTaskStatusResponseSchema> localVarResponse = await GetTaskStatusWithHttpInfoAsync(getTaskStatusRequestSchema, cancellationToken).ConfigureAwait(false);
+            Acme.App.MastercardApi.Client.Client.ApiResponse<GetTaskStatusResponseSchema> localVarResponse = await GetTaskStatusWithHttpInfoAsync(getTaskStatusRequestSchema, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -269,40 +287,51 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </summary>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="getTaskStatusRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetTaskStatusResponseSchema)</returns>
-        public async System.Threading.Tasks.Task<Acme.App.MastercardApi.Client.Client.ApiResponse<GetTaskStatusResponseSchema>> GetTaskStatusWithHttpInfoAsync(GetTaskStatusRequestSchema getTaskStatusRequestSchema = default(GetTaskStatusRequestSchema), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Acme.App.MastercardApi.Client.Client.ApiResponse<GetTaskStatusResponseSchema>> GetTaskStatusWithHttpInfoAsync(GetTaskStatusRequestSchema getTaskStatusRequestSchema = default(GetTaskStatusRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Acme.App.MastercardApi.Client.Client.RequestOptions localVarRequestOptions = new Acme.App.MastercardApi.Client.Client.RequestOptions();
 
-            String[] _contentTypes = new String[] {
+            string[] _contentTypes = new string[] {
                 "application/json"
             };
 
             // to determine the Accept header
-            String[] _accepts = new String[] {
+            string[] _accepts = new string[] {
                 "application/json"
             };
 
-
             var localVarContentType = Acme.App.MastercardApi.Client.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Acme.App.MastercardApi.Client.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.Data = getTaskStatusRequestSchema;
 
+            localVarRequestOptions.Operation = "GetTaskStatusApi.GetTaskStatus";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
 
             // make the HTTP request
-
             var localVarResponse = await this.AsynchronousClient.PostAsync<GetTaskStatusResponseSchema>("/digitization/static/1/0/getTaskStatus", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetTaskStatus", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;

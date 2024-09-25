@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// GatewayErrorsResponse
     /// </summary>
     [DataContract(Name = "GatewayErrorsResponse")]
-    public partial class GatewayErrorsResponse : IEquatable<GatewayErrorsResponse>, IValidatableObject
+    public partial class GatewayErrorsResponse : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GatewayErrorsResponse" /> class.
@@ -52,7 +52,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class GatewayErrorsResponse {\n");
             sb.Append("  Errors: ").Append(Errors).Append("\n");
             sb.Append("}\n");
@@ -66,49 +66,6 @@ namespace Acme.App.MastercardApi.Client.Model
         public virtual string ToJson()
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
-        }
-
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as GatewayErrorsResponse);
-        }
-
-        /// <summary>
-        /// Returns true if GatewayErrorsResponse instances are equal
-        /// </summary>
-        /// <param name="input">Instance of GatewayErrorsResponse to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(GatewayErrorsResponse input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.Errors == input.Errors ||
-                    (this.Errors != null &&
-                    this.Errors.Equals(input.Errors))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Errors != null)
-                    hashCode = hashCode * 59 + this.Errors.GetHashCode();
-                return hashCode;
-            }
         }
 
         /// <summary>

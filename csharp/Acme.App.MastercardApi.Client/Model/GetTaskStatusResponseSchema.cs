@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// GetTaskStatusResponseSchema
     /// </summary>
     [DataContract(Name = "GetTaskStatusResponseSchema")]
-    public partial class GetTaskStatusResponseSchema : IEquatable<GetTaskStatusResponseSchema>, IValidatableObject
+    public partial class GetTaskStatusResponseSchema : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GetTaskStatusResponseSchema" /> class.
@@ -48,6 +48,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Unique identifier for the response. 
         /// </summary>
         /// <value>Unique identifier for the response. </value>
+        /// <example>123456</example>
         [DataMember(Name = "responseId", EmitDefaultValue = false)]
         public string ResponseId { get; set; }
 
@@ -55,6 +56,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The host that originated the request. Future calls in the same conversation may be routed to this host. 
         /// </summary>
         /// <value>The host that originated the request. Future calls in the same conversation may be routed to this host. </value>
+        /// <example>site2.payment-app-provider.com</example>
         [DataMember(Name = "responseHost", EmitDefaultValue = false)]
         public string ResponseHost { get; set; }
 
@@ -62,6 +64,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The status of the specified task. Must be either &#39;PENDING&#39; (The Task has been recieved and is pending processing), &#39;IN_PROGRESS&#39; (The task is currently in progress), &#39;COMPLETED&#39; (The task was completed successfully) or &#39;FAILED&#39; The task was processed but failed to complete successfully. 
         /// </summary>
         /// <value>The status of the specified task. Must be either &#39;PENDING&#39; (The Task has been recieved and is pending processing), &#39;IN_PROGRESS&#39; (The task is currently in progress), &#39;COMPLETED&#39; (The task was completed successfully) or &#39;FAILED&#39; The task was processed but failed to complete successfully. </value>
+        /// <example>FAILED</example>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public string Status { get; set; }
 
@@ -71,7 +74,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class GetTaskStatusResponseSchema {\n");
             sb.Append("  ResponseId: ").Append(ResponseId).Append("\n");
             sb.Append("  ResponseHost: ").Append(ResponseHost).Append("\n");
@@ -90,63 +93,6 @@ namespace Acme.App.MastercardApi.Client.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as GetTaskStatusResponseSchema);
-        }
-
-        /// <summary>
-        /// Returns true if GetTaskStatusResponseSchema instances are equal
-        /// </summary>
-        /// <param name="input">Instance of GetTaskStatusResponseSchema to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(GetTaskStatusResponseSchema input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.ResponseId == input.ResponseId ||
-                    (this.ResponseId != null &&
-                    this.ResponseId.Equals(input.ResponseId))
-                ) && 
-                (
-                    this.ResponseHost == input.ResponseHost ||
-                    (this.ResponseHost != null &&
-                    this.ResponseHost.Equals(input.ResponseHost))
-                ) && 
-                (
-                    this.Status == input.Status ||
-                    (this.Status != null &&
-                    this.Status.Equals(input.Status))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.ResponseId != null)
-                    hashCode = hashCode * 59 + this.ResponseId.GetHashCode();
-                if (this.ResponseHost != null)
-                    hashCode = hashCode * 59 + this.ResponseHost.GetHashCode();
-                if (this.Status != null)
-                    hashCode = hashCode * 59 + this.Status.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
@@ -154,7 +100,7 @@ namespace Acme.App.MastercardApi.Client.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Status (string) maxLength
-            if(this.Status != null && this.Status.Length > 64)
+            if (this.Status != null && this.Status.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Status, length must be less than 64.", new [] { "Status" });
             }

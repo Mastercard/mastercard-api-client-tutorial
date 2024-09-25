@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// **(CONDITIONAL)** Present in tokenize response if supported by the Merchant, if using a pushAccountReceipt and if there is account holder data associated with the pushAccountReceipt in case that the issuer decision is APPROVED. Refer to MDES Token Connect Token Requestor Implementation Guide and Specification  for more details. 
     /// </summary>
     [DataContract(Name = "accountHolderData_outbound")]
-    public partial class AccountHolderDataOutbound : IEquatable<AccountHolderDataOutbound>, IValidatableObject
+    public partial class AccountHolderDataOutbound : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountHolderDataOutbound" /> class.
@@ -78,7 +78,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AccountHolderDataOutbound {\n");
             sb.Append("  AccountHolderName: ").Append(AccountHolderName).Append("\n");
             sb.Append("  AccountHolderAddress: ").Append(AccountHolderAddress).Append("\n");
@@ -98,70 +98,6 @@ namespace Acme.App.MastercardApi.Client.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as AccountHolderDataOutbound);
-        }
-
-        /// <summary>
-        /// Returns true if AccountHolderDataOutbound instances are equal
-        /// </summary>
-        /// <param name="input">Instance of AccountHolderDataOutbound to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(AccountHolderDataOutbound input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.AccountHolderName == input.AccountHolderName ||
-                    (this.AccountHolderName != null &&
-                    this.AccountHolderName.Equals(input.AccountHolderName))
-                ) && 
-                (
-                    this.AccountHolderAddress == input.AccountHolderAddress ||
-                    (this.AccountHolderAddress != null &&
-                    this.AccountHolderAddress.Equals(input.AccountHolderAddress))
-                ) && 
-                (
-                    this.AccountHolderEmailAddress == input.AccountHolderEmailAddress ||
-                    (this.AccountHolderEmailAddress != null &&
-                    this.AccountHolderEmailAddress.Equals(input.AccountHolderEmailAddress))
-                ) && 
-                (
-                    this.AccountHolderMobilePhoneNumber == input.AccountHolderMobilePhoneNumber ||
-                    (this.AccountHolderMobilePhoneNumber != null &&
-                    this.AccountHolderMobilePhoneNumber.Equals(input.AccountHolderMobilePhoneNumber))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.AccountHolderName != null)
-                    hashCode = hashCode * 59 + this.AccountHolderName.GetHashCode();
-                if (this.AccountHolderAddress != null)
-                    hashCode = hashCode * 59 + this.AccountHolderAddress.GetHashCode();
-                if (this.AccountHolderEmailAddress != null)
-                    hashCode = hashCode * 59 + this.AccountHolderEmailAddress.GetHashCode();
-                if (this.AccountHolderMobilePhoneNumber != null)
-                    hashCode = hashCode * 59 + this.AccountHolderMobilePhoneNumber.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
@@ -169,13 +105,13 @@ namespace Acme.App.MastercardApi.Client.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // AccountHolderName (string) maxLength
-            if(this.AccountHolderName != null && this.AccountHolderName.Length > 27)
+            if (this.AccountHolderName != null && this.AccountHolderName.Length > 27)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountHolderName, length must be less than 27.", new [] { "AccountHolderName" });
             }
 
             // AccountHolderEmailAddress (string) maxLength
-            if(this.AccountHolderEmailAddress != null && this.AccountHolderEmailAddress.Length > 320)
+            if (this.AccountHolderEmailAddress != null && this.AccountHolderEmailAddress.Length > 320)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountHolderEmailAddress, length must be less than 320.", new [] { "AccountHolderEmailAddress" });
             }

@@ -29,23 +29,24 @@ namespace Acme.App.MastercardApi.Client.Model
     /// PhoneNumber
     /// </summary>
     [DataContract(Name = "PhoneNumber")]
-    public partial class PhoneNumber : IEquatable<PhoneNumber>, IValidatableObject
+    public partial class PhoneNumber : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PhoneNumber" /> class.
         /// </summary>
         /// <param name="countryDialInCode">**(OPTIONAL)** The country code for the phone number. E.g. 1 for US or 44 for UK. .</param>
-        /// <param name="phoneNumber">**(OPTIONAL)** The phone number of the account holder .</param>
-        public PhoneNumber(decimal countryDialInCode = default(decimal), decimal phoneNumber = default(decimal))
+        /// <param name="varPhoneNumber">**(OPTIONAL)** The phone number of the account holder .</param>
+        public PhoneNumber(decimal countryDialInCode = default(decimal), decimal varPhoneNumber = default(decimal))
         {
             this.CountryDialInCode = countryDialInCode;
-            this._PhoneNumber = phoneNumber;
+            this.VarPhoneNumber = varPhoneNumber;
         }
 
         /// <summary>
         /// **(OPTIONAL)** The country code for the phone number. E.g. 1 for US or 44 for UK. 
         /// </summary>
         /// <value>**(OPTIONAL)** The country code for the phone number. E.g. 1 for US or 44 for UK. </value>
+        /// <example>44</example>
         [DataMember(Name = "countryDialInCode", EmitDefaultValue = false)]
         public decimal CountryDialInCode { get; set; }
 
@@ -54,7 +55,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// </summary>
         /// <value>**(OPTIONAL)** The phone number of the account holder </value>
         [DataMember(Name = "phoneNumber", EmitDefaultValue = false)]
-        public decimal _PhoneNumber { get; set; }
+        public decimal VarPhoneNumber { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -62,10 +63,10 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class PhoneNumber {\n");
             sb.Append("  CountryDialInCode: ").Append(CountryDialInCode).Append("\n");
-            sb.Append("  _PhoneNumber: ").Append(_PhoneNumber).Append("\n");
+            sb.Append("  VarPhoneNumber: ").Append(VarPhoneNumber).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -77,52 +78,6 @@ namespace Acme.App.MastercardApi.Client.Model
         public virtual string ToJson()
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
-        }
-
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as PhoneNumber);
-        }
-
-        /// <summary>
-        /// Returns true if PhoneNumber instances are equal
-        /// </summary>
-        /// <param name="input">Instance of PhoneNumber to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(PhoneNumber input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.CountryDialInCode == input.CountryDialInCode ||
-                    this.CountryDialInCode.Equals(input.CountryDialInCode)
-                ) && 
-                (
-                    this._PhoneNumber == input._PhoneNumber ||
-                    this._PhoneNumber.Equals(input._PhoneNumber)
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                hashCode = hashCode * 59 + this.CountryDialInCode.GetHashCode();
-                hashCode = hashCode * 59 + this._PhoneNumber.GetHashCode();
-                return hashCode;
-            }
         }
 
         /// <summary>

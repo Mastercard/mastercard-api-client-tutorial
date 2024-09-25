@@ -34,8 +34,9 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </remarks>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="notifyTokenUpdatedRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>NotifyTokenUpdatedResponseSchema</returns>
-        NotifyTokenUpdatedResponseSchema NotifyTokenUpdateForTokenStateChange(NotifyTokenUpdatedRequestSchema notifyTokenUpdatedRequestSchema = default(NotifyTokenUpdatedRequestSchema));
+        NotifyTokenUpdatedResponseSchema NotifyTokenUpdateForTokenStateChange(NotifyTokenUpdatedRequestSchema notifyTokenUpdatedRequestSchema = default(NotifyTokenUpdatedRequestSchema), int operationIndex = 0);
 
         /// <summary>
         /// Outbound API used by MDES to notify the Token Requestor of significant Token updates, such as when the Token is activated, suspended, unsuspended or deleted; or when information about the Token or its product configuration has changed.
@@ -45,8 +46,9 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </remarks>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="notifyTokenUpdatedRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of NotifyTokenUpdatedResponseSchema</returns>
-        ApiResponse<NotifyTokenUpdatedResponseSchema> NotifyTokenUpdateForTokenStateChangeWithHttpInfo(NotifyTokenUpdatedRequestSchema notifyTokenUpdatedRequestSchema = default(NotifyTokenUpdatedRequestSchema));
+        ApiResponse<NotifyTokenUpdatedResponseSchema> NotifyTokenUpdateForTokenStateChangeWithHttpInfo(NotifyTokenUpdatedRequestSchema notifyTokenUpdatedRequestSchema = default(NotifyTokenUpdatedRequestSchema), int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
@@ -64,9 +66,10 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </remarks>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="notifyTokenUpdatedRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of NotifyTokenUpdatedResponseSchema</returns>
-        System.Threading.Tasks.Task<NotifyTokenUpdatedResponseSchema> NotifyTokenUpdateForTokenStateChangeAsync(NotifyTokenUpdatedRequestSchema notifyTokenUpdatedRequestSchema = default(NotifyTokenUpdatedRequestSchema), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<NotifyTokenUpdatedResponseSchema> NotifyTokenUpdateForTokenStateChangeAsync(NotifyTokenUpdatedRequestSchema notifyTokenUpdatedRequestSchema = default(NotifyTokenUpdatedRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Outbound API used by MDES to notify the Token Requestor of significant Token updates, such as when the Token is activated, suspended, unsuspended or deleted; or when information about the Token or its product configuration has changed.
@@ -76,9 +79,10 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </remarks>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="notifyTokenUpdatedRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (NotifyTokenUpdatedResponseSchema)</returns>
-        System.Threading.Tasks.Task<ApiResponse<NotifyTokenUpdatedResponseSchema>> NotifyTokenUpdateForTokenStateChangeWithHttpInfoAsync(NotifyTokenUpdatedRequestSchema notifyTokenUpdatedRequestSchema = default(NotifyTokenUpdatedRequestSchema), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<NotifyTokenUpdatedResponseSchema>> NotifyTokenUpdateForTokenStateChangeWithHttpInfoAsync(NotifyTokenUpdatedRequestSchema notifyTokenUpdatedRequestSchema = default(NotifyTokenUpdatedRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -109,7 +113,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// Initializes a new instance of the <see cref="NotifyTokenUpdatedApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public NotifyTokenUpdatedApi(String basePath)
+        public NotifyTokenUpdatedApi(string basePath)
         {
             this.Configuration = Acme.App.MastercardApi.Client.Client.Configuration.MergeConfigurations(
                 Acme.App.MastercardApi.Client.Client.GlobalConfiguration.Instance,
@@ -172,7 +176,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// Gets the base path of the API client.
         /// </summary>
         /// <value>The base path</value>
-        public String GetBasePath()
+        public string GetBasePath()
         {
             return this.Configuration.BasePath;
         }
@@ -204,8 +208,9 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </summary>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="notifyTokenUpdatedRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>NotifyTokenUpdatedResponseSchema</returns>
-        public NotifyTokenUpdatedResponseSchema NotifyTokenUpdateForTokenStateChange(NotifyTokenUpdatedRequestSchema notifyTokenUpdatedRequestSchema = default(NotifyTokenUpdatedRequestSchema))
+        public NotifyTokenUpdatedResponseSchema NotifyTokenUpdateForTokenStateChange(NotifyTokenUpdatedRequestSchema notifyTokenUpdatedRequestSchema = default(NotifyTokenUpdatedRequestSchema), int operationIndex = 0)
         {
             Acme.App.MastercardApi.Client.Client.ApiResponse<NotifyTokenUpdatedResponseSchema> localVarResponse = NotifyTokenUpdateForTokenStateChangeWithHttpInfo(notifyTokenUpdatedRequestSchema);
             return localVarResponse.Data;
@@ -216,36 +221,48 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </summary>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="notifyTokenUpdatedRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of NotifyTokenUpdatedResponseSchema</returns>
-        public Acme.App.MastercardApi.Client.Client.ApiResponse<NotifyTokenUpdatedResponseSchema> NotifyTokenUpdateForTokenStateChangeWithHttpInfo(NotifyTokenUpdatedRequestSchema notifyTokenUpdatedRequestSchema = default(NotifyTokenUpdatedRequestSchema))
+        public Acme.App.MastercardApi.Client.Client.ApiResponse<NotifyTokenUpdatedResponseSchema> NotifyTokenUpdateForTokenStateChangeWithHttpInfo(NotifyTokenUpdatedRequestSchema notifyTokenUpdatedRequestSchema = default(NotifyTokenUpdatedRequestSchema), int operationIndex = 0)
         {
             Acme.App.MastercardApi.Client.Client.RequestOptions localVarRequestOptions = new Acme.App.MastercardApi.Client.Client.RequestOptions();
 
-            String[] _contentTypes = new String[] {
+            string[] _contentTypes = new string[] {
                 "application/json"
             };
 
             // to determine the Accept header
-            String[] _accepts = new String[] {
+            string[] _accepts = new string[] {
                 "application/json"
             };
 
             var localVarContentType = Acme.App.MastercardApi.Client.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Acme.App.MastercardApi.Client.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.Data = notifyTokenUpdatedRequestSchema;
+
+            localVarRequestOptions.Operation = "NotifyTokenUpdatedApi.NotifyTokenUpdateForTokenStateChange";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<NotifyTokenUpdatedResponseSchema>("/digitization/static/1/0/notifyTokenUpdated", localVarRequestOptions, this.Configuration);
-
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("NotifyTokenUpdateForTokenStateChange", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -256,11 +273,12 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </summary>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="notifyTokenUpdatedRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of NotifyTokenUpdatedResponseSchema</returns>
-        public async System.Threading.Tasks.Task<NotifyTokenUpdatedResponseSchema> NotifyTokenUpdateForTokenStateChangeAsync(NotifyTokenUpdatedRequestSchema notifyTokenUpdatedRequestSchema = default(NotifyTokenUpdatedRequestSchema), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<NotifyTokenUpdatedResponseSchema> NotifyTokenUpdateForTokenStateChangeAsync(NotifyTokenUpdatedRequestSchema notifyTokenUpdatedRequestSchema = default(NotifyTokenUpdatedRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Acme.App.MastercardApi.Client.Client.ApiResponse<NotifyTokenUpdatedResponseSchema> localVarResponse = await NotifyTokenUpdateForTokenStateChangeWithHttpInfoAsync(notifyTokenUpdatedRequestSchema, cancellationToken).ConfigureAwait(false);
+            Acme.App.MastercardApi.Client.Client.ApiResponse<NotifyTokenUpdatedResponseSchema> localVarResponse = await NotifyTokenUpdateForTokenStateChangeWithHttpInfoAsync(notifyTokenUpdatedRequestSchema, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -269,40 +287,51 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </summary>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="notifyTokenUpdatedRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (NotifyTokenUpdatedResponseSchema)</returns>
-        public async System.Threading.Tasks.Task<Acme.App.MastercardApi.Client.Client.ApiResponse<NotifyTokenUpdatedResponseSchema>> NotifyTokenUpdateForTokenStateChangeWithHttpInfoAsync(NotifyTokenUpdatedRequestSchema notifyTokenUpdatedRequestSchema = default(NotifyTokenUpdatedRequestSchema), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Acme.App.MastercardApi.Client.Client.ApiResponse<NotifyTokenUpdatedResponseSchema>> NotifyTokenUpdateForTokenStateChangeWithHttpInfoAsync(NotifyTokenUpdatedRequestSchema notifyTokenUpdatedRequestSchema = default(NotifyTokenUpdatedRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Acme.App.MastercardApi.Client.Client.RequestOptions localVarRequestOptions = new Acme.App.MastercardApi.Client.Client.RequestOptions();
 
-            String[] _contentTypes = new String[] {
+            string[] _contentTypes = new string[] {
                 "application/json"
             };
 
             // to determine the Accept header
-            String[] _accepts = new String[] {
+            string[] _accepts = new string[] {
                 "application/json"
             };
 
-
             var localVarContentType = Acme.App.MastercardApi.Client.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Acme.App.MastercardApi.Client.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.Data = notifyTokenUpdatedRequestSchema;
 
+            localVarRequestOptions.Operation = "NotifyTokenUpdatedApi.NotifyTokenUpdateForTokenStateChange";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
 
             // make the HTTP request
-
             var localVarResponse = await this.AsynchronousClient.PostAsync<NotifyTokenUpdatedResponseSchema>("/digitization/static/1/0/notifyTokenUpdated", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("NotifyTokenUpdateForTokenStateChange", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;

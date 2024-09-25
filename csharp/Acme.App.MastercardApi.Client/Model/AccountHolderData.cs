@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// AccountHolderData
     /// </summary>
     [DataContract(Name = "accountHolderData")]
-    public partial class AccountHolderData : IEquatable<AccountHolderData>, IValidatableObject
+    public partial class AccountHolderData : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountHolderData" /> class.
@@ -87,7 +87,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AccountHolderData {\n");
             sb.Append("  AccountHolderName: ").Append(AccountHolderName).Append("\n");
             sb.Append("  AccountHolderAddress: ").Append(AccountHolderAddress).Append("\n");
@@ -108,77 +108,6 @@ namespace Acme.App.MastercardApi.Client.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as AccountHolderData);
-        }
-
-        /// <summary>
-        /// Returns true if AccountHolderData instances are equal
-        /// </summary>
-        /// <param name="input">Instance of AccountHolderData to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(AccountHolderData input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.AccountHolderName == input.AccountHolderName ||
-                    (this.AccountHolderName != null &&
-                    this.AccountHolderName.Equals(input.AccountHolderName))
-                ) && 
-                (
-                    this.AccountHolderAddress == input.AccountHolderAddress ||
-                    (this.AccountHolderAddress != null &&
-                    this.AccountHolderAddress.Equals(input.AccountHolderAddress))
-                ) && 
-                (
-                    this.ConsumerIdentifier == input.ConsumerIdentifier ||
-                    (this.ConsumerIdentifier != null &&
-                    this.ConsumerIdentifier.Equals(input.ConsumerIdentifier))
-                ) && 
-                (
-                    this.AccountHolderEmailAddress == input.AccountHolderEmailAddress ||
-                    (this.AccountHolderEmailAddress != null &&
-                    this.AccountHolderEmailAddress.Equals(input.AccountHolderEmailAddress))
-                ) && 
-                (
-                    this.AccountHolderMobilePhoneNumber == input.AccountHolderMobilePhoneNumber ||
-                    (this.AccountHolderMobilePhoneNumber != null &&
-                    this.AccountHolderMobilePhoneNumber.Equals(input.AccountHolderMobilePhoneNumber))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.AccountHolderName != null)
-                    hashCode = hashCode * 59 + this.AccountHolderName.GetHashCode();
-                if (this.AccountHolderAddress != null)
-                    hashCode = hashCode * 59 + this.AccountHolderAddress.GetHashCode();
-                if (this.ConsumerIdentifier != null)
-                    hashCode = hashCode * 59 + this.ConsumerIdentifier.GetHashCode();
-                if (this.AccountHolderEmailAddress != null)
-                    hashCode = hashCode * 59 + this.AccountHolderEmailAddress.GetHashCode();
-                if (this.AccountHolderMobilePhoneNumber != null)
-                    hashCode = hashCode * 59 + this.AccountHolderMobilePhoneNumber.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
@@ -186,19 +115,19 @@ namespace Acme.App.MastercardApi.Client.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // AccountHolderName (string) maxLength
-            if(this.AccountHolderName != null && this.AccountHolderName.Length > 27)
+            if (this.AccountHolderName != null && this.AccountHolderName.Length > 27)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountHolderName, length must be less than 27.", new [] { "AccountHolderName" });
             }
 
             // ConsumerIdentifier (string) maxLength
-            if(this.ConsumerIdentifier != null && this.ConsumerIdentifier.Length > 88)
+            if (this.ConsumerIdentifier != null && this.ConsumerIdentifier.Length > 88)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ConsumerIdentifier, length must be less than 88.", new [] { "ConsumerIdentifier" });
             }
 
             // AccountHolderEmailAddress (string) maxLength
-            if(this.AccountHolderEmailAddress != null && this.AccountHolderEmailAddress.Length > 320)
+            if (this.AccountHolderEmailAddress != null && this.AccountHolderEmailAddress.Length > 320)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountHolderEmailAddress, length must be less than 320.", new [] { "AccountHolderEmailAddress" });
             }

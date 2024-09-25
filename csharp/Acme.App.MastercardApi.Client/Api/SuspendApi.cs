@@ -34,8 +34,9 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </remarks>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="suspendRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>SuspendResponseSchema</returns>
-        SuspendResponseSchema CreateSuspend(SuspendRequestSchema suspendRequestSchema = default(SuspendRequestSchema));
+        SuspendResponseSchema CreateSuspend(SuspendRequestSchema suspendRequestSchema = default(SuspendRequestSchema), int operationIndex = 0);
 
         /// <summary>
         /// Used to temporarily suspend one or more Tokens.
@@ -45,8 +46,9 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </remarks>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="suspendRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of SuspendResponseSchema</returns>
-        ApiResponse<SuspendResponseSchema> CreateSuspendWithHttpInfo(SuspendRequestSchema suspendRequestSchema = default(SuspendRequestSchema));
+        ApiResponse<SuspendResponseSchema> CreateSuspendWithHttpInfo(SuspendRequestSchema suspendRequestSchema = default(SuspendRequestSchema), int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
@@ -64,9 +66,10 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </remarks>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="suspendRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuspendResponseSchema</returns>
-        System.Threading.Tasks.Task<SuspendResponseSchema> CreateSuspendAsync(SuspendRequestSchema suspendRequestSchema = default(SuspendRequestSchema), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<SuspendResponseSchema> CreateSuspendAsync(SuspendRequestSchema suspendRequestSchema = default(SuspendRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Used to temporarily suspend one or more Tokens.
@@ -76,9 +79,10 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </remarks>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="suspendRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuspendResponseSchema)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SuspendResponseSchema>> CreateSuspendWithHttpInfoAsync(SuspendRequestSchema suspendRequestSchema = default(SuspendRequestSchema), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<SuspendResponseSchema>> CreateSuspendWithHttpInfoAsync(SuspendRequestSchema suspendRequestSchema = default(SuspendRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -109,7 +113,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// Initializes a new instance of the <see cref="SuspendApi"/> class.
         /// </summary>
         /// <returns></returns>
-        public SuspendApi(String basePath)
+        public SuspendApi(string basePath)
         {
             this.Configuration = Acme.App.MastercardApi.Client.Client.Configuration.MergeConfigurations(
                 Acme.App.MastercardApi.Client.Client.GlobalConfiguration.Instance,
@@ -172,7 +176,7 @@ namespace Acme.App.MastercardApi.Client.Api
         /// Gets the base path of the API client.
         /// </summary>
         /// <value>The base path</value>
-        public String GetBasePath()
+        public string GetBasePath()
         {
             return this.Configuration.BasePath;
         }
@@ -204,8 +208,9 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </summary>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="suspendRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>SuspendResponseSchema</returns>
-        public SuspendResponseSchema CreateSuspend(SuspendRequestSchema suspendRequestSchema = default(SuspendRequestSchema))
+        public SuspendResponseSchema CreateSuspend(SuspendRequestSchema suspendRequestSchema = default(SuspendRequestSchema), int operationIndex = 0)
         {
             Acme.App.MastercardApi.Client.Client.ApiResponse<SuspendResponseSchema> localVarResponse = CreateSuspendWithHttpInfo(suspendRequestSchema);
             return localVarResponse.Data;
@@ -216,36 +221,48 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </summary>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="suspendRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of SuspendResponseSchema</returns>
-        public Acme.App.MastercardApi.Client.Client.ApiResponse<SuspendResponseSchema> CreateSuspendWithHttpInfo(SuspendRequestSchema suspendRequestSchema = default(SuspendRequestSchema))
+        public Acme.App.MastercardApi.Client.Client.ApiResponse<SuspendResponseSchema> CreateSuspendWithHttpInfo(SuspendRequestSchema suspendRequestSchema = default(SuspendRequestSchema), int operationIndex = 0)
         {
             Acme.App.MastercardApi.Client.Client.RequestOptions localVarRequestOptions = new Acme.App.MastercardApi.Client.Client.RequestOptions();
 
-            String[] _contentTypes = new String[] {
+            string[] _contentTypes = new string[] {
                 "application/json"
             };
 
             // to determine the Accept header
-            String[] _accepts = new String[] {
+            string[] _accepts = new string[] {
                 "application/json"
             };
 
             var localVarContentType = Acme.App.MastercardApi.Client.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Acme.App.MastercardApi.Client.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.Data = suspendRequestSchema;
+
+            localVarRequestOptions.Operation = "SuspendApi.CreateSuspend";
+            localVarRequestOptions.OperationIndex = operationIndex;
 
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<SuspendResponseSchema>("/digitization/static/1/0/suspend", localVarRequestOptions, this.Configuration);
-
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CreateSuspend", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;
@@ -256,11 +273,12 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </summary>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="suspendRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuspendResponseSchema</returns>
-        public async System.Threading.Tasks.Task<SuspendResponseSchema> CreateSuspendAsync(SuspendRequestSchema suspendRequestSchema = default(SuspendRequestSchema), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<SuspendResponseSchema> CreateSuspendAsync(SuspendRequestSchema suspendRequestSchema = default(SuspendRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Acme.App.MastercardApi.Client.Client.ApiResponse<SuspendResponseSchema> localVarResponse = await CreateSuspendWithHttpInfoAsync(suspendRequestSchema, cancellationToken).ConfigureAwait(false);
+            Acme.App.MastercardApi.Client.Client.ApiResponse<SuspendResponseSchema> localVarResponse = await CreateSuspendWithHttpInfoAsync(suspendRequestSchema, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -269,40 +287,51 @@ namespace Acme.App.MastercardApi.Client.Api
         /// </summary>
         /// <exception cref="Acme.App.MastercardApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="suspendRequestSchema">Contains the details of the request message.  (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuspendResponseSchema)</returns>
-        public async System.Threading.Tasks.Task<Acme.App.MastercardApi.Client.Client.ApiResponse<SuspendResponseSchema>> CreateSuspendWithHttpInfoAsync(SuspendRequestSchema suspendRequestSchema = default(SuspendRequestSchema), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Acme.App.MastercardApi.Client.Client.ApiResponse<SuspendResponseSchema>> CreateSuspendWithHttpInfoAsync(SuspendRequestSchema suspendRequestSchema = default(SuspendRequestSchema), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Acme.App.MastercardApi.Client.Client.RequestOptions localVarRequestOptions = new Acme.App.MastercardApi.Client.Client.RequestOptions();
 
-            String[] _contentTypes = new String[] {
+            string[] _contentTypes = new string[] {
                 "application/json"
             };
 
             // to determine the Accept header
-            String[] _accepts = new String[] {
+            string[] _accepts = new string[] {
                 "application/json"
             };
 
-
             var localVarContentType = Acme.App.MastercardApi.Client.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
 
             var localVarAccept = Acme.App.MastercardApi.Client.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
 
             localVarRequestOptions.Data = suspendRequestSchema;
 
+            localVarRequestOptions.Operation = "SuspendApi.CreateSuspend";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
 
             // make the HTTP request
-
             var localVarResponse = await this.AsynchronousClient.PostAsync<SuspendResponseSchema>("/digitization/static/1/0/suspend", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CreateSuspend", localVarResponse);
-                if (_exception != null) throw _exception;
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
             }
 
             return localVarResponse;

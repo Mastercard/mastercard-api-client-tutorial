@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// Token
     /// </summary>
     [DataContract(Name = "token")]
-    public partial class Token : IEquatable<Token>, IValidatableObject
+    public partial class Token : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Token" /> class.
@@ -54,6 +54,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The unique reference allocated to the Token which is always present even if an error occurs. maxLength: 64 
         /// </summary>
         /// <value>The unique reference allocated to the Token which is always present even if an error occurs. maxLength: 64 </value>
+        /// <example>DWSPMC000000000132d72d4fcb2f4136a0532d3093ff1a45</example>
         [DataMember(Name = "tokenUniqueReference", EmitDefaultValue = false)]
         public string TokenUniqueReference { get; set; }
 
@@ -61,6 +62,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The current status of Token. Must be either:  * &#39;INACTIVE&#39; (Token has not yet been activated)  * &#39;ACTIVE&#39; (Token is active and ready to transact)  * &#39;SUSPENDED&#39; (Token is suspended and unable to transact)  * &#39;DEACTIVATED&#39; (Token has been permanently deactivated). maxLength: 32 
         /// </summary>
         /// <value>The current status of Token. Must be either:  * &#39;INACTIVE&#39; (Token has not yet been activated)  * &#39;ACTIVE&#39; (Token is active and ready to transact)  * &#39;SUSPENDED&#39; (Token is suspended and unable to transact)  * &#39;DEACTIVATED&#39; (Token has been permanently deactivated). maxLength: 32 </value>
+        /// <example>SUSPENDED</example>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public string Status { get; set; }
 
@@ -96,7 +98,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Token {\n");
             sb.Append("  TokenUniqueReference: ").Append(TokenUniqueReference).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
@@ -118,85 +120,6 @@ namespace Acme.App.MastercardApi.Client.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as Token);
-        }
-
-        /// <summary>
-        /// Returns true if Token instances are equal
-        /// </summary>
-        /// <param name="input">Instance of Token to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(Token input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.TokenUniqueReference == input.TokenUniqueReference ||
-                    (this.TokenUniqueReference != null &&
-                    this.TokenUniqueReference.Equals(input.TokenUniqueReference))
-                ) && 
-                (
-                    this.Status == input.Status ||
-                    (this.Status != null &&
-                    this.Status.Equals(input.Status))
-                ) && 
-                (
-                    this.SuspendedBy == input.SuspendedBy ||
-                    this.SuspendedBy != null &&
-                    input.SuspendedBy != null &&
-                    this.SuspendedBy.SequenceEqual(input.SuspendedBy)
-                ) && 
-                (
-                    this.StatusTimestamp == input.StatusTimestamp ||
-                    (this.StatusTimestamp != null &&
-                    this.StatusTimestamp.Equals(input.StatusTimestamp))
-                ) && 
-                (
-                    this.ProductConfig == input.ProductConfig ||
-                    (this.ProductConfig != null &&
-                    this.ProductConfig.Equals(input.ProductConfig))
-                ) && 
-                (
-                    this.TokenInfo == input.TokenInfo ||
-                    (this.TokenInfo != null &&
-                    this.TokenInfo.Equals(input.TokenInfo))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.TokenUniqueReference != null)
-                    hashCode = hashCode * 59 + this.TokenUniqueReference.GetHashCode();
-                if (this.Status != null)
-                    hashCode = hashCode * 59 + this.Status.GetHashCode();
-                if (this.SuspendedBy != null)
-                    hashCode = hashCode * 59 + this.SuspendedBy.GetHashCode();
-                if (this.StatusTimestamp != null)
-                    hashCode = hashCode * 59 + this.StatusTimestamp.GetHashCode();
-                if (this.ProductConfig != null)
-                    hashCode = hashCode * 59 + this.ProductConfig.GetHashCode();
-                if (this.TokenInfo != null)
-                    hashCode = hashCode * 59 + this.TokenInfo.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
@@ -204,7 +127,7 @@ namespace Acme.App.MastercardApi.Client.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // StatusTimestamp (string) maxLength
-            if(this.StatusTimestamp != null && this.StatusTimestamp.Length > 29)
+            if (this.StatusTimestamp != null && this.StatusTimestamp.Length > 29)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StatusTimestamp, length must be less than 29.", new [] { "StatusTimestamp" });
             }

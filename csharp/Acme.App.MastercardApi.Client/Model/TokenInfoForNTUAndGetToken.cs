@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// TokenInfoForNTUAndGetToken
     /// </summary>
     [DataContract(Name = "tokenInfo_for_NTU_and_getToken")]
-    public partial class TokenInfoForNTUAndGetToken : IEquatable<TokenInfoForNTUAndGetToken>, IValidatableObject
+    public partial class TokenInfoForNTUAndGetToken : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TokenInfoForNTUAndGetToken" /> class.
@@ -50,15 +50,35 @@ namespace Acme.App.MastercardApi.Client.Model
         public TokenInfoForNTUAndGetToken(string tokenPanSuffix = default(string), string accountPanPrefix = default(string), string accountPanSuffix = default(string), string tokenExpiry = default(string), string accountPanExpiry = default(string), string dsrpCapable = default(string), int tokenAssuranceLevel = default(int), string productCategory = default(string))
         {
             // to ensure "tokenPanSuffix" is required (not null)
-            this.TokenPanSuffix = tokenPanSuffix ?? throw new ArgumentNullException("tokenPanSuffix is a required property for TokenInfoForNTUAndGetToken and cannot be null");
+            if (tokenPanSuffix == null)
+            {
+                throw new ArgumentNullException("tokenPanSuffix is a required property for TokenInfoForNTUAndGetToken and cannot be null");
+            }
+            this.TokenPanSuffix = tokenPanSuffix;
             // to ensure "accountPanPrefix" is required (not null)
-            this.AccountPanPrefix = accountPanPrefix ?? throw new ArgumentNullException("accountPanPrefix is a required property for TokenInfoForNTUAndGetToken and cannot be null");
+            if (accountPanPrefix == null)
+            {
+                throw new ArgumentNullException("accountPanPrefix is a required property for TokenInfoForNTUAndGetToken and cannot be null");
+            }
+            this.AccountPanPrefix = accountPanPrefix;
             // to ensure "accountPanSuffix" is required (not null)
-            this.AccountPanSuffix = accountPanSuffix ?? throw new ArgumentNullException("accountPanSuffix is a required property for TokenInfoForNTUAndGetToken and cannot be null");
+            if (accountPanSuffix == null)
+            {
+                throw new ArgumentNullException("accountPanSuffix is a required property for TokenInfoForNTUAndGetToken and cannot be null");
+            }
+            this.AccountPanSuffix = accountPanSuffix;
             // to ensure "tokenExpiry" is required (not null)
-            this.TokenExpiry = tokenExpiry ?? throw new ArgumentNullException("tokenExpiry is a required property for TokenInfoForNTUAndGetToken and cannot be null");
+            if (tokenExpiry == null)
+            {
+                throw new ArgumentNullException("tokenExpiry is a required property for TokenInfoForNTUAndGetToken and cannot be null");
+            }
+            this.TokenExpiry = tokenExpiry;
             // to ensure "dsrpCapable" is required (not null)
-            this.DsrpCapable = dsrpCapable ?? throw new ArgumentNullException("dsrpCapable is a required property for TokenInfoForNTUAndGetToken and cannot be null");
+            if (dsrpCapable == null)
+            {
+                throw new ArgumentNullException("dsrpCapable is a required property for TokenInfoForNTUAndGetToken and cannot be null");
+            }
+            this.DsrpCapable = dsrpCapable;
             this.AccountPanExpiry = accountPanExpiry;
             this.TokenAssuranceLevel = tokenAssuranceLevel;
             this.ProductCategory = productCategory;
@@ -68,34 +88,39 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The last few digits (typically four) of the Token PAN. 
         /// </summary>
         /// <value>The last few digits (typically four) of the Token PAN. </value>
-        [DataMember(Name = "tokenPanSuffix", IsRequired = true, EmitDefaultValue = false)]
+        /// <example>0001</example>
+        [DataMember(Name = "tokenPanSuffix", IsRequired = true, EmitDefaultValue = true)]
         public string TokenPanSuffix { get; set; }
 
         /// <summary>
         /// The first few digits (typically six) of the Account PAN. 
         /// </summary>
         /// <value>The first few digits (typically six) of the Account PAN. </value>
-        [DataMember(Name = "accountPanPrefix", IsRequired = true, EmitDefaultValue = false)]
+        /// <example>500000</example>
+        [DataMember(Name = "accountPanPrefix", IsRequired = true, EmitDefaultValue = true)]
         public string AccountPanPrefix { get; set; }
 
         /// <summary>
         /// The last few digits (typically four) of the Account PAN. 
         /// </summary>
         /// <value>The last few digits (typically four) of the Account PAN. </value>
-        [DataMember(Name = "accountPanSuffix", IsRequired = true, EmitDefaultValue = false)]
+        /// <example>0011</example>
+        [DataMember(Name = "accountPanSuffix", IsRequired = true, EmitDefaultValue = true)]
         public string AccountPanSuffix { get; set; }
 
         /// <summary>
         /// The expiry of the Token PAN, given in MMYY format. 
         /// </summary>
         /// <value>The expiry of the Token PAN, given in MMYY format. </value>
-        [DataMember(Name = "tokenExpiry", IsRequired = true, EmitDefaultValue = false)]
+        /// <example>921</example>
+        [DataMember(Name = "tokenExpiry", IsRequired = true, EmitDefaultValue = true)]
         public string TokenExpiry { get; set; }
 
         /// <summary>
         /// The expiry of the Account PAN, given in MMYY format. 
         /// </summary>
         /// <value>The expiry of the Account PAN, given in MMYY format. </value>
+        /// <example>921</example>
         [DataMember(Name = "accountPanExpiry", EmitDefaultValue = false)]
         public string AccountPanExpiry { get; set; }
 
@@ -103,13 +128,15 @@ namespace Acme.App.MastercardApi.Client.Model
         /// Whether DSRP transactions are supported by this Token. Must be either &#39;true&#39; (DSRP capable) or &#39;false&#39; (Not DSRP capable). 
         /// </summary>
         /// <value>Whether DSRP transactions are supported by this Token. Must be either &#39;true&#39; (DSRP capable) or &#39;false&#39; (Not DSRP capable). </value>
-        [DataMember(Name = "dsrpCapable", IsRequired = true, EmitDefaultValue = false)]
+        /// <example>true</example>
+        [DataMember(Name = "dsrpCapable", IsRequired = true, EmitDefaultValue = true)]
         public string DsrpCapable { get; set; }
 
         /// <summary>
         /// A value indicating the confidence level of the token to Account PAN binding. 
         /// </summary>
         /// <value>A value indicating the confidence level of the token to Account PAN binding. </value>
+        /// <example>3</example>
         [DataMember(Name = "tokenAssuranceLevel", EmitDefaultValue = false)]
         public int TokenAssuranceLevel { get; set; }
 
@@ -117,6 +144,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// The product category of the Account PAN. When supplied will be one of the following values:    * CREDIT   * DEBIT   * PREPAID   * UNKNOWN 
         /// </summary>
         /// <value>The product category of the Account PAN. When supplied will be one of the following values:    * CREDIT   * DEBIT   * PREPAID   * UNKNOWN </value>
+        /// <example>CREDIT</example>
         [DataMember(Name = "productCategory", EmitDefaultValue = false)]
         public string ProductCategory { get; set; }
 
@@ -126,7 +154,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class TokenInfoForNTUAndGetToken {\n");
             sb.Append("  TokenPanSuffix: ").Append(TokenPanSuffix).Append("\n");
             sb.Append("  AccountPanPrefix: ").Append(AccountPanPrefix).Append("\n");
@@ -150,96 +178,6 @@ namespace Acme.App.MastercardApi.Client.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as TokenInfoForNTUAndGetToken);
-        }
-
-        /// <summary>
-        /// Returns true if TokenInfoForNTUAndGetToken instances are equal
-        /// </summary>
-        /// <param name="input">Instance of TokenInfoForNTUAndGetToken to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(TokenInfoForNTUAndGetToken input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.TokenPanSuffix == input.TokenPanSuffix ||
-                    (this.TokenPanSuffix != null &&
-                    this.TokenPanSuffix.Equals(input.TokenPanSuffix))
-                ) && 
-                (
-                    this.AccountPanPrefix == input.AccountPanPrefix ||
-                    (this.AccountPanPrefix != null &&
-                    this.AccountPanPrefix.Equals(input.AccountPanPrefix))
-                ) && 
-                (
-                    this.AccountPanSuffix == input.AccountPanSuffix ||
-                    (this.AccountPanSuffix != null &&
-                    this.AccountPanSuffix.Equals(input.AccountPanSuffix))
-                ) && 
-                (
-                    this.TokenExpiry == input.TokenExpiry ||
-                    (this.TokenExpiry != null &&
-                    this.TokenExpiry.Equals(input.TokenExpiry))
-                ) && 
-                (
-                    this.AccountPanExpiry == input.AccountPanExpiry ||
-                    (this.AccountPanExpiry != null &&
-                    this.AccountPanExpiry.Equals(input.AccountPanExpiry))
-                ) && 
-                (
-                    this.DsrpCapable == input.DsrpCapable ||
-                    (this.DsrpCapable != null &&
-                    this.DsrpCapable.Equals(input.DsrpCapable))
-                ) && 
-                (
-                    this.TokenAssuranceLevel == input.TokenAssuranceLevel ||
-                    this.TokenAssuranceLevel.Equals(input.TokenAssuranceLevel)
-                ) && 
-                (
-                    this.ProductCategory == input.ProductCategory ||
-                    (this.ProductCategory != null &&
-                    this.ProductCategory.Equals(input.ProductCategory))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.TokenPanSuffix != null)
-                    hashCode = hashCode * 59 + this.TokenPanSuffix.GetHashCode();
-                if (this.AccountPanPrefix != null)
-                    hashCode = hashCode * 59 + this.AccountPanPrefix.GetHashCode();
-                if (this.AccountPanSuffix != null)
-                    hashCode = hashCode * 59 + this.AccountPanSuffix.GetHashCode();
-                if (this.TokenExpiry != null)
-                    hashCode = hashCode * 59 + this.TokenExpiry.GetHashCode();
-                if (this.AccountPanExpiry != null)
-                    hashCode = hashCode * 59 + this.AccountPanExpiry.GetHashCode();
-                if (this.DsrpCapable != null)
-                    hashCode = hashCode * 59 + this.DsrpCapable.GetHashCode();
-                hashCode = hashCode * 59 + this.TokenAssuranceLevel.GetHashCode();
-                if (this.ProductCategory != null)
-                    hashCode = hashCode * 59 + this.ProductCategory.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
@@ -247,37 +185,37 @@ namespace Acme.App.MastercardApi.Client.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // TokenPanSuffix (string) maxLength
-            if(this.TokenPanSuffix != null && this.TokenPanSuffix.Length > 8)
+            if (this.TokenPanSuffix != null && this.TokenPanSuffix.Length > 8)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TokenPanSuffix, length must be less than 8.", new [] { "TokenPanSuffix" });
             }
 
             // AccountPanSuffix (string) maxLength
-            if(this.AccountPanSuffix != null && this.AccountPanSuffix.Length > 8)
+            if (this.AccountPanSuffix != null && this.AccountPanSuffix.Length > 8)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountPanSuffix, length must be less than 8.", new [] { "AccountPanSuffix" });
             }
 
             // TokenExpiry (string) maxLength
-            if(this.TokenExpiry != null && this.TokenExpiry.Length > 4)
+            if (this.TokenExpiry != null && this.TokenExpiry.Length > 4)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TokenExpiry, length must be less than 4.", new [] { "TokenExpiry" });
             }
 
             // AccountPanExpiry (string) maxLength
-            if(this.AccountPanExpiry != null && this.AccountPanExpiry.Length > 4)
+            if (this.AccountPanExpiry != null && this.AccountPanExpiry.Length > 4)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountPanExpiry, length must be less than 4.", new [] { "AccountPanExpiry" });
             }
 
             // DsrpCapable (string) maxLength
-            if(this.DsrpCapable != null && this.DsrpCapable.Length > 5)
+            if (this.DsrpCapable != null && this.DsrpCapable.Length > 5)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DsrpCapable, length must be less than 5.", new [] { "DsrpCapable" });
             }
 
             // ProductCategory (string) maxLength
-            if(this.ProductCategory != null && this.ProductCategory.Length > 32)
+            if (this.ProductCategory != null && this.ProductCategory.Length > 32)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ProductCategory, length must be less than 32.", new [] { "ProductCategory" });
             }

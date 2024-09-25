@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// NotifyTokenUpdatedRequestSchema
     /// </summary>
     [DataContract(Name = "NotifyTokenUpdatedRequestSchema")]
-    public partial class NotifyTokenUpdatedRequestSchema : IEquatable<NotifyTokenUpdatedRequestSchema>, IValidatableObject
+    public partial class NotifyTokenUpdatedRequestSchema : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="NotifyTokenUpdatedRequestSchema" /> class.
@@ -45,31 +45,45 @@ namespace Acme.App.MastercardApi.Client.Model
         public NotifyTokenUpdatedRequestSchema(string responseHost = default(string), string requestId = default(string), EncryptedPayload encryptedPayload = default(EncryptedPayload))
         {
             // to ensure "responseHost" is required (not null)
-            this.ResponseHost = responseHost ?? throw new ArgumentNullException("responseHost is a required property for NotifyTokenUpdatedRequestSchema and cannot be null");
+            if (responseHost == null)
+            {
+                throw new ArgumentNullException("responseHost is a required property for NotifyTokenUpdatedRequestSchema and cannot be null");
+            }
+            this.ResponseHost = responseHost;
             // to ensure "requestId" is required (not null)
-            this.RequestId = requestId ?? throw new ArgumentNullException("requestId is a required property for NotifyTokenUpdatedRequestSchema and cannot be null");
+            if (requestId == null)
+            {
+                throw new ArgumentNullException("requestId is a required property for NotifyTokenUpdatedRequestSchema and cannot be null");
+            }
+            this.RequestId = requestId;
             // to ensure "encryptedPayload" is required (not null)
-            this.EncryptedPayload = encryptedPayload ?? throw new ArgumentNullException("encryptedPayload is a required property for NotifyTokenUpdatedRequestSchema and cannot be null");
+            if (encryptedPayload == null)
+            {
+                throw new ArgumentNullException("encryptedPayload is a required property for NotifyTokenUpdatedRequestSchema and cannot be null");
+            }
+            this.EncryptedPayload = encryptedPayload;
         }
 
         /// <summary>
         /// The host that originated the request. Future calls in the same conversation should be routed to this host. 
         /// </summary>
         /// <value>The host that originated the request. Future calls in the same conversation should be routed to this host. </value>
-        [DataMember(Name = "responseHost", IsRequired = true, EmitDefaultValue = false)]
+        /// <example>site2.payment-app-provider.com</example>
+        [DataMember(Name = "responseHost", IsRequired = true, EmitDefaultValue = true)]
         public string ResponseHost { get; set; }
 
         /// <summary>
         /// Unique identifier for the request. 
         /// </summary>
         /// <value>Unique identifier for the request. </value>
-        [DataMember(Name = "requestId", IsRequired = true, EmitDefaultValue = false)]
+        /// <example>123456</example>
+        [DataMember(Name = "requestId", IsRequired = true, EmitDefaultValue = true)]
         public string RequestId { get; set; }
 
         /// <summary>
         /// Gets or Sets EncryptedPayload
         /// </summary>
-        [DataMember(Name = "encryptedPayload", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "encryptedPayload", IsRequired = true, EmitDefaultValue = true)]
         public EncryptedPayload EncryptedPayload { get; set; }
 
         /// <summary>
@@ -78,7 +92,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class NotifyTokenUpdatedRequestSchema {\n");
             sb.Append("  ResponseHost: ").Append(ResponseHost).Append("\n");
             sb.Append("  RequestId: ").Append(RequestId).Append("\n");
@@ -94,63 +108,6 @@ namespace Acme.App.MastercardApi.Client.Model
         public virtual string ToJson()
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
-        }
-
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as NotifyTokenUpdatedRequestSchema);
-        }
-
-        /// <summary>
-        /// Returns true if NotifyTokenUpdatedRequestSchema instances are equal
-        /// </summary>
-        /// <param name="input">Instance of NotifyTokenUpdatedRequestSchema to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(NotifyTokenUpdatedRequestSchema input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.ResponseHost == input.ResponseHost ||
-                    (this.ResponseHost != null &&
-                    this.ResponseHost.Equals(input.ResponseHost))
-                ) && 
-                (
-                    this.RequestId == input.RequestId ||
-                    (this.RequestId != null &&
-                    this.RequestId.Equals(input.RequestId))
-                ) && 
-                (
-                    this.EncryptedPayload == input.EncryptedPayload ||
-                    (this.EncryptedPayload != null &&
-                    this.EncryptedPayload.Equals(input.EncryptedPayload))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.ResponseHost != null)
-                    hashCode = hashCode * 59 + this.ResponseHost.GetHashCode();
-                if (this.RequestId != null)
-                    hashCode = hashCode * 59 + this.RequestId.GetHashCode();
-                if (this.EncryptedPayload != null)
-                    hashCode = hashCode * 59 + this.EncryptedPayload.GetHashCode();
-                return hashCode;
-            }
         }
 
         /// <summary>

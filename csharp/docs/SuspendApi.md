@@ -2,12 +2,11 @@
 
 All URIs are relative to *https://api.mastercard.com/mdes*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**CreateSuspend**](SuspendApi.md#createsuspend) | **POST** /digitization/static/1/0/suspend | Used to temporarily suspend one or more Tokens.
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**CreateSuspend**](SuspendApi.md#createsuspend) | **POST** /digitization/static/1/0/suspend | Used to temporarily suspend one or more Tokens. |
 
-
-<a name="createsuspend"></a>
+<a id="createsuspend"></a>
 # **CreateSuspend**
 > SuspendResponseSchema CreateSuspend (SuspendRequestSchema suspendRequestSchema = null)
 
@@ -42,8 +41,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling SuspendApi.CreateSuspend: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling SuspendApi.CreateSuspend: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -51,11 +50,31 @@ namespace Example
 }
 ```
 
+#### Using the CreateSuspendWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Used to temporarily suspend one or more Tokens.
+    ApiResponse<SuspendResponseSchema> response = apiInstance.CreateSuspendWithHttpInfo(suspendRequestSchema);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SuspendApi.CreateSuspendWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **suspendRequestSchema** | [**SuspendRequestSchema**](SuspendRequestSchema.md)| Contains the details of the request message.  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **suspendRequestSchema** | [**SuspendRequestSchema**](SuspendRequestSchema.md) | Contains the details of the request message.  | [optional]  |
 
 ### Return type
 
