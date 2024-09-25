@@ -26,8 +26,8 @@
     <PackageReference Include="RestSharp" Version="112.0.0" />
     <PackageReference Include="Polly" Version="8.1.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-    <PackageReference Include="Mastercard.Developer.ClientEncryption.RestSharpV2" Version="1.9.1" />
-    <PackageReference Include="Mastercard.Developer.OAuth1Signer.RestSharpV2" Version="1.5.0" />
+    <PackageReference Include="Mastercard.Developer.ClientEncryption.RestSharpV2" Version="1.9.2" />
+    <PackageReference Include="Mastercard.Developer.OAuth1Signer.RestSharpV2" Version="1.5.1" />
 </ItemGroup>
 
   <ItemGroup>
