@@ -26,7 +26,7 @@ namespace Acme.App.MastercardApi.Client.Client
             _encryptionInterceptor = RestSharpEncryptionInterceptor.From(config);
         }
 
-        partial void InterceptRequest(IRestRequest request)
+        partial void InterceptRequest(RestRequest request)
         {
             _encryptionInterceptor.InterceptRequest(request);
             _signer.Sign(_basePath, request);

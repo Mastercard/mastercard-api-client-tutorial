@@ -2,12 +2,11 @@
 
 All URIs are relative to *https://api.mastercard.com/mdes*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**GetToken**](GetTokenApi.md#gettoken) | **POST** /digitization/static/1/0/getToken | Used to get the status and details of a single given Token.
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**GetToken**](GetTokenApi.md#gettoken) | **POST** /digitization/static/1/0/getToken | Used to get the status and details of a single given Token. |
 
-
-<a name="gettoken"></a>
+<a id="gettoken"></a>
 # **GetToken**
 > GetTokenResponseSchema GetToken (GetTokenRequestSchema getTokenRequestSchema = null)
 
@@ -42,8 +41,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling GetTokenApi.GetToken: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling GetTokenApi.GetToken: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -51,11 +50,31 @@ namespace Example
 }
 ```
 
+#### Using the GetTokenWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Used to get the status and details of a single given Token.
+    ApiResponse<GetTokenResponseSchema> response = apiInstance.GetTokenWithHttpInfo(getTokenRequestSchema);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling GetTokenApi.GetTokenWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **getTokenRequestSchema** | [**GetTokenRequestSchema**](GetTokenRequestSchema.md)| Contains the details of the request message.  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **getTokenRequestSchema** | [**GetTokenRequestSchema**](GetTokenRequestSchema.md) | Contains the details of the request message.  | [optional]  |
 
 ### Return type
 

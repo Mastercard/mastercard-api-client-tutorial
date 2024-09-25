@@ -2,12 +2,11 @@
 
 All URIs are relative to *https://api.mastercard.com/mdes*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**GetTaskStatus**](GetTaskStatusApi.md#gettaskstatus) | **POST** /digitization/static/1/0/getTaskStatus | Used to check the status of any asynchronous task that was previously requested.
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**GetTaskStatus**](GetTaskStatusApi.md#gettaskstatus) | **POST** /digitization/static/1/0/getTaskStatus | Used to check the status of any asynchronous task that was previously requested. |
 
-
-<a name="gettaskstatus"></a>
+<a id="gettaskstatus"></a>
 # **GetTaskStatus**
 > GetTaskStatusResponseSchema GetTaskStatus (GetTaskStatusRequestSchema getTaskStatusRequestSchema = null)
 
@@ -42,8 +41,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling GetTaskStatusApi.GetTaskStatus: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling GetTaskStatusApi.GetTaskStatus: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -51,11 +50,31 @@ namespace Example
 }
 ```
 
+#### Using the GetTaskStatusWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Used to check the status of any asynchronous task that was previously requested.
+    ApiResponse<GetTaskStatusResponseSchema> response = apiInstance.GetTaskStatusWithHttpInfo(getTaskStatusRequestSchema);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling GetTaskStatusApi.GetTaskStatusWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **getTaskStatusRequestSchema** | [**GetTaskStatusRequestSchema**](GetTaskStatusRequestSchema.md)| Contains the details of the request message.  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **getTaskStatusRequestSchema** | [**GetTaskStatusRequestSchema**](GetTaskStatusRequestSchema.md) | Contains the details of the request message.  | [optional]  |
 
 ### Return type
 

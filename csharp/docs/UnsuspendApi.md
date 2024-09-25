@@ -2,12 +2,11 @@
 
 All URIs are relative to *https://api.mastercard.com/mdes*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**CreateUnsuspend**](UnsuspendApi.md#createunsuspend) | **POST** /digitization/static/1/0/unsuspend | Used to unsuspend one or more previously suspended Tokens. The API is limited to 10 Tokens per request.
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**CreateUnsuspend**](UnsuspendApi.md#createunsuspend) | **POST** /digitization/static/1/0/unsuspend | Used to unsuspend one or more previously suspended Tokens. The API is limited to 10 Tokens per request. |
 
-
-<a name="createunsuspend"></a>
+<a id="createunsuspend"></a>
 # **CreateUnsuspend**
 > UnSuspendResponseSchema CreateUnsuspend (UnSuspendRequestSchema unSuspendRequestSchema = null)
 
@@ -42,8 +41,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling UnsuspendApi.CreateUnsuspend: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling UnsuspendApi.CreateUnsuspend: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -51,11 +50,31 @@ namespace Example
 }
 ```
 
+#### Using the CreateUnsuspendWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Used to unsuspend one or more previously suspended Tokens. The API is limited to 10 Tokens per request.
+    ApiResponse<UnSuspendResponseSchema> response = apiInstance.CreateUnsuspendWithHttpInfo(unSuspendRequestSchema);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling UnsuspendApi.CreateUnsuspendWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **unSuspendRequestSchema** | [**UnSuspendRequestSchema**](UnSuspendRequestSchema.md)| Contains the details of the request message.  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **unSuspendRequestSchema** | [**UnSuspendRequestSchema**](UnSuspendRequestSchema.md) | Contains the details of the request message.  | [optional]  |
 
 ### Return type
 

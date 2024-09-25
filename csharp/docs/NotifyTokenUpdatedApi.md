@@ -2,12 +2,11 @@
 
 All URIs are relative to *https://api.mastercard.com/mdes*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**NotifyTokenUpdateForTokenStateChange**](NotifyTokenUpdatedApi.md#notifytokenupdatefortokenstatechange) | **POST** /digitization/static/1/0/notifyTokenUpdated | Outbound API used by MDES to notify the Token Requestor of significant Token updates, such as when the Token is activated, suspended, unsuspended or deleted; or when information about the Token or its product configuration has changed.
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**NotifyTokenUpdateForTokenStateChange**](NotifyTokenUpdatedApi.md#notifytokenupdatefortokenstatechange) | **POST** /digitization/static/1/0/notifyTokenUpdated | Outbound API used by MDES to notify the Token Requestor of significant Token updates, such as when the Token is activated, suspended, unsuspended or deleted; or when information about the Token or its product configuration has changed. |
 
-
-<a name="notifytokenupdatefortokenstatechange"></a>
+<a id="notifytokenupdatefortokenstatechange"></a>
 # **NotifyTokenUpdateForTokenStateChange**
 > NotifyTokenUpdatedResponseSchema NotifyTokenUpdateForTokenStateChange (NotifyTokenUpdatedRequestSchema notifyTokenUpdatedRequestSchema = null)
 
@@ -42,8 +41,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling NotifyTokenUpdatedApi.NotifyTokenUpdateForTokenStateChange: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling NotifyTokenUpdatedApi.NotifyTokenUpdateForTokenStateChange: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -51,11 +50,31 @@ namespace Example
 }
 ```
 
+#### Using the NotifyTokenUpdateForTokenStateChangeWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Outbound API used by MDES to notify the Token Requestor of significant Token updates, such as when the Token is activated, suspended, unsuspended or deleted; or when information about the Token or its product configuration has changed.
+    ApiResponse<NotifyTokenUpdatedResponseSchema> response = apiInstance.NotifyTokenUpdateForTokenStateChangeWithHttpInfo(notifyTokenUpdatedRequestSchema);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling NotifyTokenUpdatedApi.NotifyTokenUpdateForTokenStateChangeWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **notifyTokenUpdatedRequestSchema** | [**NotifyTokenUpdatedRequestSchema**](NotifyTokenUpdatedRequestSchema.md)| Contains the details of the request message.  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **notifyTokenUpdatedRequestSchema** | [**NotifyTokenUpdatedRequestSchema**](NotifyTokenUpdatedRequestSchema.md) | Contains the details of the request message.  | [optional]  |
 
 ### Return type
 

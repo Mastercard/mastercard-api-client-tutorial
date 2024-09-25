@@ -2,12 +2,11 @@
 
 All URIs are relative to *https://api.mastercard.com/mdes*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**CreateTokenize**](TokenizeApi.md#createtokenize) | **POST** /digitization/static/1/0/tokenize | 
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**CreateTokenize**](TokenizeApi.md#createtokenize) | **POST** /digitization/static/1/0/tokenize |  |
 
-
-<a name="createtokenize"></a>
+<a id="createtokenize"></a>
 # **CreateTokenize**
 > TokenizeResponseSchema CreateTokenize (TokenizeRequestSchema tokenizeRequestSchema = null)
 
@@ -41,8 +40,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling TokenizeApi.CreateTokenize: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling TokenizeApi.CreateTokenize: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -50,11 +49,30 @@ namespace Example
 }
 ```
 
+#### Using the CreateTokenizeWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    ApiResponse<TokenizeResponseSchema> response = apiInstance.CreateTokenizeWithHttpInfo(tokenizeRequestSchema);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TokenizeApi.CreateTokenizeWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tokenizeRequestSchema** | [**TokenizeRequestSchema**](TokenizeRequestSchema.md)| A Tokenize request is used to digitize a PAN.  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **tokenizeRequestSchema** | [**TokenizeRequestSchema**](TokenizeRequestSchema.md) | A Tokenize request is used to digitize a PAN.  | [optional]  |
 
 ### Return type
 

@@ -29,7 +29,7 @@ namespace Acme.App.MastercardApi.Client.Model
     /// GatewayErrorsSchema
     /// </summary>
     [DataContract(Name = "GatewayErrorsSchema")]
-    public partial class GatewayErrorsSchema : IEquatable<GatewayErrorsSchema>, IValidatableObject
+    public partial class GatewayErrorsSchema : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GatewayErrorsSchema" /> class.
@@ -52,7 +52,7 @@ namespace Acme.App.MastercardApi.Client.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class GatewayErrorsSchema {\n");
             sb.Append("  Error: ").Append(Error).Append("\n");
             sb.Append("}\n");
@@ -69,55 +69,11 @@ namespace Acme.App.MastercardApi.Client.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as GatewayErrorsSchema);
-        }
-
-        /// <summary>
-        /// Returns true if GatewayErrorsSchema instances are equal
-        /// </summary>
-        /// <param name="input">Instance of GatewayErrorsSchema to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(GatewayErrorsSchema input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.Error == input.Error ||
-                    this.Error != null &&
-                    input.Error != null &&
-                    this.Error.SequenceEqual(input.Error)
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Error != null)
-                    hashCode = hashCode * 59 + this.Error.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

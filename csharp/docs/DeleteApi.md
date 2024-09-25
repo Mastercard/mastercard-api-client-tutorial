@@ -2,12 +2,11 @@
 
 All URIs are relative to *https://api.mastercard.com/mdes*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**DeleteDigitization**](DeleteApi.md#deletedigitization) | **POST** /digitization/static/1/0/delete | Used to delete one or more Tokens. The API is limited to 10 Tokens per request.
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**DeleteDigitization**](DeleteApi.md#deletedigitization) | **POST** /digitization/static/1/0/delete | Used to delete one or more Tokens. The API is limited to 10 Tokens per request. |
 
-
-<a name="deletedigitization"></a>
+<a id="deletedigitization"></a>
 # **DeleteDigitization**
 > DeleteResponseSchema DeleteDigitization (DeleteRequestSchema deleteRequestSchema = null)
 
@@ -42,8 +41,8 @@ namespace Example
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling DeleteApi.DeleteDigitization: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling DeleteApi.DeleteDigitization: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -51,11 +50,31 @@ namespace Example
 }
 ```
 
+#### Using the DeleteDigitizationWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Used to delete one or more Tokens. The API is limited to 10 Tokens per request.
+    ApiResponse<DeleteResponseSchema> response = apiInstance.DeleteDigitizationWithHttpInfo(deleteRequestSchema);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DeleteApi.DeleteDigitizationWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **deleteRequestSchema** | [**DeleteRequestSchema**](DeleteRequestSchema.md)| Contains the details of the request message.  | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **deleteRequestSchema** | [**DeleteRequestSchema**](DeleteRequestSchema.md) | Contains the details of the request message.  | [optional]  |
 
 ### Return type
 
