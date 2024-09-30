@@ -19,24 +19,22 @@ This API is used by the Token Requestor to create a Digital Secure Remote Paymen
 ### Example
 
 ```javascript
-var MdesDigitalEnablementApi = require('mdes_digital_enablement_api');
+import MdesDigitalEnablementApi from 'mdes_digital_enablement_api';
 
-var apiInstance = new MdesDigitalEnablementApi.TransactApi();
-var opts = {
+let apiInstance = new MdesDigitalEnablementApi.TransactApi();
+let opts = {
   'transactRequestSchema': new MdesDigitalEnablementApi.TransactRequestSchema() // TransactRequestSchema | Contains the details of the request message. 
 };
-var callback = function(error, data, response) {
+apiInstance.createTransact(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.createTransact(opts, callback);
+});
 ```
 
 ### Parameters
-
 
 
 Name | Type | Description  | Notes

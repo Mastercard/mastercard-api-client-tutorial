@@ -1,3 +1,4 @@
+.babelrc
 .gitignore
 .openapi-generator-ignore
 .travis.yml

@@ -19,24 +19,22 @@ This API is used by MDES to notify the Token Requestor of significant Token upda
 ### Example
 
 ```javascript
-var MdesDigitalEnablementApi = require('mdes_digital_enablement_api');
+import MdesDigitalEnablementApi from 'mdes_digital_enablement_api';
 
-var apiInstance = new MdesDigitalEnablementApi.NotifyTokenUpdatedApi();
-var opts = {
+let apiInstance = new MdesDigitalEnablementApi.NotifyTokenUpdatedApi();
+let opts = {
   'notifyTokenUpdatedRequestSchema': new MdesDigitalEnablementApi.NotifyTokenUpdatedRequestSchema() // NotifyTokenUpdatedRequestSchema | Contains the details of the request message. 
 };
-var callback = function(error, data, response) {
+apiInstance.notifyTokenUpdateForTokenStateChange(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.notifyTokenUpdateForTokenStateChange(opts, callback);
+});
 ```
 
 ### Parameters
-
 
 
 Name | Type | Description  | Notes

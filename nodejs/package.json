@@ -5,19 +5,28 @@
   "license": "Unlicense",
   "main": "src/index.js",
   "scripts": {
-    "test": "mocha --recursive"
+    "test": "mocha --recursive",
+    "build": "babel src -d dist"
   },
+  "files": [
+    "dist"
+  ],
   "browser": {
     "fs": false
   },
   "dependencies": {
-    "superagent": "5.1.0",
     "mastercard-client-encryption": "1.10.3",
-    "mastercard-oauth1-signer": "1.1.5"
+    "mastercard-oauth1-signer": "1.1.5",
+    "node-fetch": "^3.3.2",
+    "superagent": "5.1.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.25.4",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1",
     "expect.js": "^0.3.1",
-    "mocha": "^10.2.0",
+    "mocha": "^10.7.3",
     "sinon": "^7.2.0"
   }
 }

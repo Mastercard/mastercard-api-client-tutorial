@@ -19,24 +19,22 @@ Used to check the status of any asynchronous task that was previously requested.
 ### Example
 
 ```javascript
-var MdesDigitalEnablementApi = require('mdes_digital_enablement_api');
+import MdesDigitalEnablementApi from 'mdes_digital_enablement_api';
 
-var apiInstance = new MdesDigitalEnablementApi.GetTaskStatusApi();
-var opts = {
+let apiInstance = new MdesDigitalEnablementApi.GetTaskStatusApi();
+let opts = {
   'getTaskStatusRequestSchema': new MdesDigitalEnablementApi.GetTaskStatusRequestSchema() // GetTaskStatusRequestSchema | Contains the details of the request message. 
 };
-var callback = function(error, data, response) {
+apiInstance.getTaskStatus(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getTaskStatus(opts, callback);
+});
 ```
 
 ### Parameters
-
 
 
 Name | Type | Description  | Notes

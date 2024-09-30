@@ -19,24 +19,22 @@ This API is used to get basic token information for all tokens on a specified de
 ### Example
 
 ```javascript
-var MdesDigitalEnablementApi = require('mdes_digital_enablement_api');
+import MdesDigitalEnablementApi from 'mdes_digital_enablement_api';
 
-var apiInstance = new MdesDigitalEnablementApi.SearchTokensApi();
-var opts = {
+let apiInstance = new MdesDigitalEnablementApi.SearchTokensApi();
+let opts = {
   'searchTokensRequestSchema': new MdesDigitalEnablementApi.SearchTokensRequestSchema() // SearchTokensRequestSchema | Contains the details of the request message. 
 };
-var callback = function(error, data, response) {
+apiInstance.searchTokens(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.searchTokens(opts, callback);
+});
 ```
 
 ### Parameters
-
 
 
 Name | Type | Description  | Notes

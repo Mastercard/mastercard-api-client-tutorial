@@ -19,24 +19,22 @@ This API is used to unsuspend one or more previously suspended Tokens. The API i
 ### Example
 
 ```javascript
-var MdesDigitalEnablementApi = require('mdes_digital_enablement_api');
+import MdesDigitalEnablementApi from 'mdes_digital_enablement_api';
 
-var apiInstance = new MdesDigitalEnablementApi.UnsuspendApi();
-var opts = {
+let apiInstance = new MdesDigitalEnablementApi.UnsuspendApi();
+let opts = {
   'unSuspendRequestSchema': new MdesDigitalEnablementApi.UnSuspendRequestSchema() // UnSuspendRequestSchema | Contains the details of the request message. 
 };
-var callback = function(error, data, response) {
+apiInstance.createUnsuspend(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.createUnsuspend(opts, callback);
+});
 ```
 
 ### Parameters
-
 
 
 Name | Type | Description  | Notes
