@@ -19,24 +19,22 @@ This API is used to temporarily suspend one or more Tokens (for example, suspend
 ### Example
 
 ```javascript
-var MdesDigitalEnablementApi = require('mdes_digital_enablement_api');
+import MdesDigitalEnablementApi from 'mdes_digital_enablement_api';
 
-var apiInstance = new MdesDigitalEnablementApi.SuspendApi();
-var opts = {
+let apiInstance = new MdesDigitalEnablementApi.SuspendApi();
+let opts = {
   'suspendRequestSchema': new MdesDigitalEnablementApi.SuspendRequestSchema() // SuspendRequestSchema | Contains the details of the request message. 
 };
-var callback = function(error, data, response) {
+apiInstance.createSuspend(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.createSuspend(opts, callback);
+});
 ```
 
 ### Parameters
-
 
 
 Name | Type | Description  | Notes

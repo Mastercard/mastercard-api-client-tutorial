@@ -19,24 +19,22 @@ This API is used to get the status and details of a single given Token. It may b
 ### Example
 
 ```javascript
-var MdesDigitalEnablementApi = require('mdes_digital_enablement_api');
+import MdesDigitalEnablementApi from 'mdes_digital_enablement_api';
 
-var apiInstance = new MdesDigitalEnablementApi.GetTokenApi();
-var opts = {
+let apiInstance = new MdesDigitalEnablementApi.GetTokenApi();
+let opts = {
   'getTokenRequestSchema': new MdesDigitalEnablementApi.GetTokenRequestSchema() // GetTokenRequestSchema | Contains the details of the request message. 
 };
-var callback = function(error, data, response) {
+apiInstance.getToken(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getToken(opts, callback);
+});
 ```
 
 ### Parameters
-
 
 
 Name | Type | Description  | Notes

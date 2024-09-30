@@ -19,24 +19,22 @@ Used to digitize a card to create a server-based Token. MDES will perform both c
 ### Example
 
 ```javascript
-var MdesDigitalEnablementApi = require('mdes_digital_enablement_api');
+import MdesDigitalEnablementApi from 'mdes_digital_enablement_api';
 
-var apiInstance = new MdesDigitalEnablementApi.TokenizeApi();
-var opts = {
+let apiInstance = new MdesDigitalEnablementApi.TokenizeApi();
+let opts = {
   'tokenizeRequestSchema': new MdesDigitalEnablementApi.TokenizeRequestSchema() // TokenizeRequestSchema | A Tokenize request is used to digitize a PAN. 
 };
-var callback = function(error, data, response) {
+apiInstance.createTokenize(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.createTokenize(opts, callback);
+});
 ```
 
 ### Parameters
-
 
 
 Name | Type | Description  | Notes

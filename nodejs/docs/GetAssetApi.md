@@ -19,22 +19,20 @@ This API is used to retrieve static Assets from MDES?s repository, such as - Car
 ### Example
 
 ```javascript
-var MdesDigitalEnablementApi = require('mdes_digital_enablement_api');
+import MdesDigitalEnablementApi from 'mdes_digital_enablement_api';
 
-var apiInstance = new MdesDigitalEnablementApi.GetAssetApi();
-var assetId = "assetId_example"; // String | An Asset ID corresponds to an individual Digital Asset. Digital Assets are returned as part of the Product Configuration from the Tokenize Response. The Asset ID itself is supplied as a Get request in the form of https://{INSERT ENVIRONMENT URL HERE}/mdes/assets/static/1/0/asset/{AssetID} - See JSON examples for details. 
-var callback = function(error, data, response) {
+let apiInstance = new MdesDigitalEnablementApi.GetAssetApi();
+let assetId = "assetId_example"; // String | An Asset ID corresponds to an individual Digital Asset. Digital Assets are returned as part of the Product Configuration from the Tokenize Response. The Asset ID itself is supplied as a Get request in the form of https://{INSERT ENVIRONMENT URL HERE}/mdes/assets/static/1/0/asset/{AssetID} - See JSON examples for details. 
+apiInstance.getAsset(assetId, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getAsset(assetId, callback);
+});
 ```
 
 ### Parameters
-
 
 
 Name | Type | Description  | Notes

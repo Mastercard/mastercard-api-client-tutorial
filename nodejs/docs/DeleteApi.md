@@ -19,24 +19,22 @@ This API is used to delete one or more Tokens.  The API is limited to 10 Tokens 
 ### Example
 
 ```javascript
-var MdesDigitalEnablementApi = require('mdes_digital_enablement_api');
+import MdesDigitalEnablementApi from 'mdes_digital_enablement_api';
 
-var apiInstance = new MdesDigitalEnablementApi.DeleteApi();
-var opts = {
+let apiInstance = new MdesDigitalEnablementApi.DeleteApi();
+let opts = {
   'deleteRequestSchema': new MdesDigitalEnablementApi.DeleteRequestSchema() // DeleteRequestSchema | Contains the details of the request message. 
 };
-var callback = function(error, data, response) {
+apiInstance.deleteDigitization(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.deleteDigitization(opts, callback);
+});
 ```
 
 ### Parameters
-
 
 
 Name | Type | Description  | Notes

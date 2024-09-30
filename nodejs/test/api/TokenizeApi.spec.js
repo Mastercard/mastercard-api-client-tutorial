@@ -10,6 +10,11 @@
  * Do not edit the class manually.
  *
  */
+/**
+* Test.
+* @module test/api/TokenizeApi
+* @version 1.3.0
+*/
 
 const fs = require("fs");
 const assert = require('assert');
@@ -17,39 +22,10 @@ const oauth = require('mastercard-oauth1-signer');
 const mcapi = require('mastercard-client-encryption');
 const forge = require("node-forge");
 
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD.
-    define(['expect.js', process.cwd()+'/src/index'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // CommonJS-like environments that support module.exports, like Node.
-    factory(require('expect.js'), require(process.cwd()+'/src/index'));
-  } else {
-    // Browser globals (root is window)
-    factory(root.expect, root.MdesForMerchants);
-  }
-}(this, function(expect, MdesForMerchants) {
-  'use strict';
+const OpenApiClient =require('../../dist/index.js');
 
 
-  var getProperty = function(object, getter, property) {
-    // Use getter method if present; otherwise, get the property directly.
-    if (typeof object[getter] === 'function')
-      return object[getter]();
-    else
-      return object[property];
-  }
-
-  var setProperty = function(object, setter, property, value) {
-    // Use setter method if present; otherwise, set the property directly.
-    if (typeof object[setter] === 'function')
-      object[setter](value);
-    else
-      object[property] = value;
-  }
-
-
-  const CONFIG = {
+const CONFIG = {
     paths: [
       {
         path: "/tokenize",
@@ -181,31 +157,26 @@ const forge = require("node-forge");
     };
   }
 
-  describe('TokenizeApi', function() {
-    describe('createTokenize', function() {
+function createService() {
+  let client = OpenApiClient.ApiClient.instance;
+  client.basePath = "https://sandbox.api.mastercard.com/mdes";
+  const signingKey = loadSigningKey();
+  // Add OAuth1.0a interceptor
+  client.applyAuthToRequest = function(request) {
+      const _end = request._end;
+      request._end = function() {
+          const authHeader = oauth.getAuthorizationHeader(request.url, request.method, JSON.stringify(request._data), CONSUMER_KEY, signingKey);
+          request.req.setHeader('Authorization', authHeader);
+          _end.call(request);
+      };
+      return request;
+  };
+  let service = new mcapi.Service(OpenApiClient, CONFIG);
+  return service
+};
 
-      let service;
-
-      before("create client", (done) => {
-        const client = MdesForMerchants.ApiClient.instance;
-        client.basePath = "https://sandbox.api.mastercard.com/mdes";
-        const signingKey = loadSigningKey();
-        // Add OAuth1.0a interceptor
-        client.applyAuthToRequest = function(request) {
-          const _end = request._end;
-          request._end = function() {
-              const authHeader = oauth.getAuthorizationHeader(request.url, request.method, JSON.stringify(request._data), CONSUMER_KEY, signingKey);
-              request.req.setHeader('Authorization', authHeader);
-              _end.call(request);
-          };
-          return request;
-        };
-
-        // Add FieldLevelEncryption interceptor
-        service = new mcapi.Service(MdesForMerchants, CONFIG);
-        done();
-      });
-            
+describe('TokenizeApi', function() {
+    let service = createService()
       it("should call createTokenize successfully", function (done) {
         this.timeout(10000);
         let api = new service.TokenizeApi();
@@ -219,7 +190,4 @@ const forge = require("node-forge");
         });
       });
 
-    });
   });
-
-}));
